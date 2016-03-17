@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:fitsSystemWindows="true"
+  tools:context=".ui.NewCharacterActivity">
+
+  <ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      android:paddingBottom="@dimen/activity_vertical_margin"
+      android:paddingLeft="@dimen/activity_horizontal_margin"
+      android:paddingRight="@dimen/activity_horizontal_margin"
+      android:paddingTop="@dimen/activity_vertical_margin"
+      tools:context=".activities.NewCharacterActivity">
+
+      <EditText
+        android:id="@+id/character_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/character_name"/>
+
+      <Spinner
+        android:id="@+id/species"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+      <EditText
+        android:id="@+id/age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/age"/>
+
+      <EditText
+        android:id="@+id/height"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/height"/>
+
+      <EditText
+        android:id="@+id/weight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/weight"/>
+
+      <EditText
+        android:id="@+id/skin_tone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/skin_tone"/>
+
+      <EditText
+        android:id="@+id/hair_color"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hair_color"/>
+
+      <EditText
+        android:id="@+id/eye_color"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/eye_color"/>
+
+      <Spinner
+        android:id="@+id/careers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+      <Spinner
+        android:id="@+id/specializations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+      <Button
+        android:id="@+id/done_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onDoneClicked"
+        android:text="@string/done"/>
+    </LinearLayout>
+  </ScrollView>
+</android.support.design.widget.CoordinatorLayout>
