@@ -1,11 +1,11 @@
-package org.raincitygamers.holocron.ui;
+package org.raincitygamers.holocron.ui.selection;
 
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.wdullaer.swipeactionadapter.SwipeActionAdapter;
@@ -14,7 +14,11 @@ import com.wdullaer.swipeactionadapter.SwipeDirection;
 import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.Character;
+import org.raincitygamers.holocron.rules.character.Character.Summary;
 import org.raincitygamers.holocron.rules.character.CharacterManager;
+import org.raincitygamers.holocron.ui.ActivityBase;
+import org.raincitygamers.holocron.ui.creation.ChooseBasicsActivity;
+import org.raincitygamers.holocron.ui.display.DisplayCharacterActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,7 +29,7 @@ public class SelectorActivity extends ActivityBase {
   private static final String LOG_TAG = SelectorActivity.class.getSimpleName();
 
   private CharacterManager characterManager;
-  private List<Character> characters = new ArrayList<>();
+  private List<Summary> characters = new ArrayList<>();
 
   private CharacterArrayAdapter characterArrayAdapter;
   private ListView characterListView;
@@ -35,15 +39,15 @@ public class SelectorActivity extends ActivityBase {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_selector);
 
-    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-    setSupportActionBar(toolbar);
+    // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    // setSupportActionBar(toolbar);
 
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+    assert fab != null;
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Intent intent = new Intent(SelectorActivity.this, NewCharacterActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        Intent intent = new Intent(SelectorActivity.this, ChooseBasicsActivity.class);
         startActivity(intent);
       }
     });
@@ -66,6 +70,15 @@ public class SelectorActivity extends ActivityBase {
     swipeActionAdapter.setFixedBackgrounds(false);
     swipeActionAdapter.setFadeOut(false);
     swipeActionAdapter.setFarSwipeFraction(0.7f);
+
+    characterListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+      @Override
+      public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(SelectorActivity.this, DisplayCharacterActivity.class);
+        characterManager.loadActiveCharacter(characters.get(position).getCharacterId());
+        startActivity(intent);
+      }
+    });
   }
 
   @Override
@@ -73,6 +86,7 @@ public class SelectorActivity extends ActivityBase {
     super.onResume();
     if (permissionGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
       characterManager = CharacterManager.getInstance();
+      characterManager.loadActiveCharacter(null);
       displayCharacters();
     }
   }
@@ -80,7 +94,7 @@ public class SelectorActivity extends ActivityBase {
   private void displayCharacters() {
     characters.clear();
     for (UUID characterId : characterManager.getCharacterIds()) {
-      characters.add(characterManager.getCharacter(characterId));
+      characters.add(characterManager.getCharacterSummary(characterId));
     }
 
     Collections.sort(characters, Character.getMostRecentAccessComparator());
@@ -89,9 +103,9 @@ public class SelectorActivity extends ActivityBase {
 
   private static class SwipeActionHandler implements SwipeActionAdapter.SwipeActionListener {
     private final SwipeActionAdapter swipeActionAdapter;
-    private final List<Character> characters;
+    private final List<Summary> characters;
 
-    private SwipeActionHandler(@NotNull SwipeActionAdapter swipeActionAdapter, @NotNull List<Character> characters) {
+    private SwipeActionHandler(@NotNull SwipeActionAdapter swipeActionAdapter, @NotNull List<Summary> characters) {
       this.swipeActionAdapter = swipeActionAdapter;
       this.characters = characters;
     }
@@ -99,7 +113,7 @@ public class SelectorActivity extends ActivityBase {
     @Override
     public boolean hasActions(int position, SwipeDirection direction) {
       if (direction.isLeft()) {
-        return true; // Change this to false to disable left swipes
+        return true;
       }
       if (direction.isRight()) {
         return true;

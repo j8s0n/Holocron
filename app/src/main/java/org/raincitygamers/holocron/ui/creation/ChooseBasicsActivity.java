@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui;
+package org.raincitygamers.holocron.ui.creation;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,8 +26,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-public class NewCharacterActivity extends ActivityBase {
-  private static final String LOG_TAG = NewCharacterActivity.class.getSimpleName();
+public class ChooseBasicsActivity extends CreationActivity {
+  private static final String LOG_TAG = ChooseBasicsActivity.class.getSimpleName();
   private final List<String> specializations = new ArrayList<>();
   private Species selectedSpecies;
   private Career selectedCareer;
@@ -41,7 +41,7 @@ public class NewCharacterActivity extends ActivityBase {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_new_character);
+    setContentView(R.layout.activity_choose_basics);
     buildSpeciesSpinner();
     buildCareerSpinner();
   }
@@ -60,7 +60,8 @@ public class NewCharacterActivity extends ActivityBase {
       return;
     }
 
-    Character character = new Character.Builder(name, selectedCareer, selectedSpecialization, selectedSpecies, UUID.randomUUID())
+    UUID characterId = UUID.randomUUID();
+    Character character = new Character.Builder(name, selectedCareer, selectedSpecialization, selectedSpecies, characterId)
                               .age(readEditText(R.id.age))
                               .height(readEditText(R.id.height))
                               .weight(readEditText(R.id.weight))
@@ -76,8 +77,8 @@ public class NewCharacterActivity extends ActivityBase {
                               .build();
 
     characterManager.saveCharacter(character);
-    Intent intent = new Intent(this, DisplayActivity.class);
-    intent.putExtra(DisplayActivity.NEW_CHARACTER, character.getCharacterId());
+    characterManager.loadActiveCharacter(characterId);
+    Intent intent = new Intent(this, ChooseCharacteristicsActivity.class);
     startActivity(intent);
   }
 

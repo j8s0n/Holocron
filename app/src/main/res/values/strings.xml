@@ -22,4 +22,6 @@
   <string name="skill_selection_choices">skill_selection_choices</string>
   <string name="working_on_career_skills">working_on_career_skills</string>
   <string name="select_a_character">Select a Character</string>
+  <string name="title_activity_display_character">DisplayCharacterActivity</string>
+  <string name="section_format">Hello World from section: %1$d</string>
 </resources>

@@ -20,9 +20,10 @@ import java.util.Map;
 import java.util.UUID;
 
 public class FileAccessor {
-  private File Base = new File(Environment.getExternalStorageDirectory(), ".holocron");
-  private File Rules = new File(Base, "Rules");
-  private File Characters = new File(Base, "Characters");
+  private File GameData = new File(Environment.getExternalStorageDirectory(), "GameData");
+  private File Holocron = new File(GameData, "Holocron");
+  private File Rules = new File(Holocron, "Rules");
+  private File Characters = new File(Holocron, "Characters");
   private static final String LOG_TAG = FileAccessor.class.getSimpleName();
   private static FileAccessor ourInstance = new FileAccessor();
 
@@ -39,13 +40,18 @@ public class FileAccessor {
   }
 
   @NotNull
-  public Map<UUID, String> getCharacterContent() {
+  public Map<UUID, String> getAllCharacterContent() {
     Map<UUID, String> characters = new HashMap<>();
     for (File f : Characters.listFiles()) {
       characters.put(UUID.fromString(f.getName()), readFile(f));
     }
 
     return characters;
+  }
+
+  @NotNull
+  public String getCharacterContent(UUID characterId) {
+    return readFile(new File(Characters, characterId.toString()));
   }
 
   public void writeCharacterContent(@NotNull Character character) throws JSONException {

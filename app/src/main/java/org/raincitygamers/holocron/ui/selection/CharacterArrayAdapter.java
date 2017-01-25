@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui;
+package org.raincitygamers.holocron.ui.selection;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,21 +8,21 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import org.raincitygamers.holocron.R;
-import org.raincitygamers.holocron.rules.character.Character;
+import org.raincitygamers.holocron.rules.character.Character.Summary;
 
 import java.util.List;
 
 /**
  * Created by jason on 2016-03-13.
  */
-public class CharacterArrayAdapter extends ArrayAdapter<Character> {
-  public CharacterArrayAdapter(Context context, List<Character> objects) {
+public class CharacterArrayAdapter extends ArrayAdapter<Summary> {
+  public CharacterArrayAdapter(Context context, List<Summary> objects) {
     super(context, -1, objects);
   }
 
   @Override
   public View getView(int position, View convertView, ViewGroup parent) {
-    Character character = getItem(position);
+    Summary character = getItem(position);
     ViewHolder viewHolder;
 
     if (convertView == null) {
@@ -39,7 +39,7 @@ public class CharacterArrayAdapter extends ArrayAdapter<Character> {
     }
 
     viewHolder.characterName.setText(character.getName());
-    viewHolder.characterCareer.setText(character.getCareer().getName());
+    viewHolder.characterCareer.setText(character.getName());
     viewHolder.lastAccessDate.setText(character.getTimestampString());
     return  convertView;
   }

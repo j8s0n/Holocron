@@ -23,9 +23,10 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     provided "org.projectlombok:lombok:1.12.6"
-    compile 'com.android.support:appcompat-v7:23.2.0'
-    compile 'com.android.support:design:23.2.0'
-    compile 'org.jetbrains:annotations-java5:15.0'
     compile group: 'com.google.guava', name: 'guava', version: '19.0'
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:design:23.3.0'
+    compile 'org.jetbrains:annotations-java5:15.0'
     compile 'com.wdullaer:swipeactionadapter:2.0.0'
+    compile 'com.android.support:support-v4:23.3.0'
 }

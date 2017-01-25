@@ -20,7 +20,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 @ToString
@@ -239,6 +241,11 @@ public class Character {
     return a;
   }
 
+  @NotNull
+  public static Character valueOf(@NotNull Builder builder) {
+    return new Character(builder);
+  }
+
   // Methods for reading from the JSON file.
   @NotNull
   public static Character valueOf(@NotNull JSONObject jsonObject, @NotNull UUID characterId)
@@ -310,6 +317,33 @@ public class Character {
     return specializations;
   }
 
+  public Summary makeSummary() {
+    return new Summary(characterId, name, career.getName(), accessTime);
+  }
+
+  @Getter
+  @ToString
+  @EqualsAndHashCode
+  @RequiredArgsConstructor(suppressConstructorProperties = true)
+  public static class Summary {
+    private final UUID characterId;
+    private final String name;
+    private final String career;
+    private final long timestamp;
+
+    public static Summary valueOf(JSONObject characterJson, UUID characterId) throws JSONException {
+      String name = characterJson.getString(NAME_KEY);
+      Career career = careerManager.getCareer(characterJson.getString(CAREER_KEY));
+      long timestamp = characterJson.getLong(TIMESTAMP_KEY);
+
+      return new Summary(characterId, name, career.getName(), timestamp);
+    }
+
+    public String getTimestampString() {
+      return new Date(timestamp).toString();
+    }
+  }
+
   public static class Builder {
     private final String name;
     private String age = "";
@@ -379,20 +413,20 @@ public class Character {
 
     @NotNull
     public Builder characteristic(@NotNull Characteristic characteristic, int value) {
-      characteristics.put(characteristic, Integer.valueOf(value));
+      characteristics.put(characteristic, value);
       return this;
     }
 
     @NotNull
     public Character build() {
-      return new Character(this);
+      return Character.valueOf(this);
     }
   }
 
-  private static class MostRecentAccessComparator implements Comparator<Character> {
+  private static class MostRecentAccessComparator implements Comparator<Character.Summary> {
     @Override
-    public int compare(Character lhs, Character rhs) {
-      return (int) (rhs.accessTime - lhs.accessTime);
+    public int compare(Character.Summary lhs, Character.Summary rhs) {
+      return (int) (rhs.timestamp - lhs.timestamp);
     }
   }
 }

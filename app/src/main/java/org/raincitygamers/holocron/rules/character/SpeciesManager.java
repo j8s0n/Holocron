@@ -14,9 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by jason on 1/10/16.
- */
 public class SpeciesManager {
   private static final String LOG_TAG = SpeciesManager.class.getSimpleName();
   private static final String SPECIES_LABEL = "species";

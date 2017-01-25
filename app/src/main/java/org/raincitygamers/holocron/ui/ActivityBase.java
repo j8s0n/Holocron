@@ -7,9 +7,6 @@ import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
-/**
- * Created by jason on 2016-03-04.
- */
 public class ActivityBase extends AppCompatActivity {
   protected void displayPermissionAlert(String type) {
     AlertDialog alertDialog = new AlertDialog.Builder(this).create();
