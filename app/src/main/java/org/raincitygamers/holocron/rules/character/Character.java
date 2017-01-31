@@ -23,6 +23,7 @@ import java.util.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @ToString
@@ -48,6 +49,7 @@ public class Character {
   private static final String SCORE_KEY = "score";
   private static final String TIMESTAMP_KEY = "last_access_timestamp";
   private static final String ID_KEY = "character_id_key";
+  private static final String LAST_OPEN_PAGE_KEY = "last_open_page";
   private static final CareerManager careerManager = CareerManager.getInstance();
   private static final SkillManager skillManager = SkillManager.getInstance();
   private static final SpeciesManager speciesManager = SpeciesManager.getInstance();
@@ -66,6 +68,7 @@ public class Character {
   @Getter private String skinTone;
   @Getter private String hairColor;
   @Getter private String eyeColor;
+  @Getter @Setter private int lastOpenPage = 0;
   private long accessTime;
 
   private final Map<Characteristic, Integer> characteristicScores = new HashMap<>();
@@ -89,6 +92,7 @@ public class Character {
     this.eyeColor = builder.eyeColor;
     this.accessTime = builder.accessTime;
     this.characterId = builder.characterId;
+    this.lastOpenPage = builder.lastOpenPage;
 
     buildDicePools(skillManager.getCombatSkills(), skillPools);
     buildDicePools(skillManager.getGeneralSkills(), skillPools);
@@ -184,6 +188,7 @@ public class Character {
     o.put(CHARACTERISTICS_KEY, characteristicsAsJsonArray());
     o.put(SKILLS_KEY, skillsAsJsonArray());
     o.put(ID_KEY, characterId);
+    o.put(LAST_OPEN_PAGE_KEY, lastOpenPage);
     o.put(TIMESTAMP_KEY, accessTime);
     return o;
   }
@@ -256,6 +261,7 @@ public class Character {
     Map<Skill, Integer> skills = parseSkills(jsonObject.getJSONArray(SKILLS_KEY));
     Map<Characteristic, Integer> characteristics = parseCharacteristics(jsonObject.getJSONArray(CHARACTERISTICS_KEY));
 
+    // TODO Robustness on missing fields.
     Character character = new Builder(name, career, specializations.get(0), species, characterId)
                               .age(jsonObject.getString(AGE_KEY))
                               .height(jsonObject.getString(HEIGHT_KEY))
@@ -264,6 +270,7 @@ public class Character {
                               .hairColor(jsonObject.getString(HAIR_COLOR_KEY))
                               .eyeColor(jsonObject.getString(EYE_COLOR_KEY))
                               .accessTime(jsonObject.getLong(TIMESTAMP_KEY))
+                              .lastOpenPage(jsonObject.getInt(LAST_OPEN_PAGE_KEY))
                               .build();
     for (Map.Entry<Skill, Integer> skill : skills.entrySet()) {
       character.setSkillScore(skill.getKey(), skill.getValue());
@@ -317,7 +324,7 @@ public class Character {
   }
 
   public Summary makeSummary() {
-    return new Summary(characterId, name, career.getName(), accessTime);
+    return new Summary(characterId, name, species.getName(), career.getName(), accessTime);
   }
 
   public static String buildFileName(@NotNull String characterName, @NotNull UUID characterId) {
@@ -335,15 +342,21 @@ public class Character {
   public static class Summary {
     private final UUID characterId;
     private final String name;
+    private final String species;
     private final String career;
     private final long timestamp;
 
     public static Summary valueOf(JSONObject characterJson, UUID characterId) throws JSONException {
       String name = characterJson.getString(NAME_KEY);
       Career career = careerManager.getCareer(characterJson.getString(CAREER_KEY));
+      Species species = speciesManager.getSpecies(characterJson.getString(SPECIES_KEY));
       long timestamp = characterJson.getLong(TIMESTAMP_KEY);
 
-      return new Summary(characterId, name, career.getName(), timestamp);
+      return new Summary(characterId, name, species.getName(), career.getName(), timestamp);
+    }
+
+    public String getBlurb() {
+      return species + " - " + career;
     }
 
     public String getTimestampString() {
@@ -364,11 +377,13 @@ public class Character {
     private String hairColor = "";
     private String eyeColor = "";
     private long accessTime;
+    private int lastOpenPage = 0;
     private final Career career;
     private final Specialization specialization;
     private final Species species;
     private final Map<Characteristic, Integer> characteristics = new HashMap<>();
     private final UUID characterId;
+
 
     public Builder(@NotNull String name, @NotNull Career career, @NotNull Specialization specialization,
                    @NotNull Species species, @NotNull UUID characterId) {
@@ -425,6 +440,12 @@ public class Character {
     @NotNull
     public Builder characteristic(@NotNull Characteristic characteristic, int value) {
       characteristics.put(characteristic, value);
+      return this;
+    }
+
+    @NotNull
+    public Builder lastOpenPage(int lastOpenPage) {
+      this.lastOpenPage = lastOpenPage;
       return this;
     }
 

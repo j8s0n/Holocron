@@ -101,4 +101,10 @@ public class CharacterManager {
       throw new IllegalStateException("No valid character to display.", e);
     }
   }
+
+  public static void saveActiveCharacter() {
+    if (ourInstance.activeCharacter != null) {
+      ourInstance.saveCharacter(ourInstance.activeCharacter);
+    }
+  }
 }

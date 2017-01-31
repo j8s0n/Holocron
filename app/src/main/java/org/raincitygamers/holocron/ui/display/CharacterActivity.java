@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,17 +27,20 @@ import org.raincitygamers.holocron.ui.pages.skills.SkillsPage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class CharacterActivity extends AppCompatActivity implements DisplayPage.OnFragmentInteractionListener {
-  private static final String LOG_TAG = CharacterActivity.class.getSimpleName();
-
   private ListView drawerList;
   private DrawerLayout drawerLayout;
   private ArrayAdapter<String> adapter;
   private ActionBarDrawerToggle drawerToggle;
   private Character activeCharacter;
   private int currentPageNumber = 0;
+
+  private static final String LOG_TAG = CharacterActivity.class.getSimpleName();
+  private static final long THIRTY_SECONDS = 3000;
+  private Timer timer;
 
   private List<DisplayPage> displayPages = Arrays.asList(
       // This is where we populate what shows up in the menu.
@@ -48,6 +52,19 @@ public class CharacterActivity extends AppCompatActivity implements DisplayPage.
       new DescriptionPage()
   );
 
+  @Override
+  protected void onPause() {
+    super.onPause();
+
+    timer.cancel();
+    CharacterManager.getInstance().saveActiveCharacter();
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    autoSaveCharacter();
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +80,7 @@ public class CharacterActivity extends AppCompatActivity implements DisplayPage.
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setHomeButtonEnabled(true);
-    selectPage(0);
+    selectPage(activeCharacter.getLastOpenPage());
     setTitle();
   }
 
@@ -80,7 +97,7 @@ public class CharacterActivity extends AppCompatActivity implements DisplayPage.
       @Override
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         selectPage(position);
-        // Toast.makeText(CharacterActivity.this, "Time for an upgrade!", Toast.LENGTH_SHORT).show();
+        activeCharacter.setLastOpenPage(position);
       }
     });
   }
@@ -109,7 +126,7 @@ public class CharacterActivity extends AppCompatActivity implements DisplayPage.
   private void selectPage(int pageNumber) {
     currentPageNumber = pageNumber;
     Fragment displayPage = displayPages.get(pageNumber);
-    // Fragment displayPage = new BasicsPage();
+    activeCharacter.setLastOpenPage(pageNumber);
     FragmentManager fragmentManager = getFragmentManager();
     fragmentManager.beginTransaction()
         .replace(R.id.content_frame, displayPage)
@@ -121,6 +138,24 @@ public class CharacterActivity extends AppCompatActivity implements DisplayPage.
   private void setTitle() {
     String title = activeCharacter.getName() + " - " + displayPages.get(currentPageNumber).getTitle();
     getSupportActionBar().setTitle(title);
+  }
+
+  private void autoSaveCharacter() {
+    final Handler handler = new Handler();
+    timer = new Timer();
+    TimerTask saveCharacter = new TimerTask() {
+      @Override
+      public void run() {
+        handler.post(new Runnable() {
+          public void run() {
+            Log.i(LOG_TAG, "Autosave: " + activeCharacter.getName());
+            CharacterManager.saveActiveCharacter();
+          }
+        });
+      }
+    };
+
+    timer.scheduleAtFixedRate(saveCharacter, THIRTY_SECONDS, THIRTY_SECONDS);
   }
 
   @Override

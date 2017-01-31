@@ -39,7 +39,7 @@ public class CharacterArrayAdapter extends ArrayAdapter<Summary> {
     }
 
     viewHolder.characterName.setText(character.getName());
-    viewHolder.characterCareer.setText(character.getName());
+    viewHolder.characterCareer.setText(character.getBlurb());
     viewHolder.lastAccessDate.setText(character.getTimestampString());
     return  convertView;
   }
