@@ -1,8 +1,8 @@
-package org.raincitygamers.holocron.ui.display.stats;
+package org.raincitygamers.holocron.ui.pages.basics;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +13,6 @@ import org.raincitygamers.holocron.rules.abilities.Characteristic;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.CharacterManager;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class CharacteristicsFragment extends Fragment {
   private final CharacterManager characterManager = CharacterManager.getInstance();
 

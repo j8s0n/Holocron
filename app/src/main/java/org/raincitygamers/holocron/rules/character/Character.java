@@ -14,7 +14,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -49,7 +49,6 @@ public class Character {
   private static final String TIMESTAMP_KEY = "last_access_timestamp";
   private static final String ID_KEY = "character_id_key";
   private static final CareerManager careerManager = CareerManager.getInstance();
-  private static final CharacterManager characterManager = CharacterManager.getInstance();
   private static final SkillManager skillManager = SkillManager.getInstance();
   private static final SpeciesManager speciesManager = SpeciesManager.getInstance();
   @Getter private static final MostRecentAccessComparator mostRecentAccessComparator = new MostRecentAccessComparator();
@@ -59,7 +58,7 @@ public class Character {
   @Getter private final Species species;
   @Getter private final Career career;
   @Getter private final UUID characterId;
-  @Getter private final Set<Specialization> specializations = new HashSet<>();
+  @Getter private final Set<Specialization> specializations = new LinkedHashSet<>();
   @Getter private List<Obligation> obligations = new ArrayList<>();
   @Getter private String age;
   @Getter private String height;
@@ -321,6 +320,14 @@ public class Character {
     return new Summary(characterId, name, career.getName(), accessTime);
   }
 
+  public static String buildFileName(@NotNull String characterName, @NotNull UUID characterId) {
+    return characterName.replace(' ', '_') + "." + characterId.toString();
+  }
+
+  public String getFileName() {
+    return buildFileName(name, characterId);
+  }
+
   @Getter
   @ToString
   @EqualsAndHashCode
@@ -341,6 +348,10 @@ public class Character {
 
     public String getTimestampString() {
       return new Date(timestamp).toString();
+    }
+
+    public String getFileName() {
+      return Character.buildFileName(name, characterId);
     }
   }
 

@@ -43,19 +43,22 @@ public class FileAccessor {
   public Map<UUID, String> getAllCharacterContent() {
     Map<UUID, String> characters = new HashMap<>();
     for (File f : Characters.listFiles()) {
-      characters.put(UUID.fromString(f.getName()), readFile(f));
+      String fileName = f.getName();
+      int index = fileName.indexOf('.') + 1;
+      UUID id = UUID.fromString(fileName.substring(index));
+      characters.put(id, readFile(f));
     }
 
     return characters;
   }
 
   @NotNull
-  public String getCharacterContent(UUID characterId) {
-    return readFile(new File(Characters, characterId.toString()));
+  public String getCharacterContent(String characterFileName) {
+    return readFile(new File(Characters, characterFileName));
   }
 
   public void writeCharacterContent(@NotNull Character character) throws JSONException {
-    File characterFile = new File(Characters, character.getCharacterId().toString());
+    File characterFile = new File(Characters, character.getFileName());
     writeFile(characterFile, character.toJsonObject().toString());
   }
 
@@ -104,22 +107,37 @@ public class FileAccessor {
 
   @NotNull
   private String readFile(@NotNull File file) {
-    try (InputStream is = new FileInputStream(file)) {
-      byte[] buffer = new byte[65536];
-      StringBuilder sb = new StringBuilder();
-      int count;
-      while ((count = is.read(buffer)) >= 0) {
-        sb.append(new String(buffer, 0, count));
+    int retryCount = 0;
+    while (retryCount < 5) {
+      try (InputStream is = new FileInputStream(file)) {
+        byte[] buffer = new byte[65536];
+        StringBuilder sb = new StringBuilder();
+        int count;
+        while ((count = is.read(buffer)) >= 0) {
+          sb.append(new String(buffer, 0, count));
+        }
+
+        return sb.toString();
+      }
+      catch (FileNotFoundException e) {
+        if (retryCount >= 5) {
+          throw new IllegalStateException("Unable to read file: " + file.getAbsoluteFile(), e);
+        }
+      }
+      catch (IOException e) {
+        throw new IllegalStateException("Unable to read file: " + file.getAbsoluteFile(), e);
       }
 
-      return sb.toString();
+      retryCount++;
+      try {
+        Thread.sleep(1000);
+      }
+      catch (InterruptedException e) {
+        e.printStackTrace();
+      }
     }
-    catch (FileNotFoundException e) {
-      throw new IllegalStateException("Unable to read file: " + file.getAbsoluteFile(), e);
-    }
-    catch (IOException e) {
-      throw new IllegalStateException("Unable to read file: " + file.getAbsoluteFile(), e);
-    }
+
+    return "";
   }
 
   private void writeFile(@NotNull File file, @NotNull String data) {
@@ -138,8 +156,8 @@ public class FileAccessor {
     }
   }
 
-  public void removeFile(@NotNull UUID characterId) {
-    File removeIt = new File(Characters, characterId.toString());
+  public void removeFile(@NotNull String characterId) {
+    File removeIt = new File(Characters, characterId);
     boolean success = removeIt.delete();
     Log.i(LOG_TAG, "Remove " + characterId + ": " + success);
   }

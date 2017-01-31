@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#eeeeee"
+              android:orientation="vertical"
+              tools:context=".ui.pages.basics.BasicsPage">
+
+  <fragment
+    android:id="@+id/fragment0"
+    android:name="org.raincitygamers.holocron.ui.pages.basics.DescriptiveStatsFragment"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="left|top"
+    tools:layout="@layout/fragment_descriptive_stats"/>
+
+  <fragment
+    android:id="@+id/fragment1"
+    android:name="org.raincitygamers.holocron.ui.pages.basics.CharacteristicsFragment"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="left|top"
+    android:layout_marginTop="8dp"
+    tools:layout="@layout/fragment_characteristics"/>
+  <!-- TODO: Put more fragments here to fill out the basics tab. -->
+</LinearLayout>

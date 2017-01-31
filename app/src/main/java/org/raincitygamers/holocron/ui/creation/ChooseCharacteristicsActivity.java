@@ -8,7 +8,7 @@ import android.view.View;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.CharacterManager;
-import org.raincitygamers.holocron.ui.display.DisplayCharacterActivity;
+import org.raincitygamers.holocron.ui.display.CharacterActivity;
 
 public class ChooseCharacteristicsActivity extends CreationActivity {
   private static final CharacterManager characterManager = CharacterManager.getInstance();
@@ -29,7 +29,7 @@ public class ChooseCharacteristicsActivity extends CreationActivity {
 
   public void onDoneClicked(View view) {
     Log.i(LOG_TAG, "onDoneClicked");
-    Intent intent = new Intent(this, DisplayCharacterActivity.class);
+    Intent intent = new Intent(this, CharacterActivity.class);
     startActivity(intent);
   }
 }

@@ -77,7 +77,8 @@ public class ChooseBasicsActivity extends CreationActivity {
                               .build();
 
     characterManager.saveCharacter(character);
-    characterManager.loadActiveCharacter(characterId);
+    String key = Character.buildFileName(name, characterId);
+    characterManager.loadActiveCharacter(key, characterId);
     Intent intent = new Intent(this, ChooseCharacteristicsActivity.class);
     startActivity(intent);
   }

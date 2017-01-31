@@ -25,9 +25,9 @@
     <activity android:name=".ui.creation.ChooseCharacteristicsActivity">
     </activity>
     <activity
-      android:name=".ui.display.DisplayCharacterActivity"
-      android:label="@string/title_activity_display_character"
-      android:theme="@style/AppTheme.NoActionBar">
+      android:name=".ui.display.CharacterActivity"
+      android:label="@string/title_activity_character"
+      >
     </activity>
   </application>
 

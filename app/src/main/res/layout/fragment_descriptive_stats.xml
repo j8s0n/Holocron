@@ -1,0 +1,102 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             tools:context=".ui.pages.basics.CharacteristicsFragment"
+                                             android:background="#f7f7ff"
+  >
+
+  <!-- TODO: Update blank fragment layout -->
+
+  <TextView
+    android:text="Career"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/career_label"
+    android:textSize="18sp"
+    app:layout_constraintTop_toTopOf="@+id/career_value"
+    app:layout_constraintBottom_toBottomOf="@+id/career_value"
+    app:layout_constraintLeft_toLeftOf="@+id/species_label"/>
+
+  <TextView
+    android:text="Specialization"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/specialization_label"
+    android:textSize="18sp"
+    app:layout_constraintTop_toTopOf="@+id/specialization_value"
+    app:layout_constraintBottom_toBottomOf="@+id/specialization_value"
+    app:layout_constraintVertical_bias="0.0"
+    app:layout_constraintLeft_toLeftOf="@+id/career_label"/>
+
+  <TextView
+    android:text="Species"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/species_label"
+    android:textSize="18sp"
+    app:layout_constraintTop_toTopOf="@+id/species_value"
+    app:layout_constraintBottom_toBottomOf="@+id/species_value"
+    app:layout_constraintLeft_toLeftOf="@+id/textView8"/>
+
+  <TextView
+    android:text="Name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/textView8"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:textSize="18sp"/>
+
+  <TextView
+    android:text="0"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/name_value"
+    android:textSize="24sp"
+    android:textAlignment="textEnd"
+    app:layout_constraintTop_toTopOf="@+id/textView8"
+    app:layout_constraintBottom_toBottomOf="@+id/textView8"
+    android:layout_marginStart="16dp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    android:layout_marginEnd="16dp"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintHorizontal_bias="0.96"/>
+
+  <TextView
+    android:text="0"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/career_value"
+    android:textSize="24sp"
+    app:layout_constraintRight_toRightOf="@+id/species_value"
+    android:layout_marginTop="8dp"
+    app:layout_constraintTop_toBottomOf="@+id/species_value"/>
+
+  <TextView
+    android:text="0"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/specialization_value"
+    android:textSize="24sp"
+    tools:layout_constraintTop_creator="1"
+    tools:layout_constraintRight_creator="1"
+    app:layout_constraintRight_toRightOf="@+id/career_value"
+    android:layout_marginTop="8dp"
+    app:layout_constraintTop_toBottomOf="@+id/career_value"
+    />
+
+  <TextView
+    android:text="0"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/species_value"
+    android:textSize="24sp"
+    app:layout_constraintRight_toRightOf="@+id/name_value"
+    android:layout_marginTop="8dp"
+    app:layout_constraintTop_toBottomOf="@+id/name_value"/>
+
+</android.support.constraint.ConstraintLayout>

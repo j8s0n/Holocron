@@ -24,4 +24,10 @@
   <string name="select_a_character">Select a Character</string>
   <string name="title_activity_display_character">DisplayCharacterActivity</string>
   <string name="section_format">Hello World from section: %1$d</string>
+  <string name="title_activity_character">CharacterActivity</string>
+
+  <string name="navigation_drawer_open">Open navigation drawer</string>
+  <string name="navigation_drawer_close">Close navigation drawer</string>
+  <string name="drawer_open">Open</string>
+  <string name="drawer_close">Close</string>
 </resources>

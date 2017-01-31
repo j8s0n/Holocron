@@ -1,10 +1,10 @@
 package org.raincitygamers.holocron.rules.character;
 
 import android.os.AsyncTask;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.raincitygamers.holocron.io.FileAccessor;
@@ -15,14 +15,12 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import lombok.Getter;
-
 public class CharacterManager {
   private static final String LOG_TAG = CharacterManager.class.getSimpleName();
   private static final CharacterManager ourInstance = new CharacterManager();
   private final Map<UUID, Summary> characters = new LinkedHashMap<>();
   private final FileAccessor fileAccessor = FileAccessor.getInstance();
-  @Getter private Character activeCharacter;
+  private Character activeCharacter;
 
   public static CharacterManager getInstance() {
     return ourInstance;
@@ -32,7 +30,11 @@ public class CharacterManager {
     loadCharacters();
   }
 
-  @NotNull
+  @Nullable
+  public static Character getActiveCharacter() {
+    return getInstance().activeCharacter;
+  }
+
   public void saveCharacter(@NotNull Character character) {
     characters.put(character.getCharacterId(), character.makeSummary());
     character.updateTimestamp();
@@ -78,20 +80,20 @@ public class CharacterManager {
     return characters.keySet();
   }
 
-  public void removeCharacter(@NotNull Summary character) {
-    characters.remove(character.getCharacterId());
-    fileAccessor.removeFile(character.getCharacterId());
+  public void removeCharacter(@NotNull Summary summary) {
+    characters.remove(summary.getCharacterId());
+    fileAccessor.removeFile(summary.getFileName());
   }
 
-  public void loadActiveCharacter(UUID characterId) {
-    if (characterId == null) {
-      activeCharacter = null;
-      return;
-    }
+  public void clearActiveCharacter() {
+    activeCharacter = null;
+  }
 
+  public void loadActiveCharacter(@NotNull String characterFileName, @NotNull UUID characterId) {
     try {
       if (activeCharacter == null || !activeCharacter.getCharacterId().equals(characterId)) {
-        activeCharacter = Character.valueOf(new JSONObject(fileAccessor.getCharacterContent(characterId)), characterId);
+        activeCharacter = Character.valueOf(new JSONObject(fileAccessor.getCharacterContent(characterFileName)),
+                                            characterId);
       }
     }
     catch (JSONException e) {

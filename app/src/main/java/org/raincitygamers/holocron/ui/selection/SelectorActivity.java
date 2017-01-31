@@ -18,7 +18,7 @@ import org.raincitygamers.holocron.rules.character.Character.Summary;
 import org.raincitygamers.holocron.rules.character.CharacterManager;
 import org.raincitygamers.holocron.ui.ActivityBase;
 import org.raincitygamers.holocron.ui.creation.ChooseBasicsActivity;
-import org.raincitygamers.holocron.ui.display.DisplayCharacterActivity;
+import org.raincitygamers.holocron.ui.display.CharacterActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -74,8 +74,10 @@ public class SelectorActivity extends ActivityBase {
     characterListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
       @Override
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent(SelectorActivity.this, DisplayCharacterActivity.class);
-        characterManager.loadActiveCharacter(characters.get(position).getCharacterId());
+        Intent intent = new Intent(SelectorActivity.this, CharacterActivity.class);
+        Summary summary = characters.get(position);
+
+        characterManager.loadActiveCharacter(summary.getFileName(), summary.getCharacterId());
         startActivity(intent);
       }
     });
@@ -86,7 +88,7 @@ public class SelectorActivity extends ActivityBase {
     super.onResume();
     if (permissionGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
       characterManager = CharacterManager.getInstance();
-      characterManager.loadActiveCharacter(null);
+      characterManager.clearActiveCharacter();
       displayCharacters();
     }
   }
