@@ -22,7 +22,9 @@ import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.CharacterManager;
 import org.raincitygamers.holocron.ui.pages.basics.BasicsPage;
 import org.raincitygamers.holocron.ui.pages.description.DescriptionPage;
-import org.raincitygamers.holocron.ui.pages.skills.SkillsPage;
+import org.raincitygamers.holocron.ui.pages.skills.CombatSkillsPage;
+import org.raincitygamers.holocron.ui.pages.skills.GeneralSkillsPage;
+import org.raincitygamers.holocron.ui.pages.skills.KnowledgeSkillsPage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,7 +47,9 @@ public class CharacterActivity extends AppCompatActivity implements DisplayPage.
   private List<DisplayPage> displayPages = Arrays.asList(
       // This is where we populate what shows up in the menu.
       new BasicsPage(),
-      new SkillsPage(),
+      new GeneralSkillsPage(),
+      new CombatSkillsPage(),
+      new KnowledgeSkillsPage(),
       // new TalentsTab(),
       // new EquipmentTab(),
       // new ForceTab(),
