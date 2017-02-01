@@ -7,10 +7,8 @@ import org.json.JSONObject;
 import org.raincitygamers.holocron.rules.abilities.Characteristic;
 import org.raincitygamers.holocron.rules.abilities.Skill;
 import org.raincitygamers.holocron.rules.eote.Obligation;
-import org.raincitygamers.holocron.rules.rolls.DicePool;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
@@ -68,12 +66,13 @@ public class Character {
   @Getter private String skinTone;
   @Getter private String hairColor;
   @Getter private String eyeColor;
-  @Getter @Setter private int lastOpenPage = 0;
+  @Getter
+  @Setter
+  private int lastOpenPage = 0;
   private long accessTime;
 
   private final Map<Characteristic, Integer> characteristicScores = new HashMap<>();
   private final Map<Skill, Integer> skills = new HashMap<>();
-  private final Map<Skill, DicePool> skillPools = new HashMap<>();
 
   // TODO:
   // For bonuses, have a map->list for each thing that can have bonuses (e.g. brawn->list<bonuses>).
@@ -94,9 +93,6 @@ public class Character {
     this.characterId = builder.characterId;
     this.lastOpenPage = builder.lastOpenPage;
 
-    buildDicePools(skillManager.getCombatSkills(), skillPools);
-    buildDicePools(skillManager.getGeneralSkills(), skillPools);
-    buildDicePools(skillManager.getKnowledgeSkills(), skillPools);
     for (Map.Entry<Characteristic, Integer> entry : builder.characteristics.entrySet()) {
       characteristicScores.put(entry.getKey(), entry.getValue());
     }
@@ -111,7 +107,12 @@ public class Character {
   }
 
   public int getSkillScore(@NotNull Skill skill) {
-    return skills.get(skill);
+    if (skills.containsKey(skill)) {
+      return skills.get(skill);
+    }
+    else {
+      return 0;
+    }
   }
 
   public void setSkillScore(@NotNull Skill skill, int value) {
@@ -140,22 +141,6 @@ public class Character {
 
   public int getRangedDefense() {
     return 0;
-  }
-
-  private void buildDicePools(@NotNull Collection<Skill> skills, @NotNull Map<Skill, DicePool> dicePools) {
-    for (Skill skill : skills) {
-      dicePools.put(skill, new DicePool(skill.getCharacteristic(), skill));
-    }
-  }
-
-  public void update() {
-    updateDicePools(skillPools.values());
-  }
-
-  private void updateDicePools(@NotNull Collection<DicePool> dicePools) {
-    for (DicePool pool : dicePools) {
-      pool.recalculatePool(characteristicScores.get(pool.getCharacteristic()), getSkillScore(pool.getSkill()));
-    }
   }
 
   public long getTimestamp() {

@@ -3,23 +3,25 @@ package org.raincitygamers.holocron.rules.abilities;
 import org.jetbrains.annotations.NotNull;
 
 public enum Characteristic {
-  BRAWN("Brawn"),
-  AGILITY("Agility"),
-  INTELLECT("Intellect"),
-  CUNNING("Cunning"),
-  WILLPOWER("Willpower"),
-  PRESENCE("Presence");
+  BRAWN("Brawn", "Br"),
+  AGILITY("Agility", "Ag"),
+  INTELLECT("Intellect", "Int"),
+  CUNNING("Cunning", "Cun"),
+  WILLPOWER("Willpower", "Wil"),
+  PRESENCE("Presence", "Pr");
 
-  private String value;
+  private String name;
+  private String abbreviation;
 
-  Characteristic(@NotNull String value) {
-    this.value = value;
+  Characteristic(@NotNull String name, @NotNull String abbreviation) {
+    this.name = name;
+    this.abbreviation = abbreviation;
   }
 
   @NotNull
-  public static Characteristic of(@NotNull String value) {
+  public static Characteristic of(@NotNull String name) {
     for (Characteristic characteristic : values()) {
-      if (characteristic.toString().equals(value)) {
+      if (characteristic.toString().equals(name)) {
         return characteristic;
       }
     }
@@ -29,6 +31,10 @@ public enum Characteristic {
 
   @Override
   public String toString() {
-    return value;
+    return name;
+  }
+
+  public String getAbbreviation() {
+    return abbreviation;
   }
 }

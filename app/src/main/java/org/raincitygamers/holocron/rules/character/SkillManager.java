@@ -9,7 +9,6 @@ import org.json.JSONObject;
 import org.raincitygamers.holocron.io.FileAccessor;
 import org.raincitygamers.holocron.rules.abilities.Characteristic;
 import org.raincitygamers.holocron.rules.abilities.Skill;
-import org.raincitygamers.holocron.rules.abilities.SkillType;
 
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -38,7 +37,7 @@ public class SkillManager {
   }
 
   public void addSkill(@NotNull Skill skill) {
-    switch (skill.getSkillType()) {
+    switch (skill.getType()) {
     case COMBAT:
       combatSkills.put(skill.getName(), skill);
       break;
@@ -104,7 +103,7 @@ public class SkillManager {
         Characteristic characteristic = Characteristic.of(skillObject.getString(CHARACTERISTIC_KEY));
         String skillType = skillObject.getString(TYPE_KEY).toUpperCase();
 
-        addSkill(new Skill(name, SkillType.valueOf(skillType), characteristic));
+        addSkill(new Skill(name, Skill.Type.valueOf(skillType), characteristic));
       }
       catch (JSONException e) {
         Log.e(LOG_TAG, "Unable to parse Skills.json.", e);

@@ -12,9 +12,6 @@ import org.raincitygamers.holocron.rules.character.Character.Summary;
 
 import java.util.List;
 
-/**
- * Created by jason on 2016-03-13.
- */
 public class CharacterArrayAdapter extends ArrayAdapter<Summary> {
   public CharacterArrayAdapter(Context context, List<Summary> objects) {
     super(context, -1, objects);

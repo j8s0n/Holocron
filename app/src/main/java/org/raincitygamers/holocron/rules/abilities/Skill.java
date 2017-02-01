@@ -11,6 +11,12 @@ import lombok.ToString;
 @RequiredArgsConstructor(suppressConstructorProperties = true)
 public class Skill {
   private final String name;
-  private final SkillType skillType;
+  private final Type type;
   private final Characteristic characteristic;
+
+  public static enum Type {
+    COMBAT,
+    GENERAL,
+    KNOWLEDGE,
+  }
 }
