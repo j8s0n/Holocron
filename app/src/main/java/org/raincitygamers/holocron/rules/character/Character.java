@@ -48,6 +48,17 @@ public class Character {
   private static final String TIMESTAMP_KEY = "last_access_timestamp";
   private static final String ID_KEY = "character_id_key";
   private static final String LAST_OPEN_PAGE_KEY = "last_open_page";
+
+  private static final String WOUNDS_KEY = "wounds";
+  private static final String WOUND_THRESHOLD_KEY = "wound_threshold";
+  private static final String STRAIN_KEY = "strain";
+  private static final String STRAIN_THRESHOLD_KEY = "strain_threshold";
+
+  private static final String MELEE_DEFENSE_KEY = "melee_defense";
+  private static final String RANGED_DEFENSE_KEY = "ranged_defense";
+  private static final String SOAK_KEY = "soak";
+  private static final String ENCUMBRANCE_KEY = "encumbrance_threshold";
+
   private static final CareerManager careerManager = CareerManager.getInstance();
   private static final SkillManager skillManager = SkillManager.getInstance();
   @Getter private static final MostRecentAccessComparator mostRecentAccessComparator = new MostRecentAccessComparator();
@@ -65,6 +76,16 @@ public class Character {
   @Getter private String skinTone;
   @Getter private String hairColor;
   @Getter private String eyeColor;
+
+  @Getter private int wounds;
+  @Getter private int woundThreshold;
+  @Getter private int strain;
+  @Getter private int strainThreshold;
+  @Getter private int meleeDefense;
+  @Getter private int rangedDefense;
+  @Getter private int soak;
+  @Getter private int encumbranceThreshold;
+
   @Getter
   @Setter
   private int lastOpenPage = 0;
@@ -88,6 +109,14 @@ public class Character {
     this.skinTone = builder.skinTone;
     this.hairColor = builder.hairColor;
     this.eyeColor = builder.eyeColor;
+    this.wounds = builder.wounds;
+    this.woundThreshold = builder.woundThreshold;
+    this.strain = builder.strain;
+    this.strainThreshold = builder.strainThreshold;
+    this.meleeDefense = builder.meleeDefense;
+    this.rangedDefense = builder.rangedDefense;
+    this.soak = builder.soak;
+    this.encumbranceThreshold = builder.encumbranceThreshold;
     this.accessTime = builder.accessTime;
     this.characterId = builder.characterId;
     this.lastOpenPage = builder.lastOpenPage;
@@ -145,6 +174,14 @@ public class Character {
     o.put(SKIN_TONE_KEY, skinTone);
     o.put(HAIR_COLOR_KEY, hairColor);
     o.put(EYE_COLOR_KEY, eyeColor);
+    o.put(WOUNDS_KEY, wounds);
+    o.put(WOUND_THRESHOLD_KEY, woundThreshold);
+    o.put(STRAIN_KEY, strain);
+    o.put(STRAIN_THRESHOLD_KEY, strainThreshold);
+    o.put(MELEE_DEFENSE_KEY, meleeDefense);
+    o.put(RANGED_DEFENSE_KEY, rangedDefense);
+    o.put(SOAK_KEY, soak);
+    o.put(ENCUMBRANCE_KEY, encumbranceThreshold);
     o.put(CHARACTERISTICS_KEY, characteristicsAsJsonArray());
     o.put(SKILLS_KEY, skillsAsJsonArray());
     o.put(ID_KEY, characterId);
@@ -229,6 +266,14 @@ public class Character {
                               .skinTone(jsonObject.getString(SKIN_TONE_KEY))
                               .hairColor(jsonObject.getString(HAIR_COLOR_KEY))
                               .eyeColor(jsonObject.getString(EYE_COLOR_KEY))
+                              .wounds(jsonObject.getInt(WOUNDS_KEY))
+                              .woundThreshold(jsonObject.getInt(WOUND_THRESHOLD_KEY))
+                              .strain(jsonObject.getInt(STRAIN_KEY))
+                              .strainThreshold(jsonObject.getInt(STRAIN_THRESHOLD_KEY))
+                              .meleeDefense(jsonObject.getInt(MELEE_DEFENSE_KEY))
+                              .rangedDefense(jsonObject.getInt(RANGED_DEFENSE_KEY))
+                              .soak(jsonObject.getInt(SOAK_KEY))
+                              .encumbranceThreshold(jsonObject.getInt(ENCUMBRANCE_KEY))
                               .accessTime(jsonObject.getLong(TIMESTAMP_KEY))
                               .lastOpenPage(jsonObject.getInt(LAST_OPEN_PAGE_KEY))
                               .build();
@@ -336,6 +381,16 @@ public class Character {
     private String skinTone = "";
     private String hairColor = "";
     private String eyeColor = "";
+
+    private int wounds = 0;
+    private int woundThreshold = 10;
+    private int strain = 0;
+    private int strainThreshold = 10;
+    private int meleeDefense = 0;
+    private int rangedDefense = 0;
+    private int soak = 0;
+    private int encumbranceThreshold = 5;
+
     private long accessTime;
     private int lastOpenPage = 0;
     private final Career career;
@@ -394,6 +449,54 @@ public class Character {
     @NotNull
     public Builder eyeColor(@NotNull String eyeColor) {
       this.eyeColor = eyeColor;
+      return this;
+    }
+
+    @NotNull
+    public Builder wounds(int wounds) {
+      this.wounds = wounds;
+      return this;
+    }
+
+    @NotNull
+    public Builder woundThreshold(int woundThreshold) {
+      this.woundThreshold = woundThreshold;
+      return this;
+    }
+
+    @NotNull
+    public Builder strain(int strain) {
+      this.strain = strain;
+      return this;
+    }
+
+    @NotNull
+    public Builder strainThreshold(int strainThreshold) {
+      this.strainThreshold = strainThreshold;
+      return this;
+    }
+
+    @NotNull
+    public Builder meleeDefense(int meleeDefense) {
+      this.meleeDefense = meleeDefense;
+      return this;
+    }
+
+    @NotNull
+    public Builder rangedDefense(int rangedDefense) {
+      this.rangedDefense = rangedDefense;
+      return this;
+    }
+
+    @NotNull
+    public Builder soak(int soak) {
+      this.soak = soak;
+      return this;
+    }
+
+    @NotNull
+    public Builder encumbranceThreshold(int encumbranceThreshold) {
+      this.encumbranceThreshold = encumbranceThreshold;
       return this;
     }
 

@@ -59,7 +59,7 @@ public class FileAccessor {
 
   public void writeCharacterContent(@NotNull Character character) throws JSONException {
     File characterFile = new File(Characters, character.getFileName());
-    writeFile(characterFile, character.toJsonObject().toString());
+    writeFile(characterFile, character.toJsonObject().toString(2));
   }
 
   @NotNull
