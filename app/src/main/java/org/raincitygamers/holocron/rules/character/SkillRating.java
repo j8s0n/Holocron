@@ -1,18 +1,27 @@
 package org.raincitygamers.holocron.rules.character;
 
+import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.rules.abilities.Skill;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 @Getter
 @EqualsAndHashCode
-@RequiredArgsConstructor(suppressConstructorProperties = true)
 public class SkillRating {
   private final Skill skill;
+  private final int charScore;
+  private final int skillScore;
   private final int abilityDiceCount;
   private final int proficiencyDiceCount;
+
+  public SkillRating(@NotNull Skill skill, int charScore, int skillScore) {
+    this.skill = skill;
+    this.charScore = charScore;
+    this.skillScore = skillScore;
+    abilityDiceCount = Math.abs(charScore - skillScore);
+    proficiencyDiceCount = Math.min(charScore, skillScore);
+  }
 
   public String getRating() {
     StringBuilder sb = new StringBuilder();
@@ -24,6 +33,7 @@ public class SkillRating {
       sb.append('G');
     }
 
+    sb.append(" (" + skillScore + ")");
     return sb.toString();
   }
 }

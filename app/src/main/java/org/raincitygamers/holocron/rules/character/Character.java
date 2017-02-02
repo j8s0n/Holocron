@@ -50,12 +50,11 @@ public class Character {
   private static final String LAST_OPEN_PAGE_KEY = "last_open_page";
   private static final CareerManager careerManager = CareerManager.getInstance();
   private static final SkillManager skillManager = SkillManager.getInstance();
-  private static final SpeciesManager speciesManager = SpeciesManager.getInstance();
   @Getter private static final MostRecentAccessComparator mostRecentAccessComparator = new MostRecentAccessComparator();
 
   private String logger = Character.class.getSimpleName();
-  @Getter private String name;
-  @Getter private final Species species;
+  @Getter private final String name;
+  @Getter private final String species;
   @Getter private final Career career;
   @Getter private final UUID characterId;
   @Getter private final Set<Specialization> specializations = new LinkedHashSet<>();
@@ -123,30 +122,6 @@ public class Character {
     specializations.add(specialization);
   }
 
-  public int getSoak() {
-    return BASE_SOAK + characteristicScores.get(Characteristic.BRAWN) + species.getSoakBonus();
-  }
-
-  public int getMaxWounds() {
-    return BASE_WOUNDS + characteristicScores.get(Characteristic.BRAWN) + species.getWoundsBonus();
-  }
-
-  public int getMaxStrain() {
-    return BASE_STRAIN + characteristicScores.get(Characteristic.WILLPOWER) + species.getStrainBonus();
-  }
-
-  public int getMeleeDefense() {
-    return 0;
-  }
-
-  public int getRangedDefense() {
-    return 0;
-  }
-
-  public long getTimestamp() {
-    return accessTime;
-  }
-
   public void updateTimestamp() {
     accessTime = System.currentTimeMillis();
   }
@@ -160,7 +135,7 @@ public class Character {
   public JSONObject toJsonObject() throws JSONException {
     JSONObject o = new JSONObject();
     o.put(NAME_KEY, name);
-    o.put(SPECIES_KEY, species.getName());
+    o.put(SPECIES_KEY, species);
     o.put(CAREER_KEY, career.getName());
     o.put(SPECIALIZATIONS_KEY, specializationsAsJsonArray());
     o.put(OBLIGATIONS_KEY, obligationsAsJsonArray());
@@ -242,7 +217,7 @@ public class Character {
     String name = jsonObject.getString(NAME_KEY);
     Career career = careerManager.getCareer(jsonObject.getString(CAREER_KEY));
     List<Specialization> specializations = parseSpecializations(jsonObject.getJSONArray(SPECIALIZATIONS_KEY));
-    Species species = speciesManager.getSpecies(jsonObject.getString(SPECIES_KEY));
+    String species = jsonObject.getString(SPECIES_KEY);
     Map<Skill, Integer> skills = parseSkills(jsonObject.getJSONArray(SKILLS_KEY));
     Map<Characteristic, Integer> characteristics = parseCharacteristics(jsonObject.getJSONArray(CHARACTERISTICS_KEY));
 
@@ -309,7 +284,7 @@ public class Character {
   }
 
   public Summary makeSummary() {
-    return new Summary(characterId, name, species.getName(), career.getName(), accessTime);
+    return new Summary(characterId, name, species, career.getName(), accessTime);
   }
 
   public static String buildFileName(@NotNull String characterName, @NotNull UUID characterId) {
@@ -334,10 +309,10 @@ public class Character {
     public static Summary valueOf(JSONObject characterJson, UUID characterId) throws JSONException {
       String name = characterJson.getString(NAME_KEY);
       Career career = careerManager.getCareer(characterJson.getString(CAREER_KEY));
-      Species species = speciesManager.getSpecies(characterJson.getString(SPECIES_KEY));
+      String species = characterJson.getString(SPECIES_KEY);
       long timestamp = characterJson.getLong(TIMESTAMP_KEY);
 
-      return new Summary(characterId, name, species.getName(), career.getName(), timestamp);
+      return new Summary(characterId, name, species, career.getName(), timestamp);
     }
 
     public String getBlurb() {
@@ -365,13 +340,13 @@ public class Character {
     private int lastOpenPage = 0;
     private final Career career;
     private final Specialization specialization;
-    private final Species species;
+    private final String species;
     private final Map<Characteristic, Integer> characteristics = new HashMap<>();
     private final UUID characterId;
 
 
     public Builder(@NotNull String name, @NotNull Career career, @NotNull Specialization specialization,
-                   @NotNull Species species, @NotNull UUID characterId) {
+                   @NotNull String species, @NotNull UUID characterId) {
       this.name = name;
       this.career = career;
       this.specialization = specialization;

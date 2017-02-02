@@ -41,9 +41,7 @@ public abstract class SkillsPage extends DisplayPage {
     for (Skill skill : getSkills()) {
       int charScore = character.getCharacteristicScore(skill.getCharacteristic());
       int skillScore = character.getSkillScore(skill);
-      int abilityDiceCount = Math.abs(charScore - skillScore);
-      int proficiencyDiceCount = Math.min(charScore, skillScore);
-      skillRatings.add(new SkillRating(skill, abilityDiceCount, proficiencyDiceCount));
+      skillRatings.add(new SkillRating(skill, charScore, skillScore));
     }
 
     skillArrayAdapter.notifyDataSetChanged();

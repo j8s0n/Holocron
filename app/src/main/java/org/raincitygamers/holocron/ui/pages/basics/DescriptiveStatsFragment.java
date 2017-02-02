@@ -31,7 +31,7 @@ public class DescriptiveStatsFragment extends Fragment {
     nameValue.setText(activeCharacter.getName());
 
     TextView speciesValue = (TextView)view.findViewById(R.id.species_value);
-    speciesValue.setText(activeCharacter.getSpecies().getName());
+    speciesValue.setText(activeCharacter.getSpecies());
 
     TextView careerValue = (TextView)view.findViewById(R.id.career_value);
     careerValue.setText(activeCharacter.getCareer().getName());

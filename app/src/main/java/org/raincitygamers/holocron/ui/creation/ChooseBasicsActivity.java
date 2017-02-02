@@ -18,8 +18,6 @@ import org.raincitygamers.holocron.rules.character.CareerManager;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.CharacterManager;
 import org.raincitygamers.holocron.rules.character.Specialization;
-import org.raincitygamers.holocron.rules.character.Species;
-import org.raincitygamers.holocron.rules.character.SpeciesManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,20 +27,16 @@ import java.util.UUID;
 public class ChooseBasicsActivity extends CreationActivity {
   private static final String LOG_TAG = ChooseBasicsActivity.class.getSimpleName();
   private final List<String> specializations = new ArrayList<>();
-  private Species selectedSpecies;
   private Career selectedCareer;
   private Specialization selectedSpecialization;
   private final CareerManager careerManager = CareerManager.getInstance();
-  private final SpeciesManager speciesManager = SpeciesManager.getInstance();
   private final CharacterManager characterManager = CharacterManager.getInstance();
   private final List<String> careers = careerManager.getCareerNames();
-  private final List<String> species = speciesManager.getSpeciesNames();
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_choose_basics);
-    buildSpeciesSpinner();
     buildCareerSpinner();
   }
 
@@ -55,13 +49,19 @@ public class ChooseBasicsActivity extends CreationActivity {
     Log.i(LOG_TAG, "onDoneClicked");
     Log.i(LOG_TAG, "Selected: " + selectedCareer + " : " + selectedSpecialization);
     String name = readEditText(R.id.character_name);
+    String species = readEditText(R.id.character_species);
     if (name.isEmpty()) {
       Toast.makeText(this, "Who are you?", Toast.LENGTH_LONG).show();
       return;
     }
+    else if (species.isEmpty()) {
+      Toast.makeText(this, "What are you?", Toast.LENGTH_LONG).show();
+      return;
+    }
+
 
     UUID characterId = UUID.randomUUID();
-    Character character = new Character.Builder(name, selectedCareer, selectedSpecialization, selectedSpecies, characterId)
+    Character character = new Character.Builder(name, selectedCareer, selectedSpecialization, species, characterId)
                               .age(readEditText(R.id.age))
                               .height(readEditText(R.id.height))
                               .weight(readEditText(R.id.weight))
@@ -86,24 +86,6 @@ public class ChooseBasicsActivity extends CreationActivity {
   private String readEditText(int editTextId) {
     EditText editText = (EditText) findViewById(editTextId);
     return editText.getText().toString();
-  }
-
-  private void buildSpeciesSpinner() {
-    Spinner spinner = (Spinner) findViewById(R.id.species);
-    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
-                                                           species);
-    spinner.setAdapter(arrayAdapter);
-    spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-      @Override
-      public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        selectedSpecies = speciesManager.getSpecies(species.get(position));
-      }
-
-      @Override
-      public void onNothingSelected(AdapterView<?> parent) {
-        selectedSpecies = null;
-      }
-    });
   }
 
   private void buildCareerSpinner() {
