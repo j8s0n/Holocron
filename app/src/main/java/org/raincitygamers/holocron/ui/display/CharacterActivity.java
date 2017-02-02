@@ -46,7 +46,8 @@ public class CharacterActivity extends AppCompatActivity implements DisplayPage.
 
   private List<DisplayPage> displayPages = Arrays.asList(
       // This is where we populate what shows up in the menu.
-      new BasicsPage(),
+      new BasicsPage(), // TODO: defense/wounds/strain.
+      // new ActionsTab(),
       new GeneralSkillsPage(),
       new CombatSkillsPage(),
       new KnowledgeSkillsPage(),

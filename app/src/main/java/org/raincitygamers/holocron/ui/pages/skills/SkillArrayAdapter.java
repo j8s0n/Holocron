@@ -36,7 +36,7 @@ public class SkillArrayAdapter extends ArrayAdapter<SkillRating> {
     }
 
     viewHolder.skillName.setText(skillRating.getSkill().getName());
-    viewHolder.skillChar.setText(skillRating.getSkill().getCharacteristic().getAbbreviation());
+    viewHolder.skillChar.setText("(" + skillRating.getSkill().getCharacteristic().getAbbreviation() + ")");
     viewHolder.skillRating.setText(skillRating.getRating());
     return  convertView;
   }

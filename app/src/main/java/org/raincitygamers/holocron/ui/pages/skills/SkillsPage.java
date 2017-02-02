@@ -11,7 +11,6 @@ import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.abilities.Skill;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.CharacterManager;
-import org.raincitygamers.holocron.rules.character.SkillManager;
 import org.raincitygamers.holocron.rules.character.SkillRating;
 import org.raincitygamers.holocron.ui.display.DisplayPage;
 
@@ -22,7 +21,6 @@ import java.util.List;
 public abstract class SkillsPage extends DisplayPage {
   private List<SkillRating> skillRatings = new ArrayList<>();
   private SkillArrayAdapter skillArrayAdapter;
-  private ListView skillListView;
 
   public SkillsPage() {
     // Required empty public constructor
@@ -37,7 +35,6 @@ public abstract class SkillsPage extends DisplayPage {
   }
 
   private void displaySkills() {
-    SkillManager skillManager = SkillManager.getInstance();
     Character character = CharacterManager.getActiveCharacter();
     skillRatings.clear();
 
@@ -57,10 +54,9 @@ public abstract class SkillsPage extends DisplayPage {
     // Inflate the layout for this fragment
     View result = inflater.inflate(R.layout.fragment_skills_page, container, false);
 
-    skillListView = (ListView) result.findViewById(R.id.skill_group_list);
+    ListView skillListView = (ListView) result.findViewById(R.id.skill_group_list);
     skillArrayAdapter = new SkillArrayAdapter(getActivity(), skillRatings);
     skillListView.setAdapter(skillArrayAdapter);
-    // skillListView.setMinimumHeight(skillRatings.size() * 42);
 
     return result;
   }
