@@ -57,11 +57,14 @@ public class Character {
   private static final String MELEE_DEFENSE_KEY = "melee_defense";
   private static final String RANGED_DEFENSE_KEY = "ranged_defense";
   private static final String SOAK_KEY = "soak";
-  private static final String ENCUMBRANCE_KEY = "encumbrance_threshold";
+  private static final String ENCUMBRANCE_THRESHOLD_KEY = "encumbrance_threshold";
+
+  private static final String INVENTORY_KEY = "inventory";
 
   private static final CareerManager careerManager = CareerManager.getInstance();
   private static final SkillManager skillManager = SkillManager.getInstance();
   @Getter private static final MostRecentAccessComparator mostRecentAccessComparator = new MostRecentAccessComparator();
+  @Getter private final List<InventoryItem> inventory;
 
   private String logger = Character.class.getSimpleName();
   @Getter private final String name;
@@ -109,6 +112,7 @@ public class Character {
     this.skinTone = builder.skinTone;
     this.hairColor = builder.hairColor;
     this.eyeColor = builder.eyeColor;
+    this.inventory = builder.inventory;
     this.wounds = builder.wounds;
     this.woundThreshold = builder.woundThreshold;
     this.strain = builder.strain;
@@ -174,6 +178,7 @@ public class Character {
     o.put(SKIN_TONE_KEY, skinTone);
     o.put(HAIR_COLOR_KEY, hairColor);
     o.put(EYE_COLOR_KEY, eyeColor);
+    o.put(INVENTORY_KEY, InventoryItem.toJson(inventory));
     o.put(WOUNDS_KEY, wounds);
     o.put(WOUND_THRESHOLD_KEY, woundThreshold);
     o.put(STRAIN_KEY, strain);
@@ -181,7 +186,7 @@ public class Character {
     o.put(MELEE_DEFENSE_KEY, meleeDefense);
     o.put(RANGED_DEFENSE_KEY, rangedDefense);
     o.put(SOAK_KEY, soak);
-    o.put(ENCUMBRANCE_KEY, encumbranceThreshold);
+    o.put(ENCUMBRANCE_THRESHOLD_KEY, encumbranceThreshold);
     o.put(CHARACTERISTICS_KEY, characteristicsAsJsonArray());
     o.put(SKILLS_KEY, skillsAsJsonArray());
     o.put(ID_KEY, characterId);
@@ -266,6 +271,7 @@ public class Character {
                               .skinTone(jsonObject.getString(SKIN_TONE_KEY))
                               .hairColor(jsonObject.getString(HAIR_COLOR_KEY))
                               .eyeColor(jsonObject.getString(EYE_COLOR_KEY))
+                              .inventory(InventoryItem.parseInventory(jsonObject.getJSONArray(INVENTORY_KEY)))
                               .wounds(jsonObject.getInt(WOUNDS_KEY))
                               .woundThreshold(jsonObject.getInt(WOUND_THRESHOLD_KEY))
                               .strain(jsonObject.getInt(STRAIN_KEY))
@@ -273,7 +279,7 @@ public class Character {
                               .meleeDefense(jsonObject.getInt(MELEE_DEFENSE_KEY))
                               .rangedDefense(jsonObject.getInt(RANGED_DEFENSE_KEY))
                               .soak(jsonObject.getInt(SOAK_KEY))
-                              .encumbranceThreshold(jsonObject.getInt(ENCUMBRANCE_KEY))
+                              .encumbranceThreshold(jsonObject.getInt(ENCUMBRANCE_THRESHOLD_KEY))
                               .accessTime(jsonObject.getLong(TIMESTAMP_KEY))
                               .lastOpenPage(jsonObject.getInt(LAST_OPEN_PAGE_KEY))
                               .build();
@@ -393,6 +399,8 @@ public class Character {
 
     private long accessTime;
     private int lastOpenPage = 0;
+    private List<InventoryItem> inventory;
+
     private final Career career;
     private final Specialization specialization;
     private final String species;
@@ -515,6 +523,11 @@ public class Character {
     @NotNull
     public Character build() {
       return Character.valueOf(this);
+    }
+
+    public Builder inventory(List<InventoryItem> inventory) {
+      this.inventory = inventory;
+      return this;
     }
   }
 

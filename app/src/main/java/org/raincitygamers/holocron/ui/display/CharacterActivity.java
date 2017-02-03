@@ -22,6 +22,7 @@ import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.CharacterManager;
 import org.raincitygamers.holocron.ui.pages.basics.BasicsPage;
 import org.raincitygamers.holocron.ui.pages.description.DescriptionPage;
+import org.raincitygamers.holocron.ui.pages.gear.GearPage;
 import org.raincitygamers.holocron.ui.pages.skills.CombatSkillsPage;
 import org.raincitygamers.holocron.ui.pages.skills.GeneralSkillsPage;
 import org.raincitygamers.holocron.ui.pages.skills.KnowledgeSkillsPage;
@@ -51,6 +52,7 @@ public class CharacterActivity extends AppCompatActivity implements DisplayPage.
       new GeneralSkillsPage(),
       new CombatSkillsPage(),
       new KnowledgeSkillsPage(),
+      new GearPage(),
       // new TalentsTab(),
       // new EquipmentTab(),
       // new ForceTab(),

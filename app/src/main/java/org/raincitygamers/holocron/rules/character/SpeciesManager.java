@@ -6,7 +6,6 @@ import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.raincitygamers.holocron.io.FileAccessor;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -48,6 +47,7 @@ public class SpeciesManager {
   }
 
   private void loadSpecies() {
+    /*
     String speciesJson = FileAccessor.getInstance().getSpeciesContent();
     // Log.i(LOG_TAG, "Species: " + speciesJson);
     try {
@@ -57,6 +57,7 @@ public class SpeciesManager {
     catch (JSONException e) {
       Log.e(LOG_TAG, "Exception parsing speciesJson", e);
     }
+    */
   }
 
   private void parseSpecies(@NotNull JSONArray speciesJson) {

@@ -38,7 +38,7 @@
     android:textSize="18sp"
     app:layout_constraintTop_toTopOf="@+id/agility_score"
     app:layout_constraintBottom_toBottomOf="@+id/agility_score"
-    app:layout_constraintLeft_toLeftOf="@+id/textView8"/>
+    app:layout_constraintLeft_toLeftOf="@+id/wounds_label"/>
 
   <TextView
     android:text="Willpower"
@@ -64,7 +64,7 @@
     android:text="Brawn"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/textView8"
+    android:id="@+id/wounds_label"
     android:layout_marginStart="16dp"
     android:layout_marginTop="16dp"
     app:layout_constraintLeft_toLeftOf="parent"
@@ -78,8 +78,8 @@
     android:id="@+id/brawn_score"
     android:textSize="24sp"
     android:textAlignment="textEnd"
-    app:layout_constraintTop_toTopOf="@+id/textView8"
-    app:layout_constraintBottom_toBottomOf="@+id/textView8"
+    app:layout_constraintTop_toTopOf="@+id/wounds_label"
+    app:layout_constraintBottom_toBottomOf="@+id/wounds_label"
     android:layout_marginStart="16dp"
     app:layout_constraintLeft_toLeftOf="parent"
     android:layout_marginEnd="16dp"

@@ -22,5 +22,15 @@
     android:layout_gravity="left|top"
     android:layout_marginTop="8dp"
     tools:layout="@layout/fragment_characteristics"/>
+
+  <fragment
+    android:id="@+id/fragment2"
+    android:name="org.raincitygamers.holocron.ui.pages.basics.DefenseFragment"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="left|top"
+    android:layout_marginTop="8dp"
+    tools:layout="@layout/fragment_defense"/>
+
   <!-- TODO: Put more fragments here to fill out the basics tab. -->
 </LinearLayout>

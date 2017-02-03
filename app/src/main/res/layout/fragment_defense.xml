@@ -3,14 +3,14 @@
                                              xmlns:tools="http://schemas.android.com/tools"
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent"
-                                             tools:context=".ui.pages.basics.CharacteristicsFragment"
+                                             tools:context=".ui.pages.basics.DefenseFragment"
                                              android:background="#f7f7ff"
   >
 
   <!-- TODO: Update blank fragment layout -->
 
   <TextView
-    android:text="Career"
+    android:text="Soak"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/soak_label"
@@ -20,7 +20,7 @@
     app:layout_constraintLeft_toLeftOf="@+id/strain_label"/>
 
   <TextView
-    android:text="Specialization"
+    android:text="Defense"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/defense_label"
@@ -31,7 +31,7 @@
     app:layout_constraintLeft_toLeftOf="@+id/soak_label"/>
 
   <TextView
-    android:text="Species"
+    android:text="Strain"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/strain_label"
@@ -41,7 +41,7 @@
     app:layout_constraintLeft_toLeftOf="@+id/wounds_label"/>
 
   <TextView
-    android:text="Name"
+    android:text="Wounds"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/wounds_label"
@@ -52,7 +52,7 @@
     android:textSize="18sp"/>
 
   <TextView
-    android:text="0"
+    android:text="0 / 12"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/wounds_value"
@@ -67,7 +67,7 @@
     app:layout_constraintHorizontal_bias="0.96"/>
 
   <TextView
-    android:text="0"
+    android:text="4"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/soak_value"
@@ -77,7 +77,7 @@
     app:layout_constraintTop_toBottomOf="@+id/strain_value"/>
 
   <TextView
-    android:text="0"
+    android:text="0 / 1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/defense_value"
@@ -90,7 +90,7 @@
     />
 
   <TextView
-    android:text="0"
+    android:text="0 / 13"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/strain_value"
@@ -98,5 +98,16 @@
     app:layout_constraintRight_toRightOf="@+id/wounds_value"
     android:layout_marginTop="8dp"
     app:layout_constraintTop_toBottomOf="@+id/wounds_value"/>
+
+  <TextView
+    android:text="(Melee / Ranged)"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/melee_ranged"
+    android:layout_marginStart="8dp"
+    android:textSize="12sp"
+    app:layout_constraintLeft_toRightOf="@+id/defense_label"
+    app:layout_constraintBottom_toBottomOf="@+id/defense_label"
+    />
 
 </android.support.constraint.ConstraintLayout>

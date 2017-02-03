@@ -27,16 +27,16 @@ public class DescriptiveStatsFragment extends Fragment {
     // Inflate the layout for this fragment
     View view = inflater.inflate(R.layout.fragment_descriptive_stats, container, false);
 
-    TextView nameValue = (TextView)view.findViewById(R.id.name_value);
+    TextView nameValue = (TextView)view.findViewById(R.id.wounds_value);
     nameValue.setText(activeCharacter.getName());
 
-    TextView speciesValue = (TextView)view.findViewById(R.id.species_value);
+    TextView speciesValue = (TextView)view.findViewById(R.id.strain_value);
     speciesValue.setText(activeCharacter.getSpecies());
 
-    TextView careerValue = (TextView)view.findViewById(R.id.career_value);
+    TextView careerValue = (TextView)view.findViewById(R.id.soak_value);
     careerValue.setText(activeCharacter.getCareer().getName());
 
-    TextView specializationValue = (TextView)view.findViewById(R.id.specialization_value);
+    TextView specializationValue = (TextView)view.findViewById(R.id.defense_value);
     Set<Specialization> specializations = activeCharacter.getSpecializations();
     Specialization specialization = (Specialization)specializations.toArray()[0];
     specializationValue.setText(specialization.getName());
