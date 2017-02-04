@@ -37,7 +37,7 @@ public class AbilityArrayAdapter extends ArrayAdapter<Ability> {
 
     viewHolder.name.setText(ability.getName());
     viewHolder.description.setText(ability.getDescription());
-    viewHolder.source.setText(String.format("%s %d", ability.getSpecialization().getName(), ability.getTier()));
+    viewHolder.source.setText(String.format("%s %d", ability.getSource(), ability.getTier()));
 
     return convertView;
   }
