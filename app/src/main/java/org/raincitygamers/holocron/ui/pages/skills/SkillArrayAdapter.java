@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.raincitygamers.holocron.R;
@@ -28,8 +30,7 @@ public class SkillArrayAdapter extends ArrayAdapter<SkillRating> {
       convertView = inflater.inflate(R.layout.skill_list_item, parent, false);
       viewHolder.skillName = (TextView) convertView.findViewById(R.id.skill_name);
       viewHolder.skillChar = (TextView) convertView.findViewById(R.id.skill_char);
-      viewHolder.proficiencyDice = (TextView) convertView.findViewById(R.id.proficiency_dice);
-      viewHolder.abilityDice = (TextView) convertView.findViewById(R.id.ability_dice);
+      viewHolder.diceLayout = (LinearLayout) convertView.findViewById(R.id.dice_layout);
       viewHolder.skillRating = (TextView) convertView.findViewById(R.id.skill_rating);
       convertView.setTag(viewHolder);
     }
@@ -37,10 +38,32 @@ public class SkillArrayAdapter extends ArrayAdapter<SkillRating> {
       viewHolder = (ViewHolder) convertView.getTag();
     }
 
+    int layoutWidth = 0;
+    if (skillRating.getSkill().getName().equals("Stealth")) {
+      // TODO: Just for test.
+      layoutWidth = 0;
+    }
+
     viewHolder.skillName.setText(skillRating.getSkill().getName());
     viewHolder.skillChar.setText("(" + skillRating.getSkill().getCharacteristic().getAbbreviation() + ")");
-    viewHolder.abilityDice.setText(skillRating.getAbilityDice());
-    viewHolder.proficiencyDice.setText(skillRating.getProficiencyDice());
+    viewHolder.diceLayout.removeAllViews();
+    for (int i = 0; i < skillRating.getProficiencyDiceCount(); i++) {
+      ImageView die = new ImageView(getContext());
+      die.setImageResource(R.drawable.ic_proficiency_die);
+      viewHolder.diceLayout.addView(die);
+      layoutWidth += die.getWidth();
+    }
+
+    for (int i = 0; i < skillRating.getAbilityDiceCount(); i++) {
+      ImageView die = new ImageView(getContext());
+      die.setImageResource(R.drawable.ic_ability_die);
+      viewHolder.diceLayout.addView(die);
+      layoutWidth += die.getWidth();
+    }
+
+    ViewGroup.LayoutParams params = viewHolder.diceLayout.getLayoutParams();
+    params.width = layoutWidth;
+    viewHolder.diceLayout.setLayoutParams(params);
     viewHolder.skillRating.setText(skillRating.getRating());
     return  convertView;
   }
@@ -48,8 +71,7 @@ public class SkillArrayAdapter extends ArrayAdapter<SkillRating> {
   private static class ViewHolder {
     TextView skillName;
     TextView skillChar;
-    TextView proficiencyDice;
-    TextView abilityDice;
+    LinearLayout diceLayout;
     TextView skillRating;
   }
 }

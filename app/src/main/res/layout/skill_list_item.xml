@@ -40,30 +40,15 @@
     app:layout_constraintBottom_toBottomOf="@+id/skill_name"
     app:layout_constraintTop_toTopOf="@+id/skill_name"/>
 
-  <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/ability_dice"
+  <LinearLayout
+    android:id="@+id/dice_layout"
+    android:orientation="horizontal"
+    android:layout_width="24dp"
+    android:layout_height="24dp"
     app:layout_constraintBottom_toBottomOf="@+id/skill_rating"
     app:layout_constraintTop_toTopOf="@+id/skill_rating"
     app:layout_constraintRight_toLeftOf="@+id/skill_rating"
-    android:layout_marginEnd="8dp"
-    android:textAppearance="@android:style/TextAppearance.Material.Medium"
-    android:textColor="@android:color/holo_green_dark"
-    android:text="⬧⬧"
-    android:fontFamily="sans-serif"
-    android:textAlignment="textEnd"/>
+    android:layout_marginEnd="8dp">
+  </LinearLayout>
 
-  <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/proficiency_dice"
-    app:layout_constraintBottom_toBottomOf="@+id/ability_dice"
-    app:layout_constraintTop_toTopOf="@+id/ability_dice"
-    android:text="⬣⬣"
-    app:layout_constraintVertical_bias="0.8"
-    app:layout_constraintRight_toLeftOf="@+id/ability_dice"
-    android:textAppearance="@android:style/TextAppearance.Material.Medium"
-    android:textAlignment="textEnd"
-    android:textColor="@android:color/holo_orange_light"/>
 </android.support.constraint.ConstraintLayout>
