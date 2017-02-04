@@ -9,7 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
+@Getter
+@ToString
+@RequiredArgsConstructor(suppressConstructorProperties = true, staticName = "of")
 public class InventoryItem {
   private static final String NAME_KEY = "name";
   private static final String ENCUMBRANCE_KEY = "encumbrance";
@@ -18,23 +23,12 @@ public class InventoryItem {
   private static final String COUNT_ENCUMBRANCE_KEY = "count_encumbrance";
   private static final String DESCRIPTION_KEY = "description";
 
-  @Getter private final String name;
-  @Getter private final int quantity;
-  @Getter private final String location;
-  @Getter private final int encumbrance;
-  @Getter private final String description;
-  @Getter private final boolean countEncumbrance;
-
-  private InventoryItem(@NotNull String name, int quantity, @NotNull String location, int encumbrance,
-                        @NotNull String description, boolean countEncumbrance) {
-    this.name = name;
-    this.quantity = quantity;
-    this.location = location;
-
-    this.encumbrance = encumbrance;
-    this.description = description;
-    this.countEncumbrance = countEncumbrance;
-  }
+  private final String name;
+  private final int quantity;
+  private final String location;
+  private final int encumbrance;
+  private final String description;
+  private final boolean countEncumbrance;
 
   @NotNull
   public static List<InventoryItem> parseInventory(JSONArray jsonArray) throws JSONException {
@@ -49,13 +43,6 @@ public class InventoryItem {
   }
 
   @NotNull
-  private static InventoryItem of(@NotNull String name, int quantity, @NotNull String location, int encumbrance,
-                                 @NotNull String description, boolean countEncumbrance) {
-    return new InventoryItem(name, quantity, location, encumbrance, description, countEncumbrance);
-  }
-
-
-  @NotNull
   private JSONObject toJson() throws JSONException {
     JSONObject o = new JSONObject();
     o.put(NAME_KEY, name);
@@ -67,6 +54,7 @@ public class InventoryItem {
 
     return o;
   }
+
   @NotNull
       public static InventoryItem of (@NotNull JSONObject o) throws JSONException {
     String name = o.getString(NAME_KEY);
@@ -76,10 +64,10 @@ public class InventoryItem {
     String description = o.getString(DESCRIPTION_KEY);
     boolean countEncumbrance = o.getBoolean(COUNT_ENCUMBRANCE_KEY);
 
-    return new InventoryItem(name, quantity, location, encumbrance, description, countEncumbrance);
+    return InventoryItem.of(name, quantity, location, encumbrance, description, countEncumbrance);
   }
 
-  public static JSONArray toJson(List<InventoryItem> inventory) throws JSONException {
+  public static JSONArray toJsonArray(List<InventoryItem> inventory) throws JSONException {
     JSONArray a = new JSONArray();
     for (InventoryItem item : inventory) {
       a.put(item.toJson());

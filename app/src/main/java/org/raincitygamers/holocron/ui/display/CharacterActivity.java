@@ -20,6 +20,8 @@ import android.widget.ListView;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.CharacterManager;
+import org.raincitygamers.holocron.ui.pages.abilities.ForcePowersPage;
+import org.raincitygamers.holocron.ui.pages.abilities.TalentsPage;
 import org.raincitygamers.holocron.ui.pages.basics.BasicsPage;
 import org.raincitygamers.holocron.ui.pages.description.DescriptionPage;
 import org.raincitygamers.holocron.ui.pages.gear.GearPage;
@@ -47,14 +49,15 @@ public class CharacterActivity extends AppCompatActivity implements DisplayPage.
 
   private List<DisplayPage> displayPages = Arrays.asList(
       // This is where we populate what shows up in the menu.
-      new BasicsPage(), // TODO: defense/wounds/strain.
+      // If it's white, I need to add an empty constructor.
+      new BasicsPage(),
       // new ActionsTab(),
       new GeneralSkillsPage(),
       new CombatSkillsPage(),
       new KnowledgeSkillsPage(),
       new GearPage(),
-      // new TalentsTab(),
-      // new EquipmentTab(),
+      new TalentsPage(),
+      new ForcePowersPage(),
       // new ForceTab(),
       new DescriptionPage()
   );

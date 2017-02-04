@@ -28,6 +28,8 @@ public class SkillArrayAdapter extends ArrayAdapter<SkillRating> {
       convertView = inflater.inflate(R.layout.skill_list_item, parent, false);
       viewHolder.skillName = (TextView) convertView.findViewById(R.id.skill_name);
       viewHolder.skillChar = (TextView) convertView.findViewById(R.id.skill_char);
+      viewHolder.proficiencyDice = (TextView) convertView.findViewById(R.id.proficiency_dice);
+      viewHolder.abilityDice = (TextView) convertView.findViewById(R.id.ability_dice);
       viewHolder.skillRating = (TextView) convertView.findViewById(R.id.skill_rating);
       convertView.setTag(viewHolder);
     }
@@ -37,6 +39,8 @@ public class SkillArrayAdapter extends ArrayAdapter<SkillRating> {
 
     viewHolder.skillName.setText(skillRating.getSkill().getName());
     viewHolder.skillChar.setText("(" + skillRating.getSkill().getCharacteristic().getAbbreviation() + ")");
+    viewHolder.abilityDice.setText(skillRating.getAbilityDice());
+    viewHolder.proficiencyDice.setText(skillRating.getProficiencyDice());
     viewHolder.skillRating.setText(skillRating.getRating());
     return  convertView;
   }
@@ -44,6 +48,8 @@ public class SkillArrayAdapter extends ArrayAdapter<SkillRating> {
   private static class ViewHolder {
     TextView skillName;
     TextView skillChar;
+    TextView proficiencyDice;
+    TextView abilityDice;
     TextView skillRating;
   }
 }

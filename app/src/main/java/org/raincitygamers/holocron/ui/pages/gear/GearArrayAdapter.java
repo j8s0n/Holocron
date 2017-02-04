@@ -27,9 +27,9 @@ public class GearArrayAdapter extends ArrayAdapter<InventoryItem> {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.gear_list_item, parent, false);
-      viewHolder.name = (TextView) convertView.findViewById(R.id.item_name);
+      viewHolder.name = (TextView) convertView.findViewById(R.id.name);
       viewHolder.quantity = (TextView) convertView.findViewById(R.id.quantity);
-      viewHolder.location = (TextView) convertView.findViewById(R.id.location);
+      viewHolder.location = (TextView) convertView.findViewById(R.id.source);
       viewHolder.description = (TextView) convertView.findViewById(R.id.description);
       viewHolder.encumbrance = (TextView) convertView.findViewById(R.id.encumbrance);
       viewHolder.countEncumbrance = (CheckBox) convertView.findViewById(R.id.count_encumbrance);

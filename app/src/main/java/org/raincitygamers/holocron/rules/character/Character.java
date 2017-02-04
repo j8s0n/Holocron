@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.raincitygamers.holocron.rules.abilities.Ability;
 import org.raincitygamers.holocron.rules.abilities.Characteristic;
 import org.raincitygamers.holocron.rules.abilities.Skill;
 import org.raincitygamers.holocron.rules.eote.Obligation;
@@ -60,11 +61,15 @@ public class Character {
   private static final String ENCUMBRANCE_THRESHOLD_KEY = "encumbrance_threshold";
 
   private static final String INVENTORY_KEY = "inventory";
+  private static final String TALENTS_KEY = "talents";
+  private static final String FORCE_POWERS_KEY = "force_powers";
 
   private static final CareerManager careerManager = CareerManager.getInstance();
   private static final SkillManager skillManager = SkillManager.getInstance();
   @Getter private static final MostRecentAccessComparator mostRecentAccessComparator = new MostRecentAccessComparator();
   @Getter private final List<InventoryItem> inventory;
+  @Getter private final List<Ability> talents;
+  @Getter private final List<Ability> forcePowers;
 
   private String logger = Character.class.getSimpleName();
   @Getter private final String name;
@@ -113,6 +118,8 @@ public class Character {
     this.hairColor = builder.hairColor;
     this.eyeColor = builder.eyeColor;
     this.inventory = builder.inventory;
+    this.talents = builder.talents;
+    this.forcePowers = builder.forcePowers;
     this.wounds = builder.wounds;
     this.woundThreshold = builder.woundThreshold;
     this.strain = builder.strain;
@@ -178,7 +185,9 @@ public class Character {
     o.put(SKIN_TONE_KEY, skinTone);
     o.put(HAIR_COLOR_KEY, hairColor);
     o.put(EYE_COLOR_KEY, eyeColor);
-    o.put(INVENTORY_KEY, InventoryItem.toJson(inventory));
+    o.put(INVENTORY_KEY, InventoryItem.toJsonArray(inventory));
+    o.put(TALENTS_KEY, Ability.toJsonArray(talents));
+    o.put(FORCE_POWERS_KEY, Ability.toJsonArray(forcePowers));
     o.put(WOUNDS_KEY, wounds);
     o.put(WOUND_THRESHOLD_KEY, woundThreshold);
     o.put(STRAIN_KEY, strain);
@@ -272,6 +281,8 @@ public class Character {
                               .hairColor(jsonObject.getString(HAIR_COLOR_KEY))
                               .eyeColor(jsonObject.getString(EYE_COLOR_KEY))
                               .inventory(InventoryItem.parseInventory(jsonObject.getJSONArray(INVENTORY_KEY)))
+                              .talents(Ability.parseAbilities(jsonObject.getJSONArray(TALENTS_KEY)))
+                              .forcePowers(Ability.parseAbilities(jsonObject.getJSONArray(FORCE_POWERS_KEY)))
                               .wounds(jsonObject.getInt(WOUNDS_KEY))
                               .woundThreshold(jsonObject.getInt(WOUND_THRESHOLD_KEY))
                               .strain(jsonObject.getInt(STRAIN_KEY))
@@ -400,6 +411,8 @@ public class Character {
     private long accessTime;
     private int lastOpenPage = 0;
     private List<InventoryItem> inventory;
+    private List<Ability> talents;
+    private List<Ability> forcePowers;
 
     private final Career career;
     private final Specialization specialization;
@@ -527,6 +540,16 @@ public class Character {
 
     public Builder inventory(List<InventoryItem> inventory) {
       this.inventory = inventory;
+      return this;
+    }
+
+    public Builder talents(List<Ability> talents) {
+      this.talents = talents;
+      return this;
+    }
+
+    public Builder forcePowers(List<Ability> forcePowers) {
+      this.forcePowers = forcePowers;
       return this;
     }
   }
