@@ -59,6 +59,7 @@ public class Character {
   private static final String RANGED_DEFENSE_KEY = "ranged_defense";
   private static final String SOAK_KEY = "soak";
   private static final String ENCUMBRANCE_THRESHOLD_KEY = "encumbrance_threshold";
+  private static final String FORCE_RATING_KEY = "force_rating";
 
   private static final String INVENTORY_KEY = "inventory";
   private static final String TALENTS_KEY = "talents";
@@ -93,6 +94,7 @@ public class Character {
   @Getter private int rangedDefense;
   @Getter private int soak;
   @Getter private int encumbranceThreshold;
+  @Getter private int forceRating;
 
   @Getter
   @Setter
@@ -128,6 +130,7 @@ public class Character {
     this.rangedDefense = builder.rangedDefense;
     this.soak = builder.soak;
     this.encumbranceThreshold = builder.encumbranceThreshold;
+    this.forceRating = builder.forceRating;
     this.accessTime = builder.accessTime;
     this.characterId = builder.characterId;
     this.lastOpenPage = builder.lastOpenPage;
@@ -196,6 +199,7 @@ public class Character {
     o.put(RANGED_DEFENSE_KEY, rangedDefense);
     o.put(SOAK_KEY, soak);
     o.put(ENCUMBRANCE_THRESHOLD_KEY, encumbranceThreshold);
+    o.put(FORCE_RATING_KEY, forceRating);
     o.put(CHARACTERISTICS_KEY, characteristicsAsJsonArray());
     o.put(SKILLS_KEY, skillsAsJsonArray());
     o.put(ID_KEY, characterId);
@@ -291,6 +295,7 @@ public class Character {
                               .rangedDefense(jsonObject.getInt(RANGED_DEFENSE_KEY))
                               .soak(jsonObject.getInt(SOAK_KEY))
                               .encumbranceThreshold(jsonObject.getInt(ENCUMBRANCE_THRESHOLD_KEY))
+                              .forceRating(jsonObject.getInt(FORCE_RATING_KEY))
                               .accessTime(jsonObject.getLong(TIMESTAMP_KEY))
                               .lastOpenPage(jsonObject.getInt(LAST_OPEN_PAGE_KEY))
                               .build();
@@ -407,6 +412,7 @@ public class Character {
     private int rangedDefense = 0;
     private int soak = 0;
     private int encumbranceThreshold = 5;
+    private int forceRating = 0;
 
     private long accessTime;
     private int lastOpenPage = 0;
@@ -518,6 +524,12 @@ public class Character {
     @NotNull
     public Builder encumbranceThreshold(int encumbranceThreshold) {
       this.encumbranceThreshold = encumbranceThreshold;
+      return this;
+    }
+
+    @NotNull
+    public Builder forceRating(int forceRating) {
+      this.forceRating = forceRating;
       return this;
     }
 

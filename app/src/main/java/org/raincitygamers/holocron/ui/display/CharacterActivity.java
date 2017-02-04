@@ -30,7 +30,6 @@ import org.raincitygamers.holocron.ui.pages.skills.GeneralSkillsPage;
 import org.raincitygamers.holocron.ui.pages.skills.KnowledgeSkillsPage;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -47,20 +46,24 @@ public class CharacterActivity extends AppCompatActivity implements DisplayPage.
   private static final long THIRTY_SECONDS = 3000;
   private Timer timer;
 
-  private List<DisplayPage> displayPages = Arrays.asList(
-      // This is where we populate what shows up in the menu.
-      // If it's white, I need to add an empty constructor.
-      new BasicsPage(),
-      // new ActionsTab(),
-      new GeneralSkillsPage(),
-      new CombatSkillsPage(),
-      new KnowledgeSkillsPage(),
-      new GearPage(),
-      new TalentsPage(),
-      new ForcePowersPage(),
-      // new ForceTab(),
-      new DescriptionPage()
-  );
+  private final List<DisplayPage> displayPages = new ArrayList<>();
+
+  public CharacterActivity() {
+    activeCharacter = CharacterManager.getActiveCharacter();
+    // This is where we populate what shows up in the menu.
+    // If it's white, I need to add an empty constructor.
+    displayPages.add(new BasicsPage());
+    // displayPages.add(new ActionsTab());
+    displayPages.add(new GeneralSkillsPage());
+    displayPages.add(new CombatSkillsPage());
+    displayPages.add(new KnowledgeSkillsPage());
+    displayPages.add(new GearPage());
+    displayPages.add(new TalentsPage());
+    displayPages.add(new DescriptionPage());
+    if (activeCharacter.getForceRating() > 0) {
+      displayPages.add(new ForcePowersPage());
+    }
+  }
 
   @Override
   protected void onPause() {
@@ -81,7 +84,6 @@ public class CharacterActivity extends AppCompatActivity implements DisplayPage.
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_character);
 
-    activeCharacter = CharacterManager.getActiveCharacter();
     drawerList = (ListView) findViewById(R.id.navList);
     drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
