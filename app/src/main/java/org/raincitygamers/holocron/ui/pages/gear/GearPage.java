@@ -1,6 +1,5 @@
 package org.raincitygamers.holocron.ui.pages.gear;
 
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +19,6 @@ public class GearPage extends DisplayPage {
   private GearArrayAdapter gearArrayAdapter;
 
   public GearPage() {
-    // Required empty public constructor
   }
 
   @Override

@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.pages.abilities;
+package org.raincitygamers.holocron.ui.pages.basics;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
-import org.raincitygamers.holocron.rules.abilities.Ability;
 import org.raincitygamers.holocron.ui.pages.rowdata.KeyValueRowData;
 import org.raincitygamers.holocron.ui.pages.rowdata.KeyValueRowData.KvPair;
 import org.raincitygamers.holocron.ui.pages.rowdata.RowData;
@@ -17,8 +16,8 @@ import org.raincitygamers.holocron.ui.pages.rowdata.SectionRowData;
 
 import java.util.List;
 
-public class AbilityArrayAdapter extends ArrayAdapter<RowData> {
-  public AbilityArrayAdapter(Context context, List<RowData> objects) {
+public class BasicsArrayAdapter extends ArrayAdapter<RowData> {
+  public BasicsArrayAdapter(Context context, List<RowData> objects) {
     super(context, -1, objects);
   }
 
@@ -27,38 +26,14 @@ public class AbilityArrayAdapter extends ArrayAdapter<RowData> {
     RowData rowData = getItem(position);
 
     switch (rowData.getType()) {
-    case ABILITY:
-      return displayAbility(convertView, parent, ((AbilityRowData)rowData).getAbility());
-    case KEY_VALUE:
-      return displayKeyValuePair(convertView, parent, ((KeyValueRowData)rowData).getPair());
     case SECTION_ID:
       return displaySection(convertView, parent, ((SectionRowData)rowData).getSectionId());
+    case KEY_VALUE:
+      return displayKeyValuePair(convertView, parent, ((KeyValueRowData)rowData).getPair());
     default:
       // TODO
       return null;
     }
-  }
-
-  @NotNull
-  private View displayAbility(View convertView, ViewGroup parent, Ability ability) {
-    ViewHolder viewHolder;
-    if (convertView == null) {
-      viewHolder = new ViewHolder();
-      LayoutInflater inflater = LayoutInflater.from(getContext());
-      convertView = inflater.inflate(R.layout.ability_list_item, parent, false);
-      viewHolder.name = (TextView) convertView.findViewById(R.id.name);
-      viewHolder.source = (TextView) convertView.findViewById(R.id.source);
-      viewHolder.description = (TextView) convertView.findViewById(R.id.description);
-      convertView.setTag(viewHolder);
-    }
-    else {
-      viewHolder = (ViewHolder) convertView.getTag();
-    }
-
-    viewHolder.name.setText(ability.getName());
-    viewHolder.description.setText(ability.getDescription());
-    viewHolder.source.setText(String.format("%s %d", ability.getSource(), ability.getTier()));
-    return convertView;
   }
 
   @NotNull
@@ -100,10 +75,6 @@ public class AbilityArrayAdapter extends ArrayAdapter<RowData> {
   }
 
   private static class ViewHolder {
-    TextView name;
-    TextView source;
-    TextView description;
-
     TextView sectionLabel;
 
     TextView key;

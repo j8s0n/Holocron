@@ -53,7 +53,7 @@ public class CharacterActivity extends AppCompatActivity implements DisplayPage.
     // This is where we populate what shows up in the menu.
     // If it's white, I need to add an empty constructor.
     displayPages.add(new BasicsPage());
-    // displayPages.add(new ActionsTab());
+    // displayPages.add(new ActionsPage());
     displayPages.add(new GeneralSkillsPage());
     displayPages.add(new CombatSkillsPage());
     displayPages.add(new KnowledgeSkillsPage());

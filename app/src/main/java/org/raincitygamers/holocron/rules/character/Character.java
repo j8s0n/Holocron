@@ -8,6 +8,9 @@ import org.raincitygamers.holocron.rules.abilities.Ability;
 import org.raincitygamers.holocron.rules.abilities.Characteristic;
 import org.raincitygamers.holocron.rules.abilities.Skill;
 import org.raincitygamers.holocron.rules.eote.Obligation;
+import org.raincitygamers.holocron.ui.pages.rowdata.KeyValueRowData;
+import org.raincitygamers.holocron.ui.pages.rowdata.RowData;
+import org.raincitygamers.holocron.ui.pages.rowdata.SectionRowData;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -27,9 +30,6 @@ import lombok.ToString;
 
 @ToString
 public class Character {
-  private static final Integer BASE_SOAK = 0;
-  private static final Integer BASE_STRAIN = 10;
-  private static final Integer BASE_WOUNDS = 10;
   private static final String NAME_KEY = "name";
   private static final String SPECIES_KEY = "species";
   private static final String CAREER_KEY = "career";
@@ -41,10 +41,8 @@ public class Character {
   private static final String SKIN_TONE_KEY = "skinTone";
   private static final String HAIR_COLOR_KEY = "hairColor";
   private static final String EYE_COLOR_KEY = "eyeColor";
-  private static final String CHARACTERISTIC_KEY = "characteristic";
   private static final String CHARACTERISTICS_KEY = "characteristics";
   private static final String SKILLS_KEY = "skills";
-  private static final String SKILL_TYPE_KEY = "skillType";
   private static final String SCORE_KEY = "score";
   private static final String TIMESTAMP_KEY = "last_access_timestamp";
   private static final String ID_KEY = "character_id_key";
@@ -163,6 +161,57 @@ public class Character {
 
   public void addSpecialization(@NotNull Specialization specialization) {
     specializations.add(specialization);
+  }
+
+  @NotNull
+  public List<RowData> getBasics() {
+    List<RowData> rowData = new ArrayList<>();
+    rowData.addAll(getIdentityBasics());
+    rowData.addAll(getCharacteristics());
+    rowData.addAll(getDefense());
+    return rowData;
+  }
+
+  @NotNull
+  public List<RowData> getIdentityBasics() {
+    List<RowData> rowData = new ArrayList<>();
+    rowData.add(KeyValueRowData.of("Name", name));
+    rowData.add(KeyValueRowData.of("Species", species));
+    rowData.add(KeyValueRowData.of("Career", career.getName()));
+    String specializationLabel = "Specialization";
+    if (specializations.size() > 1) {
+      specializationLabel = "Specializations";
+    }
+
+    for (Specialization spec : specializations) {
+      rowData.add(KeyValueRowData.of(specializationLabel, spec.getName()));
+      specializationLabel = "";
+    }
+
+    return rowData;
+  }
+
+  @NotNull
+  public List<RowData> getCharacteristics() {
+    List<RowData> rowData = new ArrayList<>();
+    rowData.add(SectionRowData.of("Characteristics"));
+    for (Characteristic ch : Characteristic.values()) {
+      rowData.add(KeyValueRowData.of(ch.toString(), String.format("%d", getCharacteristicScore(ch))));
+    }
+
+    return rowData;
+  }
+
+  @NotNull
+  public List<RowData> getDefense() {
+    List<RowData> rowData = new ArrayList<>();
+    rowData.add(SectionRowData.of("Defense"));
+    rowData.add(KeyValueRowData.of("Wounds", String.format("%d / %d", wounds, woundThreshold)));
+    rowData.add(KeyValueRowData.of("Strain", String.format("%d / %d", strain, strainThreshold)));
+    rowData.add(KeyValueRowData.of("Soak", String.format("%d", soak)));
+    rowData.add(KeyValueRowData.of("Defense (M/R)", String.format("%d / %d", meleeDefense, rangedDefense)));
+
+    return rowData;
   }
 
   public void updateTimestamp() {
