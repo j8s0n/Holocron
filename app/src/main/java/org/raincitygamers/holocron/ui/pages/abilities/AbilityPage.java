@@ -9,12 +9,13 @@ import android.widget.ListView;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.abilities.Ability;
 import org.raincitygamers.holocron.ui.display.DisplayPage;
+import org.raincitygamers.holocron.ui.pages.rowdata.RowData;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbilityPage extends DisplayPage {
-  private List<Ability> abilities = new ArrayList<>();
+  private List<RowData> abilities = new ArrayList<>();
   private AbilityArrayAdapter adapter;
 
   public AbilityPage() {
@@ -31,8 +32,17 @@ public abstract class AbilityPage extends DisplayPage {
 
   private void displayAbilities() {
     abilities.clear();
-    abilities.addAll(getAbilities());
+    abilities.addAll(getRowData());
     adapter.notifyDataSetChanged();
+  }
+
+  protected List<RowData> getRowData() {
+    List<RowData> rowData = new ArrayList<>();
+    for (Ability a : getAbilities()) {
+      rowData.add(AbilityRowData.of(a));
+    }
+
+    return rowData;
   }
 
   @Override

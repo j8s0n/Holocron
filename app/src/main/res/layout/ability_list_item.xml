@@ -20,7 +20,7 @@
   android:layout_width="wrap_content"
   android:layout_height="wrap_content"
   android:text="Source"
-  android:textAppearance="@android:style/TextAppearance.Material.Small"
+  android:textAppearance="?android:attr/textAppearanceSmall"
   app:layout_constraintTop_toTopOf="@+id/name"
   android:textAlignment="textEnd"
   android:layout_marginEnd="8dp"
