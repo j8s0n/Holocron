@@ -91,7 +91,7 @@ public class Character {
   @Getter private int meleeDefense;
   @Getter private int rangedDefense;
   @Getter private int soak;
-  @Getter private int encumbranceThreshold;
+  private int encumbranceThreshold;
   @Getter private int forceRating;
 
   @Getter
@@ -414,12 +414,23 @@ public class Character {
   public int getEncumbrance() {
     int encumbrance = 0;
     for (InventoryItem item : inventory) {
-      if (item.isCountEncumbrance()) {
+      if (item.isCountEncumbrance() && item.getEncumbrance() > 0) {
         encumbrance += item.getEncumbrance() * item.getQuantity();
       }
     }
 
     return Math.max(encumbrance, 0);
+  }
+
+  public int getEncumbranceThreshold() {
+    int threshold = encumbranceThreshold;
+    for (InventoryItem item : inventory) {
+      if (item.isCountEncumbrance() && item.getEncumbrance() < 0) {
+        threshold -= item.getEncumbrance() * item.getQuantity();
+      }
+    }
+
+    return threshold;
   }
 
   @Getter

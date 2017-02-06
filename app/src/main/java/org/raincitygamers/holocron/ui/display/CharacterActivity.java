@@ -2,6 +2,7 @@ package org.raincitygamers.holocron.ui.display;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import android.widget.ListView;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.CharacterManager;
+import org.raincitygamers.holocron.ui.creation.CreationActivity;
 import org.raincitygamers.holocron.ui.pages.abilities.ForcePowersPage;
 import org.raincitygamers.holocron.ui.pages.abilities.TalentsPage;
 import org.raincitygamers.holocron.ui.pages.basics.BasicsPage;
@@ -83,6 +85,7 @@ public class CharacterActivity extends AppCompatActivity implements DisplayPage.
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_character);
+    sendBroadcast(new Intent(CreationActivity.ACTION_FINISH));
 
     drawerList = (ListView) findViewById(R.id.navList);
     drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
