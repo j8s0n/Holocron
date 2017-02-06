@@ -8,6 +8,7 @@ public interface RowData {
 
   public enum Type {
     ABILITY,
+    INVENTORY,
     KEY_VALUE,
     SECTION_ID
   }

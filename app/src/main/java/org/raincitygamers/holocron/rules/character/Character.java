@@ -411,6 +411,17 @@ public class Character {
     return buildFileName(name, characterId);
   }
 
+  public int getEncumbrance() {
+    int encumbrance = 0;
+    for (InventoryItem item : inventory) {
+      if (item.isCountEncumbrance()) {
+        encumbrance += item.getEncumbrance() * item.getQuantity();
+      }
+    }
+
+    return Math.max(encumbrance, 0);
+  }
+
   @Getter
   @ToString
   @EqualsAndHashCode

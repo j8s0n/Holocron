@@ -40,6 +40,8 @@ public class BasicsArrayAdapter extends ArrayAdapter<RowData> {
   private View displaySection(View convertView, ViewGroup parent, String sectionLabel) {
     ViewHolder viewHolder;
     if (convertView == null) {
+      // TODO:
+      // When convertView isn't null, but is switching row data types, need to treat it as null and recreate it.
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.section_list_item, parent, false);

@@ -31,13 +31,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/character_name"
-        android:maxLines="1"/>
+        android:maxLines="1"
+        android:inputType="text"
+        android:selectAllOnFocus="true"/>
 
       <EditText
         android:id="@+id/character_species"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/species"
+        android:inputType="text"
         android:maxLines="1"/>
 
       <EditText
@@ -45,6 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/age"
+        android:inputType="text"
         android:maxLines="1"/>
 
       <EditText
@@ -52,6 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/height"
+        android:inputType="text"
         android:maxLines="1"/>
 
       <EditText
@@ -59,6 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/weight"
+        android:inputType="text"
         android:maxLines="1"/>
 
       <EditText
@@ -66,6 +72,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/skin_tone"
+        android:inputType="text"
         android:maxLines="1"/>
 
       <EditText
@@ -73,6 +80,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hair"
+        android:inputType="text"
         android:maxLines="1"/>
 
       <EditText
@@ -80,6 +88,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/eye_color"
+        android:inputType="text"
         android:maxLines="1"/>
 
       <Spinner
@@ -93,11 +102,11 @@
         android:layout_height="wrap_content"/>
 
       <Button
-        android:id="@+id/done_button"
+        android:id="@+id/next_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onDoneClicked"
-        android:text="@string/done"/>
+        android:text="@string/next"/>
     </LinearLayout>
   </ScrollView>
 </android.support.design.widget.CoordinatorLayout>
