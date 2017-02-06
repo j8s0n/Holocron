@@ -476,9 +476,9 @@ public class Character {
 
     private long accessTime;
     private int lastOpenPage = 0;
-    private List<InventoryItem> inventory;
-    private List<Ability> talents;
-    private List<Ability> forcePowers;
+    private List<InventoryItem> inventory = new ArrayList<>();
+    private List<Ability> talents = new ArrayList<>();
+    private List<Ability> forcePowers = new ArrayList<>();
 
     private final Career career;
     private final Specialization specialization;

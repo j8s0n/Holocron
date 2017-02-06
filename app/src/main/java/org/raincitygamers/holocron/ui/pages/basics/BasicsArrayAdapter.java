@@ -39,7 +39,7 @@ public class BasicsArrayAdapter extends ArrayAdapter<RowData> {
   @NotNull
   private View displaySection(View convertView, ViewGroup parent, String sectionLabel) {
     ViewHolder viewHolder;
-    if (convertView == null) {
+    if (convertView == null || !convertView.getTag().equals(RowData.Type.SECTION_ID)) {
       // TODO:
       // When convertView isn't null, but is switching row data types, need to treat it as null and recreate it.
       viewHolder = new ViewHolder();
@@ -47,6 +47,7 @@ public class BasicsArrayAdapter extends ArrayAdapter<RowData> {
       convertView = inflater.inflate(R.layout.section_list_item, parent, false);
       viewHolder.sectionLabel = (TextView) convertView.findViewById(R.id.section_label);
       convertView.setTag(viewHolder);
+      viewHolder.type = RowData.Type.SECTION_ID;
     }
     else {
       viewHolder = (ViewHolder) convertView.getTag();
@@ -59,13 +60,14 @@ public class BasicsArrayAdapter extends ArrayAdapter<RowData> {
   @NotNull
   private View displayKeyValuePair(View convertView, ViewGroup parent, KvPair pair) {
     ViewHolder viewHolder;
-    if (convertView == null) {
+    if (convertView == null || !convertView.getTag().equals(RowData.Type.KEY_VALUE)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.key_value_list_item, parent, false);
       viewHolder.key = (TextView) convertView.findViewById(R.id.key);
       viewHolder.value = (TextView) convertView.findViewById(R.id.value);
       convertView.setTag(viewHolder);
+      viewHolder.type = RowData.Type.KEY_VALUE;
     }
     else {
       viewHolder = (ViewHolder) convertView.getTag();
@@ -77,6 +79,7 @@ public class BasicsArrayAdapter extends ArrayAdapter<RowData> {
   }
 
   private static class ViewHolder {
+    RowData.Type type;
     TextView sectionLabel;
 
     TextView key;

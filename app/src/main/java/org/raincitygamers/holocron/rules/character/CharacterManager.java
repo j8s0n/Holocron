@@ -89,6 +89,10 @@ public class CharacterManager {
     activeCharacter = null;
   }
 
+  public void setActiveCharacter(@NotNull Character character) {
+    activeCharacter = character;
+  }
+
   public void loadActiveCharacter(@NotNull String characterFileName, @NotNull UUID characterId) {
     try {
       if (activeCharacter == null || !activeCharacter.getCharacterId().equals(characterId)) {

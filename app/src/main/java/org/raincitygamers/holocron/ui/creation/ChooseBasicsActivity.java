@@ -1,6 +1,7 @@
 package org.raincitygamers.holocron.ui.creation;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -18,6 +19,7 @@ import org.raincitygamers.holocron.rules.character.CareerManager;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.CharacterManager;
 import org.raincitygamers.holocron.rules.character.Specialization;
+import org.raincitygamers.holocron.ui.display.CharacterActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -48,8 +50,8 @@ public class ChooseBasicsActivity extends CreationActivity {
   public void onDoneClicked(View view) {
     Log.i(LOG_TAG, "onDoneClicked");
     Log.i(LOG_TAG, "Selected: " + selectedCareer + " : " + selectedSpecialization);
-    String name = readEditText(R.id.character_name);
-    String species = readEditText(R.id.character_species);
+    final String name = readEditText(R.id.character_name);
+    final String species = readEditText(R.id.character_species);
     if (name.isEmpty()) {
       Toast.makeText(this, "Who are you?", Toast.LENGTH_LONG).show();
       return;
@@ -59,27 +61,33 @@ public class ChooseBasicsActivity extends CreationActivity {
       return;
     }
 
+    AsyncTask.execute(new Runnable() {
+      @Override
+      public void run() {
+        UUID characterId = UUID.randomUUID();
+        Character character = new Character.Builder(name, selectedCareer, selectedSpecialization, species, characterId)
+                                  .age(readEditText(R.id.age))
+                                  .height(readEditText(R.id.height))
+                                  .weight(readEditText(R.id.weight))
+                                  .skinTone(readEditText(R.id.skin_tone))
+                                  .hairColor(readEditText(R.id.hair_color))
+                                  .eyeColor(readEditText(R.id.eye_color))
+                                  .characteristic(Characteristic.BRAWN, 2)
+                                  .characteristic(Characteristic.AGILITY, 2)
+                                  .characteristic(Characteristic.INTELLECT, 2)
+                                  .characteristic(Characteristic.CUNNING, 2)
+                                  .characteristic(Characteristic.WILLPOWER, 2)
+                                  .characteristic(Characteristic.PRESENCE, 2)
+                                  .build();
 
-    UUID characterId = UUID.randomUUID();
-    Character character = new Character.Builder(name, selectedCareer, selectedSpecialization, species, characterId)
-                              .age(readEditText(R.id.age))
-                              .height(readEditText(R.id.height))
-                              .weight(readEditText(R.id.weight))
-                              .skinTone(readEditText(R.id.skin_tone))
-                              .hairColor(readEditText(R.id.hair_color))
-                              .eyeColor(readEditText(R.id.eye_color))
-                              .characteristic(Characteristic.BRAWN, 2)
-                              .characteristic(Characteristic.AGILITY, 2)
-                              .characteristic(Characteristic.INTELLECT, 2)
-                              .characteristic(Characteristic.CUNNING, 2)
-                              .characteristic(Characteristic.WILLPOWER, 2)
-                              .characteristic(Characteristic.PRESENCE, 2)
-                              .build();
+        characterManager.setActiveCharacter(character);
+        characterManager.saveCharacter(character);
+      }
+    });
 
-    characterManager.saveCharacter(character);
-    String key = Character.buildFileName(name, characterId);
-    characterManager.loadActiveCharacter(key, characterId);
-    Intent intent = new Intent(this, ChooseCharacteristicsActivity.class);
+    Intent intent = new Intent(this, CharacterActivity.class);
+    // TODO:
+    // Intent intent = new Intent(this, ChooseCharacteristicsActivity.class);
     startActivity(intent);
   }
 
