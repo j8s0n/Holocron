@@ -17,30 +17,25 @@ import java.util.UUID;
 
 public class CharacterManager {
   private static final String LOG_TAG = CharacterManager.class.getSimpleName();
-  private static final CharacterManager ourInstance = new CharacterManager();
-  private final Map<UUID, Summary> characters = new LinkedHashMap<>();
-  private Character activeCharacter;
+  private static final Map<UUID, Summary> characters = new LinkedHashMap<>();
+  private static Character activeCharacter;
 
-  public static CharacterManager getInstance() {
-    return ourInstance;
-  }
-
-  private CharacterManager() {
+  static {
     loadCharacters();
   }
 
   @Nullable
   public static Character getActiveCharacter() {
-    return getInstance().activeCharacter;
+    return activeCharacter;
   }
 
-  public void saveCharacter(@NotNull Character character) {
+  public static void saveCharacter(@NotNull Character character) {
     characters.put(character.getCharacterId(), character.makeSummary());
     character.updateTimestamp();
     writeCharacter(character);
   }
 
-  private void loadCharacters() {
+  private static void loadCharacters() {
     characters.clear();
     for (Map.Entry<UUID, String> entry : FileAccessor.getAllCharacterContent().entrySet()) {
       try {
@@ -56,7 +51,7 @@ public class CharacterManager {
     }
   }
 
-  private void writeCharacter(@NotNull final Character character) {
+  private static void writeCharacter(@NotNull final Character character) {
     AsyncTask.execute(new Runnable() {
       @Override
       public void run() {
@@ -71,28 +66,28 @@ public class CharacterManager {
   }
 
   @Nullable
-  public Summary getCharacterSummary(@NotNull UUID characterId) {
+  public static Summary getCharacterSummary(@NotNull UUID characterId) {
     return characters.get(characterId);
   }
 
-  public Collection<UUID> getCharacterIds() {
+  public static Collection<UUID> getCharacterIds() {
     return characters.keySet();
   }
 
-  public void removeCharacter(@NotNull Summary summary) {
+  public static void removeCharacter(@NotNull Summary summary) {
     characters.remove(summary.getCharacterId());
     FileAccessor.removeFile(summary.getFileName());
   }
 
-  public void clearActiveCharacter() {
+  public static void clearActiveCharacter() {
     activeCharacter = null;
   }
 
-  public void setActiveCharacter(@NotNull Character character) {
+  public static void setActiveCharacter(@NotNull Character character) {
     activeCharacter = character;
   }
 
-  public void loadActiveCharacter(@NotNull String characterFileName, @NotNull UUID characterId) {
+  public static void loadActiveCharacter(@NotNull String characterFileName, @NotNull UUID characterId) {
     try {
       if (activeCharacter == null || !activeCharacter.getCharacterId().equals(characterId)) {
         activeCharacter = Character.valueOf(new JSONObject(FileAccessor.getCharacterContent(characterFileName)),
@@ -106,8 +101,8 @@ public class CharacterManager {
   }
 
   public static void saveActiveCharacter() {
-    if (ourInstance.activeCharacter != null) {
-      ourInstance.saveCharacter(ourInstance.activeCharacter);
+    if (activeCharacter != null) {
+      saveCharacter(activeCharacter);
     }
   }
 }

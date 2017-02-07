@@ -25,7 +25,6 @@ public class FileAccessor {
   private static File Rules = new File(Holocron, "Rules");
   private static File Characters = new File(Holocron, "Characters");
   private static final String LOG_TAG = FileAccessor.class.getSimpleName();
-  private static FileAccessor ourInstance = new FileAccessor();
 
   static {
     if ((!Rules.exists() && !Rules.mkdirs()) ||

@@ -9,11 +9,11 @@ import android.view.ViewGroup;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.CharacterManager;
-import org.raincitygamers.holocron.ui.ContentPage;
 import org.raincitygamers.holocron.ui.chooser.ChooserActivity;
+import org.raincitygamers.holocron.ui.chooser.ChooserBase;
 import org.raincitygamers.holocron.ui.display.DisplayActivity;
 
-public class DoneChooser extends ContentPage {
+public class DoneChooser extends ChooserBase {
   public DoneChooser() {
   }
 
@@ -32,10 +32,9 @@ public class DoneChooser extends ContentPage {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View result = inflater.inflate(R.layout.choose_basics, container, false);
-    CharacterManager characterManager = CharacterManager.getInstance();
     Character character = ((ChooserActivity)getActivity()).getActiveCharacter();
-    characterManager.setActiveCharacter(character);
-    characterManager.saveCharacter(character);
+    CharacterManager.setActiveCharacter(character);
+    CharacterManager.saveCharacter(character);
 
     return result;
   }

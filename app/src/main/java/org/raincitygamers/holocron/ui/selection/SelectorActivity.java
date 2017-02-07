@@ -27,10 +27,7 @@ import java.util.UUID;
 
 public class SelectorActivity extends ActivityBase {
   private static final String LOG_TAG = SelectorActivity.class.getSimpleName();
-
-  private CharacterManager characterManager;
   private List<Summary> characters = new ArrayList<>();
-
   private CharacterArrayAdapter characterArrayAdapter;
   private ListView characterListView;
 
@@ -74,7 +71,7 @@ public class SelectorActivity extends ActivityBase {
         Intent intent = new Intent(SelectorActivity.this, DisplayActivity.class);
         Summary summary = characters.get(position);
 
-        characterManager.loadActiveCharacter(summary.getFileName(), summary.getCharacterId());
+        CharacterManager.loadActiveCharacter(summary.getFileName(), summary.getCharacterId());
         startActivity(intent);
       }
     });
@@ -84,16 +81,15 @@ public class SelectorActivity extends ActivityBase {
   protected void onResume() {
     super.onResume();
     if (permissionGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-      characterManager = CharacterManager.getInstance();
-      characterManager.clearActiveCharacter();
+      CharacterManager.clearActiveCharacter();
       displayCharacters();
     }
   }
 
   private void displayCharacters() {
     characters.clear();
-    for (UUID characterId : characterManager.getCharacterIds()) {
-      characters.add(characterManager.getCharacterSummary(characterId));
+    for (UUID characterId : CharacterManager.getCharacterIds()) {
+      characters.add(CharacterManager.getCharacterSummary(characterId));
     }
 
     Collections.sort(characters, Character.getMostRecentAccessComparator());
@@ -147,7 +143,7 @@ public class SelectorActivity extends ActivityBase {
     }
 
     private void removeEntry(int position) {
-      CharacterManager.getInstance().removeCharacter(characters.get(position));
+      CharacterManager.removeCharacter(characters.get(position));
       characters.remove(position);
     }
   }

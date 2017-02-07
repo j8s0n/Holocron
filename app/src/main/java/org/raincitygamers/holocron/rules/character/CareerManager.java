@@ -26,7 +26,6 @@ public class CareerManager {
   private static final String CAREER_SKILLS_KEY = "careerSkills";
   private static Map<String, Career> careerMap = new HashMap<>();
   private static Map<String, Specialization> specializationMap = new HashMap<>();
-  private static CareerManager ourInstance = new CareerManager();
 
   static {
     loadCareers();
@@ -34,7 +33,7 @@ public class CareerManager {
 
   @NotNull
   public static List<String> getCareerNames() {
-    List<String> careers = new ArrayList<>(ourInstance.careerMap.keySet());
+    List<String> careers = new ArrayList<>(careerMap.keySet());
     Collections.sort(careers);
     return careers;
   }
@@ -46,12 +45,12 @@ public class CareerManager {
 
   @Nullable
   public static Career getCareer(@NotNull String name) {
-    return ourInstance.careerMap.get(name);
+    return careerMap.get(name);
   }
 
   @Nullable
   public static Specialization getSpecialization(@NotNull String name) {
-    return ourInstance.specializationMap.get(name);
+    return specializationMap.get(name);
   }
 
   private static void loadCareers() {

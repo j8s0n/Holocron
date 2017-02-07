@@ -73,7 +73,7 @@ public class DisplayActivity extends AppCompatActivity implements ContentPage.On
     super.onPause();
 
     timer.cancel();
-    CharacterManager.getInstance().saveActiveCharacter();
+    CharacterManager.saveActiveCharacter();
   }
 
   @Override
