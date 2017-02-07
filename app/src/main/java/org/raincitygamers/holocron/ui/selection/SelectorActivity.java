@@ -83,8 +83,6 @@ public class SelectorActivity extends ActivityBase {
   @Override
   protected void onResume() {
     super.onResume();
-    // getSupportActionBar().setTitle("Choose a Character");
-
     if (permissionGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
       characterManager = CharacterManager.getInstance();
       characterManager.clearActiveCharacter();

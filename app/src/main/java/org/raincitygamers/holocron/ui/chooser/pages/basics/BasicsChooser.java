@@ -12,26 +12,22 @@ import android.widget.Spinner;
 
 import org.jetbrains.annotations.Nullable;
 import org.raincitygamers.holocron.R;
-import org.raincitygamers.holocron.rules.abilities.Characteristic;
 import org.raincitygamers.holocron.rules.character.Career;
 import org.raincitygamers.holocron.rules.character.CareerManager;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.Specialization;
-import org.raincitygamers.holocron.ui.ContentPage;
-import org.raincitygamers.holocron.ui.chooser.ChooserActivity;
+import org.raincitygamers.holocron.ui.chooser.ChooserBase;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.UUID;
 
-public class BasicsChooser extends ContentPage {
+public class BasicsChooser extends ChooserBase {
   private static final String LOG_TAG = BasicsChooser.class.getSimpleName();
   private final List<String> specializations = new ArrayList<>();
   private Career selectedCareer;
   private Specialization selectedSpecialization;
-  private final CareerManager careerManager = CareerManager.getInstance();
-  private final List<String> careers = careerManager.getCareerNames();
+  private final List<String> careers = CareerManager.getCareerNames();
   private View view;
 
   public BasicsChooser() {
@@ -52,35 +48,31 @@ public class BasicsChooser extends ContentPage {
   @Override
   public void onResume() {
     super.onResume();
-    buildCareerSpinner();
+    Character ch = getActiveCharacter();
+    if (ch != null) {
+      // TODO: Set values from this.
+    }
+    buildCareerSpinner(ch);
   }
 
   @Override
   public void onPause() {
     super.onPause();
     Log.i(LOG_TAG, "onPause");
-    Log.i(LOG_TAG, "Selected: " + selectedCareer + " : " + selectedSpecialization);
-    final String name = readEditText(R.id.character_name);
-    final String species = readEditText(R.id.character_species);
 
-    UUID characterId = UUID.randomUUID();
-    Character character = new Character.Builder(name, selectedCareer, selectedSpecialization, species, characterId)
-                              .age(readEditText(R.id.age))
-                              .height(readEditText(R.id.height))
-                              .weight(readEditText(R.id.weight))
-                              .skinTone(readEditText(R.id.skin_tone))
-                              .hairColor(readEditText(R.id.hair_color))
-                              .eyeColor(readEditText(R.id.eye_color))
-                              .characteristic(Characteristic.BRAWN, 2)
-                              .characteristic(Characteristic.AGILITY, 2)
-                              .characteristic(Characteristic.INTELLECT, 2)
-                              .characteristic(Characteristic.CUNNING, 2)
-                              .characteristic(Characteristic.WILLPOWER, 2)
-                              .characteristic(Characteristic.PRESENCE, 2)
-                              .build();
+    Character ch = getActiveCharacter();
+    ch.setName(readEditText(R.id.character_name));
+    ch.setSpecies(readEditText(R.id.character_species));
+    ch.setAge(readEditText(R.id.age));
+    ch.setHeight(readEditText(R.id.height));
+    ch.setWeight(readEditText(R.id.weight));
+    ch.setSkinTone(readEditText(R.id.skin_tone));
+    ch.setHairColor(readEditText(R.id.hair_color));
+    ch.setEyeColor(readEditText(R.id.eye_color));
 
-    ChooserActivity chooser = (ChooserActivity)getActivity();
-    chooser.setActiveCharacter(character);
+    ch.setCareer(selectedCareer);
+    ch.getSpecializations().clear();
+    ch.getSpecializations().add(selectedSpecialization);
   }
 
   private String readEditText(int editTextId) {
@@ -88,28 +80,32 @@ public class BasicsChooser extends ContentPage {
     return editText.getText().toString();
   }
 
-  private void buildCareerSpinner() {
+  private void buildCareerSpinner(@Nullable final Character character) {
     Spinner spinner = (Spinner) view.findViewById(R.id.careers);
     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item,
                                                            careers);
     spinner.setAdapter(arrayAdapter);
+    if (character != null) {
+      spinner.setSelection(careers.indexOf(character.getCareer().getName()));
+    }
+
     spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       @Override
       public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-        selectedCareer = careerManager.getCareer(careers.get(position));
-        buildSpecializationSpinner(selectedCareer);
+        selectedCareer = CareerManager.getCareer(careers.get(position));
+        buildSpecializationSpinner(selectedCareer, character);
       }
 
       @Override
       public void onNothingSelected(AdapterView<?> parentView) {
-        buildSpecializationSpinner(null);
+        buildSpecializationSpinner(null, null);
         selectedCareer = null;
         selectedSpecialization = null;
       }
     });
   }
 
-  private void buildSpecializationSpinner(@Nullable Career career) {
+  private void buildSpecializationSpinner(@Nullable Career career, @Nullable Character character) {
     final Spinner spinner = (Spinner) view.findViewById(R.id.specializations);
     final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(),
                                                                  android.R.layout.simple_dropdown_item_1line,
@@ -121,10 +117,14 @@ public class BasicsChooser extends ContentPage {
     arrayAdapter.notifyDataSetChanged();
 
     spinner.setAdapter(arrayAdapter);
+    if (character != null) {
+      spinner.setSelection(specializations.indexOf(character.getSpecializations().get(0).getName()));
+    }
+
     spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        selectedSpecialization = careerManager.getSpecialization(specializations.get(position));
+        selectedSpecialization = CareerManager.getSpecialization(specializations.get(position));
       }
 
       @Override

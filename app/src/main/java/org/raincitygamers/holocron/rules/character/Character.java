@@ -16,10 +16,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 
 import lombok.EqualsAndHashCode;
@@ -66,23 +64,23 @@ public class Character {
   private static final CareerManager careerManager = CareerManager.getInstance();
   private static final SkillManager skillManager = SkillManager.getInstance();
   @Getter private static final MostRecentAccessComparator mostRecentAccessComparator = new MostRecentAccessComparator();
-  @Getter private final List<InventoryItem> inventory;
-  @Getter private final List<Ability> talents;
-  @Getter private final List<Ability> forcePowers;
+  @Getter private final List<InventoryItem> inventory = new ArrayList<>();
+  @Getter private final List<Ability> talents = new ArrayList<>();
+  @Getter private final List<Ability> forcePowers = new ArrayList<>();
 
   private String logger = Character.class.getSimpleName();
-  @Getter private final String name;
-  @Getter private final String species;
-  @Getter private final Career career;
-  @Getter private final UUID characterId;
-  @Getter private final Set<Specialization> specializations = new LinkedHashSet<>();
+  @Getter @Setter private String name;
+  @Getter @Setter private String species;
+  @Getter @Setter private Career career;
+  @Getter @Setter private final UUID characterId;
+  @Getter private final List<Specialization> specializations = new ArrayList<>();
   @Getter private List<Obligation> obligations = new ArrayList<>();
-  @Getter private String age;
-  @Getter private String height;
-  @Getter private String weight;
-  @Getter private String skinTone;
-  @Getter private String hairColor;
-  @Getter private String eyeColor;
+  @Getter @Setter private String age;
+  @Getter @Setter private String height;
+  @Getter @Setter private String weight;
+  @Getter @Setter private String skinTone;
+  @Getter @Setter private String hairColor;
+  @Getter @Setter private String eyeColor;
 
   @Getter private int wounds;
   @Getter private int woundThreshold;
@@ -102,6 +100,30 @@ public class Character {
   private final Map<Characteristic, Integer> characteristicScores = new HashMap<>();
   private final Map<Skill, Integer> skills = new HashMap<>();
 
+  public static Character of() {
+    return new Character();
+  }
+
+  private Character() {
+    name = "";
+    species = "";
+    CareerManager careerManager = CareerManager.getInstance();
+    career = careerManager.getCareer("Bounty Hunter");
+    this.specializations.add(careerManager.getSpecialization(career.getSpecializations().get(0).toString()));
+    this.age = "";
+    this.height = "";
+    this.weight = "";
+    this.skinTone = "";
+    this.hairColor = "";
+    this.eyeColor = "";
+    this.accessTime = 0;
+    this.characterId = UUID.randomUUID();
+
+    for (Characteristic characteristic : Characteristic.values()) {
+      characteristicScores.put(characteristic, 2);
+    }
+  }
+
   // TODO:
   // For bonuses, have a map->list for each thing that can have bonuses (e.g. brawn->list<bonuses>).
   // List the source of the bonus, for easy removal later, if that changes.
@@ -117,9 +139,9 @@ public class Character {
     this.skinTone = builder.skinTone;
     this.hairColor = builder.hairColor;
     this.eyeColor = builder.eyeColor;
-    this.inventory = builder.inventory;
-    this.talents = builder.talents;
-    this.forcePowers = builder.forcePowers;
+    this.inventory.addAll(builder.inventory);
+    this.talents.addAll(builder.talents);
+    this.forcePowers.addAll(builder.forcePowers);
     this.wounds = builder.wounds;
     this.woundThreshold = builder.woundThreshold;
     this.strain = builder.strain;

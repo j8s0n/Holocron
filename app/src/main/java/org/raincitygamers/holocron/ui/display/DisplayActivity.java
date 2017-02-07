@@ -22,7 +22,7 @@ import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.CharacterManager;
 import org.raincitygamers.holocron.ui.ContentPage;
-import org.raincitygamers.holocron.ui.creation_deprecated.ChooserBase;
+import org.raincitygamers.holocron.ui.chooser.ChooserActivity;
 import org.raincitygamers.holocron.ui.display.pages.abilities.ForcePowersPage;
 import org.raincitygamers.holocron.ui.display.pages.abilities.TalentsPage;
 import org.raincitygamers.holocron.ui.display.pages.basics.BasicsPage;
@@ -86,7 +86,7 @@ public class DisplayActivity extends AppCompatActivity implements ContentPage.On
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_character);
-    sendBroadcast(new Intent(ChooserBase.ACTION_FINISH));
+    sendBroadcast(new Intent(ChooserActivity.ACTION_FINISH));
 
     drawerList = (ListView) findViewById(R.id.navList);
     drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

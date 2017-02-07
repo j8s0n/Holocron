@@ -3,9 +3,9 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context=".ui.display.pages.skills.SkillsPage">
+              tools:context=".ui.display.pages.basics.BasicsPage">
   <ListView
-    android:id="@+id/skill_group_list"
+    android:id="@+id/score_group_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >

@@ -20,10 +20,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.ui.ContentPage;
 import org.raincitygamers.holocron.ui.chooser.pages.basics.BasicsChooser;
+import org.raincitygamers.holocron.ui.chooser.pages.characteristics.CharacteristicsChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.done.DoneChooser;
 import org.raincitygamers.holocron.ui.display.DisplayActivity;
 
@@ -31,18 +33,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
-import lombok.Setter;
-
-import static org.raincitygamers.holocron.ui.creation_deprecated.ChooserBase.ACTION_FINISH;
 
 public class ChooserActivity extends AppCompatActivity implements ContentPage.OnFragmentInteractionListener {
+  public static final String ACTION_FINISH = ChooserActivity.class.getCanonicalName();
   private ListView drawerList;
   private DrawerLayout drawerLayout;
   private ArrayAdapter<String> adapter;
   private ActionBarDrawerToggle drawerToggle;
-  @Getter
-  @Setter
-  private Character activeCharacter;
+  @NotNull @Getter private final Character activeCharacter = Character.of();
   private int currentPage = -1;
   private FinishReceiver finishReceiver;
 
@@ -53,6 +51,7 @@ public class ChooserActivity extends AppCompatActivity implements ContentPage.On
     // This is where we populate what shows up in the menu.
     // If it's white, I need to add an empty constructor.
     contentPages.add(new BasicsChooser());
+    contentPages.add(new CharacteristicsChooser());
     contentPages.add(new DoneChooser());
   }
 
@@ -79,6 +78,12 @@ public class ChooserActivity extends AppCompatActivity implements ContentPage.On
     getSupportActionBar().setHomeButtonEnabled(true);
     selectPage(0);
     setTitle();
+  }
+
+  @Override
+  protected void onStop() {
+    unregisterReceiver(finishReceiver);
+    super.onStop();
   }
 
   private void addDrawerItems() {

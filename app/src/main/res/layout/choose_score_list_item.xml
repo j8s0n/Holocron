@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             android:useDefaultMargins="true">
+
+  <TextView
+    android:id="@+id/score_label"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:text="Score Name"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:layout_constraintTop_creator="1"/>
+
+  <TextView
+    android:layout_width="35dp"
+    android:layout_height="35dp"
+    android:id="@+id/score_down_button"
+    android:onClick="onUpDownClicked"
+    android:text="-"
+    android:textAlignment="center"
+    android:gravity="center"
+    android:clickable="true"
+    android:background="?attr/colorButtonNormal"
+    app:layout_constraintBottom_toBottomOf="@+id/score_label"
+    app:layout_constraintTop_toTopOf="@+id/score_label"
+    app:layout_constraintRight_toLeftOf="@+id/score_entry"
+    tools:layout_constraintRight_creator="1"/>
+
+  <TextView
+    android:text="2"
+    android:layout_width="30dp"
+    android:layout_height="wrap_content"
+    android:id="@+id/score_entry"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    android:textAlignment="center"
+    app:layout_constraintRight_toLeftOf="@+id/score_up_button"
+    app:layout_constraintTop_toTopOf="@+id/score_label"
+    app:layout_constraintBottom_toBottomOf="@+id/score_label"/>
+
+  <TextView
+    android:layout_width="35dp"
+    android:layout_height="0dp"
+    android:id="@+id/score_up_button"
+    android:onClick="onUpDownClicked"
+    android:clickable="true"
+    android:background="?attr/colorButtonNormal"
+    android:text="+"
+    android:gravity="center"
+    android:layout_marginEnd="16dp"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintBottom_toBottomOf="@+id/score_down_button"
+    app:layout_constraintTop_toTopOf="@+id/score_down_button"
+    tools:layout_constraintTop_creator="1"
+    tools:layout_constraintBottom_creator="1"/>
+
+</android.support.constraint.ConstraintLayout>

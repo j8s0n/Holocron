@@ -5,6 +5,7 @@ import android.util.Log;
 import com.google.common.collect.ImmutableList;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,8 +37,8 @@ public class CareerManager {
   }
 
   @NotNull
-  public List<String> getCareerNames() {
-    List<String> careers = new ArrayList<>(careerMap.keySet());
+  public static List<String> getCareerNames() {
+    List<String> careers = new ArrayList<>(ourInstance.careerMap.keySet());
     Collections.sort(careers);
     return careers;
   }
@@ -47,12 +48,14 @@ public class CareerManager {
     return new ArrayList<>(careerMap.values());
   }
 
-  public Career getCareer(@NotNull String name) {
-    return careerMap.get(name);
+  @Nullable
+  public static Career getCareer(@NotNull String name) {
+    return ourInstance.careerMap.get(name);
   }
 
-  public Specialization getSpecialization(@NotNull String name) {
-    return specializationMap.get(name);
+  @Nullable
+  public static Specialization getSpecialization(@NotNull String name) {
+    return ourInstance.specializationMap.get(name);
   }
 
   private void loadCareers() {
