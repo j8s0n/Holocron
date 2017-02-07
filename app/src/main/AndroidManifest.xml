@@ -16,19 +16,14 @@
       android:theme="@style/AppTheme.NoActionBar">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
-
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
-    <activity android:name=".ui.creation.ChooseBasicsActivity">
-    </activity>
-    <activity android:name=".ui.creation.ChooseCharacteristicsActivity">
+    <activity android:name=".ui.chooser.ChooserActivity">
     </activity>
     <activity
-      android:name=".ui.display.CharacterActivity"
-      android:label="@string/title_activity_character"
-      >
+      android:name=".ui.display.DisplayActivity"
+      android:label="@string/title_activity_character">
     </activity>
   </application>
-
 </manifest>

@@ -8,9 +8,9 @@ import org.raincitygamers.holocron.rules.abilities.Ability;
 import org.raincitygamers.holocron.rules.abilities.Characteristic;
 import org.raincitygamers.holocron.rules.abilities.Skill;
 import org.raincitygamers.holocron.rules.eote.Obligation;
-import org.raincitygamers.holocron.ui.pages.rowdata.KeyValueRowData;
-import org.raincitygamers.holocron.ui.pages.rowdata.RowData;
-import org.raincitygamers.holocron.ui.pages.rowdata.SectionRowData;
+import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData;
+import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
+import org.raincitygamers.holocron.ui.display.pages.rowdata.SectionRowData;
 
 import java.util.ArrayList;
 import java.util.Comparator;
