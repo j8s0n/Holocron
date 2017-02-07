@@ -24,15 +24,11 @@ public class CareerManager {
   private static final String NAME_KEY = "name";
   private static final String SPECIALIZATIONS_KEY = "specializations";
   private static final String CAREER_SKILLS_KEY = "careerSkills";
-  private Map<String, Career> careerMap = new HashMap<>();
-  private Map<String, Specialization> specializationMap = new HashMap<>();
+  private static Map<String, Career> careerMap = new HashMap<>();
+  private static Map<String, Specialization> specializationMap = new HashMap<>();
   private static CareerManager ourInstance = new CareerManager();
 
-  public static CareerManager getInstance() {
-    return ourInstance;
-  }
-
-  private CareerManager() {
+  static {
     loadCareers();
   }
 
@@ -58,8 +54,8 @@ public class CareerManager {
     return ourInstance.specializationMap.get(name);
   }
 
-  private void loadCareers() {
-    String careerJson = FileAccessor.getInstance().getCareerContent();
+  private static void loadCareers() {
+    String careerJson = FileAccessor.getCareerContent();
     // Log.i(LOG_TAG, "Careers: " + careerJson);
     try {
       JSONObject o = new JSONObject(careerJson);
@@ -70,7 +66,7 @@ public class CareerManager {
     }
   }
 
-  private void parseCareers(@NotNull JSONArray careersJson) {
+  private static void parseCareers(@NotNull JSONArray careersJson) {
     for (int i = 0; i < careersJson.length(); i++) {
       ImmutableList.Builder<String> careerSkillsBuilder = ImmutableList.builder();
       ImmutableList.Builder<String> specializationsBuilder = ImmutableList.builder();
@@ -95,7 +91,7 @@ public class CareerManager {
     }
   }
 
-  private void parseSpecializations(@NotNull JSONArray specializationsJson) {
+  private static void parseSpecializations(@NotNull JSONArray specializationsJson) {
     for (int i=0; i < specializationsJson.length(); i++) {
       ImmutableList.Builder<String> careerSkillsBuilder = ImmutableList.builder();
 

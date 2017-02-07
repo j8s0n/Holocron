@@ -16,6 +16,6 @@ public class GeneralSkillsPage extends SkillsPage {
 
   @Override
   protected Collection<Skill> getSkills() {
-    return SkillManager.getInstance().getGeneralSkills();
+    return SkillManager.getGeneralSkills();
   }
 }

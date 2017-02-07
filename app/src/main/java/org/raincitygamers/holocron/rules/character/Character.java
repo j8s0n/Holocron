@@ -61,8 +61,6 @@ public class Character {
   private static final String TALENTS_KEY = "talents";
   private static final String FORCE_POWERS_KEY = "force_powers";
 
-  private static final CareerManager careerManager = CareerManager.getInstance();
-  private static final SkillManager skillManager = SkillManager.getInstance();
   @Getter private static final MostRecentAccessComparator mostRecentAccessComparator = new MostRecentAccessComparator();
   @Getter private final List<InventoryItem> inventory = new ArrayList<>();
   @Getter private final List<Ability> talents = new ArrayList<>();
@@ -107,9 +105,8 @@ public class Character {
   private Character() {
     name = "";
     species = "";
-    CareerManager careerManager = CareerManager.getInstance();
-    career = careerManager.getCareer("Bounty Hunter");
-    this.specializations.add(careerManager.getSpecialization(career.getSpecializations().get(0).toString()));
+    career = CareerManager.getCareer("Bounty Hunter");
+    this.specializations.add(CareerManager.getSpecialization(career.getSpecializations().get(0).toString()));
     this.age = "";
     this.height = "";
     this.weight = "";
@@ -341,7 +338,7 @@ public class Character {
   public static Character valueOf(@NotNull JSONObject jsonObject, @NotNull UUID characterId)
   throws IllegalArgumentException, JSONException {
     String name = jsonObject.getString(NAME_KEY);
-    Career career = careerManager.getCareer(jsonObject.getString(CAREER_KEY));
+    Career career = CareerManager.getCareer(jsonObject.getString(CAREER_KEY));
     List<Specialization> specializations = parseSpecializations(jsonObject.getJSONArray(SPECIALIZATIONS_KEY));
     String species = jsonObject.getString(SPECIES_KEY);
     Map<Skill, Integer> skills = parseSkills(jsonObject.getJSONArray(SKILLS_KEY));
@@ -404,7 +401,7 @@ public class Character {
     Map<Skill, Integer> skills = new HashMap<>();
     for (int i = 0; i < jsonArray.length(); i++) {
       JSONObject skillJson = jsonArray.getJSONObject(i);
-      Skill skill = skillManager.getSkill(skillJson.getString(NAME_KEY));
+      Skill skill = SkillManager.getSkill(skillJson.getString(NAME_KEY));
       skills.put(skill, skillJson.getInt(SCORE_KEY));
     }
 
@@ -415,7 +412,7 @@ public class Character {
   private static List<Specialization> parseSpecializations(@NotNull JSONArray jsonArray) throws JSONException {
     List<Specialization> specializations = new ArrayList<>();
     for (int i = 0; i < jsonArray.length(); i++) {
-      specializations.add(careerManager.getSpecialization(jsonArray.getString(i)));
+      specializations.add(CareerManager.getSpecialization(jsonArray.getString(i)));
     }
 
     return specializations;
@@ -468,7 +465,7 @@ public class Character {
 
     public static Summary valueOf(JSONObject characterJson, UUID characterId) throws JSONException {
       String name = characterJson.getString(NAME_KEY);
-      Career career = careerManager.getCareer(characterJson.getString(CAREER_KEY));
+      Career career = CareerManager.getCareer(characterJson.getString(CAREER_KEY));
       String species = characterJson.getString(SPECIES_KEY);
       long timestamp = characterJson.getLong(TIMESTAMP_KEY);
 

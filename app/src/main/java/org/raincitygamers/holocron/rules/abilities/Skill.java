@@ -14,7 +14,7 @@ public class Skill {
   private final Type type;
   private final Characteristic characteristic;
 
-  public static enum Type {
+  public enum Type {
     COMBAT,
     GENERAL,
     KNOWLEDGE,

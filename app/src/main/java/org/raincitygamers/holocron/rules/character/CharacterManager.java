@@ -19,7 +19,6 @@ public class CharacterManager {
   private static final String LOG_TAG = CharacterManager.class.getSimpleName();
   private static final CharacterManager ourInstance = new CharacterManager();
   private final Map<UUID, Summary> characters = new LinkedHashMap<>();
-  private final FileAccessor fileAccessor = FileAccessor.getInstance();
   private Character activeCharacter;
 
   public static CharacterManager getInstance() {
@@ -43,7 +42,7 @@ public class CharacterManager {
 
   private void loadCharacters() {
     characters.clear();
-    for (Map.Entry<UUID, String> entry : fileAccessor.getAllCharacterContent().entrySet()) {
+    for (Map.Entry<UUID, String> entry : FileAccessor.getAllCharacterContent().entrySet()) {
       try {
         JSONObject characterJson = new JSONObject(entry.getValue());
         characters.put(entry.getKey(), Summary.valueOf(characterJson, entry.getKey()));
@@ -62,7 +61,7 @@ public class CharacterManager {
       @Override
       public void run() {
         try {
-          fileAccessor.writeCharacterContent(character);
+          FileAccessor.writeCharacterContent(character);
         }
         catch (JSONException e) {
           Log.e(LOG_TAG, "Error writing character: '" + character.getName() + "' " + character.getCharacterId(), e);
@@ -82,7 +81,7 @@ public class CharacterManager {
 
   public void removeCharacter(@NotNull Summary summary) {
     characters.remove(summary.getCharacterId());
-    fileAccessor.removeFile(summary.getFileName());
+    FileAccessor.removeFile(summary.getFileName());
   }
 
   public void clearActiveCharacter() {
@@ -96,7 +95,7 @@ public class CharacterManager {
   public void loadActiveCharacter(@NotNull String characterFileName, @NotNull UUID characterId) {
     try {
       if (activeCharacter == null || !activeCharacter.getCharacterId().equals(characterId)) {
-        activeCharacter = Character.valueOf(new JSONObject(fileAccessor.getCharacterContent(characterFileName)),
+        activeCharacter = Character.valueOf(new JSONObject(FileAccessor.getCharacterContent(characterFileName)),
                                             characterId);
       }
     }

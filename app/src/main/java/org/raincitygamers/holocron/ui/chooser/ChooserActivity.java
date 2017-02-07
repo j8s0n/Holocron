@@ -27,6 +27,9 @@ import org.raincitygamers.holocron.ui.ContentPage;
 import org.raincitygamers.holocron.ui.chooser.pages.basics.BasicsChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.characteristics.CharacteristicsChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.done.DoneChooser;
+import org.raincitygamers.holocron.ui.chooser.pages.skills.CombatSkillsChooser;
+import org.raincitygamers.holocron.ui.chooser.pages.skills.GeneralSkillsChooser;
+import org.raincitygamers.holocron.ui.chooser.pages.skills.KnowledgeSkillsChooser;
 import org.raincitygamers.holocron.ui.display.DisplayActivity;
 
 import java.util.ArrayList;
@@ -52,6 +55,9 @@ public class ChooserActivity extends AppCompatActivity implements ContentPage.On
     // If it's white, I need to add an empty constructor.
     contentPages.add(new BasicsChooser());
     contentPages.add(new CharacteristicsChooser());
+    contentPages.add(new GeneralSkillsChooser());
+    contentPages.add(new CombatSkillsChooser());
+    contentPages.add(new KnowledgeSkillsChooser());
     contentPages.add(new DoneChooser());
   }
 

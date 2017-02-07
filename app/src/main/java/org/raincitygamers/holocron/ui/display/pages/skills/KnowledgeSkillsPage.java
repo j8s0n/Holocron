@@ -16,6 +16,6 @@ public class KnowledgeSkillsPage extends SkillsPage {
 
   @Override
   protected Collection<Skill> getSkills() {
-    return SkillManager.getInstance().getKnowledgeSkills();
+    return SkillManager.getKnowledgeSkills();
   }
 }

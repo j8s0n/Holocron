@@ -20,19 +20,14 @@ import java.util.Map;
 import java.util.UUID;
 
 public class FileAccessor {
-  private File GameData = new File(Environment.getExternalStorageDirectory(), "GameData");
-  private File Holocron = new File(GameData, "Holocron");
-  private File Rules = new File(Holocron, "Rules");
-  private File Characters = new File(Holocron, "Characters");
+  private static File GameData = new File(Environment.getExternalStorageDirectory(), "GameData");
+  private static File Holocron = new File(GameData, "Holocron");
+  private static File Rules = new File(Holocron, "Rules");
+  private static File Characters = new File(Holocron, "Characters");
   private static final String LOG_TAG = FileAccessor.class.getSimpleName();
   private static FileAccessor ourInstance = new FileAccessor();
 
-  @NotNull
-  public static FileAccessor getInstance() {
-    return ourInstance;
-  }
-
-  private FileAccessor() {
+  static {
     if ((!Rules.exists() && !Rules.mkdirs()) ||
         (!Characters.exists() && !Characters.mkdirs())) {
       Log.e(LOG_TAG, "Unable to create directories.");
@@ -40,7 +35,7 @@ public class FileAccessor {
   }
 
   @NotNull
-  public Map<UUID, String> getAllCharacterContent() {
+  public static Map<UUID, String> getAllCharacterContent() {
     Map<UUID, String> characters = new HashMap<>();
     for (File f : Characters.listFiles()) {
       String fileName = f.getName();
@@ -53,60 +48,53 @@ public class FileAccessor {
   }
 
   @NotNull
-  public String getCharacterContent(String characterFileName) {
+  public static String getCharacterContent(String characterFileName) {
     return readFile(new File(Characters, characterFileName));
   }
 
-  public void writeCharacterContent(@NotNull Character character) throws JSONException {
+  public static void writeCharacterContent(@NotNull Character character) throws JSONException {
     File characterFile = new File(Characters, character.getFileName());
     writeFile(characterFile, character.toJsonObject().toString(2));
   }
 
   @NotNull
-  public String getSkillContent() {
+  public static String getSkillContent() {
     File skills = new File(Rules, "Skills.json");
     return readFile(skills);
   }
 
   @NotNull
-  public String getTalentContent() {
+  public static String getTalentContent() {
     File talents = new File(Rules, "Talents.json");
     return readFile(talents);
   }
 
   @NotNull
-  public String getSpeciesContent() {
-    File species = new File(Rules, "Species.json");
-    return readFile(species);
-  }
-
-  @NotNull
-  public String getCareerContent() {
+  public static String getCareerContent() {
     File careers = new File(Rules, "Careers.json");
     return readFile(careers);
   }
 
   @NotNull
-  public String getWeaponContent() {
+  public static String getWeaponContent() {
     File weapons = new File(Rules, "Weapons.json");
     return readFile(weapons);
   }
 
   @NotNull
-  public String getArmorContent() {
+  public static String getArmorContent() {
     File armor = new File(Rules, "Armor.json");
     return readFile(armor);
   }
 
   @NotNull
-
-  public String getGearContent() {
+  public static String getGearContent() {
     File gear = new File(Rules, "Gear.json");
     return readFile(gear);
   }
 
   @NotNull
-  private String readFile(@NotNull File file) {
+  private static String readFile(@NotNull File file) {
     int retryCount = 0;
     while (retryCount < 5) {
       try (InputStream is = new FileInputStream(file)) {
@@ -140,7 +128,7 @@ public class FileAccessor {
     return "";
   }
 
-  private void writeFile(@NotNull File file, @NotNull String data) {
+  private static void writeFile(@NotNull File file, @NotNull String data) {
     try (OutputStream os = new FileOutputStream(file)) {
       if (!file.exists()) {
         file.createNewFile();
@@ -156,7 +144,7 @@ public class FileAccessor {
     }
   }
 
-  public void removeFile(@NotNull String characterId) {
+  public static void removeFile(@NotNull String characterId) {
     File removeIt = new File(Characters, characterId);
     boolean success = removeIt.delete();
     Log.i(LOG_TAG, "Remove " + characterId + ": " + success);
