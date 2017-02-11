@@ -14,7 +14,7 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class SkillManager {
+public final class SkillManager {
   private static final String LOG_TAG = SkillManager.class.getSimpleName();
   private static final String SKILLS_LABEL = "skills";
   private static final String NAME_KEY = "name";
@@ -26,6 +26,9 @@ public class SkillManager {
 
   static {
     loadSkills();
+  }
+
+  private SkillManager() {
   }
 
   public static Skill getSkill(@NotNull String name) {

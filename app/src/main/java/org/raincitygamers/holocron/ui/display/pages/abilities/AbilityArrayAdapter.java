@@ -47,7 +47,7 @@ public class AbilityArrayAdapter extends ArrayAdapter<RowData> {
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.ability_list_item, parent, false);
       viewHolder.name = (TextView) convertView.findViewById(R.id.name);
-      viewHolder.source = (TextView) convertView.findViewById(R.id.source);
+      viewHolder.tier = (TextView) convertView.findViewById(R.id.tier);
       viewHolder.description = (TextView) convertView.findViewById(R.id.description);
       convertView.setTag(viewHolder);
     }
@@ -57,7 +57,7 @@ public class AbilityArrayAdapter extends ArrayAdapter<RowData> {
 
     viewHolder.name.setText(ability.getName());
     viewHolder.description.setText(ability.getDescription());
-    viewHolder.source.setText(String.format("%s %d", ability.getSource(), ability.getTier()));
+    viewHolder.tier.setText(String.format("%d", ability.getTier()));
     return convertView;
   }
 
@@ -101,7 +101,7 @@ public class AbilityArrayAdapter extends ArrayAdapter<RowData> {
 
   private static class ViewHolder {
     TextView name;
-    TextView source;
+    TextView tier;
     TextView description;
 
     TextView sectionLabel;

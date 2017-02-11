@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CareerManager {
+public final class CareerManager {
   private static final String LOG_TAG = CareerManager.class.getSimpleName();
   private static final String CAREERS_LABEL = "careers";
   private static final String SPECIALIZATIONS_LABEL = "specializations";
@@ -31,6 +31,9 @@ public class CareerManager {
     loadCareers();
   }
 
+  private CareerManager() {
+  }
+
   @NotNull
   public static List<String> getCareerNames() {
     List<String> careers = new ArrayList<>(careerMap.keySet());
@@ -39,13 +42,18 @@ public class CareerManager {
   }
 
   @NotNull
-  public List<Career> getCareers() {
+  public static List<Career> getCareers() {
     return new ArrayList<>(careerMap.values());
   }
 
   @Nullable
   public static Career getCareer(@NotNull String name) {
     return careerMap.get(name);
+  }
+
+  @NotNull
+  public static List<Specialization> getSpecializations() {
+    return new ArrayList<>(specializationMap.values());
   }
 
   @Nullable

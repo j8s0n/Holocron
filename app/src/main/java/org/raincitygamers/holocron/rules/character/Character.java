@@ -4,9 +4,9 @@ import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.raincitygamers.holocron.rules.abilities.Ability;
 import org.raincitygamers.holocron.rules.abilities.Characteristic;
 import org.raincitygamers.holocron.rules.abilities.Skill;
+import org.raincitygamers.holocron.rules.abilities.Talent;
 import org.raincitygamers.holocron.rules.eote.Obligation;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
@@ -63,22 +63,41 @@ public class Character {
 
   @Getter private static final MostRecentAccessComparator mostRecentAccessComparator = new MostRecentAccessComparator();
   @Getter private final List<InventoryItem> inventory = new ArrayList<>();
-  @Getter private final List<Ability> talents = new ArrayList<>();
-  @Getter private final List<Ability> forcePowers = new ArrayList<>();
+  @Getter private final Map<Specialization, List<Integer>> talents = new HashMap();
 
   private String logger = Character.class.getSimpleName();
-  @Getter @Setter private String name;
-  @Getter @Setter private String species;
-  @Getter @Setter private Career career;
-  @Getter @Setter private final UUID characterId;
+  @Getter
+  @Setter
+  private String name;
+  @Getter
+  @Setter
+  private String species;
+  @Getter
+  @Setter
+  private Career career;
+  @Getter
+  @Setter
+  private final UUID characterId;
   @Getter private final List<Specialization> specializations = new ArrayList<>();
   @Getter private List<Obligation> obligations = new ArrayList<>();
-  @Getter @Setter private String age;
-  @Getter @Setter private String height;
-  @Getter @Setter private String weight;
-  @Getter @Setter private String skinTone;
-  @Getter @Setter private String hairColor;
-  @Getter @Setter private String eyeColor;
+  @Getter
+  @Setter
+  private String age;
+  @Getter
+  @Setter
+  private String height;
+  @Getter
+  @Setter
+  private String weight;
+  @Getter
+  @Setter
+  private String skinTone;
+  @Getter
+  @Setter
+  private String hairColor;
+  @Getter
+  @Setter
+  private String eyeColor;
 
   @Getter private int wounds;
   @Getter private int woundThreshold;
@@ -137,8 +156,6 @@ public class Character {
     this.hairColor = builder.hairColor;
     this.eyeColor = builder.eyeColor;
     this.inventory.addAll(builder.inventory);
-    this.talents.addAll(builder.talents);
-    this.forcePowers.addAll(builder.forcePowers);
     this.wounds = builder.wounds;
     this.woundThreshold = builder.woundThreshold;
     this.strain = builder.strain;
@@ -151,6 +168,7 @@ public class Character {
     this.accessTime = builder.accessTime;
     this.characterId = builder.characterId;
     this.lastOpenPage = builder.lastOpenPage;
+    this.talents.putAll(builder.talents);
 
     for (Map.Entry<Characteristic, Integer> entry : builder.characteristics.entrySet()) {
       characteristicScores.put(entry.getKey(), entry.getValue());
@@ -257,8 +275,7 @@ public class Character {
     o.put(HAIR_COLOR_KEY, hairColor);
     o.put(EYE_COLOR_KEY, eyeColor);
     o.put(INVENTORY_KEY, InventoryItem.toJsonArray(inventory));
-    o.put(TALENTS_KEY, Ability.toJsonArray(talents));
-    o.put(FORCE_POWERS_KEY, Ability.toJsonArray(forcePowers));
+    o.put(TALENTS_KEY, Talent.toJsonArray(talents));
     o.put(WOUNDS_KEY, wounds);
     o.put(WOUND_THRESHOLD_KEY, woundThreshold);
     o.put(STRAIN_KEY, strain);
@@ -353,8 +370,6 @@ public class Character {
                               .hairColor(jsonObject.getString(HAIR_COLOR_KEY))
                               .eyeColor(jsonObject.getString(EYE_COLOR_KEY))
                               .inventory(InventoryItem.parseInventory(jsonObject.getJSONArray(INVENTORY_KEY)))
-                              .talents(Ability.parseAbilities(jsonObject.getJSONArray(TALENTS_KEY)))
-                              .forcePowers(Ability.parseAbilities(jsonObject.getJSONArray(FORCE_POWERS_KEY)))
                               .wounds(jsonObject.getInt(WOUNDS_KEY))
                               .woundThreshold(jsonObject.getInt(WOUND_THRESHOLD_KEY))
                               .strain(jsonObject.getInt(STRAIN_KEY))
@@ -363,6 +378,7 @@ public class Character {
                               .rangedDefense(jsonObject.getInt(RANGED_DEFENSE_KEY))
                               .soak(jsonObject.getInt(SOAK_KEY))
                               .encumbranceThreshold(jsonObject.getInt(ENCUMBRANCE_THRESHOLD_KEY))
+                              .talents(Talent.parseJsonArray(jsonObject.getJSONArray(TALENTS_KEY)))
                               .forceRating(jsonObject.getInt(FORCE_RATING_KEY))
                               .accessTime(jsonObject.getLong(TIMESTAMP_KEY))
                               .lastOpenPage(jsonObject.getInt(LAST_OPEN_PAGE_KEY))
@@ -507,15 +523,13 @@ public class Character {
     private long accessTime;
     private int lastOpenPage = 0;
     private List<InventoryItem> inventory = new ArrayList<>();
-    private List<Ability> talents = new ArrayList<>();
-    private List<Ability> forcePowers = new ArrayList<>();
 
     private final Career career;
     private final Specialization specialization;
     private final String species;
     private final Map<Characteristic, Integer> characteristics = new HashMap<>();
     private final UUID characterId;
-
+    private Map<Specialization, List<Integer>> talents;
 
     public Builder(@NotNull String name, @NotNull Career career, @NotNull Specialization specialization,
                    @NotNull String species, @NotNull UUID characterId) {
@@ -645,13 +659,8 @@ public class Character {
       return this;
     }
 
-    public Builder talents(List<Ability> talents) {
+    public Builder talents(@NotNull Map<Specialization, List<Integer>> talents) {
       this.talents = talents;
-      return this;
-    }
-
-    public Builder forcePowers(List<Ability> forcePowers) {
-      this.forcePowers = forcePowers;
       return this;
     }
   }

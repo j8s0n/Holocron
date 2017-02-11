@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent">
+
+  <Spinner
+    android:id="@+id/specialization_spinner"
+    android:layout_width="0dp"
+    android:layout_height="48dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginTop="8dp"
+    app:layout_constraintLeft_toLeftOf="@+id/specialization_label"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/specialization_label"/>
+
+  <TextView
+    android:id="@+id/specialization_label"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:text="Specialization"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toTopOf="parent"/>
+
+  <TextView
+    android:id="@+id/available_talents"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="24dp"
+    android:text="Available Talents"
+    app:layout_constraintLeft_toLeftOf="@+id/specialization_spinner"
+    app:layout_constraintTop_toBottomOf="@+id/specialization_spinner"/>
+
+  <Spinner
+    android:id="@+id/available_spinner"
+    android:layout_width="0dp"
+    android:layout_height="48dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginTop="8dp"
+    app:layout_constraintLeft_toLeftOf="@+id/available_talents"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/available_talents"/>
+
+  <Button
+    android:id="@+id/add_talent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:text="Add Talent"
+    app:layout_constraintLeft_toLeftOf="@+id/available_spinner"
+    app:layout_constraintTop_toBottomOf="@+id/available_spinner"
+    />
+
+  <TextView
+    android:id="@+id/acquired_label"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="24dp"
+    android:text="Known Talents"
+    app:layout_constraintLeft_toLeftOf="@+id/add_talent"
+    app:layout_constraintTop_toBottomOf="@+id/add_talent"/>
+
+  <Spinner
+    android:id="@+id/known_spinner"
+    android:layout_width="0dp"
+    android:layout_height="48dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginTop="8dp"
+    app:layout_constraintLeft_toLeftOf="@+id/acquired_label"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/acquired_label"/>
+
+  <Button
+    android:id="@+id/remove_talent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:text="Remove Talent"
+    app:layout_constraintLeft_toLeftOf="@+id/known_spinner"
+    app:layout_constraintTop_toBottomOf="@+id/known_spinner"
+    />
+
+</android.support.constraint.ConstraintLayout>

@@ -30,6 +30,7 @@ import org.raincitygamers.holocron.ui.chooser.pages.done.DoneChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.skills.CombatSkillsChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.skills.GeneralSkillsChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.skills.KnowledgeSkillsChooser;
+import org.raincitygamers.holocron.ui.chooser.pages.talents.TalentsChooser;
 import org.raincitygamers.holocron.ui.display.DisplayActivity;
 
 import java.util.ArrayList;
@@ -58,6 +59,7 @@ public class ChooserActivity extends AppCompatActivity implements ContentPage.On
     contentPages.add(new GeneralSkillsChooser());
     contentPages.add(new CombatSkillsChooser());
     contentPages.add(new KnowledgeSkillsChooser());
+    contentPages.add(new TalentsChooser());
     contentPages.add(new DoneChooser());
   }
 

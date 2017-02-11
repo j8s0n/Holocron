@@ -13,9 +13,11 @@ import com.wdullaer.swipeactionadapter.SwipeDirection;
 
 import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
+import org.raincitygamers.holocron.rules.character.CareerManager;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.Character.Summary;
 import org.raincitygamers.holocron.rules.character.CharacterManager;
+import org.raincitygamers.holocron.rules.character.TalentManager;
 import org.raincitygamers.holocron.ui.ActivityBase;
 import org.raincitygamers.holocron.ui.chooser.ChooserActivity;
 import org.raincitygamers.holocron.ui.display.DisplayActivity;
@@ -75,6 +77,9 @@ public class SelectorActivity extends ActivityBase {
         startActivity(intent);
       }
     });
+
+    // This is to kickstart the file reads.
+    TalentManager.getTree(CareerManager.getSpecializations().get(0));
   }
 
   @Override

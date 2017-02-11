@@ -7,9 +7,6 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
-/**
- * Created by jason on 1/10/16.
- */
 @Getter
 @ToString
 @EqualsAndHashCode

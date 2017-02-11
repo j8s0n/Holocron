@@ -19,10 +19,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class FileAccessor {
+public final class FileAccessor {
   private static File GameData = new File(Environment.getExternalStorageDirectory(), "GameData");
   private static File Holocron = new File(GameData, "Holocron");
   private static File Rules = new File(Holocron, "Rules");
+  private static File Talents = new File(Rules, "Talents");
+  private static File ForcePowers = new File(Rules, "ForcePowers");
   private static File Characters = new File(Holocron, "Characters");
   private static final String LOG_TAG = FileAccessor.class.getSimpleName();
 
@@ -31,6 +33,9 @@ public class FileAccessor {
         (!Characters.exists() && !Characters.mkdirs())) {
       Log.e(LOG_TAG, "Unable to create directories.");
     }
+  }
+
+  private FileAccessor() {
   }
 
   @NotNull
@@ -63,9 +68,18 @@ public class FileAccessor {
   }
 
   @NotNull
-  public static String getTalentContent() {
-    File talents = new File(Rules, "Talents.json");
-    return readFile(talents);
+  public static Map<String, String> getTalentsContent() {
+    Map<String, String>  talentMap = new HashMap<>();
+    for (File f : Talents.listFiles()) {
+      String fileName = f.getName();
+      int index = fileName.indexOf(".json");
+      if (index > 0) {
+        String talent = fileName.substring(0, index);
+        talentMap.put(talent, readFile(f));
+      }
+    }
+
+    return talentMap;
   }
 
   @NotNull

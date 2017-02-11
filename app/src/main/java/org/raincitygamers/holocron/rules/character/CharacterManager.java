@@ -15,13 +15,16 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class CharacterManager {
+public final class CharacterManager {
   private static final String LOG_TAG = CharacterManager.class.getSimpleName();
   private static final Map<UUID, Summary> characters = new LinkedHashMap<>();
   private static Character activeCharacter;
 
   static {
     loadCharacters();
+  }
+
+  private CharacterManager() {
   }
 
   @Nullable

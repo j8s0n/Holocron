@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import org.raincitygamers.holocron.R;
-import org.raincitygamers.holocron.rules.abilities.Ability;
 import org.raincitygamers.holocron.ui.ContentPage;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 
@@ -22,7 +21,7 @@ public abstract class AbilityPage extends ContentPage {
 
   }
 
-  public abstract List<Ability> getAbilities();
+  protected abstract List<RowData> getRowData();
 
   @Override
   public void onResume() {
@@ -34,15 +33,6 @@ public abstract class AbilityPage extends ContentPage {
     abilities.clear();
     abilities.addAll(getRowData());
     adapter.notifyDataSetChanged();
-  }
-
-  protected List<RowData> getRowData() {
-    List<RowData> rowData = new ArrayList<>();
-    for (Ability a : getAbilities()) {
-      rowData.add(AbilityRowData.of(a));
-    }
-
-    return rowData;
   }
 
   @Override
