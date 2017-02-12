@@ -86,6 +86,46 @@
         android:inputType="text"
         android:maxLines="1"/>
 
+      <EditText
+        android:id="@+id/wound_threshold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/wound_threshold"
+        android:inputType="number"
+        android:maxLines="1"/>
+
+      <EditText
+        android:id="@+id/strain_threshold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/strain_threshold"
+        android:inputType="number"
+        android:maxLines="1"/>
+
+      <EditText
+        android:id="@+id/soak"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/soak"
+        android:inputType="number"
+        android:maxLines="1"/>
+
+      <EditText
+        android:id="@+id/melee_defense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/melee_defense"
+        android:inputType="number"
+        android:maxLines="1"/>
+
+      <EditText
+        android:id="@+id/ranged_defense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/ranged_defense"
+        android:inputType="number"
+        android:maxLines="1"/>
+
       <Spinner
         android:id="@+id/careers"
         android:layout_width="match_parent"

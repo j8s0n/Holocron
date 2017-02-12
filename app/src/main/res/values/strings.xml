@@ -30,4 +30,9 @@
   <string name="navigation_drawer_close">Close navigation drawer</string>
   <string name="drawer_open">Open</string>
   <string name="drawer_close">Close</string>
+  <string name="wound_threshold">Wound Threshold</string>
+  <string name="strain_threshold">Strain Threshold</string>
+  <string name="soak">Soak</string>
+  <string name="melee_defense">Melee Defense</string>
+  <string name="ranged_defense">Ranged Defense</string>
 </resources>
