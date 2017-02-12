@@ -7,15 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.Spinner;
 
 import org.jetbrains.annotations.Nullable;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.Career;
-import org.raincitygamers.holocron.rules.managers.CareerManager;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.Specialization;
+import org.raincitygamers.holocron.rules.managers.CareerManager;
 import org.raincitygamers.holocron.ui.chooser.ChooserBase;
 
 import java.util.ArrayList;
@@ -73,11 +72,6 @@ public class BasicsChooser extends ChooserBase {
     ch.setCareer(selectedCareer);
     ch.getSpecializations().clear();
     ch.getSpecializations().add(selectedSpecialization);
-  }
-
-  private String readEditText(int editTextId) {
-    EditText editText = (EditText) view.findViewById(editTextId);
-    return editText.getText().toString();
   }
 
   private void buildCareerSpinner(@Nullable final Character character) {

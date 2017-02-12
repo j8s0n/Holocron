@@ -27,6 +27,7 @@ import org.raincitygamers.holocron.ui.ActivityBase;
 import org.raincitygamers.holocron.ui.ContentPage;
 import org.raincitygamers.holocron.ui.chooser.pages.basics.BasicsChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.characteristics.CharacteristicsChooser;
+import org.raincitygamers.holocron.ui.chooser.pages.description.DescriptionChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.done.DoneChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.force.ForceChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.skills.CombatSkillsChooser;
@@ -63,6 +64,7 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
     contentPages.add(new KnowledgeSkillsChooser());
     contentPages.add(new TalentsChooser());
     contentPages.add(new ForceChooser());
+    contentPages.add(new DescriptionChooser());
     contentPages.add(new DoneChooser());
   }
 

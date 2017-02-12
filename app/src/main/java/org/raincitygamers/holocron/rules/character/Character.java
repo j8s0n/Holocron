@@ -103,6 +103,10 @@ public class Character {
   @Setter
   private String eyeColor;
 
+  @Getter
+  @Setter
+  private String description;
+
   @Getter private int wounds;
   @Getter private int woundThreshold;
   @Getter private int strain;
