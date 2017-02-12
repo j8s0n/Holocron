@@ -6,7 +6,7 @@
                                              xmlns:tools="http://schemas.android.com/tools">
 
   <TextView
-    android:id="@+id/force_rating_label"
+    android:id="@+id/score_rating_label"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="16dp"
@@ -19,40 +19,40 @@
   <TextView
     android:layout_width="35dp"
     android:layout_height="35dp"
-    android:id="@+id/force_rating_down_button"
+    android:id="@+id/score_rating_down_button"
     android:text="-"
     android:textAlignment="center"
     android:gravity="center"
     android:clickable="true"
     android:background="?attr/colorButtonNormal"
-    app:layout_constraintBottom_toBottomOf="@+id/force_rating_label"
-    app:layout_constraintTop_toTopOf="@+id/force_rating_label"
-    app:layout_constraintRight_toLeftOf="@+id/force_rating_entry"
+    app:layout_constraintBottom_toBottomOf="@+id/score_rating_label"
+    app:layout_constraintTop_toTopOf="@+id/score_rating_label"
+    app:layout_constraintRight_toLeftOf="@+id/score_rating_entry"
     tools:layout_constraintRight_creator="1"/>
 
   <TextView
     android:text="0"
     android:layout_width="30dp"
     android:layout_height="wrap_content"
-    android:id="@+id/force_rating_entry"
+    android:id="@+id/score_rating_entry"
     android:textAppearance="?android:attr/textAppearanceMedium"
     android:textAlignment="center"
-    app:layout_constraintRight_toLeftOf="@+id/force_rating_up_button"
-    app:layout_constraintTop_toTopOf="@+id/force_rating_label"
-    app:layout_constraintBottom_toBottomOf="@+id/force_rating_label"/>
+    app:layout_constraintRight_toLeftOf="@+id/score_rating_up_button"
+    app:layout_constraintTop_toTopOf="@+id/score_rating_label"
+    app:layout_constraintBottom_toBottomOf="@+id/score_rating_label"/>
 
   <TextView
     android:layout_width="35dp"
     android:layout_height="0dp"
-    android:id="@+id/force_rating_up_button"
+    android:id="@+id/score_rating_up_button"
     android:clickable="true"
     android:background="?attr/colorButtonNormal"
     android:text="+"
     android:gravity="center"
     android:layout_marginEnd="16dp"
     app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintBottom_toBottomOf="@+id/force_rating_down_button"
-    app:layout_constraintTop_toTopOf="@+id/force_rating_down_button"
+    app:layout_constraintBottom_toBottomOf="@+id/score_rating_down_button"
+    app:layout_constraintTop_toTopOf="@+id/score_rating_down_button"
     tools:layout_constraintTop_creator="1"
     tools:layout_constraintBottom_creator="1"/>
 
@@ -73,7 +73,7 @@
     android:layout_marginStart="16dp"
     android:text="Force Power"
     app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/force_rating_down_button"/>
+    app:layout_constraintTop_toBottomOf="@+id/score_rating_down_button"/>
 
   <TextView
     android:id="@+id/available_upgrades_label"

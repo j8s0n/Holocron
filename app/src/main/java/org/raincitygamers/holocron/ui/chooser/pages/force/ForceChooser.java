@@ -66,8 +66,8 @@ public class ForceChooser extends ChooserBase {
 
   private void setUpForcePowerButtons() {
     showHideWidgets(forceRating > 0);
-    TextView decreaseRating = (TextView) getView().findViewById(R.id.force_rating_down_button);
-    TextView increaseRating = (TextView) getView().findViewById(R.id.force_rating_up_button);
+    TextView decreaseRating = (TextView) getView().findViewById(R.id.score_rating_down_button);
+    TextView increaseRating = (TextView) getView().findViewById(R.id.score_rating_up_button);
     decreaseRating.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -126,7 +126,7 @@ public class ForceChooser extends ChooserBase {
   }
 
   private void updateForceRating(int forceRating) {
-    TextView forceRatingEntry = (TextView) getView().findViewById(R.id.force_rating_entry);
+    TextView forceRatingEntry = (TextView) getView().findViewById(R.id.score_rating_entry);
     forceRatingEntry.setText(String.format("%d", forceRating));
   }
 

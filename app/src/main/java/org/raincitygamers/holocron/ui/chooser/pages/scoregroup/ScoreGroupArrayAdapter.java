@@ -33,10 +33,10 @@ public class ScoreGroupArrayAdapter extends ArrayAdapter<ScoreRating> {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_choose_score, parent, false);
-      viewHolder.scoreLabel = (TextView) convertView.findViewById(R.id.force_rating_label);
-      viewHolder.downButton = (TextView) convertView.findViewById(R.id.force_rating_down_button);
-      viewHolder.scoreEntry = (TextView) convertView.findViewById(R.id.force_rating_entry);
-      viewHolder.upButton = (TextView) convertView.findViewById(R.id.force_rating_up_button);
+      viewHolder.scoreLabel = (TextView) convertView.findViewById(R.id.score_rating_label);
+      viewHolder.downButton = (TextView) convertView.findViewById(R.id.score_rating_down_button);
+      viewHolder.scoreEntry = (TextView) convertView.findViewById(R.id.score_rating_entry);
+      viewHolder.upButton = (TextView) convertView.findViewById(R.id.score_rating_up_button);
       convertView.setTag(viewHolder);
     }
     else {
