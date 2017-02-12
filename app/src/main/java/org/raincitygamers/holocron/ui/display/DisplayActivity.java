@@ -92,7 +92,7 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
     drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
     addDrawerItems();
-    setupDrawer();
+    setUpDrawer();
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setHomeButtonEnabled(true);
@@ -118,7 +118,7 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
     });
   }
 
-  private void setupDrawer() {
+  private void setUpDrawer() {
     drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_open, R.string.drawer_close) {
       /** Called when a drawer has settled in a completely open state. */
       public void onDrawerOpened(View drawerView) {

@@ -1,12 +1,10 @@
 package org.raincitygamers.holocron.ui.chooser.pages.scoregroup;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ListView;
 
 import org.raincitygamers.holocron.R;
@@ -44,13 +42,6 @@ public abstract class ScoreGroupChooser extends ChooserBase {
     scoreListView.setAdapter(scoreArrayAdapter);
 
     return result;
-  }
-
-  @Override
-  public void onActivityCreated(Bundle savedInstanceState) {
-    super.onActivityCreated(savedInstanceState);
-    final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-    imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
   }
 
   public Map<String, Integer> getScores() {

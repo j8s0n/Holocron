@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -82,7 +83,7 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
     drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
     addDrawerItems();
-    setupDrawer();
+    setUpDrawer();
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setHomeButtonEnabled(true);
@@ -113,11 +114,13 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
     });
   }
 
-  private void setupDrawer() {
+  private void setUpDrawer() {
     drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_open, R.string.drawer_close) {
       /** Called when a drawer has settled in a completely open state. */
       public void onDrawerOpened(View drawerView) {
         super.onDrawerOpened(drawerView);
+        final InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(findViewById(android.R.id.content).getWindowToken(), 0);
         getSupportActionBar().setTitle("Switch Page");
         invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
       }
