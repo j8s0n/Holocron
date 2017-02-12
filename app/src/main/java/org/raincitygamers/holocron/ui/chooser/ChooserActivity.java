@@ -23,12 +23,12 @@ import android.widget.ListView;
 import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.Character;
+import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.ui.ActivityBase;
 import org.raincitygamers.holocron.ui.ContentPage;
 import org.raincitygamers.holocron.ui.chooser.pages.basics.BasicsChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.characteristics.CharacteristicsChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.description.DescriptionChooser;
-import org.raincitygamers.holocron.ui.chooser.pages.done.DoneChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.force.ForceChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.skills.CombatSkillsChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.skills.GeneralSkillsChooser;
@@ -40,6 +40,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 public class ChooserActivity extends ActivityBase implements ContentPage.OnFragmentInteractionListener {
@@ -59,6 +60,7 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
 
   private static final String LOG_TAG = DisplayActivity.class.getSimpleName();
   private final List<ContentPage> contentPages = new ArrayList<>();
+  private final List<DrawerCommand> otherDrawerCommands = new ArrayList<>();
 
   public ChooserActivity() {
     // This is where we populate what shows up in the menu.
@@ -71,7 +73,17 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
     contentPages.add(new TalentsChooser());
     contentPages.add(new ForceChooser());
     contentPages.add(new DescriptionChooser());
-    contentPages.add(new DoneChooser());
+    // contentPages.add(new DoneChooser());
+
+    otherDrawerCommands.add(new DrawerCommand("Done", new CommandAction() {
+      @Override public void act() {
+        CharacterManager.setActiveCharacter(activeCharacter);
+        CharacterManager.saveCharacter(activeCharacter);
+        setChooserDone(true);
+        Intent intent = new Intent(ChooserActivity.this, DisplayActivity.class);
+        startActivity(intent);
+      }
+    }));
   }
 
   @Override
@@ -109,18 +121,27 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
   }
 
   private void addDrawerItems() {
-    List<String> pageNames = new ArrayList<>();
+    List<String> drawerTabs = new ArrayList<>();
     for (ContentPage page : contentPages) {
-      pageNames.add(page.getTitle());
+      drawerTabs.add(page.getTitle());
     }
 
-    adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, pageNames);
+    for (DrawerCommand command : otherDrawerCommands) {
+      drawerTabs.add(command.getLabel());
+    }
+
+    adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, drawerTabs);
     drawerList.setAdapter(adapter);
 
     drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
       @Override
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        selectPage(position);
+        if (position < contentPages.size()) {
+          selectPage(position);
+        }
+        else {
+          otherDrawerCommands.get(position - contentPages.size()).getAction().act();
+        }
       }
     });
   }
@@ -216,5 +237,15 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
         finish();
       }
     }
+  }
+
+  private interface CommandAction {
+    void act();
+  }
+
+  @RequiredArgsConstructor(suppressConstructorProperties = true)
+  private static class DrawerCommand {
+    @Getter private final String label;
+    @Getter private final CommandAction action;
   }
 }
