@@ -25,6 +25,8 @@ public class DoneChooser extends ChooserBase {
   @Override
   public void onResume() {
     super.onResume();
+    ChooserActivity parent = (ChooserActivity) getActivity();
+    parent.setChooserDone(true);
     Intent intent = new Intent(getActivity(), DisplayActivity.class);
     startActivity(intent);
   }

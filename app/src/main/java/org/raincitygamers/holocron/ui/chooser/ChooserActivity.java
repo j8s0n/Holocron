@@ -40,6 +40,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
+import lombok.Setter;
 
 public class ChooserActivity extends ActivityBase implements ContentPage.OnFragmentInteractionListener {
   public static final String ACTION_FINISH = ChooserActivity.class.getCanonicalName();
@@ -47,9 +48,14 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
   private DrawerLayout drawerLayout;
   private ArrayAdapter<String> adapter;
   private ActionBarDrawerToggle drawerToggle;
-  @NotNull @Getter private final Character activeCharacter = Character.of();
+  @NotNull
+  @Getter
+  private final Character activeCharacter = Character.of();
   private int currentPage = -1;
   private FinishReceiver finishReceiver;
+  @Getter
+  @Setter
+  private boolean chooserDone = false;
 
   private static final String LOG_TAG = DisplayActivity.class.getSimpleName();
   private final List<ContentPage> contentPages = new ArrayList<>();
@@ -95,7 +101,10 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
 
   @Override
   protected void onStop() {
-    unregisterReceiver(finishReceiver);
+    if (chooserDone) {
+      unregisterReceiver(finishReceiver);
+    }
+
     super.onStop();
   }
 

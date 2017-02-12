@@ -51,6 +51,7 @@ public class ScoreGroupArrayAdapter extends ArrayAdapter<ScoreRating> {
         int value = Integer.parseInt(viewHolder.scoreEntry.getText().toString());
         value = Math.max(scoreRating.getMinimumValue(), value - 1);
         scores.put(scoreRating.getScoreLabel(), value);
+        scoreRating.setScoreValue(value);
         viewHolder.scoreEntry.setText(String.format("%d", value));
       }
     });
@@ -61,6 +62,7 @@ public class ScoreGroupArrayAdapter extends ArrayAdapter<ScoreRating> {
         int value = Integer.parseInt(viewHolder.scoreEntry.getText().toString());
         value = Math.min(scoreRating.getMaximumValue(), value + 1);
         scores.put(scoreRating.getScoreLabel(), value);
+        scoreRating.setScoreValue(value);
         viewHolder.scoreEntry.setText(String.format("%d", value));
       }
     });

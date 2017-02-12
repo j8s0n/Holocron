@@ -36,7 +36,6 @@ public abstract class ScoreGroupChooser extends ChooserBase {
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     // Inflate the layout for this fragment
     View result = inflater.inflate(R.layout.choose_score_group, container, false);
-
     ListView scoreListView = (ListView) result.findViewById(R.id.score_group_list);
     scoreArrayAdapter = new ScoreGroupArrayAdapter(getActivity(), scoreRatings);
     scoreListView.setAdapter(scoreArrayAdapter);
