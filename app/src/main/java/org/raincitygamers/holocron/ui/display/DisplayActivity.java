@@ -101,12 +101,12 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
   }
 
   private void addDrawerItems() {
-    List<String> pageNames = new ArrayList<>();
+    List<String> drawerEntries = new ArrayList<>();
     for (ContentPage page : contentPages) {
-      pageNames.add(page.getTitle());
+      drawerEntries.add(page.getTitle());
     }
 
-    adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, pageNames);
+    adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, drawerEntries);
     drawerList.setAdapter(adapter);
 
     drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
