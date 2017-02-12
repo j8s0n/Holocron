@@ -11,7 +11,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +22,7 @@ import android.widget.ListView;
 import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.Character;
+import org.raincitygamers.holocron.ui.ActivityBase;
 import org.raincitygamers.holocron.ui.ContentPage;
 import org.raincitygamers.holocron.ui.chooser.pages.basics.BasicsChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.characteristics.CharacteristicsChooser;
@@ -39,7 +39,7 @@ import java.util.List;
 
 import lombok.Getter;
 
-public class ChooserActivity extends AppCompatActivity implements ContentPage.OnFragmentInteractionListener {
+public class ChooserActivity extends ActivityBase implements ContentPage.OnFragmentInteractionListener {
   public static final String ACTION_FINISH = ChooserActivity.class.getCanonicalName();
   private ListView drawerList;
   private DrawerLayout drawerLayout;
