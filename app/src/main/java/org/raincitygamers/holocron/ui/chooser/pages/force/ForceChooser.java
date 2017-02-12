@@ -98,6 +98,10 @@ public class ForceChooser extends ChooserBase {
     addUpgrade.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
+        if (availableUpgradesSpinner.getAdapter().getCount() == 0) {
+          return;
+        }
+
         SpinnerEntry entry = (SpinnerEntry) availableUpgradesSpinner.getSelectedItem();
         powersTaken.get(chosenPower).add(entry.index);
         buildUpgradeSpinners();
@@ -108,6 +112,10 @@ public class ForceChooser extends ChooserBase {
     removeUpgrade.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
+        if (knownUpgradesSpinner.getAdapter().getCount() == 0) {
+          return;
+        }
+
         SpinnerEntry entry = (SpinnerEntry) knownUpgradesSpinner.getSelectedItem();
         int index = powersTaken.get(chosenPower).indexOf(entry.index);
         powersTaken.get(chosenPower).remove(index);

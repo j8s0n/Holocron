@@ -71,6 +71,10 @@ public class TalentsChooser extends ChooserBase {
     addTalent.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
+        if (availableTalentsSpinner.getAdapter().getCount() == 0) {
+          return;
+        }
+
         SpinnerEntry entry = (SpinnerEntry)availableTalentsSpinner.getSelectedItem();
         talentsTaken.get(chosenSpecialization).add(entry.index);
         buildTalentSpinners();
@@ -81,6 +85,10 @@ public class TalentsChooser extends ChooserBase {
     removeTalent.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
+        if (knownTalentsSpinner.getAdapter().getCount() == 0) {
+          return;
+        }
+
         SpinnerEntry entry = (SpinnerEntry)knownTalentsSpinner.getSelectedItem();
         int index = talentsTaken.get(chosenSpecialization).indexOf(entry.index);
         talentsTaken.get(chosenSpecialization).remove(index);
