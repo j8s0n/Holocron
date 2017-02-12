@@ -69,6 +69,12 @@ public class BasicsChooser extends ChooserBase {
     ch.setHairColor(readEditText(R.id.hair_color));
     ch.setEyeColor(readEditText(R.id.eye_color));
 
+    ch.setWoundThreshold(Integer.parseInt(readEditText(R.id.wound_threshold)));
+    ch.setStrainThreshold(Integer.parseInt(readEditText(R.id.strain_threshold)));
+    ch.setSoak(Integer.parseInt(readEditText(R.id.soak)));
+    ch.setMeleeDefense(Integer.parseInt(readEditText(R.id.melee_defense)));
+    ch.setRangedDefense(Integer.parseInt(readEditText(R.id.ranged_defense)));
+
     ch.setCareer(selectedCareer);
     ch.getSpecializations().clear();
     ch.getSpecializations().add(selectedSpecialization);

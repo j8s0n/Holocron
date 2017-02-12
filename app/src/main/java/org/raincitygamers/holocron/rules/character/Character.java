@@ -8,9 +8,9 @@ import org.raincitygamers.holocron.rules.managers.CareerManager;
 import org.raincitygamers.holocron.rules.managers.SkillManager;
 import org.raincitygamers.holocron.rules.traits.Characteristic;
 import org.raincitygamers.holocron.rules.traits.ForcePowerUpgrade;
+import org.raincitygamers.holocron.rules.traits.Obligation;
 import org.raincitygamers.holocron.rules.traits.Skill;
 import org.raincitygamers.holocron.rules.traits.Talent;
-import org.raincitygamers.holocron.rules.traits.Obligation;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.SectionRowData;
@@ -70,58 +70,32 @@ public class Character {
   @Getter private final Map<String, List<Integer>> forcePowers = new HashMap<>();
 
   private String logger = Character.class.getSimpleName();
-  @Getter
-  @Setter
-  private String name;
-  @Getter
-  @Setter
-  private String species;
-  @Getter
-  @Setter
-  private Career career;
-  @Getter
-  @Setter
-  private final UUID characterId;
+  @Getter @Setter private String name;
+  @Getter @Setter private String species;
+  @Getter @Setter private Career career;
+  @Getter @Setter private final UUID characterId;
   @Getter private final List<Specialization> specializations = new ArrayList<>();
   @Getter private List<Obligation> obligations = new ArrayList<>();
-  @Getter
-  @Setter
-  private String age;
-  @Getter
-  @Setter
-  private String height;
-  @Getter
-  @Setter
-  private String weight;
-  @Getter
-  @Setter
-  private String skinTone;
-  @Getter
-  @Setter
-  private String hairColor;
-  @Getter
-  @Setter
-  private String eyeColor;
+  @Getter @Setter private String age;
+  @Getter @Setter private String height;
+  @Getter @Setter private String weight;
+  @Getter @Setter private String skinTone;
+  @Getter @Setter private String hairColor;
+  @Getter @Setter private String eyeColor;
 
-  @Getter
-  @Setter
-  private String description;
+  @Getter @Setter private String description;
 
   @Getter private int wounds;
-  @Getter private int woundThreshold;
+  @Getter @Setter private int woundThreshold;
   @Getter private int strain;
-  @Getter private int strainThreshold;
-  @Getter private int meleeDefense;
-  @Getter private int rangedDefense;
-  @Getter private int soak;
+  @Getter @Setter private int strainThreshold;
+  @Getter @Setter private int meleeDefense;
+  @Getter @Setter private int rangedDefense;
+  @Getter @Setter private int soak;
   private int encumbranceThreshold;
-  @Getter
-  @Setter
-  private int forceRating;
+  @Getter @Setter private int forceRating;
 
-  @Getter
-  @Setter
-  private int lastOpenPage = 0;
+  @Getter @Setter private int lastOpenPage = 0;
   private long accessTime;
 
   private final Map<Characteristic, Integer> characteristicScores = new HashMap<>();
