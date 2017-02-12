@@ -12,8 +12,8 @@ import android.widget.TextView;
 import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.Character;
-import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.rules.character.InventoryItem;
+import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData.KvPair;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
@@ -66,7 +66,7 @@ public class GearArrayAdapter extends ArrayAdapter<RowData> {
       viewHolder.quantity.setText(String.format("(%d)", item.getQuantity()));
     }
     else {
-      viewHolder.quantity.setText("");
+      viewHolder.quantity.setText("   ");
     }
 
     viewHolder.location.setText(item.getLocation());
@@ -80,19 +80,53 @@ public class GearArrayAdapter extends ArrayAdapter<RowData> {
       viewHolder.encumbrance.setAlpha(IGNORED_ENCUMBRANCE);
     }
 
+    setClickHandlers(viewHolder, item);
+    return convertView;
+  }
+
+  private void setClickHandlers(@NotNull final ViewHolder viewHolder, @NotNull final InventoryItem item) {
+
     viewHolder.countEncumbrance.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
       @Override
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         item.setCountEncumbrance(isChecked);
         viewHolder.encumbrance.setAlpha(isChecked ? 1.0f : IGNORED_ENCUMBRANCE);
-        if (encumbrance != null) {
-          Character pc = CharacterManager.getActiveCharacter();
-          encumbrance.setText(String.format("%d / %d", pc.getEncumbrance(), pc.getEncumbranceThreshold()));
-        }
+        updateEncumbrance();
       }
     });
 
-    return convertView;
+    viewHolder.quantity.setOnLongClickListener(new View.OnLongClickListener() {
+      @Override public boolean onLongClick(View v) {
+        item.setQuantity(Math.max(0, item.getQuantity() - 1));
+        viewHolder.quantity.setText(String.format("(%d)", item.getQuantity()));
+        updateEncumbrance();
+        return true;
+      }
+    });
+
+    viewHolder.quantity.setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        item.setQuantity(item.getQuantity() + 1);
+        viewHolder.quantity.setText(String.format("(%d)", item.getQuantity()));
+        updateEncumbrance();
+      }
+    });
+
+    viewHolder.name.setOnLongClickListener(new View.OnLongClickListener() {
+      @Override public boolean onLongClick(View v) {
+        // TODO: Create an activity or something that takes the InventoryItem object and edits it.
+        // TODO: Use the same editor, with an empty item, as the response for the FAB plus button.
+        // TODO: Also add a FAB button.
+        return true;
+      }
+    });
+  }
+
+  private void updateEncumbrance() {
+    if (encumbrance != null) {
+      Character pc = CharacterManager.getActiveCharacter();
+      encumbrance.setText(String.format("%d / %d", pc.getEncumbrance(), pc.getEncumbranceThreshold()));
+    }
   }
 
   @NotNull

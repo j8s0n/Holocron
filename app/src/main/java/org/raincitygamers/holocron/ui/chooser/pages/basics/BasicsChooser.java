@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import org.jetbrains.annotations.Nullable;
@@ -69,15 +70,27 @@ public class BasicsChooser extends ChooserBase {
     ch.setHairColor(readEditText(R.id.hair_color));
     ch.setEyeColor(readEditText(R.id.eye_color));
 
-    ch.setWoundThreshold(Integer.parseInt(readEditText(R.id.wound_threshold)));
-    ch.setStrainThreshold(Integer.parseInt(readEditText(R.id.strain_threshold)));
-    ch.setSoak(Integer.parseInt(readEditText(R.id.soak)));
-    ch.setMeleeDefense(Integer.parseInt(readEditText(R.id.melee_defense)));
-    ch.setRangedDefense(Integer.parseInt(readEditText(R.id.ranged_defense)));
+    ch.setWoundThreshold(readIntValue(R.id.wound_threshold));
+    ch.setStrainThreshold(readIntValue(R.id.strain_threshold));
+    ch.setSoak(readIntValue(R.id.soak));
+    ch.setMeleeDefense(readIntValue(R.id.melee_defense));
+    ch.setRangedDefense(readIntValue(R.id.ranged_defense));
 
     ch.setCareer(selectedCareer);
     ch.getSpecializations().clear();
     ch.getSpecializations().add(selectedSpecialization);
+  }
+
+  private int readIntValue(int resourceId) {
+    try {
+      return Integer.parseInt(readEditText(resourceId));
+    }
+    catch (NumberFormatException e){
+      EditText textField = (EditText) getView().findViewById(resourceId);
+      Log.e(LOG_TAG, "Invalid value for " + textField.getHint());
+    }
+
+    return 0;
   }
 
   private void buildCareerSpinner(@Nullable final Character character) {
