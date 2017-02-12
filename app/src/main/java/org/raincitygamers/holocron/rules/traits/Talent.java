@@ -34,7 +34,7 @@ public class Talent extends Ability {
         taken.put(i);
       }
 
-      o.put(TALENTS_KEY, taken);
+      o.put(THINGK_TAKEN_KEY, taken);
       a.put(o);
     }
 
@@ -47,7 +47,7 @@ public class Talent extends Ability {
     for (int i = 0; i < jsonArray.length(); i++) {
       JSONObject o = jsonArray.getJSONObject(i);
       String specializationName = o.getString(NAME_KEY);
-      JSONArray a = o.getJSONArray(TALENTS_KEY);
+      JSONArray a = o.getJSONArray(THINGK_TAKEN_KEY);
       List<Integer> talentIndices = new ArrayList<>();
       for (int j = 0; j < a.length(); j++) {
         talentIndices.add(a.getInt(j));

@@ -63,6 +63,7 @@ public class Character {
   private static final String INVENTORY_KEY = "inventory";
   private static final String TALENTS_KEY = "talents";
   private static final String FORCE_POWERS_KEY = "force_powers";
+  private static final String DESCRIPTION_KEY = "description";
 
   @Getter private static final MostRecentAccessComparator mostRecentAccessComparator = new MostRecentAccessComparator();
   @Getter private final List<InventoryItem> inventory = new ArrayList<>();
@@ -76,7 +77,7 @@ public class Character {
   @Getter @Setter private final UUID characterId;
   @Getter private final List<Specialization> specializations = new ArrayList<>();
   @Getter private List<Obligation> obligations = new ArrayList<>();
-  @Getter @Setter private String age;
+  @Getter @Setter private int age;
   @Getter @Setter private String height;
   @Getter @Setter private String weight;
   @Getter @Setter private String skinTone;
@@ -110,7 +111,7 @@ public class Character {
     species = "";
     career = CareerManager.getCareer("Bounty Hunter");
     this.specializations.add(CareerManager.getSpecialization(career.getSpecializations().get(0).toString()));
-    this.age = "";
+    this.age = 0;
     this.height = "";
     this.weight = "";
     this.skinTone = "";
@@ -149,6 +150,8 @@ public class Character {
     this.soak = builder.soak;
     this.encumbranceThreshold = builder.encumbranceThreshold;
     this.forceRating = builder.forceRating;
+    this.forcePowers.putAll(builder.forcePowers);
+    this.description = builder.description;
     this.accessTime = builder.accessTime;
     this.characterId = builder.characterId;
     this.lastOpenPage = builder.lastOpenPage;
@@ -261,6 +264,7 @@ public class Character {
     o.put(INVENTORY_KEY, InventoryItem.toJsonArray(inventory));
     o.put(TALENTS_KEY, Talent.toJsonArray(talents));
     o.put(FORCE_POWERS_KEY, ForcePowerUpgrade.toJsonArray(forcePowers));
+    o.put(DESCRIPTION_KEY, description);
     o.put(WOUNDS_KEY, wounds);
     o.put(WOUND_THRESHOLD_KEY, woundThreshold);
     o.put(STRAIN_KEY, strain);
@@ -348,7 +352,7 @@ public class Character {
 
     // TODO Robustness on missing fields.
     Character character = new Builder(name, career, specializations.get(0), species, characterId)
-                              .age(jsonObject.getString(AGE_KEY))
+                              .age(jsonObject.getInt(AGE_KEY))
                               .height(jsonObject.getString(HEIGHT_KEY))
                               .weight(jsonObject.getString(WEIGHT_KEY))
                               .skinTone(jsonObject.getString(SKIN_TONE_KEY))
@@ -365,6 +369,7 @@ public class Character {
                               .encumbranceThreshold(jsonObject.getInt(ENCUMBRANCE_THRESHOLD_KEY))
                               .talents(Talent.parseJsonArray(jsonObject.getJSONArray(TALENTS_KEY)))
                               .forcePowers(ForcePowerUpgrade.parseJsonArray(jsonObject.getJSONArray(FORCE_POWERS_KEY)))
+                              .description(jsonObject.getString(DESCRIPTION_KEY))
                               .forceRating(jsonObject.getInt(FORCE_RATING_KEY))
                               .accessTime(jsonObject.getLong(TIMESTAMP_KEY))
                               .lastOpenPage(jsonObject.getInt(LAST_OPEN_PAGE_KEY))
@@ -489,7 +494,7 @@ public class Character {
 
   public static class Builder {
     private final String name;
-    private String age = "";
+    private int age = 0;
     private String height = "";
     private String weight = "";
     private String skinTone = "";
@@ -518,6 +523,8 @@ public class Character {
     private Map<Specialization, List<Integer>> talents;
     private Map<String, List<Integer>> forcePowers;
 
+    private String description;
+
     public Builder(@NotNull String name, @NotNull Career career, @NotNull Specialization specialization,
                    @NotNull String species, @NotNull UUID characterId) {
       this.name = name;
@@ -535,7 +542,7 @@ public class Character {
     }
 
     @NotNull
-    public Builder age(@NotNull String age) {
+    public Builder age(int age) {
       this.age = age;
       return this;
     }
@@ -653,6 +660,11 @@ public class Character {
 
     public Builder forcePowers(@NotNull Map<String, List<Integer>> forcePowers) {
       this.forcePowers = forcePowers;
+      return this;
+    }
+
+    public Builder description(@NotNull String description) {
+      this.description = description;
       return this;
     }
   }

@@ -9,8 +9,7 @@ public abstract class Ability {
   protected static final String NAME_KEY = "name";
   protected static final String TIER_KEY = "tier";
   protected static final String DESCRIPTION_KEY = "description";
-  protected static final String TALENTS_KEY = "talents_taken";
-  protected static final String POWERS_KEY = "powers_taken";
+  protected static final String THINGK_TAKEN_KEY = "thing_taken";
   protected static final String ROW_KEY = "row";
   protected static final String COLUMN_KEY = "column";
 

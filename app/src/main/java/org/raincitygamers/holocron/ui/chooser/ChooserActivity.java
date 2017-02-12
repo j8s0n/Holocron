@@ -40,7 +40,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 public class ChooserActivity extends ActivityBase implements ContentPage.OnFragmentInteractionListener {
@@ -49,14 +48,11 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
   private DrawerLayout drawerLayout;
   private ArrayAdapter<String> adapter;
   private ActionBarDrawerToggle drawerToggle;
-  @NotNull
-  @Getter
-  private final Character activeCharacter = Character.of();
+  @NotNull @Getter private Character activeCharacter;
   private int currentPage = -1;
   private FinishReceiver finishReceiver;
-  @Getter
-  @Setter
-  private boolean chooserDone = false;
+  @Getter @Setter private boolean chooserDone = false;
+  @Getter private boolean editActiveCharacter;
 
   private static final String LOG_TAG = DisplayActivity.class.getSimpleName();
   private final List<ContentPage> contentPages = new ArrayList<>();
@@ -73,7 +69,6 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
     contentPages.add(new TalentsChooser());
     contentPages.add(new ForceChooser());
     contentPages.add(new DescriptionChooser());
-    // contentPages.add(new DoneChooser());
 
     otherDrawerCommands.add(new DrawerCommand("Done", new CommandAction() {
       @Override public void act() {
@@ -94,6 +89,14 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    editActiveCharacter = getIntent().getBooleanExtra(EDIT_ACTIVE_CHARACTER, false);
+    if (editActiveCharacter) {
+      activeCharacter = CharacterManager.getActiveCharacter();
+    }
+    else {
+      activeCharacter = Character.of();
+    }
+
     setContentView(R.layout.activity_character);
 
     finishReceiver = new FinishReceiver();
@@ -107,7 +110,7 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setHomeButtonEnabled(true);
-    selectPage(0);
+    selectPage(activeCharacter.getLastOpenPage());
     setTitle();
   }
 
@@ -121,16 +124,16 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
   }
 
   private void addDrawerItems() {
-    List<String> drawerTabs = new ArrayList<>();
+    List<String> drawerEntries = new ArrayList<>();
     for (ContentPage page : contentPages) {
-      drawerTabs.add(page.getTitle());
+      drawerEntries.add(page.getTitle());
     }
 
     for (DrawerCommand command : otherDrawerCommands) {
-      drawerTabs.add(command.getLabel());
+      drawerEntries.add(command.getLabel());
     }
 
-    adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, drawerTabs);
+    adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, drawerEntries);
     drawerList.setAdapter(adapter);
 
     drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -237,15 +240,5 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
         finish();
       }
     }
-  }
-
-  private interface CommandAction {
-    void act();
-  }
-
-  @RequiredArgsConstructor(suppressConstructorProperties = true)
-  private static class DrawerCommand {
-    @Getter private final String label;
-    @Getter private final CommandAction action;
   }
 }

@@ -7,7 +7,12 @@ import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
 public class ActivityBase extends AppCompatActivity {
+  public static final String EDIT_ACTIVE_CHARACTER = "edit_active_character";
+
   protected void displayPermissionAlert(String type) {
     AlertDialog alertDialog = new AlertDialog.Builder(this).create();
     alertDialog.setTitle("No " + type + " Access");
@@ -44,5 +49,15 @@ public class ActivityBase extends AppCompatActivity {
     return PackageManager.PERMISSION_GRANTED ==
            checkPermission(perm, android.os.Process.myPid(), android.os.Process.myUid());
 
+  }
+
+  protected interface CommandAction {
+    void act();
+  }
+
+  @RequiredArgsConstructor(suppressConstructorProperties = true)
+  protected static class DrawerCommand {
+    @Getter private final String label;
+    @Getter private final CommandAction action;
   }
 }

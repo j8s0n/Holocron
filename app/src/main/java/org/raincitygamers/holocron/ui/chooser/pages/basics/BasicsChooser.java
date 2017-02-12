@@ -16,6 +16,7 @@ import org.raincitygamers.holocron.rules.character.Career;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.Specialization;
 import org.raincitygamers.holocron.rules.managers.CareerManager;
+import org.raincitygamers.holocron.ui.chooser.ChooserActivity;
 import org.raincitygamers.holocron.ui.chooser.ChooserBase;
 
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class BasicsChooser extends ChooserBase {
   private Specialization selectedSpecialization;
   private final List<String> careers = CareerManager.getCareerNames();
   private View view;
+  private ChooserActivity parentActivity;
 
   public BasicsChooser() {
   }
@@ -42,6 +44,7 @@ public class BasicsChooser extends ChooserBase {
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     // Inflate the layout for this fragment
     view = inflater.inflate(R.layout.choose_basics, container, false);
+    parentActivity = (ChooserActivity) getActivity();
     return view;
   }
 
@@ -49,10 +52,33 @@ public class BasicsChooser extends ChooserBase {
   public void onResume() {
     super.onResume();
     Character ch = getActiveCharacter();
-    if (ch != null) {
-      // TODO: Set values from this.
+    setEditText(R.id.character_name, ch.getName());
+    setEditText(R.id.character_species, ch.getSpecies());
+    setEditText(R.id.height, ch.getHeight());
+    setEditText(R.id.weight, ch.getWeight());
+    setEditText(R.id.skin_tone, ch.getSkinTone());
+    setEditText(R.id.hair_color, ch.getHairColor());
+    setEditText(R.id.eye_color, ch.getEyeColor());
+
+    if (parentActivity.isEditActiveCharacter()) {
+      setEditText(R.id.age, ch.getAge());
+      setEditText(R.id.wound_threshold, ch.getWoundThreshold());
+      setEditText(R.id.strain_threshold, ch.getStrainThreshold());
+      setEditText(R.id.soak, ch.getSoak());
+      setEditText(R.id.melee_defense, ch.getMeleeDefense());
+      setEditText(R.id.ranged_defense, ch.getRangedDefense());
     }
+
     buildCareerSpinner(ch);
+  }
+
+  private void setEditText(int resourceId, int value) {
+    setEditText(resourceId, Integer.toString(value));
+  }
+
+  private void setEditText(int resourceId, String value) {
+    EditText editText = (EditText) getView().findViewById(resourceId);
+    editText.setText(value);
   }
 
   @Override
@@ -63,7 +89,7 @@ public class BasicsChooser extends ChooserBase {
     Character ch = getActiveCharacter();
     ch.setName(readEditText(R.id.character_name));
     ch.setSpecies(readEditText(R.id.character_species));
-    ch.setAge(readEditText(R.id.age));
+    ch.setAge(readIntValue(R.id.age));
     ch.setHeight(readEditText(R.id.height));
     ch.setWeight(readEditText(R.id.weight));
     ch.setSkinTone(readEditText(R.id.skin_tone));
@@ -85,7 +111,7 @@ public class BasicsChooser extends ChooserBase {
     try {
       return Integer.parseInt(readEditText(resourceId));
     }
-    catch (NumberFormatException e){
+    catch (NumberFormatException e) {
       EditText textField = (EditText) getView().findViewById(resourceId);
       Log.e(LOG_TAG, "Invalid value for " + textField.getHint());
     }
