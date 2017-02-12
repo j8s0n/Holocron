@@ -12,10 +12,10 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import org.raincitygamers.holocron.R;
-import org.raincitygamers.holocron.rules.abilities.Talent;
+import org.raincitygamers.holocron.rules.traits.Talent;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.Specialization;
-import org.raincitygamers.holocron.rules.character.TalentManager;
+import org.raincitygamers.holocron.rules.managers.TalentManager;
 import org.raincitygamers.holocron.ui.chooser.ChooserBase;
 
 import java.util.ArrayList;
@@ -119,7 +119,7 @@ public class TalentsChooser extends ChooserBase {
     List<SpinnerEntry> knownTalents = new ArrayList<>();
     List<SpinnerEntry> availableTalents = new ArrayList<>();
     List<Integer> talentsKnown = talentsTaken.get(chosenSpecialization);
-    List<Talent>  talentTree = TalentManager.getTree(chosenSpecialization);
+    List<Talent>  talentTree = TalentManager.getList(chosenSpecialization);
 
     for (int i = 0; i < talentTree.size(); i++) {
       if (talentsKnown.contains(i)) {

@@ -1,6 +1,6 @@
 package org.raincitygamers.holocron.ui.chooser.pages.characteristics;
 
-import org.raincitygamers.holocron.rules.abilities.Characteristic;
+import org.raincitygamers.holocron.rules.traits.Characteristic;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.ui.chooser.pages.scoregroup.ScoreGroupChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.scoregroup.ScoreRating;

@@ -13,7 +13,7 @@ import android.widget.Spinner;
 import org.jetbrains.annotations.Nullable;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.Career;
-import org.raincitygamers.holocron.rules.character.CareerManager;
+import org.raincitygamers.holocron.rules.managers.CareerManager;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.Specialization;
 import org.raincitygamers.holocron.ui.chooser.ChooserBase;

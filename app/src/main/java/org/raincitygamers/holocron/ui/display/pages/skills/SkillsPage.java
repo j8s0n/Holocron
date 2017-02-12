@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import org.raincitygamers.holocron.R;
-import org.raincitygamers.holocron.rules.abilities.Skill;
+import org.raincitygamers.holocron.rules.traits.Skill;
 import org.raincitygamers.holocron.rules.character.Character;
-import org.raincitygamers.holocron.rules.character.CharacterManager;
+import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.rules.character.SkillRating;
 import org.raincitygamers.holocron.ui.ContentPage;
 

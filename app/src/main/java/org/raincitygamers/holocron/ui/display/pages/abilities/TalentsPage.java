@@ -1,10 +1,10 @@
 package org.raincitygamers.holocron.ui.display.pages.abilities;
 
-import org.raincitygamers.holocron.rules.abilities.Talent;
+import org.raincitygamers.holocron.rules.traits.Talent;
 import org.raincitygamers.holocron.rules.character.Character;
-import org.raincitygamers.holocron.rules.character.CharacterManager;
+import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.rules.character.Specialization;
-import org.raincitygamers.holocron.rules.character.TalentManager;
+import org.raincitygamers.holocron.rules.managers.TalentManager;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.SectionRowData;
 
@@ -25,7 +25,7 @@ public class TalentsPage extends AbilityPage {
     for (Map.Entry<Specialization, List<Integer>> entry : pc.getTalents().entrySet()) {
       Specialization specialization = entry.getKey();
       rowData.add(SectionRowData.of(specialization.getName()));
-      List<Talent> talentTree = TalentManager.getTree(specialization);
+      List<Talent> talentTree = TalentManager.getList(specialization);
       List<Integer> chosenTalents = entry.getValue();
       Collections.sort(chosenTalents);
       for (Integer i : chosenTalents) {

@@ -1,7 +1,7 @@
 package org.raincitygamers.holocron.ui.display.pages.abilities;
 
 import org.jetbrains.annotations.NotNull;
-import org.raincitygamers.holocron.rules.abilities.Ability;
+import org.raincitygamers.holocron.rules.traits.Ability;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 
 import lombok.Getter;

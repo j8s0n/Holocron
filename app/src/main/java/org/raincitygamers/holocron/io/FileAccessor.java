@@ -74,12 +74,27 @@ public final class FileAccessor {
       String fileName = f.getName();
       int index = fileName.indexOf(".json");
       if (index > 0) {
-        String talent = fileName.substring(0, index);
-        talentMap.put(talent, readFile(f));
+        String specializationName = fileName.substring(0, index).replace('_', ' ');
+        talentMap.put(specializationName, readFile(f));
       }
     }
 
     return talentMap;
+  }
+
+  @NotNull
+  public static Map<String, String> getForcePowersContent() {
+    Map<String, String>  forcePowersMap = new HashMap<>();
+    for (File f : ForcePowers.listFiles()) {
+      String fileName = f.getName();
+      int index = fileName.indexOf(".json");
+      if (index > 0) {
+        String powerName = fileName.substring(0, index).replace('_', ' ');
+        forcePowersMap.put(powerName, readFile(f));
+      }
+    }
+
+    return forcePowersMap;
   }
 
   @NotNull

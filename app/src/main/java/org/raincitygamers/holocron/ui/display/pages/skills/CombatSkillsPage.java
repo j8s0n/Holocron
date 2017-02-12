@@ -1,7 +1,7 @@
 package org.raincitygamers.holocron.ui.display.pages.skills;
 
-import org.raincitygamers.holocron.rules.abilities.Skill;
-import org.raincitygamers.holocron.rules.character.SkillManager;
+import org.raincitygamers.holocron.rules.traits.Skill;
+import org.raincitygamers.holocron.rules.managers.SkillManager;
 
 import java.util.Collection;
 

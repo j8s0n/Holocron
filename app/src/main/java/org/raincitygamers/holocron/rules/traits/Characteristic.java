@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.rules.abilities;
+package org.raincitygamers.holocron.rules.traits;
 
 import org.jetbrains.annotations.NotNull;
 

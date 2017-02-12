@@ -4,10 +4,13 @@ import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.raincitygamers.holocron.rules.abilities.Characteristic;
-import org.raincitygamers.holocron.rules.abilities.Skill;
-import org.raincitygamers.holocron.rules.abilities.Talent;
-import org.raincitygamers.holocron.rules.eote.Obligation;
+import org.raincitygamers.holocron.rules.managers.CareerManager;
+import org.raincitygamers.holocron.rules.managers.SkillManager;
+import org.raincitygamers.holocron.rules.traits.Characteristic;
+import org.raincitygamers.holocron.rules.traits.ForcePowerUpgrade;
+import org.raincitygamers.holocron.rules.traits.Skill;
+import org.raincitygamers.holocron.rules.traits.Talent;
+import org.raincitygamers.holocron.rules.traits.Obligation;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.SectionRowData;
@@ -64,6 +67,7 @@ public class Character {
   @Getter private static final MostRecentAccessComparator mostRecentAccessComparator = new MostRecentAccessComparator();
   @Getter private final List<InventoryItem> inventory = new ArrayList<>();
   @Getter private final Map<Specialization, List<Integer>> talents = new HashMap();
+  @Getter private final Map<String, List<Integer>> forcePowers = new HashMap<>();
 
   private String logger = Character.class.getSimpleName();
   @Getter
@@ -107,7 +111,9 @@ public class Character {
   @Getter private int rangedDefense;
   @Getter private int soak;
   private int encumbranceThreshold;
-  @Getter private int forceRating;
+  @Getter
+  @Setter
+  private int forceRating;
 
   @Getter
   @Setter
@@ -276,6 +282,7 @@ public class Character {
     o.put(EYE_COLOR_KEY, eyeColor);
     o.put(INVENTORY_KEY, InventoryItem.toJsonArray(inventory));
     o.put(TALENTS_KEY, Talent.toJsonArray(talents));
+    o.put(FORCE_POWERS_KEY, ForcePowerUpgrade.toJsonArray(forcePowers));
     o.put(WOUNDS_KEY, wounds);
     o.put(WOUND_THRESHOLD_KEY, woundThreshold);
     o.put(STRAIN_KEY, strain);
@@ -379,6 +386,7 @@ public class Character {
                               .soak(jsonObject.getInt(SOAK_KEY))
                               .encumbranceThreshold(jsonObject.getInt(ENCUMBRANCE_THRESHOLD_KEY))
                               .talents(Talent.parseJsonArray(jsonObject.getJSONArray(TALENTS_KEY)))
+                              .forcePowers(ForcePowerUpgrade.parseJsonArray(jsonObject.getJSONArray(FORCE_POWERS_KEY)))
                               .forceRating(jsonObject.getInt(FORCE_RATING_KEY))
                               .accessTime(jsonObject.getLong(TIMESTAMP_KEY))
                               .lastOpenPage(jsonObject.getInt(LAST_OPEN_PAGE_KEY))
@@ -530,6 +538,7 @@ public class Character {
     private final Map<Characteristic, Integer> characteristics = new HashMap<>();
     private final UUID characterId;
     private Map<Specialization, List<Integer>> talents;
+    private Map<String, List<Integer>> forcePowers;
 
     public Builder(@NotNull String name, @NotNull Career career, @NotNull Specialization specialization,
                    @NotNull String species, @NotNull UUID characterId) {
@@ -661,6 +670,11 @@ public class Character {
 
     public Builder talents(@NotNull Map<Specialization, List<Integer>> talents) {
       this.talents = talents;
+      return this;
+    }
+
+    public Builder forcePowers(@NotNull Map<String, List<Integer>> forcePowers) {
+      this.forcePowers = forcePowers;
       return this;
     }
   }

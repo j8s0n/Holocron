@@ -1,7 +1,7 @@
 package org.raincitygamers.holocron.rules.character;
 
 import org.jetbrains.annotations.NotNull;
-import org.raincitygamers.holocron.rules.abilities.Skill;
+import org.raincitygamers.holocron.rules.traits.Skill;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.rules.character;
+package org.raincitygamers.holocron.rules.managers;
 
 import android.util.Log;
 
@@ -10,6 +10,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.raincitygamers.holocron.io.FileAccessor;
+import org.raincitygamers.holocron.rules.character.Career;
+import org.raincitygamers.holocron.rules.character.Specialization;
 
 import java.util.ArrayList;
 import java.util.Collections;

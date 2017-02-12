@@ -1,8 +1,8 @@
 package org.raincitygamers.holocron.ui.chooser.pages.skills;
 
-import org.raincitygamers.holocron.rules.abilities.Skill;
+import org.raincitygamers.holocron.rules.traits.Skill;
 import org.raincitygamers.holocron.rules.character.Character;
-import org.raincitygamers.holocron.rules.character.SkillManager;
+import org.raincitygamers.holocron.rules.managers.SkillManager;
 import org.raincitygamers.holocron.ui.chooser.pages.scoregroup.ScoreGroupChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.scoregroup.ScoreRating;
 

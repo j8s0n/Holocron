@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.rules.character;
+package org.raincitygamers.holocron.rules.managers;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -8,6 +8,7 @@ import org.jetbrains.annotations.Nullable;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.raincitygamers.holocron.io.FileAccessor;
+import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.Character.Summary;
 
 import java.util.Collection;

@@ -1,11 +1,11 @@
-package org.raincitygamers.holocron.rules.abilities;
+package org.raincitygamers.holocron.rules.traits;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.raincitygamers.holocron.rules.character.CareerManager;
 import org.raincitygamers.holocron.rules.character.Specialization;
+import org.raincitygamers.holocron.rules.managers.CareerManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,12 +14,13 @@ import java.util.List;
 import java.util.Map;
 
 public class Talent extends Ability {
-  private Talent(@NotNull String name, int tier, @NotNull String description) {
-    super(name, tier, description);
+  private Talent(@NotNull String name, int tier, int row, int column, @NotNull String description) {
+    super(name, tier, row, column, description);
   }
 
   public static Talent of(@NotNull JSONObject o) throws JSONException {
-    return new Talent(o.getString(NAME_KEY), o.getInt(TIER_KEY), o.getString(DESCRIPTION_KEY));
+    return new Talent(o.getString(NAME_KEY), o.getInt(TIER_KEY), o.getInt(ROW_KEY), o.getInt(COLUMN_KEY),
+                      o.getString(DESCRIPTION_KEY));
   }
 
   @NotNull

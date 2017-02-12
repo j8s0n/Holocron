@@ -12,7 +12,7 @@ import android.widget.TextView;
 import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.Character;
-import org.raincitygamers.holocron.rules.character.CharacterManager;
+import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.rules.character.InventoryItem;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData.KvPair;

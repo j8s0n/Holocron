@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.rules.character;
+package org.raincitygamers.holocron.rules.managers;
 
 import android.util.Log;
 
@@ -7,17 +7,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.raincitygamers.holocron.io.FileAccessor;
-import org.raincitygamers.holocron.rules.abilities.Talent;
+import org.raincitygamers.holocron.rules.character.Specialization;
+import org.raincitygamers.holocron.rules.traits.Talent;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public final class TalentManager {
   private static final String LOG_TAG = TalentManager.class.getSimpleName();
-  private static final Map<Specialization, List<Talent>> talentTrees = new HashMap<>();
+  private static final Map<Specialization, List<Talent>> talentLists = new LinkedHashMap<>();
 
   static {
     loadTalents();
@@ -27,9 +28,9 @@ public final class TalentManager {
   }
 
   @NotNull
-  public static List<Talent> getTree(@NotNull Specialization specialization) {
-    if (talentTrees.containsKey(specialization)) {
-      return talentTrees.get(specialization);
+  public static List<Talent> getList(@NotNull Specialization specialization) {
+    if (talentLists.containsKey(specialization)) {
+      return talentLists.get(specialization);
     }
     else {
       // TODO: Throw?
@@ -44,9 +45,9 @@ public final class TalentManager {
     }
 
     for (Specialization specialization : CareerManager.getSpecializations()) {
-      if (!talentTrees.containsKey(specialization)) {
-        Log.w(LOG_TAG, "No talent tree for specialization: " + specialization.getName());
-        talentTrees.put(specialization, new ArrayList<Talent>());
+      if (!talentLists.containsKey(specialization)) {
+        Log.w(LOG_TAG, "No talent list for specialization: " + specialization.getName());
+        talentLists.put(specialization, new ArrayList<Talent>());
       }
     }
   }
@@ -73,6 +74,6 @@ public final class TalentManager {
       }
     }
 
-    talentTrees.put(CareerManager.getSpecialization(specializationName), talents);
+    talentLists.put(CareerManager.getSpecialization(specializationName), talents);
   }
 }
