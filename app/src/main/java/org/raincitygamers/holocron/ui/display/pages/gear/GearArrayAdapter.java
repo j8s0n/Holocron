@@ -48,7 +48,7 @@ public class GearArrayAdapter extends ArrayAdapter<RowData> {
     if (convertView == null) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
-      convertView = inflater.inflate(R.layout.gear_list_item, parent, false);
+      convertView = inflater.inflate(R.layout.list_item_inventory, parent, false);
       viewHolder.name = (TextView) convertView.findViewById(R.id.name);
       viewHolder.quantity = (TextView) convertView.findViewById(R.id.quantity);
       viewHolder.location = (TextView) convertView.findViewById(R.id.tier);
@@ -101,7 +101,7 @@ public class GearArrayAdapter extends ArrayAdapter<RowData> {
     if (convertView == null) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
-      convertView = inflater.inflate(R.layout.key_value_list_item, parent, false);
+      convertView = inflater.inflate(R.layout.list_item_key_value, parent, false);
       viewHolder.key = (TextView) convertView.findViewById(R.id.key);
       viewHolder.value = (TextView) convertView.findViewById(R.id.value);
       convertView.setTag(viewHolder);

@@ -45,7 +45,7 @@ public class AbilityArrayAdapter extends ArrayAdapter<RowData> {
     if (convertView == null) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
-      convertView = inflater.inflate(R.layout.ability_list_item, parent, false);
+      convertView = inflater.inflate(R.layout.list_item_ability, parent, false);
       viewHolder.name = (TextView) convertView.findViewById(R.id.name);
       viewHolder.tier = (TextView) convertView.findViewById(R.id.tier);
       viewHolder.description = (TextView) convertView.findViewById(R.id.description);
@@ -67,7 +67,7 @@ public class AbilityArrayAdapter extends ArrayAdapter<RowData> {
     if (convertView == null) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
-      convertView = inflater.inflate(R.layout.section_list_item, parent, false);
+      convertView = inflater.inflate(R.layout.list_item_section, parent, false);
       viewHolder.sectionLabel = (TextView) convertView.findViewById(R.id.section_label);
       convertView.setTag(viewHolder);
     }
@@ -85,7 +85,7 @@ public class AbilityArrayAdapter extends ArrayAdapter<RowData> {
     if (convertView == null) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
-      convertView = inflater.inflate(R.layout.key_value_list_item, parent, false);
+      convertView = inflater.inflate(R.layout.list_item_key_value, parent, false);
       viewHolder.key = (TextView) convertView.findViewById(R.id.key);
       viewHolder.value = (TextView) convertView.findViewById(R.id.value);
       convertView.setTag(viewHolder);

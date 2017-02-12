@@ -38,7 +38,7 @@ public abstract class AbilityPage extends ContentPage {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     // Inflate the layout for this fragment
-    View result = inflater.inflate(R.layout.fragment_abilities_page, container, false);
+    View result = inflater.inflate(R.layout.display_abilities, container, false);
 
     ListView skillListView = (ListView) result.findViewById(R.id.ability_group_list);
     adapter = new AbilityArrayAdapter(getActivity(), abilities);

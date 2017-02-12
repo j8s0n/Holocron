@@ -25,7 +25,7 @@ public class CharacterArrayAdapter extends ArrayAdapter<Summary> {
     if (convertView == null) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
-      convertView = inflater.inflate(R.layout.selector_list_item, parent, false);
+      convertView = inflater.inflate(R.layout.list_item_selector, parent, false);
       viewHolder.characterName = (TextView) convertView.findViewById(R.id.character_selection_name);
       viewHolder.characterCareer = (TextView) convertView.findViewById(R.id.character_selection_career);
       viewHolder.lastAccessDate = (TextView) convertView.findViewById(R.id.character_selection_date);

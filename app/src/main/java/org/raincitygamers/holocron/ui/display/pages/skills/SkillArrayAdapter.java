@@ -27,7 +27,7 @@ public class SkillArrayAdapter extends ArrayAdapter<SkillRating> {
     if (convertView == null) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
-      convertView = inflater.inflate(R.layout.skill_list_item, parent, false);
+      convertView = inflater.inflate(R.layout.list_item_skill, parent, false);
       viewHolder.skillName = (TextView) convertView.findViewById(R.id.skill_name);
       viewHolder.skillChar = (TextView) convertView.findViewById(R.id.skill_char);
       viewHolder.diceLayout = (LinearLayout) convertView.findViewById(R.id.dice_layout);

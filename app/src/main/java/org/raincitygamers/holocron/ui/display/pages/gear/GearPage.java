@@ -58,7 +58,7 @@ public class GearPage extends ContentPage {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     // Inflate the layout for this fragment
-    View result = inflater.inflate(R.layout.fragment_gear_page, container, false);
+    View result = inflater.inflate(R.layout.display_inventory, container, false);
 
     ListView skillListView = (ListView) result.findViewById(R.id.gear_group_list);
     gearArrayAdapter = new GearArrayAdapter(getActivity(), rowData);

@@ -41,7 +41,7 @@ public class BasicsPage extends ContentPage {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     // Inflate the layout for this fragment
-    View result = inflater.inflate(R.layout.fragment_basics_page, container, false);
+    View result = inflater.inflate(R.layout.display_basics, container, false);
 
     ListView basicsListView = (ListView) result.findViewById(R.id.basics_group_list);
     arrayAdapter = new BasicsArrayAdapter(getActivity(), rowData);

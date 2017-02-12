@@ -146,7 +146,7 @@ public class TalentsChooser extends ChooserBase {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     // Inflate the layout for this fragment
-    View result = inflater.inflate(R.layout.choose_abilities, container, false);
+    View result = inflater.inflate(R.layout.choose_talents, container, false);
 
     return result;
   }

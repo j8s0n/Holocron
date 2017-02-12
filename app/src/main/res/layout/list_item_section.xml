@@ -5,7 +5,9 @@
                                              android:orientation="vertical"
                                              android:layout_width="match_parent"
                                              android:background="#cccccc"
-                                             android:layout_height="wrap_content">
+                                             android:layout_height="wrap_content"
+                                             android:paddingTop="16dp"
+                                             android:paddingBottom="16dp">
 
   <TextView
     android:text="Section Label"
@@ -18,6 +20,5 @@
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     android:textAppearance="?android:attr/textAppearanceMedium"
-    android:layout_marginTop="16dp"
     />
 </android.support.constraint.ConstraintLayout>
