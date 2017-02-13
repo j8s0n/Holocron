@@ -1,6 +1,7 @@
 package org.raincitygamers.holocron.ui.display.pages.gear;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.InventoryItem;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
+import org.raincitygamers.holocron.ui.InventoryEditorActivity;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData.KvPair;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
@@ -114,9 +116,10 @@ public class GearArrayAdapter extends ArrayAdapter<RowData> {
 
     viewHolder.name.setOnLongClickListener(new View.OnLongClickListener() {
       @Override public boolean onLongClick(View v) {
-        // TODO: Create an activity or something that takes the InventoryItem object and edits it.
-        // TODO: Use the same editor, with an empty item, as the response for the FAB plus button.
-        // TODO: Also add a FAB button.
+        Intent intent = new Intent(getContext(), InventoryEditorActivity.class);
+        int index = CharacterManager.getActiveCharacter().getInventory().indexOf(item);
+        intent.putExtra(InventoryEditorActivity.INVENTORY_ITEM_TO_EDIT, index);
+        getContext().startActivity(intent);
         return true;
       }
     });

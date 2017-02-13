@@ -15,6 +15,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter
+@Setter
 @ToString
 public class InventoryItem {
   private static final String LOG_TAG = InventoryItem.class.getSimpleName();
@@ -27,11 +28,11 @@ public class InventoryItem {
   private static final String DESCRIPTION_KEY = "description";
 
   private String name;
-  @Setter private int quantity;
+  private int quantity;
   private String location;
   private int encumbrance;
   private String description;
-  @Setter private boolean countEncumbrance;
+  private boolean countEncumbrance;
 
   private InventoryItem(@NotNull String name, int quantity, @NotNull String location, int encumbrance,
                         @NotNull String description, boolean countEncumbrance) {
