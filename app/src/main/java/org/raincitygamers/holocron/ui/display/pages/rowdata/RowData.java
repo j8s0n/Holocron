@@ -10,6 +10,7 @@ public interface RowData {
     ABILITY,
     INVENTORY,
     KEY_VALUE,
-    SECTION_ID
+    SECTION_ID,
+    BUTTON
   }
 }

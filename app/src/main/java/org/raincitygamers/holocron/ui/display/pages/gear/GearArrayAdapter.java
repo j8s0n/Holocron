@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.InventoryItem;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.ui.InventoryEditorActivity;
+import org.raincitygamers.holocron.ui.display.pages.rowdata.ButtonRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData.KvPair;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
@@ -25,6 +27,7 @@ import java.util.List;
 public class GearArrayAdapter extends ArrayAdapter<RowData> {
   private static final float IGNORED_ENCUMBRANCE = 0.2f;
   private TextView encumbrance;
+
   public GearArrayAdapter(Context context, List<RowData> objects) {
     super(context, -1, objects);
   }
@@ -38,6 +41,8 @@ public class GearArrayAdapter extends ArrayAdapter<RowData> {
       return displayKeyValuePair(convertView, parent, ((KeyValueRowData) rowData).getPair());
     case INVENTORY:
       return displayInventory(convertView, parent, ((InventoryItemRowData) rowData).getItem());
+    case BUTTON:
+      return displayButton(convertView, parent, ((ButtonRowData) rowData).getButtonText());
     default:
       return null;
     }
@@ -98,7 +103,8 @@ public class GearArrayAdapter extends ArrayAdapter<RowData> {
     });
 
     viewHolder.quantity.setOnLongClickListener(new View.OnLongClickListener() {
-      @Override public boolean onLongClick(View v) {
+      @Override
+      public boolean onLongClick(View v) {
         item.setQuantity(Math.max(0, item.getQuantity() - 1));
         viewHolder.quantity.setText(String.format("(%d)", item.getQuantity()));
         updateEncumbrance();
@@ -107,7 +113,8 @@ public class GearArrayAdapter extends ArrayAdapter<RowData> {
     });
 
     viewHolder.quantity.setOnClickListener(new View.OnClickListener() {
-      @Override public void onClick(View v) {
+      @Override
+      public void onClick(View v) {
         item.setQuantity(item.getQuantity() + 1);
         viewHolder.quantity.setText(String.format("(%d)", item.getQuantity()));
         updateEncumbrance();
@@ -115,7 +122,8 @@ public class GearArrayAdapter extends ArrayAdapter<RowData> {
     });
 
     viewHolder.name.setOnLongClickListener(new View.OnLongClickListener() {
-      @Override public boolean onLongClick(View v) {
+      @Override
+      public boolean onLongClick(View v) {
         Intent intent = new Intent(getContext(), InventoryEditorActivity.class);
         int index = CharacterManager.getActiveCharacter().getInventory().indexOf(item);
         intent.putExtra(InventoryEditorActivity.INVENTORY_ITEM_TO_EDIT, index);
@@ -153,6 +161,31 @@ public class GearArrayAdapter extends ArrayAdapter<RowData> {
     return convertView;
   }
 
+  private View displayButton(View convertView, ViewGroup parent, String buttonText) {
+    ViewHolder viewHolder;
+    if (convertView == null || !convertView.getTag().equals(RowData.Type.BUTTON)) {
+      viewHolder = new ViewHolder();
+      LayoutInflater inflater = LayoutInflater.from(getContext());
+      convertView = inflater.inflate(R.layout.list_item_button, parent, false);
+      viewHolder.button = (Button) convertView.findViewById(R.id.button);
+      convertView.setTag(viewHolder);
+    }
+    else {
+      viewHolder = (ViewHolder) convertView.getTag();
+    }
+
+    viewHolder.button.setText(buttonText);
+    viewHolder.button.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(getContext(), InventoryEditorActivity.class);
+        intent.putExtra(InventoryEditorActivity.INVENTORY_ITEM_TO_EDIT, -1);
+        getContext().startActivity(intent);
+      }
+    });
+    return convertView;
+  }
+
   private static class ViewHolder {
     TextView name;
     TextView quantity;
@@ -163,5 +196,7 @@ public class GearArrayAdapter extends ArrayAdapter<RowData> {
 
     TextView key;
     TextView value;
+
+    Button button;
   }
 }

@@ -12,6 +12,7 @@ import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.InventoryItem;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.ui.ContentPage;
+import org.raincitygamers.holocron.ui.display.pages.rowdata.ButtonRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 
@@ -34,18 +35,6 @@ public class GearPage extends ContentPage {
   public void onResume() {
     super.onResume();
     displayGear();
-
-    /*
-    FloatingActionButton fab = (FloatingActionButton) getView().findViewById(R.id.fab);
-    assert fab != null;
-    fab.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        Intent intent = new Intent(getActivity(), InventoryEditorActivity.class);
-        startActivity(intent);
-      }
-    });
-    */
   }
 
   private void displayGear() {
@@ -63,6 +52,8 @@ public class GearPage extends ContentPage {
     for (InventoryItem item : pc.getInventory()) {
       rowData.add(InventoryItemRowData.of(item));
     }
+
+    rowData.add(ButtonRowData.of("Add Item"));
 
     return rowData;
   }
