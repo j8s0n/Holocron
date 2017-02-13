@@ -20,7 +20,7 @@
 
   <TextView
     android:id="@+id/quantity"
-    android:layout_width="30dp"
+    android:layout_width="60dp"
     android:layout_height="30dp"
     android:text="(#)"
     android:textAppearance="?android:attr/textAppearanceSmall"

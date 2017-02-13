@@ -33,7 +33,7 @@ public class InventoryEditorActivity extends ActivityBase {
     }
     else {
       Button deleteButton = (Button) findViewById(R.id.delete_button);
-      deleteButton.setVisibility(View.GONE);
+      deleteButton.setVisibility(View.INVISIBLE);
     }
   }
 
