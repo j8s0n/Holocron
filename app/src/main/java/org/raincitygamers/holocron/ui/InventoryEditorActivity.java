@@ -31,6 +31,10 @@ public class InventoryEditorActivity extends ActivityBase {
       InventoryItem item = CharacterManager.getActiveCharacter().getInventory().get(inventoryItemToEdit);
       setEntryValues(item);
     }
+    else {
+      Button deleteButton = (Button) findViewById(R.id.delete_button);
+      deleteButton.setVisibility(View.GONE);
+    }
   }
 
   private void setEntryValues(@NotNull InventoryItem item) {
@@ -86,5 +90,13 @@ public class InventoryEditorActivity extends ActivityBase {
   private String readEditText(int editTextId) {
     EditText editText = (EditText) findViewById(editTextId);
     return editText.getText().toString();
+  }
+
+  public void onDeleteClicked(View view) {
+    if (inventoryItemToEdit >= 0) {
+      CharacterManager.getActiveCharacter().getInventory().remove(inventoryItemToEdit);
+    }
+
+    finish();
   }
 }

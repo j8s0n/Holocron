@@ -1,130 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-  android:orientation="vertical"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:id="@+id/inventory_editor"
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:orientation="vertical"
   tools:context="org.raincitygamers.holocron.ui.InventoryEditorActivity">
 
   <TextView
-    android:text="Item Name"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
     android:id="@+id/item_name_label"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
+    android:text="Item Name"
     android:textAppearance="?android:attr/textAppearanceSmall"
     android:textSize="10sp"/>
 
   <EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:ems="10"
     android:id="@+id/item_name_entry"
-    android:layout_marginEnd="16dp"
-    android:inputType="textCapSentences|textAutoComplete"
-    android:lines="1"
-    android:hint="Item Name"
-    android:layout_marginStart="16dp"
-    />
-  <TextView
-    android:text="Location"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/item_location_label"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="8dp"
-    android:textAppearance="?android:attr/textAppearanceSmall"
-    android:paddingTop="16dp"
-    android:textSize="10sp" />
-
-  <EditText
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:ems="10"
-    android:id="@+id/item_location_entry"
     android:layout_marginEnd="16dp"
+    android:layout_marginStart="16dp"
+    android:ems="10"
+    android:hint="Item Name"
     android:inputType="textCapSentences|textAutoComplete"
     android:lines="1"
-    android:hint="Location"
-    android:layout_marginStart="16dp"
     />
+
   <TextView
-    android:text="Encumbrance"
+    android:id="@+id/item_location_label"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/item_encumbrance_label"
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
-    android:textAppearance="?android:attr/textAppearanceSmall"
     android:paddingTop="16dp"
+    android:text="Location"
+    android:textAppearance="?android:attr/textAppearanceSmall"
     android:textSize="10sp"/>
 
   <EditText
+    android:id="@+id/item_location_entry"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:ems="10"
-    android:id="@+id/item_encumbrance_entry"
     android:layout_marginEnd="16dp"
+    android:layout_marginStart="16dp"
+    android:ems="10"
+    android:hint="Location"
+    android:inputType="textCapSentences|textAutoComplete"
+    android:lines="1"
+    />
+
+  <TextView
+    android:id="@+id/item_encumbrance_label"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:paddingTop="16dp"
+    android:text="Encumbrance"
+    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:textSize="10sp"/>
+
+  <EditText
+    android:id="@+id/item_encumbrance_entry"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="16dp"
+    android:layout_marginStart="16dp"
+    android:ems="10"
+    android:hint="Encumbrance"
     android:inputType="number"
     android:lines="1"
-    android:hint="Encumbrance"
-    android:layout_marginStart="16dp"
     />
+
   <TextView
-    android:text="Quantity"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
     android:id="@+id/item_quantity_label"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="8dp"
-    android:textAppearance="?android:attr/textAppearanceSmall"
-    android:paddingTop="16dp"
-    android:textSize="10sp"/>
-
-  <EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:ems="10"
-    android:id="@+id/item_quantity_entry"
-    android:layout_marginEnd="16dp"
-    android:lines="1"
-    android:hint="Quantity"
-    android:layout_marginStart="16dp"
-    android:inputType="number"/>
-  <TextView
-    android:text="Description"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/item_description_label"
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
-    android:textAppearance="?android:attr/textAppearanceSmall"
     android:paddingTop="16dp"
+    android:text="Quantity"
+    android:textAppearance="?android:attr/textAppearanceSmall"
     android:textSize="10sp"/>
 
   <EditText
+    android:id="@+id/item_quantity_entry"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:ems="10"
-    android:id="@+id/item_description_entry"
     android:layout_marginEnd="16dp"
+    android:layout_marginStart="16dp"
+    android:ems="10"
+    android:hint="Quantity"
+    android:inputType="number"
+    android:lines="1"/>
+
+  <TextView
+    android:id="@+id/item_description_label"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:paddingTop="16dp"
+    android:text="Description"
+    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:textSize="10sp"/>
+
+  <EditText
+    android:id="@+id/item_description_entry"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="16dp"
+    android:layout_marginStart="16dp"
+    android:ems="10"
+    android:hint="Description"
     android:inputType="textCapSentences|textAutoComplete"
     android:lines="1"
-    android:hint="Description"
-    android:layout_marginStart="16dp"
     />
 
-    <Button
-      android:text="Add"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:id="@+id/okay_button"
-      android:onClick="onOkayClicked"
-      android:textAlignment="center"
-      android:layout_gravity="right"/>
+  <Button
+    android:id="@+id/okay_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="right"
+    android:onClick="onOkayClicked"
+    android:text="Add Item"
+    android:textAlignment="center"/>
+
+  <Button
+    android:id="@+id/delete_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="right"
+    android:onClick="onDeleteClicked"
+    android:text="Delete Item"
+    android:textAlignment="center"/>
 
 </LinearLayout>
