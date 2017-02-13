@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  android:orientation="vertical"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/inventory_editor"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context="org.raincitygamers.holocron.ui.InventoryEditorActivity">
+
+  <TextView
+    android:text="Item Name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/item_name_label"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:textSize="10sp"/>
+
+  <EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:id="@+id/item_name_entry"
+    android:layout_marginEnd="16dp"
+    android:inputType="textCapSentences|textAutoComplete"
+    android:lines="1"
+    android:hint="Item Name"
+    android:layout_marginStart="16dp"
+    />
+  <TextView
+    android:text="Location"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/item_location_label"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:paddingTop="16dp"
+    android:textSize="10sp" />
+
+  <EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:id="@+id/item_location_entry"
+    android:layout_marginEnd="16dp"
+    android:inputType="textCapSentences|textAutoComplete"
+    android:lines="1"
+    android:hint="Location"
+    android:layout_marginStart="16dp"
+    />
+  <TextView
+    android:text="Encumbrance"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/item_encumbrance_label"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:paddingTop="16dp"
+    android:textSize="10sp"/>
+
+  <EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:id="@+id/item_encumbrance_entry"
+    android:layout_marginEnd="16dp"
+    android:inputType="textCapSentences|textAutoComplete"
+    android:lines="1"
+    android:hint="Encumbrance"
+    android:layout_marginStart="16dp"
+    />
+  <TextView
+    android:text="Quantity"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/item_quantity_label"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:paddingTop="16dp"
+    android:textSize="10sp"/>
+
+  <EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:id="@+id/item_quantity_entry"
+    android:layout_marginEnd="16dp"
+    android:inputType="textCapSentences|textAutoComplete"
+    android:lines="1"
+    android:hint="Quantity"
+    android:layout_marginStart="16dp"
+    />
+  <TextView
+    android:text="Description"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/item_description_label"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:paddingTop="16dp"
+    android:textSize="10sp"/>
+
+  <EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:id="@+id/item_description_entry"
+    android:layout_marginEnd="16dp"
+    android:inputType="textCapSentences|textAutoComplete"
+    android:lines="1"
+    android:hint="Description"
+    android:layout_marginStart="16dp"
+    />
+
+    <Button
+      android:text="Add"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:id="@+id/okay_button"
+      android:onClick="onOkayClicked"
+      android:textAlignment="center"
+      android:layout_gravity="right"/>
+
+</LinearLayout>

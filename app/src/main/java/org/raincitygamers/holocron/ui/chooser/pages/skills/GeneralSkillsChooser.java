@@ -1,8 +1,8 @@
 package org.raincitygamers.holocron.ui.chooser.pages.skills;
 
-import org.raincitygamers.holocron.rules.traits.Skill;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.managers.SkillManager;
+import org.raincitygamers.holocron.rules.traits.Skill;
 import org.raincitygamers.holocron.ui.chooser.pages.scoregroup.ScoreGroupChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.scoregroup.ScoreRating;
 
@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 
 public class GeneralSkillsChooser extends ScoreGroupChooser {
+  private static final String LOG_TAG = GeneralSkillsChooser.class.getSimpleName();
+
   public GeneralSkillsChooser() {
   }
 
@@ -40,5 +42,10 @@ public class GeneralSkillsChooser extends ScoreGroupChooser {
     }
 
     return scores;
+  }
+
+  @Override
+  protected String getLogTag() {
+    return LOG_TAG;
   }
 }

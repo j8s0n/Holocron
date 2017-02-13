@@ -12,10 +12,10 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import org.raincitygamers.holocron.R;
-import org.raincitygamers.holocron.rules.traits.Talent;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.Specialization;
 import org.raincitygamers.holocron.rules.managers.TalentManager;
+import org.raincitygamers.holocron.rules.traits.Talent;
 import org.raincitygamers.holocron.ui.chooser.ChooserBase;
 
 import java.util.ArrayList;
@@ -25,6 +25,8 @@ import java.util.Map;
 import lombok.RequiredArgsConstructor;
 
 public class TalentsChooser extends ChooserBase {
+  private static final String LOG_TAG = TalentsChooser.class.getSimpleName();
+
   private List<Specialization> specializations;
   private Map<Specialization, List<Integer>> talentsTaken;
   private List<String> specializationNames;
@@ -75,7 +77,7 @@ public class TalentsChooser extends ChooserBase {
           return;
         }
 
-        SpinnerEntry entry = (SpinnerEntry)availableTalentsSpinner.getSelectedItem();
+        SpinnerEntry entry = (SpinnerEntry) availableTalentsSpinner.getSelectedItem();
         talentsTaken.get(chosenSpecialization).add(entry.index);
         buildTalentSpinners();
       }
@@ -89,7 +91,7 @@ public class TalentsChooser extends ChooserBase {
           return;
         }
 
-        SpinnerEntry entry = (SpinnerEntry)knownTalentsSpinner.getSelectedItem();
+        SpinnerEntry entry = (SpinnerEntry) knownTalentsSpinner.getSelectedItem();
         int index = talentsTaken.get(chosenSpecialization).indexOf(entry.index);
         talentsTaken.get(chosenSpecialization).remove(index);
         buildTalentSpinners();
@@ -127,7 +129,7 @@ public class TalentsChooser extends ChooserBase {
     List<SpinnerEntry> knownTalents = new ArrayList<>();
     List<SpinnerEntry> availableTalents = new ArrayList<>();
     List<Integer> talentsKnown = talentsTaken.get(chosenSpecialization);
-    List<Talent>  talentTree = TalentManager.getList(chosenSpecialization);
+    List<Talent> talentTree = TalentManager.getList(chosenSpecialization);
 
     for (int i = 0; i < talentTree.size(); i++) {
       if (talentsKnown.contains(i)) {
@@ -138,12 +140,10 @@ public class TalentsChooser extends ChooserBase {
       }
     }
 
-    ArrayAdapter<SpinnerEntry> knownTalentsAdapter = new ArrayAdapter<SpinnerEntry>(getActivity(),
-                                                                           android.R.layout.simple_dropdown_item_1line,
-                                                                           knownTalents);
-    ArrayAdapter<SpinnerEntry> availableTalentsAdapter = new ArrayAdapter<SpinnerEntry>(getActivity(),
-                                                                           android.R.layout.simple_dropdown_item_1line,
-                                                                           availableTalents);
+    ArrayAdapter<SpinnerEntry> knownTalentsAdapter =
+        new ArrayAdapter<SpinnerEntry>(getActivity(), android.R.layout.simple_dropdown_item_1line, knownTalents);
+    ArrayAdapter<SpinnerEntry> availableTalentsAdapter =
+        new ArrayAdapter<SpinnerEntry>(getActivity(), android.R.layout.simple_dropdown_item_1line, availableTalents);
 
     knownTalentsSpinner.setAdapter(knownTalentsAdapter);
     availableTalentsSpinner.setAdapter(availableTalentsAdapter);
@@ -164,6 +164,11 @@ public class TalentsChooser extends ChooserBase {
     super.onActivityCreated(savedInstanceState);
     final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
     imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+  }
+
+  @Override
+  protected String getLogTag() {
+    return LOG_TAG;
   }
 
   @RequiredArgsConstructor(suppressConstructorProperties = true)

@@ -25,6 +25,8 @@ import java.util.List;
 import java.util.Map;
 
 public class ForceChooser extends ChooserBase {
+  private static final String LOG_TAG = ForceChooser.class.getSimpleName();
+
   private List<String> forcePowerNames = new ArrayList<>();
   private Map<String, List<Integer>> powersTaken;
   private String chosenPower;
@@ -213,11 +215,17 @@ public class ForceChooser extends ChooserBase {
     imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
   }
 
+  @Override
+  protected String getLogTag() {
+    return LOG_TAG;
+  }
+
   private static class SpinnerEntry {
     final String display;
     final int index;
     final int row;
     final int column;
+
     public SpinnerEntry(@NotNull Ability ability, int index) {
       this.index = index;
       this.row = ability.getRow();

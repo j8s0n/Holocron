@@ -25,6 +25,7 @@ import java.util.List;
 
 public class BasicsChooser extends ChooserBase {
   private static final String LOG_TAG = BasicsChooser.class.getSimpleName();
+
   private final List<String> specializations = new ArrayList<>();
   private Career selectedCareer;
   private Specialization selectedSpecialization;
@@ -38,6 +39,10 @@ public class BasicsChooser extends ChooserBase {
   @Override
   public String getTitle() {
     return "Choose Basics";
+  }
+
+  @Override protected String getLogTag() {
+    return LOG_TAG;
   }
 
   @Override
@@ -105,18 +110,6 @@ public class BasicsChooser extends ChooserBase {
     ch.setCareer(selectedCareer);
     ch.getSpecializations().clear();
     ch.getSpecializations().add(selectedSpecialization);
-  }
-
-  private int readIntValue(int resourceId) {
-    try {
-      return Integer.parseInt(readEditText(resourceId));
-    }
-    catch (NumberFormatException e) {
-      EditText textField = (EditText) getView().findViewById(resourceId);
-      Log.e(LOG_TAG, "Invalid value for " + textField.getHint());
-    }
-
-    return 0;
   }
 
   private void buildCareerSpinner(@Nullable final Character character) {

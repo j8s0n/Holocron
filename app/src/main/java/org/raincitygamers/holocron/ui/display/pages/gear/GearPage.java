@@ -1,5 +1,6 @@
 package org.raincitygamers.holocron.ui.display.pages.gear;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.InventoryItem;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.ui.ContentPage;
+import org.raincitygamers.holocron.ui.InventoryEditorActivity;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 
@@ -41,8 +43,8 @@ public class GearPage extends ContentPage {
     fab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        // TODO: Add an item here.
-        // Probably create a new activity and pass the values back.
+        Intent intent = new Intent(getActivity(), InventoryEditorActivity.class);
+        startActivity(intent);
       }
     });
 

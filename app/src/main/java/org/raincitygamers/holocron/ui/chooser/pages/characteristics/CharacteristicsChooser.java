@@ -1,7 +1,7 @@
 package org.raincitygamers.holocron.ui.chooser.pages.characteristics;
 
-import org.raincitygamers.holocron.rules.traits.Characteristic;
 import org.raincitygamers.holocron.rules.character.Character;
+import org.raincitygamers.holocron.rules.traits.Characteristic;
 import org.raincitygamers.holocron.ui.chooser.pages.scoregroup.ScoreGroupChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.scoregroup.ScoreRating;
 
@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 public class CharacteristicsChooser extends ScoreGroupChooser {
+  private static final String LOG_TAG = CharacteristicsChooser.class.getSimpleName();
+
   public CharacteristicsChooser() {
   }
 
@@ -38,5 +40,10 @@ public class CharacteristicsChooser extends ScoreGroupChooser {
     }
 
     return scores;
+  }
+
+  @Override
+  protected String getLogTag() {
+    return LOG_TAG;
   }
 }

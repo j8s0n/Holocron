@@ -10,6 +10,8 @@ import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.ui.chooser.ChooserBase;
 
 public class DescriptionChooser extends ChooserBase {
+  private static final String LOG_TAG = DescriptionChooser.class.getSimpleName();
+
   private View view;
 
   public DescriptionChooser() {
@@ -39,5 +41,10 @@ public class DescriptionChooser extends ChooserBase {
     super.onPause();
 
     getActiveCharacter().setDescription(readEditText(R.id.description_entry));
+  }
+
+  @Override
+  protected String getLogTag() {
+    return LOG_TAG;
   }
 }
