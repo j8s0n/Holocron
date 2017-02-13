@@ -1,5 +1,7 @@
 package org.raincitygamers.holocron.rules.traits;
 
+import android.util.Log;
+
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,6 +16,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Talent extends Ability {
+  private static final String LOG_TAG = Talent.class.getSimpleName();
+
   private Talent(@NotNull String name, int tier, int row, int column, @NotNull String description) {
     super(name, tier, row, column, description);
   }
@@ -42,15 +46,22 @@ public class Talent extends Ability {
   }
 
   @NotNull
-  public static Map<Specialization, List<Integer>> parseJsonArray(@NotNull JSONArray jsonArray) throws JSONException {
+  public static Map<Specialization, List<Integer>> parseJsonArray(@NotNull JSONArray jsonArray) {
     Map<Specialization, List<Integer>> talentMap = new HashMap<>();
     for (int i = 0; i < jsonArray.length(); i++) {
-      JSONObject o = jsonArray.getJSONObject(i);
-      String specializationName = o.getString(NAME_KEY);
-      JSONArray a = o.getJSONArray(THINGK_TAKEN_KEY);
+      String specializationName;
       List<Integer> talentIndices = new ArrayList<>();
-      for (int j = 0; j < a.length(); j++) {
-        talentIndices.add(a.getInt(j));
+      try {
+        JSONObject o = jsonArray.getJSONObject(i);
+        specializationName = o.getString(NAME_KEY);
+        JSONArray a = o.getJSONArray(THINGK_TAKEN_KEY);
+        for (int j = 0; j < a.length(); j++) {
+          talentIndices.add(a.getInt(j));
+        }
+      }
+      catch (JSONException e) {
+        Log.e(LOG_TAG, String.format("Error reading talent graph at index %d.", i), e);
+        continue;
       }
 
       Collections.sort(talentIndices);
