@@ -42,7 +42,7 @@ public class AbilityArrayAdapter extends ArrayAdapter<RowData> {
   @NotNull
   private View displayAbility(View convertView, ViewGroup parent, Ability ability) {
     ViewHolder viewHolder;
-    if (convertView == null) {
+    if (convertView == null || !convertView.getTag().equals(RowData.Type.ABILITY)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_ability, parent, false);
@@ -64,7 +64,7 @@ public class AbilityArrayAdapter extends ArrayAdapter<RowData> {
   @NotNull
   private View displaySection(View convertView, ViewGroup parent, String sectionLabel) {
     ViewHolder viewHolder;
-    if (convertView == null) {
+    if (convertView == null || !convertView.getTag().equals(RowData.Type.SECTION_ID)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_section, parent, false);
@@ -82,7 +82,7 @@ public class AbilityArrayAdapter extends ArrayAdapter<RowData> {
   @NotNull
   private View displayKeyValuePair(View convertView, ViewGroup parent, KvPair pair) {
     ViewHolder viewHolder;
-    if (convertView == null) {
+    if (convertView == null || !convertView.getTag().equals(RowData.Type.KEY_VALUE)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_key_value, parent, false);

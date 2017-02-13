@@ -1,8 +1,6 @@
 package org.raincitygamers.holocron.ui.display.pages.gear;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +12,6 @@ import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.InventoryItem;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.ui.ContentPage;
-import org.raincitygamers.holocron.ui.InventoryEditorActivity;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 
@@ -38,6 +35,7 @@ public class GearPage extends ContentPage {
     super.onResume();
     displayGear();
 
+    /*
     FloatingActionButton fab = (FloatingActionButton) getView().findViewById(R.id.fab);
     assert fab != null;
     fab.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +45,7 @@ public class GearPage extends ContentPage {
         startActivity(intent);
       }
     });
-
+    */
   }
 
   private void displayGear() {

@@ -47,7 +47,7 @@ public class GearArrayAdapter extends ArrayAdapter<RowData> {
   private View displayInventory(View convertView, final ViewGroup parent, final InventoryItem item) {
     final ViewHolder viewHolder;
 
-    if (convertView == null) {
+    if (convertView == null || !convertView.getTag().equals(RowData.Type.INVENTORY)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_inventory, parent, false);
@@ -135,7 +135,7 @@ public class GearArrayAdapter extends ArrayAdapter<RowData> {
   @NotNull
   private View displayKeyValuePair(View convertView, ViewGroup parent, KvPair pair) {
     ViewHolder viewHolder;
-    if (convertView == null) {
+    if (convertView == null || !convertView.getTag().equals(RowData.Type.KEY_VALUE)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_key_value, parent, false);
