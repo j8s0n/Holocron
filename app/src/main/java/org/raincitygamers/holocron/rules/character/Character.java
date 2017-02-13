@@ -1,5 +1,7 @@
 package org.raincitygamers.holocron.rules.character;
 
+import android.util.Log;
+
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,6 +33,8 @@ import lombok.ToString;
 
 @ToString
 public class Character {
+  private static final String LOG_TAG = Character.class.getSimpleName();
+
   private static final String NAME_KEY = "name";
   private static final String SPECIES_KEY = "species";
   private static final String CAREER_KEY = "career";
@@ -93,7 +97,6 @@ public class Character {
   @Getter @Setter private int meleeDefense;
   @Getter @Setter private int rangedDefense;
   @Getter @Setter private int soak;
-  private int encumbranceThreshold;
   @Getter @Setter private int forceRating;
 
   @Getter @Setter private int lastOpenPage = 0;
@@ -130,6 +133,10 @@ public class Character {
   // List the source of the bonus, for easy removal later, if that changes.
   // When calculating the thing, walk the list of its bonuses.
   private Character(@NotNull Builder builder) {
+    for (Map.Entry<Characteristic, Integer> entry : builder.characteristics.entrySet()) {
+      characteristicScores.put(entry.getKey(), entry.getValue());
+    }
+
     this.name = builder.name;
     this.species = builder.species;
     this.career = builder.career;
@@ -148,7 +155,6 @@ public class Character {
     this.meleeDefense = builder.meleeDefense;
     this.rangedDefense = builder.rangedDefense;
     this.soak = builder.soak;
-    this.encumbranceThreshold = builder.encumbranceThreshold;
     this.forceRating = builder.forceRating;
     this.forcePowers.putAll(builder.forcePowers);
     this.description = builder.description;
@@ -156,10 +162,6 @@ public class Character {
     this.characterId = builder.characterId;
     this.lastOpenPage = builder.lastOpenPage;
     this.talents.putAll(builder.talents);
-
-    for (Map.Entry<Characteristic, Integer> entry : builder.characteristics.entrySet()) {
-      characteristicScores.put(entry.getKey(), entry.getValue());
-    }
   }
 
   public int getCharacteristicScore(@NotNull Characteristic characteristic) {
@@ -272,7 +274,6 @@ public class Character {
     o.put(MELEE_DEFENSE_KEY, meleeDefense);
     o.put(RANGED_DEFENSE_KEY, rangedDefense);
     o.put(SOAK_KEY, soak);
-    o.put(ENCUMBRANCE_THRESHOLD_KEY, encumbranceThreshold);
     o.put(FORCE_RATING_KEY, forceRating);
     o.put(CHARACTERISTICS_KEY, characteristicsAsJsonArray());
     o.put(SKILLS_KEY, skillsAsJsonArray());
@@ -342,37 +343,36 @@ public class Character {
   // Methods for reading from the JSON file.
   @NotNull
   public static Character valueOf(@NotNull JSONObject jsonObject, @NotNull UUID characterId)
-  throws IllegalArgumentException, JSONException {
-    String name = jsonObject.getString(NAME_KEY);
-    Career career = CareerManager.getCareer(jsonObject.getString(CAREER_KEY));
-    List<Specialization> specializations = parseSpecializations(jsonObject.getJSONArray(SPECIALIZATIONS_KEY));
-    String species = jsonObject.getString(SPECIES_KEY);
-    Map<Skill, Integer> skills = parseSkills(jsonObject.getJSONArray(SKILLS_KEY));
-    Map<Characteristic, Integer> characteristics = parseCharacteristics(jsonObject.getJSONArray(CHARACTERISTICS_KEY));
+  throws IllegalArgumentException {
+    String name = getJsonString(jsonObject, NAME_KEY);
+    Career career = CareerManager.getCareer(getJsonString(jsonObject, CAREER_KEY));
+    List<Specialization> specializations = parseSpecializations(getJsonArray(jsonObject, SPECIALIZATIONS_KEY));
+    String species = getJsonString(jsonObject, SPECIES_KEY);
+    Map<Skill, Integer> skills = parseSkills(getJsonArray(jsonObject, SKILLS_KEY));
+    Map<Characteristic, Integer> characteristics = parseCharacteristics(getJsonArray(jsonObject, CHARACTERISTICS_KEY));
 
     // TODO Robustness on missing fields.
     Character character = new Builder(name, career, specializations.get(0), species, characterId)
-                              .age(jsonObject.getInt(AGE_KEY))
-                              .height(jsonObject.getString(HEIGHT_KEY))
-                              .weight(jsonObject.getString(WEIGHT_KEY))
-                              .skinTone(jsonObject.getString(SKIN_TONE_KEY))
-                              .hairColor(jsonObject.getString(HAIR_COLOR_KEY))
-                              .eyeColor(jsonObject.getString(EYE_COLOR_KEY))
-                              .inventory(InventoryItem.parseInventory(jsonObject.getJSONArray(INVENTORY_KEY)))
-                              .wounds(jsonObject.getInt(WOUNDS_KEY))
-                              .woundThreshold(jsonObject.getInt(WOUND_THRESHOLD_KEY))
-                              .strain(jsonObject.getInt(STRAIN_KEY))
-                              .strainThreshold(jsonObject.getInt(STRAIN_THRESHOLD_KEY))
-                              .meleeDefense(jsonObject.getInt(MELEE_DEFENSE_KEY))
-                              .rangedDefense(jsonObject.getInt(RANGED_DEFENSE_KEY))
-                              .soak(jsonObject.getInt(SOAK_KEY))
-                              .encumbranceThreshold(jsonObject.getInt(ENCUMBRANCE_THRESHOLD_KEY))
-                              .talents(Talent.parseJsonArray(jsonObject.getJSONArray(TALENTS_KEY)))
-                              .forcePowers(ForcePowerUpgrade.parseJsonArray(jsonObject.getJSONArray(FORCE_POWERS_KEY)))
-                              .description(jsonObject.getString(DESCRIPTION_KEY))
-                              .forceRating(jsonObject.getInt(FORCE_RATING_KEY))
-                              .accessTime(jsonObject.getLong(TIMESTAMP_KEY))
-                              .lastOpenPage(jsonObject.getInt(LAST_OPEN_PAGE_KEY))
+                              .age(getJsonInt(jsonObject, AGE_KEY))
+                              .height(getJsonString(jsonObject, HEIGHT_KEY))
+                              .weight(getJsonString(jsonObject, WEIGHT_KEY))
+                              .skinTone(getJsonString(jsonObject, SKIN_TONE_KEY))
+                              .hairColor(getJsonString(jsonObject, HAIR_COLOR_KEY))
+                              .eyeColor(getJsonString(jsonObject, EYE_COLOR_KEY))
+                              .inventory(InventoryItem.parseInventory(getJsonArray(jsonObject, INVENTORY_KEY)))
+                              .wounds(getJsonInt(jsonObject, WOUNDS_KEY))
+                              .woundThreshold(getJsonInt(jsonObject, WOUND_THRESHOLD_KEY))
+                              .strain(getJsonInt(jsonObject, STRAIN_KEY))
+                              .strainThreshold(getJsonInt(jsonObject, STRAIN_THRESHOLD_KEY))
+                              .meleeDefense(getJsonInt(jsonObject, MELEE_DEFENSE_KEY))
+                              .rangedDefense(getJsonInt(jsonObject, RANGED_DEFENSE_KEY))
+                              .soak(getJsonInt(jsonObject, SOAK_KEY))
+                              .talents(Talent.parseJsonArray(getJsonArray(jsonObject, TALENTS_KEY)))
+                              .forcePowers(ForcePowerUpgrade.parseJsonArray(getJsonArray(jsonObject, FORCE_POWERS_KEY)))
+                              .description(getJsonString(jsonObject, DESCRIPTION_KEY))
+                              .forceRating(getJsonInt(jsonObject, FORCE_RATING_KEY))
+                              .accessTime(getJsonLong(jsonObject, TIMESTAMP_KEY))
+                              .lastOpenPage(getJsonInt(jsonObject, LAST_OPEN_PAGE_KEY))
                               .build();
     for (Map.Entry<Skill, Integer> skill : skills.entrySet()) {
       character.setSkillScore(skill.getKey(), skill.getValue());
@@ -392,34 +392,97 @@ public class Character {
   }
 
   @NotNull
-  private static Map<Characteristic, Integer> parseCharacteristics(@NotNull JSONArray jsonArray) throws JSONException {
+  private static JSONArray getJsonArray(@NotNull JSONObject jsonObject, @NotNull String key) {
+    try {
+      return jsonObject.getJSONArray(key);
+    }
+    catch (JSONException e) {
+      Log.e(LOG_TAG, "Error reading value for " + key, e);
+      return new JSONArray();
+    }
+  }
+
+  private static long getJsonLong(@NotNull JSONObject jsonObject, @NotNull String key) {
+    try {
+      return jsonObject.getLong(key);
+    }
+    catch (JSONException e) {
+      Log.e(LOG_TAG, "Error reading value for " + key, e);
+      return 0;
+    }
+  }
+
+  private static int getJsonInt(@NotNull JSONObject jsonObject, @NotNull String key) {
+    try {
+      return jsonObject.getInt(key);
+    }
+    catch (JSONException e) {
+      Log.e(LOG_TAG, "Error reading value for " + key, e);
+      return 0;
+    }
+  }
+
+  @NotNull
+  private static String getJsonString(@NotNull JSONObject jsonObject, @NotNull String key) {
+    try {
+      return jsonObject.getString(key);
+    }
+    catch (JSONException e) {
+      Log.e(LOG_TAG, "Error reading value for " + key, e);
+      return "";
+    }
+  }
+
+  @NotNull
+  private static Map<Characteristic, Integer> parseCharacteristics(@NotNull JSONArray jsonArray) {
     Map<Characteristic, Integer> characteristics = new HashMap<>();
+    for (Characteristic c : Characteristic.values()) {
+      characteristics.put(c, 2);
+    }
+
     for (int i = 0; i < jsonArray.length(); i++) {
-      JSONObject characteristicJson = jsonArray.getJSONObject(i);
-      Characteristic characteristic = Characteristic.of(characteristicJson.getString(NAME_KEY));
-      characteristics.put(characteristic, characteristicJson.getInt(SCORE_KEY));
+      try {
+        JSONObject characteristicJson = jsonArray.getJSONObject(i);
+        Characteristic characteristic = Characteristic.of(characteristicJson.getString(NAME_KEY));
+        characteristics.put(characteristic, characteristicJson.getInt(SCORE_KEY));
+      }
+      catch (JSONException e) {
+        Log.e(LOG_TAG, String.format("Error reading characteristic object at index %d.", i), e);
+        continue;
+      }
     }
 
     return characteristics;
   }
 
   @NotNull
-  private static Map<Skill, Integer> parseSkills(@NotNull JSONArray jsonArray) throws JSONException {
+  private static Map<Skill, Integer> parseSkills(@NotNull JSONArray jsonArray) {
     Map<Skill, Integer> skills = new HashMap<>();
     for (int i = 0; i < jsonArray.length(); i++) {
-      JSONObject skillJson = jsonArray.getJSONObject(i);
-      Skill skill = SkillManager.getSkill(skillJson.getString(NAME_KEY));
-      skills.put(skill, skillJson.getInt(SCORE_KEY));
+      try {
+        JSONObject skillJson = jsonArray.getJSONObject(i);
+        Skill skill = SkillManager.getSkill(skillJson.getString(NAME_KEY));
+        skills.put(skill, skillJson.getInt(SCORE_KEY));
+      }
+      catch (JSONException e) {
+        Log.e(LOG_TAG, String.format("Error reading skill object at index %d.", i), e);
+        continue;
+      }
     }
 
     return skills;
   }
 
   @NotNull
-  private static List<Specialization> parseSpecializations(@NotNull JSONArray jsonArray) throws JSONException {
+  private static List<Specialization> parseSpecializations(@NotNull JSONArray jsonArray) {
     List<Specialization> specializations = new ArrayList<>();
     for (int i = 0; i < jsonArray.length(); i++) {
-      specializations.add(CareerManager.getSpecialization(jsonArray.getString(i)));
+      try {
+        specializations.add(CareerManager.getSpecialization(jsonArray.getString(i)));
+      }
+      catch (JSONException e) {
+        Log.e(LOG_TAG, String.format("Error reading specialization at index %d.", i), e);
+      }
     }
 
     return specializations;
@@ -449,7 +512,7 @@ public class Character {
   }
 
   public int getEncumbranceThreshold() {
-    int threshold = encumbranceThreshold;
+    int threshold = characteristicScores.get(Characteristic.BRAWN) + 5;
     for (InventoryItem item : inventory) {
       if (item.isCountEncumbrance() && item.getEncumbrance() < 0) {
         threshold -= item.getEncumbrance() * item.getQuantity();
@@ -508,7 +571,6 @@ public class Character {
     private int meleeDefense = 0;
     private int rangedDefense = 0;
     private int soak = 0;
-    private int encumbranceThreshold = 5;
     private int forceRating = 0;
 
     private long accessTime;
@@ -616,12 +678,6 @@ public class Character {
     @NotNull
     public Builder soak(int soak) {
       this.soak = soak;
-      return this;
-    }
-
-    @NotNull
-    public Builder encumbranceThreshold(int encumbranceThreshold) {
-      this.encumbranceThreshold = encumbranceThreshold;
       return this;
     }
 

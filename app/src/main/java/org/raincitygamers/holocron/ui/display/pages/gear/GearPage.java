@@ -1,6 +1,7 @@
 package org.raincitygamers.holocron.ui.display.pages.gear;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +10,8 @@ import android.widget.ListView;
 import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.Character;
-import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.rules.character.InventoryItem;
+import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.ui.ContentPage;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
@@ -34,6 +35,17 @@ public class GearPage extends ContentPage {
   public void onResume() {
     super.onResume();
     displayGear();
+
+    FloatingActionButton fab = (FloatingActionButton) getView().findViewById(R.id.fab);
+    assert fab != null;
+    fab.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        // TODO: Add an item here.
+        // Probably create a new activity and pass the values back.
+      }
+    });
+
   }
 
   private void displayGear() {
