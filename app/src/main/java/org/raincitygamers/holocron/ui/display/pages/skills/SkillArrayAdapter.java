@@ -32,6 +32,7 @@ public class SkillArrayAdapter extends ArrayAdapter<SkillRating> {
       viewHolder.skillChar = (TextView) convertView.findViewById(R.id.skill_char);
       viewHolder.diceLayout = (LinearLayout) convertView.findViewById(R.id.dice_layout);
       viewHolder.skillRating = (TextView) convertView.findViewById(R.id.skill_rating);
+      viewHolder.isCareerSkill = (TextView) convertView.findViewById(R.id.career_skill);
       convertView.setTag(viewHolder);
     }
     else {
@@ -41,6 +42,7 @@ public class SkillArrayAdapter extends ArrayAdapter<SkillRating> {
     int layoutWidth = 0;
     viewHolder.skillName.setText(skillRating.getSkill().getName());
     viewHolder.skillChar.setText("(" + skillRating.getSkill().getCharacteristic().getAbbreviation() + ")");
+    viewHolder.isCareerSkill.setVisibility(skillRating.isCareerSkill() ? View.VISIBLE : View.INVISIBLE);
     viewHolder.diceLayout.removeAllViews();
     for (int i = 0; i < skillRating.getProficiencyDiceCount(); i++) {
       ImageView die = new ImageView(getContext());
@@ -68,5 +70,6 @@ public class SkillArrayAdapter extends ArrayAdapter<SkillRating> {
     TextView skillChar;
     LinearLayout diceLayout;
     TextView skillRating;
+    TextView  isCareerSkill;
   }
 }

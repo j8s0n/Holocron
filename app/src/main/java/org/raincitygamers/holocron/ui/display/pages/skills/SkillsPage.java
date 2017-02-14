@@ -41,7 +41,8 @@ public abstract class SkillsPage extends ContentPage {
     for (Skill skill : getSkills()) {
       int charScore = character.getCharacteristicScore(skill.getCharacteristic());
       int skillScore = character.getSkillScore(skill);
-      skillRatings.add(new SkillRating(skill, charScore, skillScore));
+      boolean careerSkill = character.isCareerSkill(skill);
+      skillRatings.add(SkillRating.of(skill, charScore, skillScore, careerSkill));
     }
 
     skillArrayAdapter.notifyDataSetChanged();

@@ -14,39 +14,25 @@ public class SkillRating {
   private final int skillScore;
   private final int abilityDiceCount;
   private final int proficiencyDiceCount;
+  private final boolean careerSkill;
 
-  public SkillRating(@NotNull Skill skill, int charScore, int skillScore) {
+  private SkillRating(@NotNull Skill skill, int charScore, int skillScore, boolean careerSkill) {
     this.skill = skill;
     this.charScore = charScore;
     this.skillScore = skillScore;
+    this.careerSkill = careerSkill;
     abilityDiceCount = Math.abs(charScore - skillScore);
     proficiencyDiceCount = Math.min(charScore, skillScore);
+  }
+
+  public static SkillRating of(@NotNull Skill skill, int charScore, int skillScore, boolean careerSkill) {
+    return new SkillRating(skill, charScore, skillScore, careerSkill);
   }
 
   @NotNull
   public String getRating() {
     StringBuilder sb = new StringBuilder();
     sb.append(" (" + skillScore + ")");
-    return sb.toString();
-  }
-
-  @NotNull
-  public String getAbilityDice() {
-    StringBuilder sb = new StringBuilder();
-    for (int i = 0; i < abilityDiceCount; i++) {
-      sb.append('G');
-    }
-
-    return sb.toString();
-  }
-
-  @NotNull
-  public String getProficiencyDice() {
-    StringBuilder sb = new StringBuilder();
-    for (int i = 0; i < proficiencyDiceCount; i++) {
-      sb.append('Y');
-    }
-
     return sb.toString();
   }
 }

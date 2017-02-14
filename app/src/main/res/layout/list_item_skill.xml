@@ -21,12 +21,22 @@
     android:id="@+id/skill_char"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
     android:text="(Char)"
     android:textAppearance="?android:attr/textAppearanceSmall"
     app:layout_constraintBottom_toBottomOf="@+id/skill_name"
-    app:layout_constraintLeft_toRightOf="@+id/skill_name"
-    app:layout_constraintTop_toTopOf="@+id/skill_name"/>
+    app:layout_constraintTop_toTopOf="@+id/skill_name"
+    android:layout_marginStart="8dp"
+    app:layout_constraintLeft_toRightOf="@+id/skill_name"/>
+
+  <TextView
+    android:text="C"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/career_skill"
+    android:textSize="10sp"
+    app:layout_constraintTop_toTopOf="@+id/skill_name"
+    app:layout_constraintLeft_toRightOf="@+id/skill_char"
+    android:layout_marginStart="8dp"/>
 
   <TextView
     android:id="@+id/skill_rating"
