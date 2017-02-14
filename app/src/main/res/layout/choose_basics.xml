@@ -126,6 +126,14 @@
         android:inputType="number"
         android:maxLines="1"/>
 
+      <EditText
+        android:id="@+id/xp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/xp"
+        android:inputType="number"
+        android:maxLines="1"/>
+
       <Spinner
         android:id="@+id/careers"
         android:layout_width="match_parent"

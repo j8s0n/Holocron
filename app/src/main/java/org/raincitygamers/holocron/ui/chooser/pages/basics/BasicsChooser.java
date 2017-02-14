@@ -72,6 +72,7 @@ public class BasicsChooser extends ChooserBase {
       setEditText(R.id.soak, ch.getSoak());
       setEditText(R.id.melee_defense, ch.getMeleeDefense());
       setEditText(R.id.ranged_defense, ch.getRangedDefense());
+      setEditText(R.id.xp, ch.getXp());
     }
 
     buildCareerSpinner(ch);
@@ -110,6 +111,7 @@ public class BasicsChooser extends ChooserBase {
     ch.setCareer(selectedCareer);
     ch.getSpecializations().clear();
     ch.getSpecializations().add(selectedSpecialization);
+    ch.setXp(readIntValue(R.id.xp));
   }
 
   private void buildCareerSpinner(@Nullable final Character character) {

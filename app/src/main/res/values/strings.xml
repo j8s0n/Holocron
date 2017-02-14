@@ -35,4 +35,5 @@
   <string name="soak">Soak</string>
   <string name="melee_defense">Melee Defense</string>
   <string name="ranged_defense">Ranged Defense</string>
+  <string name="xp">Experience Points</string>
 </resources>
