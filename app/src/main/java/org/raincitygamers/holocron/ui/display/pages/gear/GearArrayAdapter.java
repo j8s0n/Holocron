@@ -68,7 +68,14 @@ public class GearArrayAdapter extends ArrayAdapter<RowData> {
       viewHolder = (ViewHolder) convertView.getTag();
     }
 
-    viewHolder.name.setText(item.getName());
+    String name = item.getName();
+    if (name.isEmpty()) {
+      name = "<Unnamed Item>";
+    }
+
+    name = String.format("%-8s", name);
+
+    viewHolder.name.setText(name);
     if (item.getQuantity() > 1) {
       viewHolder.quantity.setText(String.format("(%d)", item.getQuantity()));
     }
