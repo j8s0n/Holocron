@@ -11,18 +11,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.Specialization;
 import org.raincitygamers.holocron.rules.managers.TalentManager;
+import org.raincitygamers.holocron.rules.traits.Ability;
 import org.raincitygamers.holocron.rules.traits.Talent;
 import org.raincitygamers.holocron.ui.chooser.ChooserBase;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import lombok.RequiredArgsConstructor;
 
 public class TalentsChooser extends ChooserBase {
   private static final String LOG_TAG = TalentsChooser.class.getSimpleName();
@@ -133,10 +133,10 @@ public class TalentsChooser extends ChooserBase {
 
     for (int i = 0; i < talentTree.size(); i++) {
       if (talentsKnown.contains(i)) {
-        knownTalents.add(new SpinnerEntry(talentTree.get(i).getName(), i));
+        knownTalents.add(new SpinnerEntry(talentTree.get(i), i));
       }
       else {
-        availableTalents.add(new SpinnerEntry(talentTree.get(i).getName(), i));
+        availableTalents.add(new SpinnerEntry(talentTree.get(i), i));
       }
     }
 
@@ -171,10 +171,18 @@ public class TalentsChooser extends ChooserBase {
     return LOG_TAG;
   }
 
-  @RequiredArgsConstructor(suppressConstructorProperties = true)
   private static class SpinnerEntry {
     final String display;
     final int index;
+    final int row;
+    final int column;
+
+    public SpinnerEntry(@NotNull Ability ability, int index) {
+      this.index = index;
+      this.row = ability.getRow();
+      this.column = ability.getColumn();
+      this.display = String.format("%s (Row %d, Col %d)", ability.getName(), row, column);
+    }
 
     @Override
     public String toString() {

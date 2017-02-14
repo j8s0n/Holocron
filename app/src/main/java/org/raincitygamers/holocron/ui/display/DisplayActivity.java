@@ -63,11 +63,11 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
     contentPages.add(new KnowledgeSkillsPage());
     contentPages.add(new GearPage());
     contentPages.add(new TalentsPage());
-    contentPages.add(new DescriptionPage());
     if (activeCharacter.getForceRating() > 0) {
       contentPages.add(new ForcePowersPage());
     }
 
+    contentPages.add(new DescriptionPage());
     otherDrawerCommands.add(new DrawerCommand("Edit", new CommandAction() {
       @Override public void act() {
         drawerLayout.closeDrawer(drawerList);
