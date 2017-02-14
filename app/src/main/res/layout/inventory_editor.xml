@@ -72,7 +72,7 @@
     android:layout_marginStart="16dp"
     android:ems="10"
     android:hint="Encumbrance"
-    android:inputType="number"
+    android:inputType="number|numberSigned"
     android:lines="1"
     />
 

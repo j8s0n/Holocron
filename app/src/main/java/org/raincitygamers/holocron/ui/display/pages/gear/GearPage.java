@@ -49,6 +49,7 @@ public class GearPage extends ContentPage {
     List<RowData> rowData = new ArrayList<>();
     rowData.add(KeyValueRowData.of("Encumbrance", String.format("%d / %d", pc.getEncumbrance(),
                                                                 pc.getEncumbranceThreshold())));
+    rowData.add(KeyValueRowData.of("Credits", String.format("%d", pc.getCredits())));
     for (InventoryItem item : pc.getInventory()) {
       rowData.add(InventoryItemRowData.of(item));
     }

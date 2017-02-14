@@ -16,6 +16,7 @@ import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.InventoryItem;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
+import org.raincitygamers.holocron.ui.CreditEditorActivity;
 import org.raincitygamers.holocron.ui.InventoryEditorActivity;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.ButtonRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData;
@@ -164,7 +165,21 @@ public class GearArrayAdapter extends ArrayAdapter<RowData> {
 
     viewHolder.key.setText(pair.getKey());
     viewHolder.value.setText(pair.getValue());
-    encumbrance = viewHolder.value;
+
+    if (pair.getKey().equals("Credits")) {
+      convertView.setOnLongClickListener(new View.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+          Intent intent = new Intent(getContext(), CreditEditorActivity.class);
+          getContext().startActivity(intent);
+          return true;
+        }
+      });
+    }
+    else if (pair.getKey().equals("Encumbrance")) {
+      encumbrance = viewHolder.value;
+    }
+
     return convertView;
   }
 

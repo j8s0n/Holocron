@@ -53,6 +53,7 @@ public class Character {
   private static final String ID_KEY = "character_id_key";
   private static final String LAST_OPEN_PAGE_KEY = "last_open_page";
   private static final String XP_KEY = "xp";
+  private static final String CREDITS_KEY = "credits";
 
   private static final String WOUNDS_KEY = "wounds";
   private static final String WOUND_THRESHOLD_KEY = "wound_threshold";
@@ -102,6 +103,7 @@ public class Character {
 
   @Getter @Setter private int lastOpenPage = 0;
   @Getter @Setter private int xp;
+  @Getter @Setter private int credits;
   private long accessTime;
 
   private final Map<Characteristic, Integer> characteristicScores = new HashMap<>();
@@ -164,6 +166,7 @@ public class Character {
     this.characterId = builder.characterId;
     this.lastOpenPage = builder.lastOpenPage;
     this.xp = builder.xp;
+    this.credits = builder.credits;
     this.talents.putAll(builder.talents);
   }
 
@@ -299,6 +302,7 @@ public class Character {
     o.put(ID_KEY, characterId);
     o.put(LAST_OPEN_PAGE_KEY, lastOpenPage);
     o.put(XP_KEY, xp);
+    o.put(CREDITS_KEY, credits);
     o.put(TIMESTAMP_KEY, accessTime);
     return o;
   }
@@ -394,6 +398,7 @@ public class Character {
                               .accessTime(getJsonLong(jsonObject, TIMESTAMP_KEY))
                               .lastOpenPage(getJsonInt(jsonObject, LAST_OPEN_PAGE_KEY))
                               .xp(getJsonInt(jsonObject, XP_KEY))
+                              .credits(getJsonInt(jsonObject, CREDITS_KEY))
                               .build();
     for (Map.Entry<Skill, Integer> skill : skills.entrySet()) {
       character.setSkillScore(skill.getKey(), skill.getValue());
@@ -596,6 +601,7 @@ public class Character {
 
     private long accessTime;
     private int xp = 0;
+    private int credits = 0;
     private int lastOpenPage = 0;
     private List<InventoryItem> inventory = new ArrayList<>();
 
@@ -712,6 +718,12 @@ public class Character {
     @NotNull
     public Builder characteristic(@NotNull Characteristic characteristic, int value) {
       characteristics.put(characteristic, value);
+      return this;
+    }
+
+    @NotNull
+    public Builder credits(int credits) {
+      this.credits = credits;
       return this;
     }
 
