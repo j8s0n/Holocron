@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 
 public class ActivityBase extends AppCompatActivity {
   public static final String EDIT_ACTIVE_CHARACTER = "edit_active_character";
+  public static final String CURRENT_OPEN_PAGE = "current_open_page";
 
   protected void displayPermissionAlert(String type) {
     AlertDialog alertDialog = new AlertDialog.Builder(this).create();

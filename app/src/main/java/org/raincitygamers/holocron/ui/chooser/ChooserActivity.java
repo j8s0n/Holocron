@@ -74,9 +74,14 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
       @Override public void act() {
         CharacterManager.setActiveCharacter(activeCharacter);
         CharacterManager.saveCharacter(activeCharacter);
-        setChooserDone(true);
-        Intent intent = new Intent(ChooserActivity.this, DisplayActivity.class);
-        startActivity(intent);
+        if (editActiveCharacter) {
+          finish();
+        }
+        else {
+          setChooserDone(true);
+          Intent intent = new Intent(ChooserActivity.this, DisplayActivity.class);
+          startActivity(intent);
+        }
       }
     }));
   }
@@ -90,17 +95,25 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     editActiveCharacter = getIntent().getBooleanExtra(EDIT_ACTIVE_CHARACTER, false);
+    int newPage = 0;
     if (editActiveCharacter) {
       activeCharacter = CharacterManager.getActiveCharacter();
+      String currentOpenPage = getIntent().getStringExtra(CURRENT_OPEN_PAGE);
+      // Set the current page to the one matching the page open in the displayer, or the basics if no matcher.
+      for (int i = 0; i < contentPages.size(); i++) {
+        if (contentPages.get(i).getTitle().contains(currentOpenPage)) {
+          newPage = i;
+          break;
+        }
+      }
     }
     else {
       activeCharacter = Character.of();
+      finishReceiver = new FinishReceiver();
+      registerReceiver(finishReceiver, new IntentFilter(ACTION_FINISH));
     }
 
     setContentView(R.layout.activity_character);
-
-    finishReceiver = new FinishReceiver();
-    registerReceiver(finishReceiver, new IntentFilter(ACTION_FINISH));
 
     drawerList = (ListView) findViewById(R.id.navList);
     drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -110,17 +123,26 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setHomeButtonEnabled(true);
-    selectPage(activeCharacter.getLastOpenPage());
+    selectPage(newPage);
     setTitle();
   }
 
   @Override
   protected void onStop() {
-    if (chooserDone) {
+    if (chooserDone && finishReceiver != null) {
       unregisterReceiver(finishReceiver);
     }
 
     super.onStop();
+  }
+
+  @Override
+  public void onBackPressed() {
+    if (finishReceiver != null) {
+      unregisterReceiver(finishReceiver);
+    }
+
+    super.onBackPressed();
   }
 
   private void addDrawerItems() {

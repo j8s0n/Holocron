@@ -50,6 +50,7 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
   private Timer timer;
 
   private final List<ContentPage> contentPages = new ArrayList<>();
+  private final List<DrawerCommand> otherDrawerCommands = new ArrayList<>();
 
   public DisplayActivity() {
     activeCharacter = CharacterManager.getActiveCharacter();
@@ -66,6 +67,18 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
     if (activeCharacter.getForceRating() > 0) {
       contentPages.add(new ForcePowersPage());
     }
+
+    otherDrawerCommands.add(new DrawerCommand("Edit", new CommandAction() {
+      @Override public void act() {
+        drawerLayout.closeDrawer(drawerList);
+        CharacterManager.setActiveCharacter(activeCharacter);
+        CharacterManager.saveCharacter(activeCharacter);
+        Intent intent = new Intent(DisplayActivity.this, ChooserActivity.class);
+        intent.putExtra(EDIT_ACTIVE_CHARACTER, true);
+        intent.putExtra(CURRENT_OPEN_PAGE, contentPages.get(currentPageNumber).getTitle());
+        startActivity(intent);
+      }
+    }));
   }
 
   @Override
@@ -106,14 +119,23 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
       drawerEntries.add(page.getTitle());
     }
 
+    for (DrawerCommand command : otherDrawerCommands) {
+      drawerEntries.add(command.getLabel());
+    }
+
     adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, drawerEntries);
     drawerList.setAdapter(adapter);
 
     drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
       @Override
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        selectPage(position);
-        activeCharacter.setLastOpenPage(position);
+        if (position < contentPages.size()) {
+          selectPage(position);
+          activeCharacter.setLastOpenPage(position);
+        }
+        else {
+          otherDrawerCommands.get(position - contentPages.size()).getAction().act();
+        }
       }
     });
   }
