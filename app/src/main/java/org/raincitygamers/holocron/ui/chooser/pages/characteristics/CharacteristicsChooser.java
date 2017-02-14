@@ -36,7 +36,7 @@ public class CharacteristicsChooser extends ScoreGroupChooser {
     List<ScoreRating> scores = new ArrayList<>();
     Character pc = getActiveCharacter();
     for (Characteristic characteristic : Characteristic.values()) {
-      scores.add(ScoreRating.of(characteristic.toString(), pc.getCharacteristicScore(characteristic), 1, 6));
+      scores.add(ScoreRating.of(characteristic.toString(), pc.getCharacteristicScore(characteristic), 1, 6, false));
     }
 
     return scores;

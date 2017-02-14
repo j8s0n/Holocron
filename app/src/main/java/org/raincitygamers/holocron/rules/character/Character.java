@@ -181,6 +181,20 @@ public class Character {
     }
   }
 
+  public boolean isCareerSkill(@NotNull Skill skill) {
+    if (career.getCareerSkills().contains(skill.getName())) {
+      return true;
+    }
+
+    for (Specialization specialization : specializations) {
+      if (specialization.getCareerSkills().contains(skill.getName())) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   public void setSkillScore(@NotNull Skill skill, int value) {
     skills.put(skill, value);
   }

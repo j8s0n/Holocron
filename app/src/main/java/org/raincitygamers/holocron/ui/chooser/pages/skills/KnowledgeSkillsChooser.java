@@ -38,7 +38,8 @@ public class KnowledgeSkillsChooser extends ScoreGroupChooser {
     List<ScoreRating> scores = new ArrayList<>();
     Character pc = getActiveCharacter();
     for (Skill skill : SkillManager.getKnowledgeSkills()) {
-      scores.add(ScoreRating.of(skill.getName(), pc.getSkillScore(skill), 0, 5));
+      boolean isCareerSkill = pc.isCareerSkill(skill);
+      scores.add(ScoreRating.of(skill.getName(), pc.getSkillScore(skill), 0, 5, isCareerSkill));
     }
 
     return scores;

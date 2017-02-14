@@ -37,6 +37,7 @@ public class ScoreGroupArrayAdapter extends ArrayAdapter<ScoreRating> {
       viewHolder.downButton = (TextView) convertView.findViewById(R.id.score_rating_down_button);
       viewHolder.scoreEntry = (TextView) convertView.findViewById(R.id.score_rating_entry);
       viewHolder.upButton = (TextView) convertView.findViewById(R.id.score_rating_up_button);
+      viewHolder.isCareerSkill = (TextView) convertView.findViewById(R.id.career_skill);
       convertView.setTag(viewHolder);
     }
     else {
@@ -45,6 +46,7 @@ public class ScoreGroupArrayAdapter extends ArrayAdapter<ScoreRating> {
 
     viewHolder.scoreLabel.setText(scoreRating.getScoreLabel());
     viewHolder.scoreEntry.setText(String.format("%d", scoreRating.getScoreValue()));
+    viewHolder.isCareerSkill.setVisibility(scoreRating.isCareerSkill() ? View.VISIBLE : View.INVISIBLE);
     viewHolder.downButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -75,5 +77,6 @@ public class ScoreGroupArrayAdapter extends ArrayAdapter<ScoreRating> {
     TextView downButton;
     TextView scoreEntry;
     TextView upButton;
+    TextView isCareerSkill;
   }
 }
