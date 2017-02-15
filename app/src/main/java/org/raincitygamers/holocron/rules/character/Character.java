@@ -63,13 +63,14 @@ public class Character {
   private static final String MELEE_DEFENSE_KEY = "melee_defense";
   private static final String RANGED_DEFENSE_KEY = "ranged_defense";
   private static final String SOAK_KEY = "soak";
-  private static final String ENCUMBRANCE_THRESHOLD_KEY = "encumbrance_threshold";
   private static final String FORCE_RATING_KEY = "force_rating";
 
   private static final String INVENTORY_KEY = "inventory";
   private static final String TALENTS_KEY = "talents";
   private static final String FORCE_POWERS_KEY = "force_powers";
   private static final String DESCRIPTION_KEY = "description";
+  private static final String ACTION_CONDITIONS_KEY = "action_conditions";
+  private static final String SET_KEY = "set";
 
   @Getter private static final MostRecentAccessComparator mostRecentAccessComparator = new MostRecentAccessComparator();
   @Getter private final List<InventoryItem> inventory = new ArrayList<>();
@@ -83,6 +84,7 @@ public class Character {
   @Getter @Setter private final UUID characterId;
   @Getter private final List<Specialization> specializations = new ArrayList<>();
   @Getter private List<Obligation> obligations = new ArrayList<>();
+  @Getter private Map<String, Boolean> actionConditions = new HashMap<>();
   @Getter @Setter private int age;
   @Getter @Setter private String height;
   @Getter @Setter private String weight;
@@ -116,7 +118,7 @@ public class Character {
   private Character() {
     name = "";
     species = "";
-    career = CareerManager.getCareer("Bounty Hunter");
+    career = CareerManager.getCareers().get(0);
     this.specializations.add(CareerManager.getSpecialization(career.getSpecializations().get(0).toString()));
     this.age = 0;
     this.height = "";
@@ -168,6 +170,7 @@ public class Character {
     this.xp = builder.xp;
     this.credits = builder.credits;
     this.talents.putAll(builder.talents);
+    this.actionConditions.putAll(builder.actionConditions);
   }
 
   public int getCharacteristicScore(@NotNull Characteristic characteristic) {
@@ -287,6 +290,7 @@ public class Character {
     o.put(EYE_COLOR_KEY, eyeColor);
     o.put(INVENTORY_KEY, InventoryItem.toJsonArray(inventory));
     o.put(TALENTS_KEY, Talent.toJsonArray(talents));
+    o.put(ACTION_CONDITIONS_KEY, actionConditionsAsJsonArray());
     o.put(FORCE_POWERS_KEY, ForcePowerUpgrade.toJsonArray(forcePowers));
     o.put(DESCRIPTION_KEY, description);
     o.put(WOUNDS_KEY, wounds);
@@ -305,6 +309,19 @@ public class Character {
     o.put(CREDITS_KEY, credits);
     o.put(TIMESTAMP_KEY, accessTime);
     return o;
+  }
+
+  @NotNull
+  private JSONArray actionConditionsAsJsonArray() throws JSONException {
+    JSONArray a = new JSONArray();
+    for (Map.Entry<String, Boolean> entry : actionConditions.entrySet()) {
+      JSONObject o = new JSONObject();
+      o.put(NAME_KEY, entry.getKey());
+      o.put(SET_KEY, entry.getValue());
+      a.put(o);
+    }
+
+    return a;
   }
 
   @NotNull
@@ -399,6 +416,7 @@ public class Character {
                               .lastOpenPage(getJsonInt(jsonObject, LAST_OPEN_PAGE_KEY))
                               .xp(getJsonInt(jsonObject, XP_KEY))
                               .credits(getJsonInt(jsonObject, CREDITS_KEY))
+                              .actionConditions(parseActionConditions(getJsonArray(jsonObject, ACTION_CONDITIONS_KEY)))
                               .build();
     for (Map.Entry<Skill, Integer> skill : skills.entrySet()) {
       character.setSkillScore(skill.getKey(), skill.getValue());
@@ -514,6 +532,22 @@ public class Character {
     return specializations;
   }
 
+  @NotNull
+  private static Map<String, Boolean> parseActionConditions(@NotNull JSONArray jsonArray) {
+    Map<String, Boolean> actionConditions = new HashMap<>();
+    for (int i = 0; i < jsonArray.length(); i++) {
+      try {
+        JSONObject o = jsonArray.getJSONObject(i);
+        actionConditions.put(o.getString(NAME_KEY), o.getBoolean(SET_KEY));
+      }
+      catch (JSONException e) {
+        Log.e(LOG_TAG, String.format("Error reading action condition at index %d.", i), e);
+      }
+    }
+
+    return actionConditions;
+  }
+
   public Summary makeSummary() {
     return new Summary(characterId, name, species, career.getName(), accessTime);
   }
@@ -604,6 +638,7 @@ public class Character {
     private int credits = 0;
     private int lastOpenPage = 0;
     private List<InventoryItem> inventory = new ArrayList<>();
+    private Map<String, Boolean> actionConditions = new HashMap<>();
 
     private final Career career;
     private final Specialization specialization;
@@ -724,6 +759,12 @@ public class Character {
     @NotNull
     public Builder credits(int credits) {
       this.credits = credits;
+      return this;
+    }
+
+    @NotNull
+    public Builder actionConditions(Map<String, Boolean> actionConditions) {
+      this.actionConditions.putAll(actionConditions);
       return this;
     }
 
