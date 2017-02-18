@@ -46,10 +46,7 @@ public final class CharacterManager {
         JSONObject characterJson = new JSONObject(entry.getValue());
         characters.put(entry.getKey(), Summary.valueOf(characterJson, entry.getKey()));
       }
-      catch (JSONException e) {
-        Log.e(LOG_TAG, "Error reading character file: " + entry.getKey(), e);
-      }
-      catch (NullPointerException e) {
+      catch (JSONException | NullPointerException e) {
         Log.e(LOG_TAG, "Error reading character file: " + entry.getKey(), e);
       }
     }

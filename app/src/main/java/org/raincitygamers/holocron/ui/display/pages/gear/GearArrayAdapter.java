@@ -2,6 +2,7 @@ package org.raincitygamers.holocron.ui.display.pages.gear;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,29 +25,35 @@ import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData.KvPa
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 
 import java.util.List;
+import java.util.Locale;
 
-public class GearArrayAdapter extends ArrayAdapter<RowData> {
+class GearArrayAdapter extends ArrayAdapter<RowData> {
   private static final float IGNORED_ENCUMBRANCE = 0.2f;
   private TextView encumbrance;
 
-  public GearArrayAdapter(Context context, List<RowData> objects) {
+  GearArrayAdapter(Context context, List<RowData> objects) {
     super(context, -1, objects);
   }
 
+  @NonNull
   @Override
-  public View getView(int position, View convertView, ViewGroup parent) {
+  public View getView(int position, View convertView, @NonNull ViewGroup parent) {
     // Handles Key-Value and Inventory Row Data
     RowData rowData = getItem(position);
-    switch (rowData.getType()) {
-    case KEY_VALUE:
-      return displayKeyValuePair(convertView, parent, ((KeyValueRowData) rowData).getPair());
-    case INVENTORY:
-      return displayInventory(convertView, parent, ((InventoryItemRowData) rowData).getItem());
-    case BUTTON:
-      return displayButton(convertView, parent, ((ButtonRowData) rowData).getButtonText());
-    default:
-      return null;
+    if (rowData != null) {
+      switch (rowData.getType()) {
+      case KEY_VALUE:
+        return displayKeyValuePair(convertView, parent, ((KeyValueRowData) rowData).getPair());
+      case INVENTORY:
+        return displayInventory(convertView, parent, ((InventoryItemRowData) rowData).getItem());
+      case BUTTON:
+        return displayButton(convertView, parent, ((ButtonRowData) rowData).getButtonText());
+      default:
+        throw new IllegalStateException(String.format(Locale.US, "Row type %s is not valid here.", rowData.getType()));
+      }
     }
+
+    throw new IllegalStateException(String.format(Locale.US, "No item at position %d.", position));
   }
 
   @NotNull
@@ -74,11 +81,11 @@ public class GearArrayAdapter extends ArrayAdapter<RowData> {
       name = "<Unnamed Item>";
     }
 
-    name = String.format("%-8s", name);
+    name = String.format(Locale.US, "%-8s", name);
 
     viewHolder.name.setText(name);
     if (item.getQuantity() > 1) {
-      viewHolder.quantity.setText(String.format("(%d)", item.getQuantity()));
+      viewHolder.quantity.setText(String.format(Locale.US, "(%d)", item.getQuantity()));
     }
     else {
       viewHolder.quantity.setText("   ");
@@ -86,7 +93,7 @@ public class GearArrayAdapter extends ArrayAdapter<RowData> {
 
     viewHolder.location.setText(item.getLocation());
     viewHolder.description.setText(item.getDescription());
-    viewHolder.encumbrance.setText(String.format("%d", item.getEncumbrance()));
+    viewHolder.encumbrance.setText(String.format(Locale.US, "%d", item.getEncumbrance()));
     viewHolder.countEncumbrance.setChecked(item.isCountEncumbrance());
     if (viewHolder.countEncumbrance.isChecked()) {
       viewHolder.encumbrance.setAlpha(1.0f);
@@ -114,7 +121,7 @@ public class GearArrayAdapter extends ArrayAdapter<RowData> {
       @Override
       public boolean onLongClick(View v) {
         item.setQuantity(Math.max(0, item.getQuantity() - 1));
-        viewHolder.quantity.setText(String.format("(%d)", item.getQuantity()));
+        viewHolder.quantity.setText(String.format(Locale.US, "(%d)", item.getQuantity()));
         updateEncumbrance();
         return true;
       }
@@ -124,7 +131,7 @@ public class GearArrayAdapter extends ArrayAdapter<RowData> {
       @Override
       public void onClick(View v) {
         item.setQuantity(item.getQuantity() + 1);
-        viewHolder.quantity.setText(String.format("(%d)", item.getQuantity()));
+        viewHolder.quantity.setText(String.format(Locale.US, "(%d)", item.getQuantity()));
         updateEncumbrance();
       }
     });
@@ -133,18 +140,22 @@ public class GearArrayAdapter extends ArrayAdapter<RowData> {
       @Override
       public boolean onLongClick(View v) {
         Intent intent = new Intent(getContext(), InventoryEditorActivity.class);
-        int index = CharacterManager.getActiveCharacter().getInventory().indexOf(item);
-        intent.putExtra(InventoryEditorActivity.INVENTORY_ITEM_TO_EDIT, index);
-        getContext().startActivity(intent);
+        Character pc = CharacterManager.getActiveCharacter();
+        if (pc != null){
+          int index = pc.getInventory().indexOf(item);
+          intent.putExtra(InventoryEditorActivity.INVENTORY_ITEM_TO_EDIT, index);
+          getContext().startActivity(intent);
+        }
+
         return true;
       }
     });
   }
 
   private void updateEncumbrance() {
-    if (encumbrance != null) {
-      Character pc = CharacterManager.getActiveCharacter();
-      encumbrance.setText(String.format("%d / %d", pc.getEncumbrance(), pc.getEncumbranceThreshold()));
+    Character pc = CharacterManager.getActiveCharacter();
+    if (encumbrance != null && pc != null) {
+      encumbrance.setText(String.format(Locale.US, "%d / %d", pc.getEncumbrance(), pc.getEncumbranceThreshold()));
     }
   }
 

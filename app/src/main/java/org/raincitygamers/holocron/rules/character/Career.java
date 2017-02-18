@@ -4,18 +4,16 @@ import com.google.common.collect.ImmutableList;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
-/**
- * Created by jason on 1/10/16.
- */
 @Getter
 @ToString
 @EqualsAndHashCode
 @RequiredArgsConstructor(suppressConstructorProperties = true)
 public class Career {
-  private final String name;
-  private final ImmutableList<String> careerSkills;
-  private final ImmutableList<String> specializations;
+  @NonNull private final String name;
+  @NonNull private final ImmutableList<String> careerSkills;
+  @NonNull private final ImmutableList<String> specializations;
 }

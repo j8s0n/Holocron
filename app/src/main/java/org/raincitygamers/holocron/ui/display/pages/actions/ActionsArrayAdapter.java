@@ -1,6 +1,7 @@
 package org.raincitygamers.holocron.ui.display.pages.actions;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,31 +12,36 @@ import android.widget.TextView;
 
 import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
+import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.SectionRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.ToggleRowData;
 
 import java.util.List;
+import java.util.Locale;
 
-public class ActionsArrayAdapter extends ArrayAdapter<RowData> {
-  public ActionsArrayAdapter(Context context, List<RowData> objects) {
+class ActionsArrayAdapter extends ArrayAdapter<RowData> {
+  ActionsArrayAdapter(Context context, List<RowData> objects) {
     super(context, -1, objects);
   }
 
+  @NonNull
   @Override
-  public View getView(int position, View convertView, ViewGroup parent) {
+  public View getView(int position, View convertView, @NonNull ViewGroup parent) {
     RowData rowData = getItem(position);
-
-    switch (rowData.getType()) {
-    case SECTION_ID:
-      return displaySection(convertView, parent, ((SectionRowData)rowData).getSectionId());
-    case TOGGLE:
-      return displayToggle(convertView, parent, ((ToggleRowData)rowData));
-    default:
-      // TODO
-      return null;
+    if (rowData != null) {
+      switch (rowData.getType()) {
+      case SECTION_ID:
+        return displaySection(convertView, parent, ((SectionRowData) rowData).getSectionId());
+      case TOGGLE:
+        return displayToggle(convertView, parent, ((ToggleRowData) rowData));
+      default:
+        throw new IllegalStateException(String.format(Locale.US, "Row type %s is not valid here.", rowData.getType()));
+      }
     }
+
+    throw new IllegalStateException(String.format(Locale.US, "No item at position %d.", position));
   }
 
   @NotNull
@@ -78,7 +84,10 @@ public class ActionsArrayAdapter extends ArrayAdapter<RowData> {
     viewHolder.toggleSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
       @Override
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        CharacterManager.getActiveCharacter().setActionConditionState(rowData.getName(), viewHolder.toggleSwitch.isChecked());
+        Character pc = CharacterManager.getActiveCharacter();
+        if (pc != null) {
+          pc.setActionConditionState(rowData.getName(), viewHolder.toggleSwitch.isChecked());
+        }
       }
     });
     return convertView;

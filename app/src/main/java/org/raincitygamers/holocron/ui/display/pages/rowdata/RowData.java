@@ -6,7 +6,7 @@ public interface RowData {
   @NotNull
   Type getType();
 
-  public enum Type {
+  enum Type {
     ABILITY,
     BUTTON,
     INVENTORY,

@@ -23,6 +23,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
@@ -75,14 +76,14 @@ public class Character {
 
   @Getter private static final MostRecentAccessComparator mostRecentAccessComparator = new MostRecentAccessComparator();
   @Getter private final List<InventoryItem> inventory = new ArrayList<>();
-  @Getter private final Map<Specialization, List<Integer>> talents = new HashMap();
+  @Getter private final Map<Specialization, List<Integer>> talents = new HashMap<>();
   @Getter private final Map<String, List<Integer>> forcePowers = new HashMap<>();
 
   private String logger = Character.class.getSimpleName();
   @Getter @Setter private String name;
   @Getter @Setter private String species;
   @Getter @Setter private Career career;
-  @Getter @Setter private final UUID characterId;
+  @Getter private final UUID characterId;
   @Getter private final List<Specialization> specializations = new ArrayList<>();
   @Getter private List<Obligation> obligations = new ArrayList<>();
   @Getter private Map<String, Boolean> actionConditions = new HashMap<>();
@@ -120,7 +121,7 @@ public class Character {
     name = "";
     species = "";
     career = CareerManager.getCareers().get(0);
-    this.specializations.add(CareerManager.getSpecialization(career.getSpecializations().get(0).toString()));
+    this.specializations.add(CareerManager.getSpecialization(career.getSpecializations().get(0)));
     this.age = 0;
     this.height = "";
     this.weight = "";
@@ -140,10 +141,6 @@ public class Character {
   // List the source of the bonus, for easy removal later, if that changes.
   // When calculating the thing, walk the list of its bonuses.
   private Character(@NotNull Builder builder) {
-    for (Map.Entry<Characteristic, Integer> entry : builder.characteristics.entrySet()) {
-      characteristicScores.put(entry.getKey(), entry.getValue());
-    }
-
     this.name = builder.name;
     this.species = builder.species;
     this.career = builder.career;
@@ -209,7 +206,7 @@ public class Character {
     skills.put(skill, value);
   }
 
-  public void addSpecialization(@NotNull Specialization specialization) {
+  private void addSpecialization(@NotNull Specialization specialization) {
     specializations.add(specialization);
   }
 
@@ -223,7 +220,7 @@ public class Character {
   }
 
   @NotNull
-  public List<RowData> getIdentityBasics() {
+  private List<RowData> getIdentityBasics() {
     List<RowData> rowData = new ArrayList<>();
     rowData.add(KeyValueRowData.of("Name", name));
     rowData.add(KeyValueRowData.of("Species", species));
@@ -238,30 +235,30 @@ public class Character {
       specializationLabel = "";
     }
 
-    rowData.add(KeyValueRowData.of("XP", String.format("%d", xp)));
+    rowData.add(KeyValueRowData.of("XP", String.format(Locale.US,  "%d", xp)));
 
     return rowData;
   }
 
   @NotNull
-  public List<RowData> getCharacteristics() {
+  private List<RowData> getCharacteristics() {
     List<RowData> rowData = new ArrayList<>();
     rowData.add(SectionRowData.of("Characteristics"));
     for (Characteristic ch : Characteristic.values()) {
-      rowData.add(KeyValueRowData.of(ch.toString(), String.format("%d", getCharacteristicScore(ch))));
+      rowData.add(KeyValueRowData.of(ch.toString(), String.format(Locale.US, "%d", getCharacteristicScore(ch))));
     }
 
     return rowData;
   }
 
   @NotNull
-  public List<RowData> getDefense() {
+  private List<RowData> getDefense() {
     List<RowData> rowData = new ArrayList<>();
     rowData.add(SectionRowData.of("Defense"));
-    rowData.add(KeyValueRowData.of("Wounds", String.format("%d / %d", wounds, woundThreshold)));
-    rowData.add(KeyValueRowData.of("Strain", String.format("%d / %d", strain, strainThreshold)));
-    rowData.add(KeyValueRowData.of("Soak", String.format("%d", soak)));
-    rowData.add(KeyValueRowData.of("Defense (M/R)", String.format("%d / %d", meleeDefense, rangedDefense)));
+    rowData.add(KeyValueRowData.of("Wounds", String.format(Locale.US, "%d / %d", wounds, woundThreshold)));
+    rowData.add(KeyValueRowData.of("Strain", String.format(Locale.US, "%d / %d", strain, strainThreshold)));
+    rowData.add(KeyValueRowData.of("Soak", String.format(Locale.US, "%d", soak)));
+    rowData.add(KeyValueRowData.of("Defense (M/R)", String.format(Locale.US, "%d / %d", meleeDefense, rangedDefense)));
 
     return rowData;
   }
@@ -285,10 +282,6 @@ public class Character {
 
   public void updateTimestamp() {
     accessTime = System.currentTimeMillis();
-  }
-
-  public String getTimestampString() {
-    return new Date(accessTime).toString();
   }
 
   // Methods for writing to the JSON file.
@@ -374,7 +367,6 @@ public class Character {
     return a;
   }
 
-  @NotNull
   private void putSkillsInJsonArray(@NotNull JSONArray a, @NotNull Map<Skill, Integer> skillMap) throws JSONException {
     for (Map.Entry<Skill, Integer> entry : skillMap.entrySet()) {
       JSONObject o = new JSONObject();
@@ -395,7 +387,7 @@ public class Character {
   }
 
   @NotNull
-  public static Character valueOf(@NotNull Builder builder) {
+  private static Character valueOf(@NotNull Builder builder) {
     return new Character(builder);
   }
 
@@ -509,8 +501,7 @@ public class Character {
         characteristics.put(characteristic, characteristicJson.getInt(SCORE_KEY));
       }
       catch (JSONException e) {
-        Log.e(LOG_TAG, String.format("Error reading characteristic object at index %d.", i), e);
-        continue;
+        Log.e(LOG_TAG, String.format(Locale.US, "Error reading characteristic object at index %d.", i), e);
       }
     }
 
@@ -527,8 +518,7 @@ public class Character {
         skills.put(skill, skillJson.getInt(SCORE_KEY));
       }
       catch (JSONException e) {
-        Log.e(LOG_TAG, String.format("Error reading skill object at index %d.", i), e);
-        continue;
+        Log.e(LOG_TAG, String.format(Locale.US, "Error reading skill object at index %d.", i), e);
       }
     }
 
@@ -543,7 +533,7 @@ public class Character {
         specializations.add(CareerManager.getSpecialization(jsonArray.getString(i)));
       }
       catch (JSONException e) {
-        Log.e(LOG_TAG, String.format("Error reading specialization at index %d.", i), e);
+        Log.e(LOG_TAG, String.format(Locale.US, "Error reading specialization at index %d.", i), e);
       }
     }
 
@@ -559,7 +549,7 @@ public class Character {
         actionConditions.put(o.getString(NAME_KEY), o.getBoolean(SET_KEY));
       }
       catch (JSONException e) {
-        Log.e(LOG_TAG, String.format("Error reading action condition at index %d.", i), e);
+        Log.e(LOG_TAG, String.format(Locale.US, "Error reading action condition at index %d.", i), e);
       }
     }
 
@@ -570,7 +560,7 @@ public class Character {
     return new Summary(characterId, name, species, career.getName(), accessTime);
   }
 
-  public static String buildFileName(@NotNull String characterName, @NotNull UUID characterId) {
+  private static String buildFileName(@NotNull String characterName, @NotNull UUID characterId) {
     return characterName.replace(' ', '_') + "." + characterId.toString();
   }
 
@@ -633,7 +623,7 @@ public class Character {
     }
   }
 
-  public static class Builder {
+  private static class Builder {
     private final String name;
     private int age = 0;
     private String height = "";
@@ -661,14 +651,13 @@ public class Character {
     private final Career career;
     private final Specialization specialization;
     private final String species;
-    private final Map<Characteristic, Integer> characteristics = new HashMap<>();
     private final UUID characterId;
     private Map<Specialization, List<Integer>> talents;
     private Map<String, List<Integer>> forcePowers;
 
     private String description;
 
-    public Builder(@NotNull String name, @NotNull Career career, @NotNull Specialization specialization,
+    Builder(@NotNull String name, @NotNull Career career, @NotNull Specialization specialization,
                    @NotNull String species, @NotNull UUID characterId) {
       this.name = name;
       this.career = career;
@@ -679,146 +668,140 @@ public class Character {
     }
 
     @NotNull
-    public Builder accessTime(long accessTime) {
+    Builder accessTime(long accessTime) {
       this.accessTime = accessTime;
       return this;
     }
 
     @NotNull
-    public Builder age(int age) {
+    Builder age(int age) {
       this.age = age;
       return this;
     }
 
     @NotNull
-    public Builder height(@NotNull String height) {
+    Builder height(@NotNull String height) {
       this.height = height;
       return this;
     }
 
     @NotNull
-    public Builder weight(@NotNull String weight) {
+    Builder weight(@NotNull String weight) {
       this.weight = weight;
       return this;
     }
 
     @NotNull
-    public Builder skinTone(@NotNull String skinTone) {
+    Builder skinTone(@NotNull String skinTone) {
       this.skinTone = skinTone;
       return this;
     }
 
     @NotNull
-    public Builder hairColor(@NotNull String hairColor) {
+    Builder hairColor(@NotNull String hairColor) {
       this.hairColor = hairColor;
       return this;
     }
 
     @NotNull
-    public Builder eyeColor(@NotNull String eyeColor) {
+    Builder eyeColor(@NotNull String eyeColor) {
       this.eyeColor = eyeColor;
       return this;
     }
 
     @NotNull
-    public Builder wounds(int wounds) {
+    Builder wounds(int wounds) {
       this.wounds = wounds;
       return this;
     }
 
     @NotNull
-    public Builder woundThreshold(int woundThreshold) {
+    Builder woundThreshold(int woundThreshold) {
       this.woundThreshold = woundThreshold;
       return this;
     }
 
     @NotNull
-    public Builder strain(int strain) {
+    Builder strain(int strain) {
       this.strain = strain;
       return this;
     }
 
     @NotNull
-    public Builder strainThreshold(int strainThreshold) {
+    Builder strainThreshold(int strainThreshold) {
       this.strainThreshold = strainThreshold;
       return this;
     }
 
     @NotNull
-    public Builder meleeDefense(int meleeDefense) {
+    Builder meleeDefense(int meleeDefense) {
       this.meleeDefense = meleeDefense;
       return this;
     }
 
     @NotNull
-    public Builder rangedDefense(int rangedDefense) {
+    Builder rangedDefense(int rangedDefense) {
       this.rangedDefense = rangedDefense;
       return this;
     }
 
     @NotNull
-    public Builder soak(int soak) {
+    Builder soak(int soak) {
       this.soak = soak;
       return this;
     }
 
     @NotNull
-    public Builder forceRating(int forceRating) {
+    Builder forceRating(int forceRating) {
       this.forceRating = forceRating;
       return this;
     }
 
     @NotNull
-    public Builder characteristic(@NotNull Characteristic characteristic, int value) {
-      characteristics.put(characteristic, value);
-      return this;
-    }
-
-    @NotNull
-    public Builder credits(int credits) {
+    Builder credits(int credits) {
       this.credits = credits;
       return this;
     }
 
     @NotNull
-    public Builder actionConditions(Map<String, Boolean> actionConditions) {
+    Builder actionConditions(Map<String, Boolean> actionConditions) {
       this.actionConditions.putAll(actionConditions);
       return this;
     }
 
     @NotNull
-    public Builder xp(int xp) {
+    Builder xp(int xp) {
       this.xp = xp;
       return this;
     }
 
     @NotNull
-    public Builder lastOpenPage(int lastOpenPage) {
+    Builder lastOpenPage(int lastOpenPage) {
       this.lastOpenPage = lastOpenPage;
       return this;
     }
 
     @NotNull
-    public Character build() {
+    Character build() {
       return Character.valueOf(this);
     }
 
-    public Builder inventory(List<InventoryItem> inventory) {
+    Builder inventory(List<InventoryItem> inventory) {
       this.inventory = inventory;
       return this;
     }
 
-    public Builder talents(@NotNull Map<Specialization, List<Integer>> talents) {
+    Builder talents(@NotNull Map<Specialization, List<Integer>> talents) {
       this.talents = talents;
       return this;
     }
 
-    public Builder forcePowers(@NotNull Map<String, List<Integer>> forcePowers) {
+    Builder forcePowers(@NotNull Map<String, List<Integer>> forcePowers) {
       this.forcePowers = forcePowers;
       return this;
     }
 
-    public Builder description(@NotNull String description) {
+    Builder description(@NotNull String description) {
       this.description = description;
       return this;
     }

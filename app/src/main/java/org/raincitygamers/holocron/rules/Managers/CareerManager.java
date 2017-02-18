@@ -48,9 +48,17 @@ public final class CareerManager {
     return new ArrayList<>(careerMap.values());
   }
 
-  @Nullable
+  @NotNull
   public static Career getCareer(@NotNull String name) {
-    return careerMap.get(name);
+    if (careerMap.containsKey(name)) {
+      return careerMap.get(name);
+    }
+    else if (!careerMap.isEmpty()) {
+      return careerMap.values().iterator().next();
+    }
+    else {
+      throw new IllegalStateException("There are no careers in the career manager.");
+    }
   }
 
   @NotNull

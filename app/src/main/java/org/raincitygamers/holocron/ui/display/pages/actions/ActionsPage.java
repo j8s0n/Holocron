@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import org.raincitygamers.holocron.R;
+import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.ui.ContentPage;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
@@ -34,8 +35,11 @@ public class ActionsPage extends ContentPage {
 
   private void displayActions() {
     rowData.clear();
-    rowData.addAll(CharacterManager.getActiveCharacter().getActions());
-    arrayAdapter.notifyDataSetChanged();
+    Character pc = CharacterManager.getActiveCharacter();
+    if (pc != null) {
+      rowData.addAll(pc.getActions());
+      arrayAdapter.notifyDataSetChanged();
+    }
   }
 
   @Override
