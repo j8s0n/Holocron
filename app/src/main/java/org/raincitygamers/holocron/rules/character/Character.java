@@ -16,6 +16,7 @@ import org.raincitygamers.holocron.rules.traits.Talent;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.SectionRowData;
+import org.raincitygamers.holocron.ui.display.pages.rowdata.SkillActionRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.ToggleRowData;
 
 import java.util.ArrayList;
@@ -72,7 +73,11 @@ public class Character {
   private static final String FORCE_POWERS_KEY = "force_powers";
   private static final String DESCRIPTION_KEY = "description";
   private static final String ACTION_CONDITIONS_KEY = "action_conditions";
+  private static final String SKILL_ACTION_KEYS = "skill_actions";
   private static final String SET_KEY = "set";
+
+  private static final String CHARACTERISTIC_KEY = "characteristic";
+  private static final String SKILL_KEY = "skill";
 
   @Getter private static final MostRecentAccessComparator mostRecentAccessComparator = new MostRecentAccessComparator();
   @Getter private final List<InventoryItem> inventory = new ArrayList<>();
@@ -86,7 +91,8 @@ public class Character {
   @Getter private final UUID characterId;
   @Getter private final List<Specialization> specializations = new ArrayList<>();
   @Getter private List<Obligation> obligations = new ArrayList<>();
-  @Getter private Map<String, Boolean> actionConditions = new HashMap<>();
+  private Map<String, Boolean> actionConditions = new HashMap<>();
+  private List<SkillAction> skillActions = new ArrayList<>();
   @Getter @Setter private int age;
   @Getter @Setter private String height;
   @Getter @Setter private String weight;
@@ -169,6 +175,7 @@ public class Character {
     this.credits = builder.credits;
     this.talents.putAll(builder.talents);
     this.actionConditions.putAll(builder.actionConditions);
+    this.skillActions.addAll(builder.skillActions);
   }
 
   public int getCharacteristicScore(@NotNull Characteristic characteristic) {
@@ -266,6 +273,24 @@ public class Character {
   @NotNull
   public List<RowData> getActions() {
     List<RowData> rowData = new ArrayList<>();
+    rowData.addAll(getActionConditions());
+    return rowData;
+  }
+
+  @NotNull
+  private List<RowData> getSkillActions() {
+    List<RowData> rowData = new ArrayList<>();
+    rowData.add(SectionRowData.of("Skills"));
+    for (SkillAction skillAction : skillActions) {
+      rowData.add(SkillActionRowData.of(skillAction));
+    }
+
+    return rowData;
+  }
+
+  @NotNull
+  private List<RowData> getActionConditions() {
+    List<RowData> rowData = new ArrayList<>();
     rowData.add(SectionRowData.of("Conditions"));
     for (Map.Entry<String, Boolean> condition : actionConditions.entrySet()) {
       rowData.add(ToggleRowData.of(condition.getKey(), condition.getValue()));
@@ -302,6 +327,7 @@ public class Character {
     o.put(INVENTORY_KEY, InventoryItem.toJsonArray(inventory));
     o.put(TALENTS_KEY, Talent.toJsonArray(talents));
     o.put(ACTION_CONDITIONS_KEY, actionConditionsAsJsonArray());
+    o.put(SKILL_ACTION_KEYS, skillActionsAsJsonArray());
     o.put(FORCE_POWERS_KEY, ForcePowerUpgrade.toJsonArray(forcePowers));
     o.put(DESCRIPTION_KEY, description);
     o.put(WOUNDS_KEY, wounds);
@@ -329,6 +355,21 @@ public class Character {
       JSONObject o = new JSONObject();
       o.put(NAME_KEY, entry.getKey());
       o.put(SET_KEY, entry.getValue());
+      a.put(o);
+    }
+
+    return a;
+  }
+
+  @NotNull
+  private JSONArray skillActionsAsJsonArray() throws JSONException {
+    JSONArray a = new JSONArray();
+    for (SkillAction skillAction : skillActions) {
+      JSONObject o = new JSONObject();
+      o.put(NAME_KEY, skillAction.getName());
+      o.put(CHARACTERISTIC_KEY, skillAction.getCharacteristic().toString());
+      o.put(SKILL_KEY, skillAction.getSkill().getName());
+      // TODO: Bonuses.
       a.put(o);
     }
 
@@ -427,6 +468,7 @@ public class Character {
                               .xp(getJsonInt(jsonObject, XP_KEY))
                               .credits(getJsonInt(jsonObject, CREDITS_KEY))
                               .actionConditions(parseActionConditions(getJsonArray(jsonObject, ACTION_CONDITIONS_KEY)))
+                              .skillActions(parseSkillActions(getJsonArray(jsonObject, SKILL_ACTION_KEYS)))
                               .build();
     for (Map.Entry<Skill, Integer> skill : skills.entrySet()) {
       character.setSkillScore(skill.getKey(), skill.getValue());
@@ -556,6 +598,25 @@ public class Character {
     return actionConditions;
   }
 
+  @NotNull
+  private static List<SkillAction> parseSkillActions(@NotNull JSONArray jsonArray) {
+    List<SkillAction> skillActions = new ArrayList<>();
+    for (int i = 0; i < jsonArray.length(); i++) {
+      try {
+        JSONObject o = jsonArray.getJSONObject(i);
+        skillActions.add(SkillAction.of(o.getString(NAME_KEY),
+                                        Characteristic.of(o.getString(CHARACTERISTIC_KEY)),
+                                        SkillManager.getSkill(o.getString(SKILL_KEY))));
+      }
+      catch (JSONException e) {
+        Log.e(LOG_TAG, String.format(Locale.US, "Error reading skill action at index %d.", i), e);
+      }
+
+    }
+
+    return skillActions;
+  }
+
   public Summary makeSummary() {
     return new Summary(characterId, name, species, career.getName(), accessTime);
   }
@@ -647,6 +708,7 @@ public class Character {
     private int lastOpenPage = 0;
     private List<InventoryItem> inventory = new ArrayList<>();
     private Map<String, Boolean> actionConditions = new HashMap<>();
+    private List<SkillAction> skillActions = new ArrayList<>();
 
     private final Career career;
     private final Specialization specialization;
@@ -764,8 +826,14 @@ public class Character {
     }
 
     @NotNull
-    Builder actionConditions(Map<String, Boolean> actionConditions) {
+    Builder actionConditions(@NotNull Map<String, Boolean> actionConditions) {
       this.actionConditions.putAll(actionConditions);
+      return this;
+    }
+
+    @NotNull
+    Builder skillActions(@NotNull List<SkillAction> skillActions) {
+      this.skillActions.addAll(skillActions);
       return this;
     }
 
@@ -786,7 +854,7 @@ public class Character {
       return Character.valueOf(this);
     }
 
-    Builder inventory(List<InventoryItem> inventory) {
+    Builder inventory(@NotNull List<InventoryItem> inventory) {
       this.inventory = inventory;
       return this;
     }
