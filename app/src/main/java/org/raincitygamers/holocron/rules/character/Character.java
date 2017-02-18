@@ -16,6 +16,7 @@ import org.raincitygamers.holocron.rules.traits.Talent;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.SectionRowData;
+import org.raincitygamers.holocron.ui.display.pages.rowdata.ToggleRowData;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -263,6 +264,23 @@ public class Character {
     rowData.add(KeyValueRowData.of("Defense (M/R)", String.format("%d / %d", meleeDefense, rangedDefense)));
 
     return rowData;
+  }
+
+  @NotNull
+  public List<RowData> getActions() {
+    List<RowData> rowData = new ArrayList<>();
+    rowData.add(SectionRowData.of("Conditions"));
+    for (Map.Entry<String, Boolean> condition : actionConditions.entrySet()) {
+      rowData.add(ToggleRowData.of(condition.getKey(), condition.getValue()));
+    }
+
+    return rowData;
+  }
+
+  public void setActionConditionState(@NotNull String actionCondition, boolean state) {
+    // TODO: Should this only act as an updater?
+    // TODO: If so, what do we do if the key isn't found?
+    actionConditions.put(actionCondition, state);
   }
 
   public void updateTimestamp() {

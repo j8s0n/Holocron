@@ -8,9 +8,10 @@ public interface RowData {
 
   public enum Type {
     ABILITY,
+    BUTTON,
     INVENTORY,
     KEY_VALUE,
     SECTION_ID,
-    BUTTON
+    TOGGLE
   }
 }

@@ -25,6 +25,7 @@ import org.raincitygamers.holocron.ui.ContentPage;
 import org.raincitygamers.holocron.ui.chooser.ChooserActivity;
 import org.raincitygamers.holocron.ui.display.pages.abilities.ForcePowersPage;
 import org.raincitygamers.holocron.ui.display.pages.abilities.TalentsPage;
+import org.raincitygamers.holocron.ui.display.pages.actions.ActionsPage;
 import org.raincitygamers.holocron.ui.display.pages.basics.BasicsPage;
 import org.raincitygamers.holocron.ui.display.pages.description.DescriptionPage;
 import org.raincitygamers.holocron.ui.display.pages.gear.GearPage;
@@ -57,7 +58,7 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
     // This is where we populate what shows up in the menu.
     // If it's white, I need to add an empty constructor.
     contentPages.add(new BasicsPage());
-    // contentPages.add(new ActionsPage());
+    contentPages.add(new ActionsPage());
     contentPages.add(new GeneralSkillsPage());
     contentPages.add(new CombatSkillsPage());
     contentPages.add(new KnowledgeSkillsPage());
