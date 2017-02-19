@@ -16,6 +16,7 @@ import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.SkillAction;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.rules.traits.DicePool;
+import org.raincitygamers.holocron.ui.FragmentInvalidator;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.SectionRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.SkillActionRowData;
@@ -28,8 +29,11 @@ import java.util.Set;
 import static org.raincitygamers.holocron.rules.managers.CharacterManager.getActiveCharacter;
 
 class ActionsArrayAdapter extends ArrayAdapter<RowData> {
-  ActionsArrayAdapter(Context context, List<RowData> objects) {
+  private final FragmentInvalidator invalidator;
+
+  ActionsArrayAdapter(Context context, List<RowData> objects, @NotNull FragmentInvalidator invalidator) {
     super(context, -1, objects);
+    this.invalidator = invalidator;
   }
 
   @NonNull
@@ -92,8 +96,8 @@ class ActionsArrayAdapter extends ArrayAdapter<RowData> {
     viewHolder.toggleSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
       @Override
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        getActiveCharacter().setActionConditionState(rowData.getName(),
-                                                                      viewHolder.toggleSwitch.isChecked());
+        getActiveCharacter().setActionConditionState(rowData.getName(), viewHolder.toggleSwitch.isChecked());
+        invalidator.invalidate();
       }
     });
     return convertView;

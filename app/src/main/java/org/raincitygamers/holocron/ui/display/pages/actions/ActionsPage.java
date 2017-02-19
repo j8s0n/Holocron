@@ -9,12 +9,13 @@ import android.widget.ListView;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.ui.ContentPage;
+import org.raincitygamers.holocron.ui.FragmentInvalidator;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActionsPage extends ContentPage {
+public class ActionsPage extends ContentPage implements FragmentInvalidator {
   private List<RowData> rowData = new ArrayList<>();
   private ActionsArrayAdapter arrayAdapter;
 
@@ -44,10 +45,15 @@ public class ActionsPage extends ContentPage {
     View result = inflater.inflate(R.layout.display_actions, container, false);
 
     ListView actionsListView = (ListView) result.findViewById(R.id.actions_group_list);
-    arrayAdapter = new ActionsArrayAdapter(getActivity(), rowData);
+    arrayAdapter = new ActionsArrayAdapter(getActivity(), rowData, this);
     actionsListView.setAdapter(arrayAdapter);
 
     return result;
+  }
+
+  @Override
+  public void invalidate() {
+    displayActions();
   }
 }
 
