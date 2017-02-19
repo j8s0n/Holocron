@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.Character;
+import org.raincitygamers.holocron.rules.character.SkillAction;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 
 import java.util.HashMap;
@@ -92,6 +93,12 @@ public class DicePool {
 
   public int getRating() {
     return CharacterManager.getActiveCharacter().getSkillScore(skill);
+  }
+
+  public static DicePool of(SkillAction skillAction) {
+    DicePool dicePool = new DicePool(skillAction.getCharacteristic(), skillAction.getSkill());
+    // dicePool.bonuses.putAll(skillAction.getBonuses());
+    return dicePool;
   }
 
   public enum BonusType {

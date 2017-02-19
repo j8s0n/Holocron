@@ -273,6 +273,7 @@ public class Character {
   @NotNull
   public List<RowData> getActions() {
     List<RowData> rowData = new ArrayList<>();
+    rowData.addAll(getSkillActions());
     rowData.addAll(getActionConditions());
     return rowData;
   }

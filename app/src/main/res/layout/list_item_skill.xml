@@ -15,7 +15,8 @@
     android:textAppearance="?android:attr/textAppearanceMedium"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    tools:layout_constraintTop_creator="1"/>
+    tools:layout_constraintTop_creator="1"
+    android:layout_marginStart="8dp"/>
 
   <TextView
     android:id="@+id/skill_char"

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
+import org.raincitygamers.holocron.rules.traits.DicePool;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.SectionRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.SkillActionRowData;
@@ -113,10 +114,12 @@ class ActionsArrayAdapter extends ArrayAdapter<RowData> {
       viewHolder = (ViewHolder) convertView.getTag();
     }
 
+    DicePool dicePool = DicePool.of(rowData.getSkillAction());
     viewHolder.skillName.setText(rowData.getSkillAction().getName());
-    viewHolder.skillChar.setVisibility(View.GONE);
-    viewHolder.skillRating.setVisibility(View.GONE);
-    viewHolder.isCareerSkill.setVisibility(View.GONE);
+    dicePool.populateLayout(viewHolder.diceLayout, getContext());
+    viewHolder.skillChar.setText("");
+    viewHolder.skillRating.setText("");
+    viewHolder.isCareerSkill.setText("");
 
     return convertView;
   }
