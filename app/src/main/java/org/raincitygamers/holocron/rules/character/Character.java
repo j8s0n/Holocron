@@ -76,9 +76,6 @@ public class Character {
   private static final String SKILL_ACTION_KEYS = "skill_actions";
   private static final String SET_KEY = "set";
 
-  private static final String CHARACTERISTIC_KEY = "characteristic";
-  private static final String SKILL_KEY = "skill";
-
   @Getter private static final MostRecentAccessComparator mostRecentAccessComparator = new MostRecentAccessComparator();
   @Getter private final List<InventoryItem> inventory = new ArrayList<>();
   @Getter private final Map<Specialization, List<Integer>> talents = new HashMap<>();
@@ -366,12 +363,7 @@ public class Character {
   private JSONArray skillActionsAsJsonArray() throws JSONException {
     JSONArray a = new JSONArray();
     for (SkillAction skillAction : skillActions) {
-      JSONObject o = new JSONObject();
-      o.put(NAME_KEY, skillAction.getName());
-      o.put(CHARACTERISTIC_KEY, skillAction.getCharacteristic().toString());
-      o.put(SKILL_KEY, skillAction.getSkill().getName());
-      // TODO: Bonuses.
-      a.put(o);
+      a.put(skillAction.toJsonObject());
     }
 
     return a;
@@ -604,10 +596,7 @@ public class Character {
     List<SkillAction> skillActions = new ArrayList<>();
     for (int i = 0; i < jsonArray.length(); i++) {
       try {
-        JSONObject o = jsonArray.getJSONObject(i);
-        skillActions.add(SkillAction.of(o.getString(NAME_KEY),
-                                        Characteristic.of(o.getString(CHARACTERISTIC_KEY)),
-                                        SkillManager.getSkill(o.getString(SKILL_KEY))));
+        skillActions.add(SkillAction.of(jsonArray.getJSONObject(i)));
       }
       catch (JSONException e) {
         Log.e(LOG_TAG, String.format(Locale.US, "Error reading skill action at index %d.", i), e);

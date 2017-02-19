@@ -40,7 +40,7 @@ public class DicePool {
     if (pool.containsKey(BonusType.PROFICIENCY_DIE)) {
       for (int i = 0; i < pool.get(BonusType.PROFICIENCY_DIE); i++) {
         ImageView die = new ImageView(context);
-        die.setImageResource(R.drawable.ic_proficiency_die);
+        die.setImageResource(BonusType.PROFICIENCY_DIE.getResourceId());
         layout.addView(die);
         layoutWidth += die.getWidth();
       }
@@ -49,7 +49,7 @@ public class DicePool {
     if (pool.containsKey(BonusType.ABILITY_DIE)) {
       for (int i = 0; i < pool.get(BonusType.ABILITY_DIE); i++) {
         ImageView die = new ImageView(context);
-        die.setImageResource(R.drawable.ic_ability_die);
+        die.setImageResource(BonusType.ABILITY_DIE.getResourceId());
         layout.addView(die);
         layoutWidth += die.getWidth();
       }
@@ -102,14 +102,43 @@ public class DicePool {
   }
 
   public enum BonusType {
-    ABILITY_DIE,
-    ADVANTAGE,
-    BOOST_DIE,
-    PROFICIENCY_DIE,
-    SETBACK_DIE,
-    SKILL_RANK,
-    SUCCESS,
-    THREAT,
-    TRIUMPH
+    ABILITY_DIE("Ability Die", R.drawable.ic_ability_die),
+    ADVANTAGE("Advantage", 0),
+    BOOST_DIE("Boost Die", 0),
+    PROFICIENCY_DIE("Proficiency Die", R.drawable.ic_proficiency_die),
+    SETBACK_DIE("Setback Die", 0),
+    SKILL_RANK("Skill Rank", 0),
+    SUCCESS("Success", 0),
+    THREAT("Threat", 0),
+    TRIUMPH("Triumph", 0),
+    UPGRADE("Upgrade", 0);
+
+    private String name;
+    private int resourceId;
+
+    BonusType(String name, int resourceId) {
+      this.name = name;
+      this.resourceId = resourceId;
+    }
+
+    @NotNull
+    public String getName() {
+      return name;
+    }
+
+    public int getResourceId() {
+      return resourceId;
+    }
+
+    @NotNull
+    public static BonusType of(@NotNull String name) {
+      for (BonusType bonusType : values()) {
+        if (bonusType.toString().equals(name)) {
+          return bonusType;
+        }
+      }
+
+      throw new IllegalArgumentException("Invalid bonus type string: " + name);
+    }
   }
 }
