@@ -81,10 +81,24 @@ public class DicePool {
     Map<BonusType, Integer> pool = new HashMap<>(bonuses);
     Character pc = CharacterManager.getActiveCharacter();
     int skillScore = pc.getSkillScore(skill);
+    if (pool.containsKey(BonusType.SKILL_RANK)) {
+      skillScore += pool.get(BonusType.SKILL_RANK);
+    }
+
     int charScore = pc.getCharacteristicScore(characteristic);
 
     int proficiencyDice = Math.min(skillScore, charScore);
     int abilityDice = Math.abs(skillScore - charScore);
+    int upgradeCount = pool.containsKey(BonusType.UPGRADE) ? pool.get(BonusType.UPGRADE) : 0;
+    for (int i = 0; i < upgradeCount; i++) {
+      if (abilityDice == 0) {
+        abilityDice = 1;
+      }
+      else if (abilityDice > 0) {
+        abilityDice--;
+        proficiencyDice++;
+      }
+    }
 
     if (pool.containsKey(BonusType.ABILITY_DIE)) {
       pool.put(BonusType.ABILITY_DIE, pool.get(BonusType.ABILITY_DIE) + abilityDice);
