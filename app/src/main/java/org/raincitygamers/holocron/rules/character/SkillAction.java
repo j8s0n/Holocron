@@ -11,6 +11,7 @@ import org.raincitygamers.holocron.rules.traits.Skill;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -59,7 +60,7 @@ public class SkillAction {
   }
 
   @NotNull
-  public JSONObject toJsonObject() throws JSONException {
+  JSONObject toJsonObject() throws JSONException {
     JSONObject o = new JSONObject();
     o.put(NAME_KEY, name);
     o.put(CHARACTERISTIC_KEY, characteristic.toString());
@@ -82,5 +83,28 @@ public class SkillAction {
 
     o.put(CONDITIONAL_BONUSES_KEY, conditionalBonuses);
     return o;
+  }
+
+  @NotNull
+  public Map<DicePool.BonusType, Integer> getPoolBonus(@NotNull Set<String> activeConditions) {
+    Map<DicePool.BonusType, Integer> poolBonus = new HashMap<>();
+    for (Map.Entry<String, Map<DicePool.BonusType, Integer>> entry : conditionalBonusesMap.entrySet()) {
+      if (activeConditions.contains(entry.getKey())) {
+        incrementAll(poolBonus, entry.getValue());
+      }
+    }
+
+    return poolBonus;
+  }
+
+  private void incrementAll(Map<DicePool.BonusType, Integer> pool, Map<DicePool.BonusType, Integer> bonus) {
+    for (Map.Entry<DicePool.BonusType, Integer> entry : bonus.entrySet()) {
+      if (pool.containsKey(entry.getKey())) {
+        pool.put(entry.getKey(), entry.getValue() + pool.get(entry.getKey()));
+      }
+      else {
+        pool.put(entry.getKey(), entry.getValue());
+      }
+    }
   }
 }

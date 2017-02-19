@@ -23,9 +23,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import lombok.EqualsAndHashCode;
@@ -301,6 +303,18 @@ public class Character {
     // TODO: Should this only act as an updater?
     // TODO: If so, what do we do if the key isn't found?
     actionConditions.put(actionCondition, state);
+  }
+
+  @NotNull
+  public Set<String> getActiveConditions() {
+    Set<String> activeConditions = new HashSet<>();
+    for (Map.Entry<String, Boolean> condition : actionConditions.entrySet()) {
+      if (condition.getValue()) {
+        activeConditions.add(condition.getKey());
+      }
+    }
+
+    return activeConditions;
   }
 
   public void updateTimestamp() {

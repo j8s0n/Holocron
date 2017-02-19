@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
+import org.raincitygamers.holocron.rules.character.SkillAction;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.rules.traits.DicePool;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
@@ -22,6 +23,9 @@ import org.raincitygamers.holocron.ui.display.pages.rowdata.ToggleRowData;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
+
+import static org.raincitygamers.holocron.rules.managers.CharacterManager.getActiveCharacter;
 
 class ActionsArrayAdapter extends ArrayAdapter<RowData> {
   ActionsArrayAdapter(Context context, List<RowData> objects) {
@@ -88,7 +92,7 @@ class ActionsArrayAdapter extends ArrayAdapter<RowData> {
     viewHolder.toggleSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
       @Override
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        CharacterManager.getActiveCharacter().setActionConditionState(rowData.getName(),
+        getActiveCharacter().setActionConditionState(rowData.getName(),
                                                                       viewHolder.toggleSwitch.isChecked());
       }
     });
@@ -114,13 +118,15 @@ class ActionsArrayAdapter extends ArrayAdapter<RowData> {
       viewHolder = (ViewHolder) convertView.getTag();
     }
 
-    DicePool dicePool = DicePool.of(rowData.getSkillAction());
-    viewHolder.skillName.setText(rowData.getSkillAction().getName());
+    Set<String> activeConditions = CharacterManager.getActiveCharacter().getActiveConditions();
+    SkillAction skillAction = rowData.getSkillAction();
+    DicePool dicePool = DicePool.of(skillAction);
+    dicePool.increasePool(skillAction.getPoolBonus(activeConditions));
+    viewHolder.skillName.setText(skillAction.getName());
     dicePool.populateLayout(viewHolder.diceLayout, getContext());
     viewHolder.skillChar.setText("");
     viewHolder.skillRating.setText("");
     viewHolder.isCareerSkill.setText("");
-
     return convertView;
   }
 

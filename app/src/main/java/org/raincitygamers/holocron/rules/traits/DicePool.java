@@ -24,44 +24,60 @@ public class DicePool {
   @Getter @NonNull private final Skill skill;
   private final Map<BonusType, Integer> bonuses = new HashMap<>();
 
-  public int getBonus(@NotNull BonusType type) {
-    return bonuses.get(type);
-  }
-
-  public void setBonus(@NotNull BonusType type, int value) {
-    bonuses.put(type, value);
-  }
-
   public void populateLayout(@NotNull LinearLayout layout, @NotNull Context context) {
     int layoutWidth = 0;
     layout.removeAllViews();
     Map<BonusType, Integer> pool = getPool();
-
-    if (pool.containsKey(BonusType.PROFICIENCY_DIE)) {
-      for (int i = 0; i < pool.get(BonusType.PROFICIENCY_DIE); i++) {
-        ImageView die = new ImageView(context);
-        die.setImageResource(BonusType.PROFICIENCY_DIE.getResourceId());
-        layout.addView(die);
-        layoutWidth += die.getWidth();
-      }
-    }
-
-    if (pool.containsKey(BonusType.ABILITY_DIE)) {
-      for (int i = 0; i < pool.get(BonusType.ABILITY_DIE); i++) {
-        ImageView die = new ImageView(context);
-        die.setImageResource(BonusType.ABILITY_DIE.getResourceId());
-        layout.addView(die);
-        layoutWidth += die.getWidth();
-      }
-    }
+    layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.PROFICIENCY_DIE);
+    layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.ABILITY_DIE);
+    layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.FORCE_DIE);
+    layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.BOOST_DIE);
+    layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.SETBACK_DIE);
+    layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.TRIUMPH);
+    layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.SUCCESS);
+    layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.FORCE_POINT);
+    layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.FAILURE);
+    layoutWidth += placeAdvantageOrThreatInLayout(layout, context, pool);
 
     ViewGroup.LayoutParams params = layout.getLayoutParams();
     params.width = layoutWidth;
     layout.setLayoutParams(params);
   }
 
+  private int placeAdvantageOrThreatInLayout(@NotNull LinearLayout layout, @NotNull Context context,
+                                             @NotNull Map<BonusType, Integer> pool) {
+    int advantageCount = pool.containsKey(BonusType.ADVANTAGE) ? pool.get(BonusType.ADVANTAGE) : 0;
+    int threatCount = pool.containsKey(BonusType.THREAT) ? pool.get(BonusType.THREAT) : 0;
+    int count = Math.abs(advantageCount - threatCount);
+    BonusType type = advantageCount > threatCount ? BonusType.ADVANTAGE : BonusType.THREAT;
+    return placeBonusInLayout(layout, context, type, count);
+  }
+
+  private int placeBonusTypeInLayout(@NotNull LinearLayout layout, @NotNull Context context,
+                                     @NotNull Map<BonusType, Integer> pool, @NotNull BonusType type) {
+    int width = 0;
+    if (pool.containsKey(type)) {
+      width += placeBonusInLayout(layout, context, type, pool.get(type));
+    }
+
+    return width;
+  }
+
+  private int placeBonusInLayout(@NotNull LinearLayout layout, @NotNull Context context, @NotNull BonusType type,
+                                 int count) {
+    int width = 0;
+    for (int i = 0; i < count; i++) {
+      ImageView die = new ImageView(context);
+      die.setImageResource(type.getResourceId());
+      layout.addView(die);
+      width += die.getWidth();
+    }
+
+    return width;
+  }
+
   @NotNull
-  public Map<BonusType, Integer> getPool() {
+  private Map<BonusType, Integer> getPool() {
     Map<BonusType, Integer> pool = new HashMap<>(bonuses);
     Character pc = CharacterManager.getActiveCharacter();
     int skillScore = pc.getSkillScore(skill);
@@ -96,21 +112,33 @@ public class DicePool {
   }
 
   public static DicePool of(SkillAction skillAction) {
-    DicePool dicePool = new DicePool(skillAction.getCharacteristic(), skillAction.getSkill());
-    // dicePool.bonuses.putAll(skillAction.getBonuses());
-    return dicePool;
+    return new DicePool(skillAction.getCharacteristic(), skillAction.getSkill());
+  }
+
+  public void increasePool(Map<BonusType, Integer> bonusPool) {
+    for (Map.Entry<DicePool.BonusType, Integer> entry : bonusPool.entrySet()) {
+      if (bonuses.containsKey(entry.getKey())) {
+        bonuses.put(entry.getKey(), entry.getValue() + bonuses.get(entry.getKey()));
+      }
+      else {
+        bonuses.put(entry.getKey(), entry.getValue());
+      }
+    }
   }
 
   public enum BonusType {
     ABILITY_DIE("Ability Die", R.drawable.ic_ability_die),
-    ADVANTAGE("Advantage", 0),
-    BOOST_DIE("Boost Die", 0),
+    ADVANTAGE("Advantage", R.drawable.ic_advantage),
+    BOOST_DIE("Boost Die", R.drawable.ic_boost_die),
+    FAILURE("Failure", R.drawable.ic_failure),
+    FORCE_DIE("Force Die", R.drawable.ic_force_die),
+    FORCE_POINT("Force Point", R.drawable.ic_force_point),
     PROFICIENCY_DIE("Proficiency Die", R.drawable.ic_proficiency_die),
-    SETBACK_DIE("Setback Die", 0),
+    SETBACK_DIE("Setback Die", R.drawable.ic_setback_die),
     SKILL_RANK("Skill Rank", 0),
-    SUCCESS("Success", 0),
-    THREAT("Threat", 0),
-    TRIUMPH("Triumph", 0),
+    SUCCESS("Success", R.drawable.ic_success),
+    THREAT("Threat", R.drawable.ic_threat),
+    TRIUMPH("Triumph", R.drawable.ic_triumph),
     UPGRADE("Upgrade", 0);
 
     private String name;
