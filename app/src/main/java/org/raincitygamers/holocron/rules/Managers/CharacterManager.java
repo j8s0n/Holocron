@@ -28,8 +28,12 @@ public final class CharacterManager {
   private CharacterManager() {
   }
 
-  @Nullable
+  @NotNull
   public static Character getActiveCharacter() {
+    if (activeCharacter == null) {
+      throw new IllegalStateException("There is no valid character. How did we get here?");
+    }
+
     return activeCharacter;
   }
 

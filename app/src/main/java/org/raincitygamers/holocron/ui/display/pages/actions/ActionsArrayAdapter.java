@@ -7,15 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
-import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.SectionRowData;
+import org.raincitygamers.holocron.ui.display.pages.rowdata.SkillActionRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.ToggleRowData;
 
 import java.util.List;
@@ -36,6 +37,8 @@ class ActionsArrayAdapter extends ArrayAdapter<RowData> {
         return displaySection(convertView, parent, ((SectionRowData) rowData).getSectionId());
       case TOGGLE:
         return displayToggle(convertView, parent, ((ToggleRowData) rowData));
+      case SKILL_ACTION:
+        return displaySkillAction(convertView, parent, ((SkillActionRowData) rowData));
       default:
         throw new IllegalStateException(String.format(Locale.US, "Row type %s is not valid here.", rowData.getType()));
       }
@@ -73,7 +76,7 @@ class ActionsArrayAdapter extends ArrayAdapter<RowData> {
       viewHolder.name = (TextView) convertView.findViewById(R.id.name);
       viewHolder.toggleSwitch = (Switch) convertView.findViewById(R.id.toggle_switch);
       convertView.setTag(viewHolder);
-      viewHolder.type = RowData.Type.KEY_VALUE;
+      viewHolder.type = RowData.Type.TOGGLE;
     }
     else {
       viewHolder = (ViewHolder) convertView.getTag();
@@ -84,20 +87,55 @@ class ActionsArrayAdapter extends ArrayAdapter<RowData> {
     viewHolder.toggleSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
       @Override
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        Character pc = CharacterManager.getActiveCharacter();
-        if (pc != null) {
-          pc.setActionConditionState(rowData.getName(), viewHolder.toggleSwitch.isChecked());
-        }
+        CharacterManager.getActiveCharacter().setActionConditionState(rowData.getName(),
+                                                                      viewHolder.toggleSwitch.isChecked());
       }
     });
     return convertView;
   }
 
+  @NotNull
+  private View displaySkillAction(View convertView, @NonNull ViewGroup parent, @NotNull SkillActionRowData rowData) {
+    ViewHolder viewHolder;
+    if (convertView == null || !convertView.getTag().equals(RowData.Type.SKILL_ACTION)) {
+      viewHolder = new ViewHolder();
+      LayoutInflater inflater = LayoutInflater.from(getContext());
+      convertView = inflater.inflate(R.layout.list_item_skill, parent, false);
+      viewHolder.skillName = (TextView) convertView.findViewById(R.id.skill_name);
+      viewHolder.skillChar = (TextView) convertView.findViewById(R.id.skill_char);
+      viewHolder.diceLayout = (LinearLayout) convertView.findViewById(R.id.dice_layout);
+      viewHolder.skillRating = (TextView) convertView.findViewById(R.id.skill_rating);
+      viewHolder.isCareerSkill = (TextView) convertView.findViewById(R.id.career_skill);
+      convertView.setTag(viewHolder);
+      viewHolder.type = RowData.Type.SKILL_ACTION;
+    }
+    else {
+      viewHolder = (ViewHolder) convertView.getTag();
+    }
+
+    viewHolder.skillName.setText(rowData.getSkillAction().getName());
+    viewHolder.skillChar.setVisibility(View.GONE);
+    viewHolder.skillRating.setVisibility(View.GONE);
+    viewHolder.isCareerSkill.setVisibility(View.GONE);
+
+    return convertView;
+  }
+
   private static class ViewHolder {
     RowData.Type type;
+
+    // Section ID
     TextView sectionLabel;
 
+    // Toggle
     TextView name;
     Switch toggleSwitch;
+
+    // Skill Action
+    TextView skillName;
+    TextView skillChar;
+    LinearLayout diceLayout;
+    TextView skillRating;
+    TextView isCareerSkill;
   }
 }

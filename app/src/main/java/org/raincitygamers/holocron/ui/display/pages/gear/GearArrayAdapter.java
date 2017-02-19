@@ -140,12 +140,9 @@ class GearArrayAdapter extends ArrayAdapter<RowData> {
       @Override
       public boolean onLongClick(View v) {
         Intent intent = new Intent(getContext(), InventoryEditorActivity.class);
-        Character pc = CharacterManager.getActiveCharacter();
-        if (pc != null){
-          int index = pc.getInventory().indexOf(item);
-          intent.putExtra(InventoryEditorActivity.INVENTORY_ITEM_TO_EDIT, index);
-          getContext().startActivity(intent);
-        }
+        int index = CharacterManager.getActiveCharacter().getInventory().indexOf(item);
+        intent.putExtra(InventoryEditorActivity.INVENTORY_ITEM_TO_EDIT, index);
+        getContext().startActivity(intent);
 
         return true;
       }
@@ -153,8 +150,8 @@ class GearArrayAdapter extends ArrayAdapter<RowData> {
   }
 
   private void updateEncumbrance() {
-    Character pc = CharacterManager.getActiveCharacter();
-    if (encumbrance != null && pc != null) {
+    if (encumbrance != null) {
+      Character pc = CharacterManager.getActiveCharacter();
       encumbrance.setText(String.format(Locale.US, "%d / %d", pc.getEncumbrance(), pc.getEncumbranceThreshold()));
     }
   }

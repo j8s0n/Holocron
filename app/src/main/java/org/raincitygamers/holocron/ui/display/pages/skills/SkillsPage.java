@@ -8,10 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import org.raincitygamers.holocron.R;
+import org.raincitygamers.holocron.rules.traits.DicePool;
 import org.raincitygamers.holocron.rules.traits.Skill;
-import org.raincitygamers.holocron.rules.character.Character;
-import org.raincitygamers.holocron.rules.managers.CharacterManager;
-import org.raincitygamers.holocron.rules.character.SkillRating;
 import org.raincitygamers.holocron.ui.ContentPage;
 
 import java.util.ArrayList;
@@ -19,7 +17,7 @@ import java.util.Collection;
 import java.util.List;
 
 public abstract class SkillsPage extends ContentPage {
-  private List<SkillRating> skillRatings = new ArrayList<>();
+  private List<DicePool> skillRatings = new ArrayList<>();
   private SkillArrayAdapter skillArrayAdapter;
 
   public SkillsPage() {
@@ -35,14 +33,10 @@ public abstract class SkillsPage extends ContentPage {
   }
 
   private void displaySkills() {
-    Character character = CharacterManager.getActiveCharacter();
     skillRatings.clear();
-
     for (Skill skill : getSkills()) {
-      int charScore = character.getCharacteristicScore(skill.getCharacteristic());
-      int skillScore = character.getSkillScore(skill);
-      boolean careerSkill = character.isCareerSkill(skill);
-      skillRatings.add(SkillRating.of(skill, charScore, skillScore, careerSkill));
+      DicePool dicePool = DicePool.of(skill.getCharacteristic(), skill);
+      skillRatings.add(dicePool);
     }
 
     skillArrayAdapter.notifyDataSetChanged();
