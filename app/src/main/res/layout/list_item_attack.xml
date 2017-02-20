@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             android:useDefaultMargins="true">
+
+  <TextView
+    android:id="@+id/skill_name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:text="Skill Name"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:layout_constraintTop_creator="1"
+    android:layout_marginStart="8dp"/>
+
+  <TextView
+    android:id="@+id/skill_char"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="(Char)"
+    android:textAppearance="?android:attr/textAppearanceSmall"
+    app:layout_constraintBottom_toBottomOf="@+id/skill_name"
+    app:layout_constraintTop_toTopOf="@+id/skill_name"
+    android:layout_marginStart="8dp"
+    app:layout_constraintLeft_toRightOf="@+id/skill_name"/>
+
+  <TextView
+    android:text="C"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/career_skill"
+    android:textSize="10sp"
+    app:layout_constraintTop_toTopOf="@+id/skill_name"
+    app:layout_constraintLeft_toRightOf="@+id/skill_char"
+    android:layout_marginStart="8dp"/>
+
+  <TextView
+    android:id="@+id/skill_rating"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="8dp"
+    android:text="(0)"
+    android:textAlignment="textEnd"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    app:layout_constraintBottom_toBottomOf="@+id/skill_name"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/skill_name"/>
+
+  <LinearLayout
+    android:id="@+id/dice_layout"
+    android:layout_width="24dp"
+    android:layout_height="24dp"
+    android:layout_marginEnd="8dp"
+    android:orientation="horizontal"
+    app:layout_constraintBottom_toBottomOf="@+id/skill_rating"
+    app:layout_constraintRight_toLeftOf="@+id/skill_rating"
+    app:layout_constraintTop_toTopOf="@+id/skill_rating">
+  </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

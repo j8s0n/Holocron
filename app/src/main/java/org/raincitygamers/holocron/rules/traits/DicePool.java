@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 
 import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
+import org.raincitygamers.holocron.rules.character.AttackAction;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.SkillAction;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
@@ -127,6 +128,10 @@ public class DicePool {
 
   public static DicePool of(SkillAction skillAction) {
     return new DicePool(skillAction.getCharacteristic(), skillAction.getSkill());
+  }
+
+  public static DicePool of(AttackAction attackAction) {
+    return new DicePool(attackAction.getCharacteristic(), attackAction.getSkill());
   }
 
   public void increasePool(Map<BonusType, Integer> bonusPool) {

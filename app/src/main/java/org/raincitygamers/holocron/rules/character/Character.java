@@ -13,6 +13,7 @@ import org.raincitygamers.holocron.rules.traits.ForcePowerUpgrade;
 import org.raincitygamers.holocron.rules.traits.Obligation;
 import org.raincitygamers.holocron.rules.traits.Skill;
 import org.raincitygamers.holocron.rules.traits.Talent;
+import org.raincitygamers.holocron.ui.display.pages.rowdata.AttackActionRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.SectionRowData;
@@ -76,6 +77,7 @@ public class Character {
   private static final String DESCRIPTION_KEY = "description";
   private static final String ACTION_CONDITIONS_KEY = "action_conditions";
   private static final String SKILL_ACTION_KEYS = "skill_actions";
+  private static final String ATTACK_ACTION_KEYS = "attack_actions";
   private static final String SET_KEY = "set";
 
   @Getter private static final MostRecentAccessComparator mostRecentAccessComparator = new MostRecentAccessComparator();
@@ -92,6 +94,7 @@ public class Character {
   @Getter private List<Obligation> obligations = new ArrayList<>();
   private Map<String, Boolean> actionConditions = new HashMap<>();
   private List<SkillAction> skillActions = new ArrayList<>();
+  private List<AttackAction> attackActions = new ArrayList<>();
   @Getter @Setter private int age;
   @Getter @Setter private String height;
   @Getter @Setter private String weight;
@@ -141,10 +144,6 @@ public class Character {
     }
   }
 
-  // TODO:
-  // For bonuses, have a map->list for each thing that can have bonuses (e.g. brawn->list<bonuses>).
-  // List the source of the bonus, for easy removal later, if that changes.
-  // When calculating the thing, walk the list of its bonuses.
   private Character(@NotNull Builder builder) {
     this.name = builder.name;
     this.species = builder.species;
@@ -175,6 +174,7 @@ public class Character {
     this.talents.putAll(builder.talents);
     this.actionConditions.putAll(builder.actionConditions);
     this.skillActions.addAll(builder.skillActions);
+    this.attackActions.addAll(builder.attackActions);
   }
 
   public int getCharacteristicScore(@NotNull Characteristic characteristic) {
@@ -272,8 +272,20 @@ public class Character {
   @NotNull
   public List<RowData> getActions() {
     List<RowData> rowData = new ArrayList<>();
+    rowData.addAll(getAttackActions());
     rowData.addAll(getSkillActions());
     rowData.addAll(getActionConditions());
+    return rowData;
+  }
+
+  @NotNull
+  private List<RowData> getAttackActions() {
+    List<RowData> rowData = new ArrayList<>();
+    rowData.add(SectionRowData.of("Attacks"));
+    for (AttackAction attackAction : attackActions) {
+      rowData.add(AttackActionRowData.of(attackAction));
+    }
+
     return rowData;
   }
 
@@ -339,6 +351,7 @@ public class Character {
     o.put(INVENTORY_KEY, InventoryItem.toJsonArray(inventory));
     o.put(TALENTS_KEY, Talent.toJsonArray(talents));
     o.put(ACTION_CONDITIONS_KEY, actionConditionsAsJsonArray());
+    o.put(ATTACK_ACTION_KEYS, attackActionsAsJsonArray());
     o.put(SKILL_ACTION_KEYS, skillActionsAsJsonArray());
     o.put(FORCE_POWERS_KEY, ForcePowerUpgrade.toJsonArray(forcePowers));
     o.put(DESCRIPTION_KEY, description);
@@ -378,6 +391,16 @@ public class Character {
     JSONArray a = new JSONArray();
     for (SkillAction skillAction : skillActions) {
       a.put(skillAction.toJsonObject());
+    }
+
+    return a;
+  }
+
+  @NotNull
+  private JSONArray attackActionsAsJsonArray() throws JSONException {
+    JSONArray a = new JSONArray();
+    for (AttackAction attackAction : attackActions) {
+      a.put(attackAction.toJsonObject());
     }
 
     return a;
@@ -476,6 +499,7 @@ public class Character {
                               .credits(getJsonInt(jsonObject, CREDITS_KEY))
                               .actionConditions(parseActionConditions(getJsonArray(jsonObject, ACTION_CONDITIONS_KEY)))
                               .skillActions(parseSkillActions(getJsonArray(jsonObject, SKILL_ACTION_KEYS)))
+                              .attackActions(parseAttackActions(getJsonArray(jsonObject, ATTACK_ACTION_KEYS)))
                               .build();
     for (Map.Entry<Skill, Integer> skill : skills.entrySet()) {
       character.setSkillScore(skill.getKey(), skill.getValue());
@@ -621,6 +645,22 @@ public class Character {
     return skillActions;
   }
 
+  @NotNull
+  private static List<AttackAction> parseAttackActions(@NotNull JSONArray jsonArray) {
+    List<AttackAction> attackActions = new ArrayList<>();
+    for (int i = 0; i < jsonArray.length(); i++) {
+      try {
+        attackActions.add(AttackAction.of(jsonArray.getJSONObject(i)));
+      }
+      catch (JSONException e) {
+        Log.e(LOG_TAG, String.format(Locale.US, "Error reading skill action at index %d.", i), e);
+      }
+
+    }
+
+    return attackActions;
+  }
+
   public Summary makeSummary() {
     return new Summary(characterId, name, species, career.getName(), accessTime);
   }
@@ -713,6 +753,7 @@ public class Character {
     private List<InventoryItem> inventory = new ArrayList<>();
     private Map<String, Boolean> actionConditions = new HashMap<>();
     private List<SkillAction> skillActions = new ArrayList<>();
+    private List<AttackAction> attackActions = new ArrayList<>();
 
     private final Career career;
     private final Specialization specialization;
@@ -838,6 +879,12 @@ public class Character {
     @NotNull
     Builder skillActions(@NotNull List<SkillAction> skillActions) {
       this.skillActions.addAll(skillActions);
+      return this;
+    }
+
+    @NotNull
+    Builder attackActions(@NotNull List<AttackAction> attackActions) {
+      this.attackActions.addAll(attackActions);
       return this;
     }
 

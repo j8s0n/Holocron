@@ -13,10 +13,12 @@ import android.widget.TextView;
 
 import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
+import org.raincitygamers.holocron.rules.character.AttackAction;
 import org.raincitygamers.holocron.rules.character.SkillAction;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.rules.traits.DicePool;
 import org.raincitygamers.holocron.ui.FragmentInvalidator;
+import org.raincitygamers.holocron.ui.display.pages.rowdata.AttackActionRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.SectionRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.SkillActionRowData;
@@ -45,9 +47,11 @@ class ActionsArrayAdapter extends ArrayAdapter<RowData> {
       case SECTION_ID:
         return displaySection(convertView, parent, ((SectionRowData) rowData).getSectionId());
       case TOGGLE:
-        return displayToggle(convertView, parent, ((ToggleRowData) rowData));
+        return displayToggle(convertView, parent, (ToggleRowData) rowData);
       case SKILL_ACTION:
-        return displaySkillAction(convertView, parent, ((SkillActionRowData) rowData));
+        return displaySkillAction(convertView, parent, (SkillActionRowData) rowData);
+      case ATTACK_ACTION:
+        return displayAttackAction(convertView, parent, (AttackActionRowData) rowData);
       default:
         throw new IllegalStateException(String.format(Locale.US, "Row type %s is not valid here.", rowData.getType()));
       }
@@ -134,6 +138,37 @@ class ActionsArrayAdapter extends ArrayAdapter<RowData> {
     return convertView;
   }
 
+  @NotNull
+  private View displayAttackAction(View convertView, @NotNull ViewGroup parent, @NotNull AttackActionRowData rowData) {
+    ViewHolder viewHolder;
+    if (convertView == null || !convertView.getTag().equals(RowData.Type.SKILL_ACTION)) {
+      viewHolder = new ViewHolder();
+      LayoutInflater inflater = LayoutInflater.from(getContext());
+      convertView = inflater.inflate(R.layout.list_item_attack, parent, false);
+      viewHolder.skillName = (TextView) convertView.findViewById(R.id.skill_name);
+      viewHolder.skillChar = (TextView) convertView.findViewById(R.id.skill_char);
+      viewHolder.diceLayout = (LinearLayout) convertView.findViewById(R.id.dice_layout);
+      viewHolder.skillRating = (TextView) convertView.findViewById(R.id.skill_rating);
+      viewHolder.isCareerSkill = (TextView) convertView.findViewById(R.id.career_skill);
+      convertView.setTag(viewHolder);
+      viewHolder.type = RowData.Type.SKILL_ACTION;
+    }
+    else {
+      viewHolder = (ViewHolder) convertView.getTag();
+    }
+
+    Set<String> activeConditions = CharacterManager.getActiveCharacter().getActiveConditions();
+    AttackAction attackAction = rowData.getAttackAction();
+    DicePool dicePool = DicePool.of(attackAction);
+    dicePool.increasePool(attackAction.getPoolBonus(activeConditions));
+    viewHolder.skillName.setText(attackAction.getName());
+    dicePool.populateLayout(viewHolder.diceLayout, getContext());
+    viewHolder.skillChar.setText("");
+    viewHolder.skillRating.setText("");
+    viewHolder.isCareerSkill.setText("");
+    return convertView;
+  }
+
   private static class ViewHolder {
     RowData.Type type;
 
@@ -150,5 +185,7 @@ class ActionsArrayAdapter extends ArrayAdapter<RowData> {
     LinearLayout diceLayout;
     TextView skillRating;
     TextView isCareerSkill;
+
+    // Attack Action
   }
 }
