@@ -114,7 +114,7 @@ class ActionsArrayAdapter extends ArrayAdapter<RowData> {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_skill, parent, false);
-      viewHolder.skillName = (TextView) convertView.findViewById(R.id.skill_name);
+      viewHolder.attackName = (TextView) convertView.findViewById(R.id.attack_name);
       viewHolder.skillChar = (TextView) convertView.findViewById(R.id.skill_char);
       viewHolder.diceLayout = (LinearLayout) convertView.findViewById(R.id.dice_layout);
       viewHolder.skillRating = (TextView) convertView.findViewById(R.id.skill_rating);
@@ -130,7 +130,7 @@ class ActionsArrayAdapter extends ArrayAdapter<RowData> {
     SkillAction skillAction = rowData.getSkillAction();
     DicePool dicePool = DicePool.of(skillAction);
     dicePool.increasePool(skillAction.getPoolBonus(activeConditions));
-    viewHolder.skillName.setText(skillAction.getName());
+    viewHolder.attackName.setText(skillAction.getName());
     dicePool.populateLayout(viewHolder.diceLayout, getContext());
     viewHolder.skillChar.setText("");
     viewHolder.skillRating.setText("");
@@ -145,11 +145,11 @@ class ActionsArrayAdapter extends ArrayAdapter<RowData> {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_attack, parent, false);
-      viewHolder.skillName = (TextView) convertView.findViewById(R.id.skill_name);
-      viewHolder.skillChar = (TextView) convertView.findViewById(R.id.skill_char);
+      viewHolder.attackName = (TextView) convertView.findViewById(R.id.attack_name);
       viewHolder.diceLayout = (LinearLayout) convertView.findViewById(R.id.dice_layout);
-      viewHolder.skillRating = (TextView) convertView.findViewById(R.id.skill_rating);
-      viewHolder.isCareerSkill = (TextView) convertView.findViewById(R.id.career_skill);
+      viewHolder.damageValue = (TextView) convertView.findViewById(R.id.damage_value);
+      viewHolder.critValue = (TextView) convertView.findViewById(R.id.crit_value);
+      viewHolder.rangeValue = (TextView) convertView.findViewById(R.id.range_value);
       convertView.setTag(viewHolder);
       viewHolder.type = RowData.Type.SKILL_ACTION;
     }
@@ -161,11 +161,23 @@ class ActionsArrayAdapter extends ArrayAdapter<RowData> {
     AttackAction attackAction = rowData.getAttackAction();
     DicePool dicePool = DicePool.of(attackAction);
     dicePool.increasePool(attackAction.getPoolBonus(activeConditions));
-    viewHolder.skillName.setText(attackAction.getName());
+    viewHolder.attackName.setText(attackAction.getName());
     dicePool.populateLayout(viewHolder.diceLayout, getContext());
-    viewHolder.skillChar.setText("");
-    viewHolder.skillRating.setText("");
-    viewHolder.isCareerSkill.setText("");
+
+    int damage = attackAction.getDamage() + dicePool.getBonus(DicePool.BonusType.DAMAGE);
+    int critical = attackAction.getCritical();
+    String criticalString;
+    if (critical < 0) {
+      criticalString = "-";
+    }
+    else {
+      critical = Math.max(1, critical - dicePool.getBonus(DicePool.BonusType.CRITICAL));
+      criticalString = String.format(Locale.US, "%d", critical);
+    }
+
+    viewHolder.damageValue.setText(String.format(Locale.US, "%d", damage));
+    viewHolder.critValue.setText(criticalString);
+    viewHolder.rangeValue.setText(attackAction.getRange().getName());
     return convertView;
   }
 
@@ -180,12 +192,15 @@ class ActionsArrayAdapter extends ArrayAdapter<RowData> {
     Switch toggleSwitch;
 
     // Skill Action
-    TextView skillName;
+    TextView attackName;
     TextView skillChar;
     LinearLayout diceLayout;
     TextView skillRating;
     TextView isCareerSkill;
 
     // Attack Action
+    TextView damageValue;
+    TextView critValue;
+    TextView rangeValue;
   }
 }

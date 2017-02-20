@@ -118,6 +118,10 @@ public class DicePool {
     return pool;
   }
 
+  public int getBonus(@NotNull BonusType bonusType) {
+    return bonuses.containsKey(bonusType) ? bonuses.get(bonusType) : 0;
+  }
+
   public boolean isCareerSkill() {
     return CharacterManager.getActiveCharacter().isCareerSkill(skill);
   }
@@ -149,6 +153,8 @@ public class DicePool {
     ABILITY_DIE("Ability Die", R.drawable.ic_ability_die),
     ADVANTAGE("Advantage", R.drawable.ic_advantage),
     BOOST_DIE("Boost Die", R.drawable.ic_boost_die),
+    CRITICAL("Critical", 0),
+    DAMAGE("Damage", 0),
     FAILURE("Failure", R.drawable.ic_failure),
     FORCE_DIE("Force Die", R.drawable.ic_force_die),
     FORCE_POINT("Force Point", R.drawable.ic_force_point),

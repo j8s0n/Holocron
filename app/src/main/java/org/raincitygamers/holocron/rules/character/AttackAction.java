@@ -126,16 +126,16 @@ public class AttackAction {
   }
 
   public enum Range {
-    ENGAGED("E"),
-    SHORT("S"),
-    MEDIUM("M"),
-    LONG("L"),
-    EXTREME("X");
+    ENGAGED("Engaged"),
+    SHORT("Engaged"),
+    MEDIUM("Engaged"),
+    LONG("Engaged"),
+    EXTREME("Extreme");
 
-    @Getter private final String abbreviation;
+    @Getter private final String name;
 
-    private Range(@NotNull String abbreviation) {
-      this.abbreviation = abbreviation;
+    Range(String name) {
+      this.name = name;
     }
   }
 }

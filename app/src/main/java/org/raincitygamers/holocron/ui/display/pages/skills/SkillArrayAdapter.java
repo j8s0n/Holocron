@@ -28,7 +28,7 @@ public class SkillArrayAdapter extends ArrayAdapter<DicePool> {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_skill, parent, false);
-      viewHolder.skillName = (TextView) convertView.findViewById(R.id.skill_name);
+      viewHolder.skillName = (TextView) convertView.findViewById(R.id.attack_name);
       viewHolder.skillChar = (TextView) convertView.findViewById(R.id.skill_char);
       viewHolder.diceLayout = (LinearLayout) convertView.findViewById(R.id.dice_layout);
       viewHolder.skillRating = (TextView) convertView.findViewById(R.id.skill_rating);
