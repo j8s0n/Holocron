@@ -141,7 +141,7 @@ class ActionsArrayAdapter extends ArrayAdapter<RowData> {
   @NotNull
   private View displayAttackAction(View convertView, @NotNull ViewGroup parent, @NotNull AttackActionRowData rowData) {
     ViewHolder viewHolder;
-    if (convertView == null || !convertView.getTag().equals(RowData.Type.SKILL_ACTION)) {
+    if (convertView == null || !convertView.getTag().equals(RowData.Type.ATTACK_ACTION)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_attack, parent, false);
@@ -150,6 +150,7 @@ class ActionsArrayAdapter extends ArrayAdapter<RowData> {
       viewHolder.damageValue = (TextView) convertView.findViewById(R.id.damage_value);
       viewHolder.critValue = (TextView) convertView.findViewById(R.id.crit_value);
       viewHolder.rangeValue = (TextView) convertView.findViewById(R.id.range_value);
+      viewHolder.attackText = (TextView) convertView.findViewById(R.id.attack_text);
       convertView.setTag(viewHolder);
       viewHolder.type = RowData.Type.SKILL_ACTION;
     }
@@ -178,6 +179,7 @@ class ActionsArrayAdapter extends ArrayAdapter<RowData> {
     viewHolder.damageValue.setText(String.format(Locale.US, "%d", damage));
     viewHolder.critValue.setText(criticalString);
     viewHolder.rangeValue.setText(attackAction.getRange().getName());
+    viewHolder.attackText.setText(attackAction.getText());
     return convertView;
   }
 
@@ -202,5 +204,6 @@ class ActionsArrayAdapter extends ArrayAdapter<RowData> {
     TextView damageValue;
     TextView critValue;
     TextView rangeValue;
+    TextView attackText;
   }
 }

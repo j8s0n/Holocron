@@ -127,9 +127,9 @@ public class AttackAction {
 
   public enum Range {
     ENGAGED("Engaged"),
-    SHORT("Engaged"),
-    MEDIUM("Engaged"),
-    LONG("Engaged"),
+    SHORT("Short"),
+    MEDIUM("Medium"),
+    LONG("Long"),
     EXTREME("Extreme");
 
     @Getter private final String name;
