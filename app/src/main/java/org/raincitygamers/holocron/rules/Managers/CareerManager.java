@@ -16,6 +16,7 @@ import org.raincitygamers.holocron.rules.character.Specialization;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +27,7 @@ public final class CareerManager {
   private static final String NAME_KEY = "name";
   private static final String SPECIALIZATIONS_KEY = "specializations";
   private static final String CAREER_SKILLS_KEY = "careerSkills";
-  private static Map<String, Career> careerMap = new HashMap<>();
+  private static Map<String, Career> careerMap = new LinkedHashMap<>();
   private static Map<String, Specialization> specializationMap = new HashMap<>();
 
   static {
