@@ -237,7 +237,7 @@ public class Character {
     }
 
     for (Specialization spec : specializations) {
-      rowData.add(KeyValueRowData.of(specializationLabel, spec.getName()));
+      rowData.add(KeyValueRowData.of(specializationLabel, spec.getPrettyName()));
       specializationLabel = "";
     }
 

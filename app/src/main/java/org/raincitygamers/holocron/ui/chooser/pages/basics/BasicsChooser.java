@@ -139,12 +139,12 @@ public class BasicsChooser extends ChooserBase {
     });
   }
 
-  private void buildSpecializationSpinner(@Nullable Career career, @Nullable Character character) {
+  private void buildSpecializationSpinner(@Nullable final Career career, @Nullable Character character) {
     final Spinner spinner = (Spinner) view.findViewById(R.id.specializations);
     final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(),
                                                                  android.R.layout.simple_dropdown_item_1line,
                                                                  specializations);
-    List<String> specializationsList = career == null ? Collections.<String>emptyList() : career.getSpecializations();
+    List<String> specializationsList = career == null ? Collections.<String>emptyList() : career.getPrettySpecializations();
     careers.remove(getResources().getString(R.string.select_a_career));
     specializations.clear();
     specializations.addAll(specializationsList);
@@ -152,13 +152,13 @@ public class BasicsChooser extends ChooserBase {
 
     spinner.setAdapter(arrayAdapter);
     if (character != null) {
-      spinner.setSelection(specializations.indexOf(character.getSpecializations().get(0).getName()));
+      spinner.setSelection(specializations.indexOf(character.getSpecializations().get(0).getPrettyName()));
     }
 
     spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        selectedSpecialization = CareerManager.getSpecialization(specializations.get(position));
+        selectedSpecialization = CareerManager.getSpecialization(career.getName() + "--" +specializations.get(position));
       }
 
       @Override
