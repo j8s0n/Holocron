@@ -3,7 +3,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context=".ui.display.pages.basics.BasicsPage">
+              tools:context=".ui.display.pages.BasicsPage">
   <ScrollView
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">

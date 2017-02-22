@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.display.pages.abilities;
+package org.raincitygamers.holocron.ui.display.pages;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.ListView;
 
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.ui.ContentPage;
+import org.raincitygamers.holocron.ui.display.DisplayArrayAdapter;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import java.util.List;
 
 public abstract class AbilityPage extends ContentPage {
   private List<RowData> abilities = new ArrayList<>();
-  private AbilityArrayAdapter adapter;
+  private DisplayArrayAdapter adapter;
 
   public AbilityPage() {
 
@@ -41,7 +42,7 @@ public abstract class AbilityPage extends ContentPage {
     View result = inflater.inflate(R.layout.display_abilities, container, false);
 
     ListView skillListView = (ListView) result.findViewById(R.id.ability_group_list);
-    adapter = new AbilityArrayAdapter(getActivity(), abilities);
+    adapter = new DisplayArrayAdapter(getActivity(), abilities, null);
     skillListView.setAdapter(adapter);
 
     return result;

@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.display.pages.basics;
+package org.raincitygamers.holocron.ui.display.pages;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.ListView;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.ui.ContentPage;
+import org.raincitygamers.holocron.ui.display.DisplayArrayAdapter;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.List;
 
 public class BasicsPage extends ContentPage {
   private List<RowData> rowData = new ArrayList<>();
-  private BasicsArrayAdapter arrayAdapter;
+  private DisplayArrayAdapter arrayAdapter;
 
   public BasicsPage() {
   }
@@ -44,7 +45,7 @@ public class BasicsPage extends ContentPage {
     View result = inflater.inflate(R.layout.display_basics, container, false);
 
     ListView basicsListView = (ListView) result.findViewById(R.id.basics_group_list);
-    arrayAdapter = new BasicsArrayAdapter(getActivity(), rowData);
+    arrayAdapter = new DisplayArrayAdapter(getActivity(), rowData, null);
     basicsListView.setAdapter(arrayAdapter);
 
     return result;

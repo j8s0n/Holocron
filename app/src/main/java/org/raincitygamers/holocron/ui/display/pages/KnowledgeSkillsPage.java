@@ -1,21 +1,21 @@
-package org.raincitygamers.holocron.ui.display.pages.skills;
+package org.raincitygamers.holocron.ui.display.pages;
 
 import org.raincitygamers.holocron.rules.traits.Skill;
 import org.raincitygamers.holocron.rules.managers.SkillManager;
 
 import java.util.Collection;
 
-public class CombatSkillsPage extends SkillsPage {
-  public CombatSkillsPage() {
+public class KnowledgeSkillsPage extends SkillsPage {
+  public KnowledgeSkillsPage() {
   }
 
   @Override
   public String getTitle() {
-    return "Combat Skills";
+    return "Knowledge Skills";
   }
 
   @Override
   protected Collection<Skill> getSkills() {
-    return SkillManager.getCombatSkills();
+    return SkillManager.getKnowledgeSkills();
   }
 }

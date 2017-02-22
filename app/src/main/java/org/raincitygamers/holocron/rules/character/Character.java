@@ -274,6 +274,7 @@ public class Character {
     List<RowData> rowData = new ArrayList<>();
     rowData.addAll(getAttackActions());
     rowData.addAll(getSkillActions());
+    rowData.addAll(getDefense());
     rowData.addAll(getActionConditions());
     return rowData;
   }

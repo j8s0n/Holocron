@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.display.pages.skills;
+package org.raincitygamers.holocron.ui.display.pages;
 
 
 import android.os.Bundle;
@@ -11,14 +11,17 @@ import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.traits.DicePool;
 import org.raincitygamers.holocron.rules.traits.Skill;
 import org.raincitygamers.holocron.ui.ContentPage;
+import org.raincitygamers.holocron.ui.display.DisplayArrayAdapter;
+import org.raincitygamers.holocron.ui.display.pages.rowdata.DicePoolRowData;
+import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 public abstract class SkillsPage extends ContentPage {
-  private List<DicePool> skillRatings = new ArrayList<>();
-  private SkillArrayAdapter skillArrayAdapter;
+  private List<RowData> skillRatings = new ArrayList<>();
+  private DisplayArrayAdapter skillArrayAdapter;
 
   public SkillsPage() {
     // Required empty public constructor
@@ -35,8 +38,7 @@ public abstract class SkillsPage extends ContentPage {
   private void displaySkills() {
     skillRatings.clear();
     for (Skill skill : getSkills()) {
-      DicePool dicePool = DicePool.of(skill.getCharacteristic(), skill);
-      skillRatings.add(dicePool);
+      skillRatings.add(DicePoolRowData.of(DicePool.of(skill.getCharacteristic(), skill)));
     }
 
     skillArrayAdapter.notifyDataSetChanged();
@@ -48,7 +50,7 @@ public abstract class SkillsPage extends ContentPage {
     View result = inflater.inflate(R.layout.display_skills, container, false);
 
     ListView skillListView = (ListView) result.findViewById(R.id.skill_group_list);
-    skillArrayAdapter = new SkillArrayAdapter(getActivity(), skillRatings);
+    skillArrayAdapter = new DisplayArrayAdapter(getActivity(), skillRatings, null);
     skillListView.setAdapter(skillArrayAdapter);
 
     return result;

@@ -10,6 +10,7 @@ public interface RowData {
     ABILITY,
     ATTACK_ACTION,
     BUTTON,
+    DICE_POOL,
     INVENTORY,
     KEY_VALUE,
     SECTION_ID,

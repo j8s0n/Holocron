@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.display.pages.gear;
+package org.raincitygamers.holocron.ui.display.pages;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +12,9 @@ import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.InventoryItem;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.ui.ContentPage;
+import org.raincitygamers.holocron.ui.display.DisplayArrayAdapter;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.ButtonRowData;
+import org.raincitygamers.holocron.ui.display.pages.rowdata.InventoryItemRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 
@@ -21,7 +23,7 @@ import java.util.List;
 
 public class GearPage extends ContentPage {
   private List<RowData> rowData = new ArrayList<>();
-  private GearArrayAdapter gearArrayAdapter;
+  private DisplayArrayAdapter gearArrayAdapter;
 
   public GearPage() {
   }
@@ -65,7 +67,7 @@ public class GearPage extends ContentPage {
     View result = inflater.inflate(R.layout.display_inventory, container, false);
 
     ListView skillListView = (ListView) result.findViewById(R.id.gear_group_list);
-    gearArrayAdapter = new GearArrayAdapter(getActivity(), rowData);
+    gearArrayAdapter = new DisplayArrayAdapter(getActivity(), rowData, null);
     skillListView.setAdapter(gearArrayAdapter);
 
     return result;

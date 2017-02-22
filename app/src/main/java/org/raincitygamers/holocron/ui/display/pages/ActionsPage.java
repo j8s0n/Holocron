@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.display.pages.actions;
+package org.raincitygamers.holocron.ui.display.pages;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.ui.ContentPage;
 import org.raincitygamers.holocron.ui.FragmentInvalidator;
+import org.raincitygamers.holocron.ui.display.DisplayArrayAdapter;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import java.util.List;
 
 public class ActionsPage extends ContentPage implements FragmentInvalidator {
   private List<RowData> rowData = new ArrayList<>();
-  private ActionsArrayAdapter arrayAdapter;
+  private DisplayArrayAdapter arrayAdapter;
 
   public ActionsPage() {
   }
@@ -45,7 +46,7 @@ public class ActionsPage extends ContentPage implements FragmentInvalidator {
     View result = inflater.inflate(R.layout.display_actions, container, false);
 
     ListView actionsListView = (ListView) result.findViewById(R.id.actions_group_list);
-    arrayAdapter = new ActionsArrayAdapter(getActivity(), rowData, this);
+    arrayAdapter = new DisplayArrayAdapter(getActivity(), rowData, this);
     actionsListView.setAdapter(arrayAdapter);
 
     return result;

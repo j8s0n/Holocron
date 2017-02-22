@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.display.pages.abilities;
+package org.raincitygamers.holocron.ui.display.pages;
 
 import org.raincitygamers.holocron.rules.traits.ForcePowerUpgrade;
 import org.raincitygamers.holocron.rules.character.Character;

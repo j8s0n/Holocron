@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.display.pages.description;
+package org.raincitygamers.holocron.ui.display.pages;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

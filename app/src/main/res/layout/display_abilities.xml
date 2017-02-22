@@ -3,7 +3,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context=".ui.display.pages.abilities.AbilityPage">
+              tools:context=".ui.display.pages.AbilityPage">
 
   <ListView
     android:id="@+id/ability_group_list"
