@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -37,6 +38,7 @@ import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData.KvPa
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.SectionRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.SkillActionRowData;
+import org.raincitygamers.holocron.ui.display.pages.rowdata.ThresholdRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.ToggleRowData;
 
 import java.util.List;
@@ -63,6 +65,8 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       switch (rowData.getType()) {
       case ABILITY:
         return displayAbility(convertView, parent, ((AbilityRowData)rowData).getAbility());
+      case ATTACK_ACTION:
+        return displayAttackAction(convertView, parent, (AttackActionRowData) rowData);
       case BUTTON:
         return displayButton(convertView, parent, ((ButtonRowData) rowData).getButtonText());
       case DICE_POOL:
@@ -73,12 +77,12 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
         return displayKeyValuePair(convertView, parent, ((KeyValueRowData)rowData).getPair());
       case SECTION_ID:
         return displaySection(convertView, parent, ((SectionRowData) rowData).getSectionId());
-      case TOGGLE:
-        return displayToggle(convertView, parent, (ToggleRowData) rowData);
       case SKILL_ACTION:
         return displaySkillAction(convertView, parent, (SkillActionRowData) rowData);
-      case ATTACK_ACTION:
-        return displayAttackAction(convertView, parent, (AttackActionRowData) rowData);
+      case THRESHOLD:
+        return displayThreshold(convertView, parent, (ThresholdRowData) rowData);
+      case TOGGLE:
+        return displayToggle(convertView, parent, (ToggleRowData) rowData);
       default:
         throw new IllegalStateException(String.format(Locale.US, "Row type %s is not valid here.", rowData.getType()));
       }
@@ -348,6 +352,62 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   }
 
   @NotNull
+  private View displayThreshold(View convertView, @NotNull ViewGroup parent, @NotNull final ThresholdRowData rowData) {
+    ViewHolder viewHolder;
+    if (convertView == null || !convertView.getTag().equals(RowData.Type.KEY_VALUE)) {
+      viewHolder = new ViewHolder();
+      LayoutInflater inflater = LayoutInflater.from(getContext());
+      convertView = inflater.inflate(R.layout.list_item_key_value, parent, false);
+      viewHolder.key = (TextView) convertView.findViewById(R.id.key);
+      viewHolder.value = (TextView) convertView.findViewById(R.id.value);
+      convertView.setTag(viewHolder);
+      viewHolder.type = RowData.Type.KEY_VALUE;
+    }
+    else {
+      viewHolder = (ViewHolder) convertView.getTag();
+    }
+
+    viewHolder.key.setText(rowData.getPair().getKey());
+    viewHolder.value.setText(rowData.getPair().getValue());
+    final Character pc = CharacterManager.getActiveCharacter();
+    viewHolder.value.setOnTouchListener(new View.OnTouchListener() {
+      @Override
+      public boolean onTouch(View v, MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+          int adjustment = (event.getX() > v.getWidth() / 2.0f) ? 1 : -1;
+          if (rowData.getThreshold().equals(ThresholdRowData.STRAIN)) {
+            pc.setStrain(pc.getStrain() + adjustment);
+          }
+          else if (rowData.getThreshold().equals(ThresholdRowData.WOUNDS)) {
+            pc.setWounds(pc.getWounds() + adjustment);
+          }
+
+          refreshPage();
+        }
+
+        return true;
+      }
+    });
+
+    viewHolder.key.setOnLongClickListener(new View.OnLongClickListener() {
+      @Override
+      public boolean onLongClick(View v) {
+        if (rowData.getThreshold().equals(ThresholdRowData.STRAIN)) {
+          pc.setStrain(0);
+        }
+        else if (rowData.getThreshold().equals(ThresholdRowData.WOUNDS)) {
+          pc.setWounds(0);
+        }
+
+        refreshPage();
+        return true;
+      }
+    });
+
+    return convertView;
+  }
+
+  @NotNull
   private View displayToggle(View convertView, @NotNull ViewGroup parent, @NotNull final ToggleRowData rowData) {
     final ViewHolder viewHolder;
     if (convertView == null || !convertView.getTag().equals(RowData.Type.TOGGLE)) {
@@ -369,9 +429,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       @Override
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         getActiveCharacter().setActionConditionState(rowData.getName(), viewHolder.toggleSwitch.isChecked());
-        if (invalidator != null) {
-          invalidator.invalidate();
-        }
+        refreshPage();
       }
     });
     return convertView;
@@ -424,6 +482,12 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     if (encumbrance != null) {
       Character pc = CharacterManager.getActiveCharacter();
       encumbrance.setText(String.format(Locale.US, "%d / %d", pc.getEncumbrance(), pc.getEncumbranceThreshold()));
+    }
+  }
+
+  private void refreshPage() {
+    if (invalidator != null) {
+      invalidator.invalidate();
     }
   }
 

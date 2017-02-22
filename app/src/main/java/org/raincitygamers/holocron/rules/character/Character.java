@@ -18,6 +18,7 @@ import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.SectionRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.SkillActionRowData;
+import org.raincitygamers.holocron.ui.display.pages.rowdata.ThresholdRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.ToggleRowData;
 
 import java.util.ArrayList;
@@ -261,8 +262,10 @@ public class Character {
   private List<RowData> getDefense() {
     List<RowData> rowData = new ArrayList<>();
     rowData.add(SectionRowData.of("Defense"));
-    rowData.add(KeyValueRowData.of("Wounds", String.format(Locale.US, "%d / %d", wounds, woundThreshold)));
-    rowData.add(KeyValueRowData.of("Strain", String.format(Locale.US, "%d / %d", strain, strainThreshold)));
+    rowData.add(ThresholdRowData.of("Wounds", String.format(Locale.US, " %d / %d", wounds, woundThreshold),
+                                    ThresholdRowData.WOUNDS));
+    rowData.add(ThresholdRowData.of("Strain", String.format(Locale.US, " %d / %d", strain, strainThreshold),
+                                    ThresholdRowData.STRAIN));
     rowData.add(KeyValueRowData.of("Soak", String.format(Locale.US, "%d", soak)));
     rowData.add(KeyValueRowData.of("Defense (M/R)", String.format(Locale.US, "%d / %d", meleeDefense, rangedDefense)));
 
@@ -694,6 +697,14 @@ public class Character {
     }
 
     return threshold;
+  }
+
+  public void setWounds(int i) {
+    wounds = Math.max(i, 0);
+  }
+
+  public void setStrain(int i) {
+    strain = Math.max(i, 0);
   }
 
   @Getter

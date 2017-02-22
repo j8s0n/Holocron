@@ -15,6 +15,7 @@ public interface RowData {
     KEY_VALUE,
     SECTION_ID,
     SKILL_ACTION,
+    THRESHOLD,
     TOGGLE
   }
 }

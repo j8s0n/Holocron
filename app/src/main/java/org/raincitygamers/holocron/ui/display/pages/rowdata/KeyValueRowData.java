@@ -6,11 +6,10 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @Getter
-@RequiredArgsConstructor(suppressConstructorProperties = true, staticName = "of")
 public class KeyValueRowData implements RowData {
   private final KvPair pair;
 
-  private KeyValueRowData(@NotNull String key, @NotNull String value) {
+  protected KeyValueRowData(@NotNull String key, @NotNull String value) {
     this.pair = KvPair.of(key, value);
   }
 
