@@ -41,8 +41,11 @@ import org.raincitygamers.holocron.ui.display.pages.rowdata.SkillActionRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.ThresholdRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.ToggleRowData;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 
 import static org.raincitygamers.holocron.rules.managers.CharacterManager.getActiveCharacter;
@@ -51,9 +54,12 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   private final FragmentInvalidator invalidator;
   private static final float IGNORED_ENCUMBRANCE = 0.2f;
   private TextView encumbrance;
+  private final List<RowData> rowDataList;
+  private final Map<String, List<RowData>> removedRowsMap = new HashMap<>();
 
   public DisplayArrayAdapter(Context context, List<RowData> objects, @Nullable FragmentInvalidator invalidator) {
     super(context, -1, objects);
+    this.rowDataList = objects;
     this.invalidator = invalidator;
   }
 
@@ -76,7 +82,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       case KEY_VALUE:
         return displayKeyValuePair(convertView, parent, ((KeyValueRowData)rowData).getPair());
       case SECTION_ID:
-        return displaySection(convertView, parent, ((SectionRowData) rowData).getSectionId());
+        return displaySection(convertView, parent, ((SectionRowData) rowData), position);
       case SKILL_ACTION:
         return displaySkillAction(convertView, parent, (SkillActionRowData) rowData);
       case THRESHOLD:
@@ -134,7 +140,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       viewHolder = (ViewHolder) convertView.getTag();
     }
 
-    Set<String> activeConditions = CharacterManager.getActiveCharacter().getActiveConditions();
+    Set<String> activeConditions = getActiveCharacter().getActiveConditions();
     AttackAction attackAction = rowData.getAttackAction();
     DicePool dicePool = DicePool.of(attackAction);
     dicePool.increasePool(attackAction.getPoolBonus(activeConditions));
@@ -302,8 +308,11 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   }
 
   @NotNull
-  private View displaySection(View convertView, @NotNull ViewGroup parent, @NotNull String sectionLabel) {
+  private View displaySection(View convertView, @NotNull ViewGroup parent, @NotNull SectionRowData sectionRowData,
+                              final int position) {
     ViewHolder viewHolder;
+    final String sectionLabel = sectionRowData.getSectionId();
+    final String pageName = sectionRowData.getContainerPage();
     if (convertView == null || !convertView.getTag().equals(RowData.Type.SECTION_ID)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
@@ -316,8 +325,46 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       viewHolder = (ViewHolder) convertView.getTag();
     }
 
+    /*
+    if (CharacterManager.getActiveCharacter().isSectionHidden(pageName, sectionLabel)) {
+      hideSection(position + 1, pageName, sectionLabel);
+    }
+    */
+
     viewHolder.sectionLabel.setText(sectionLabel);
+    viewHolder.sectionLabel.setOnLongClickListener(new View.OnLongClickListener() {
+      @Override
+      public boolean onLongClick(View v) {
+        if (removedRowsMap.containsKey(sectionLabel)) {
+          unhideSection(position + 1, pageName, sectionLabel);
+        }
+        else {
+          hideSection(position + 1, pageName, sectionLabel);
+        }
+
+        notifyDataSetChanged();
+        return true;
+      }
+    });
+
     return convertView;
+  }
+
+  private void hideSection(int nextIndex, @NotNull String pageName, @NotNull String sectionLabel) {
+    List<RowData> removedRows = new ArrayList<>();
+    while (nextIndex < rowDataList.size() && !rowDataList.get(nextIndex).getType().equals(RowData.Type.SECTION_ID)) {
+      removedRows.add(rowDataList.get(nextIndex));
+      rowDataList.remove(nextIndex);
+    }
+
+    removedRowsMap.put(sectionLabel, removedRows);
+    CharacterManager.getActiveCharacter().hideSection(pageName, sectionLabel);
+  }
+
+  private void unhideSection(int nextIndex, @NotNull String pageName, @NotNull String sectionLabel) {
+    rowDataList.addAll(nextIndex, removedRowsMap.get(sectionLabel));
+    removedRowsMap.remove(sectionLabel);
+    CharacterManager.getActiveCharacter().unhideSection(pageName, sectionLabel);
   }
 
   @NotNull
@@ -339,7 +386,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       viewHolder = (ViewHolder) convertView.getTag();
     }
 
-    Set<String> activeConditions = CharacterManager.getActiveCharacter().getActiveConditions();
+    Set<String> activeConditions = getActiveCharacter().getActiveConditions();
     SkillAction skillAction = rowData.getSkillAction();
     DicePool dicePool = DicePool.of(skillAction);
     dicePool.increasePool(skillAction.getPoolBonus(activeConditions));
@@ -369,7 +416,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
 
     viewHolder.key.setText(rowData.getPair().getKey());
     viewHolder.value.setText(rowData.getPair().getValue());
-    final Character pc = CharacterManager.getActiveCharacter();
+    final Character pc = getActiveCharacter();
     viewHolder.value.setOnTouchListener(new View.OnTouchListener() {
       @Override
       public boolean onTouch(View v, MotionEvent event) {
@@ -428,7 +475,8 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     viewHolder.toggleSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
       @Override
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        getActiveCharacter().setActionConditionState(rowData.getName(), viewHolder.toggleSwitch.isChecked());
+        CharacterManager.getActiveCharacter().setActionConditionState(rowData.getName(),
+                                                                      viewHolder.toggleSwitch.isChecked());
         refreshPage();
       }
     });
@@ -469,7 +517,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       @Override
       public boolean onLongClick(View v) {
         Intent intent = new Intent(getContext(), InventoryEditorActivity.class);
-        int index = CharacterManager.getActiveCharacter().getInventory().indexOf(item);
+        int index = getActiveCharacter().getInventory().indexOf(item);
         intent.putExtra(InventoryEditorActivity.INVENTORY_ITEM_TO_EDIT, index);
         getContext().startActivity(intent);
 
@@ -480,7 +528,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
 
   private void updateEncumbrance() {
     if (encumbrance != null) {
-      Character pc = CharacterManager.getActiveCharacter();
+      Character pc = getActiveCharacter();
       encumbrance.setText(String.format(Locale.US, "%d / %d", pc.getEncumbrance(), pc.getEncumbranceThreshold()));
     }
   }

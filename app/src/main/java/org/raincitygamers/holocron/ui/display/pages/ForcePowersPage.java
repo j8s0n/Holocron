@@ -33,7 +33,7 @@ public class ForcePowersPage extends AbilityPage {
 
     for (Map.Entry<String, List<Integer>> entry : pc.getForcePowers().entrySet()) {
       String powerName = entry.getKey();
-      rowData.add(SectionRowData.of(powerName));
+      rowData.add(SectionRowData.of("powerName", "Force Powers"));
       List<ForcePowerUpgrade> powerUpgradeList = ForcePowerManager.getList(powerName);
       List<Integer> chosenPowerUpgrades = entry.getValue();
       Collections.sort(chosenPowerUpgrades);

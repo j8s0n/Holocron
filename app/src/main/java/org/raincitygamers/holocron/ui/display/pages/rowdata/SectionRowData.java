@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor(suppressConstructorProperties = true, staticName = "of")
 public class SectionRowData implements RowData {
   @Getter private final String sectionId;
+  @Getter private final String containerPage;
 
   @NotNull
   @Override

@@ -119,6 +119,7 @@ public class Character {
   @Getter @Setter private int credits;
   private long accessTime;
 
+  private final Set<HiddenSection> hiddenSections = new HashSet<>();
   private final Map<Characteristic, Integer> characteristicScores = new HashMap<>();
   private final Map<Skill, Integer> skills = new HashMap<>();
 
@@ -221,8 +222,8 @@ public class Character {
   public List<RowData> getBasics() {
     List<RowData> rowData = new ArrayList<>();
     rowData.addAll(getIdentityBasics());
-    rowData.addAll(getCharacteristics());
-    rowData.addAll(getDefense());
+    rowData.addAll(getCharacteristics("Basics"));
+    rowData.addAll(getDefense("Basics"));
     return rowData;
   }
 
@@ -248,9 +249,9 @@ public class Character {
   }
 
   @NotNull
-  private List<RowData> getCharacteristics() {
+  private List<RowData> getCharacteristics(@NotNull String page) {
     List<RowData> rowData = new ArrayList<>();
-    rowData.add(SectionRowData.of("Characteristics"));
+    rowData.add(SectionRowData.of("Characteristics", page));
     for (Characteristic ch : Characteristic.values()) {
       rowData.add(KeyValueRowData.of(ch.toString(), String.format(Locale.US, "%d", getCharacteristicScore(ch))));
     }
@@ -259,9 +260,9 @@ public class Character {
   }
 
   @NotNull
-  private List<RowData> getDefense() {
+  private List<RowData> getDefense(@NotNull String page) {
     List<RowData> rowData = new ArrayList<>();
-    rowData.add(SectionRowData.of("Defense"));
+    rowData.add(SectionRowData.of("Defense", page));
     rowData.add(ThresholdRowData.of("Wounds", String.format(Locale.US, " %d / %d", wounds, woundThreshold),
                                     ThresholdRowData.WOUNDS));
     rowData.add(ThresholdRowData.of("Strain", String.format(Locale.US, " %d / %d", strain, strainThreshold),
@@ -275,17 +276,17 @@ public class Character {
   @NotNull
   public List<RowData> getActions() {
     List<RowData> rowData = new ArrayList<>();
-    rowData.addAll(getAttackActions());
-    rowData.addAll(getSkillActions());
-    rowData.addAll(getDefense());
-    rowData.addAll(getActionConditions());
+    rowData.addAll(getAttackActions("Action"));
+    rowData.addAll(getSkillActions("Action"));
+    rowData.addAll(getDefense("Action"));
+    rowData.addAll(getActionConditions("Action"));
     return rowData;
   }
 
   @NotNull
-  private List<RowData> getAttackActions() {
+  private List<RowData> getAttackActions(@NotNull String page) {
     List<RowData> rowData = new ArrayList<>();
-    rowData.add(SectionRowData.of("Attacks"));
+    rowData.add(SectionRowData.of("Attacks", page));
     for (AttackAction attackAction : attackActions) {
       rowData.add(AttackActionRowData.of(attackAction));
     }
@@ -294,9 +295,9 @@ public class Character {
   }
 
   @NotNull
-  private List<RowData> getSkillActions() {
+  private List<RowData> getSkillActions(@NotNull String page) {
     List<RowData> rowData = new ArrayList<>();
-    rowData.add(SectionRowData.of("Skills"));
+    rowData.add(SectionRowData.of("Skills", page));
     for (SkillAction skillAction : skillActions) {
       rowData.add(SkillActionRowData.of(skillAction));
     }
@@ -305,9 +306,9 @@ public class Character {
   }
 
   @NotNull
-  private List<RowData> getActionConditions() {
+  private List<RowData> getActionConditions(@NotNull String page) {
     List<RowData> rowData = new ArrayList<>();
-    rowData.add(SectionRowData.of("Conditions"));
+    rowData.add(SectionRowData.of("Conditions", page));
     for (Map.Entry<String, Boolean> condition : actionConditions.entrySet()) {
       rowData.add(ToggleRowData.of(condition.getKey(), condition.getValue()));
     }
@@ -936,6 +937,26 @@ public class Character {
       this.description = description;
       return this;
     }
+  }
+
+  public void hideSection(@NotNull String pageName, @NotNull String sectionName) {
+    hiddenSections.add(HiddenSection.of(pageName, sectionName));
+  }
+
+  public void unhideSection(@NotNull String pageName, @NotNull String sectionName) {
+    hiddenSections.remove(HiddenSection.of(pageName, sectionName));
+  }
+
+  public boolean isSectionHidden(@NotNull String pageName, @NotNull String sectionName) {
+    return hiddenSections.contains(HiddenSection.of(pageName, sectionName));
+  }
+
+  @Getter
+  @EqualsAndHashCode
+  @RequiredArgsConstructor(suppressConstructorProperties = true, staticName = "of")
+  private static class HiddenSection {
+    private final String pageName;
+    private final String sectionName;
   }
 
   private static class MostRecentAccessComparator implements Comparator<Character.Summary> {
