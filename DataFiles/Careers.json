@@ -1,0 +1,1181 @@
+{
+  "specializations": [
+    {
+      "careerSkills": [
+        "Athletics",
+        "Discipline",
+        "Survival",
+        "Vigilance"
+      ],
+      "name": "Recruit"
+    },
+    {
+      "careerSkills": [],
+      "name": "Force-Sensitive Emergent"
+    },
+    {
+      "careerSkills": [],
+      "name": "Force Sensitive Exile"
+    },
+    {
+      "careerSkills": [
+        "Melee",
+        "Ranged (Heavy)",
+        "Skullduggery",
+        "Stealth"
+      ],
+      "name": "Bounty Hunter--Assassin"
+    },
+    {
+      "careerSkills": [
+        "Brawl",
+        "Coercion",
+        "Mechanics",
+        "Ranged (Light)"
+      ],
+      "name": "Bounty Hunter--Gadgeteer"
+    },
+    {
+      "careerSkills": [
+        "Perception",
+        "Resilience",
+        "Survival",
+        "Xenology"
+      ],
+      "name": "Bounty Hunter--Survivalist"
+    },
+    {
+      "careerSkills": [],
+      "name": "Bounty Hunter--Martial Artist"
+    },
+    {
+      "careerSkills": [],
+      "name": "Bounty Hunter--Skip Tracer"
+    },
+    {
+      "careerSkills": [],
+      "name": "Bounty Hunter--Operator"
+    },
+    {
+      "careerSkills": [
+        "Cool",
+        "Education",
+        "Medicine",
+        "Resilience"
+      ],
+      "name": "Colonist--Doctor"
+    },
+    {
+      "careerSkills": [
+        "Charm",
+        "Coercion",
+        "Core Worlds",
+        "Deception"
+      ],
+      "name": "Colonist--Politico"
+    },
+    {
+      "careerSkills": [
+        "Outer Rim",
+        "Perception",
+        "Underworld",
+        "Xenology"
+      ],
+      "name": "Colonist--Scholar"
+    },
+    {
+      "careerSkills": [
+        "Discipline",
+        "Education",
+        "Underworld",
+        "Negotiation"
+      ],
+      "name": "Colonist--Entrepreneuer"
+    },
+    {
+      "careerSkills": [
+        "Coercion",
+        "Underworld",
+        "Ranged (Light)",
+        "Vigilance"
+      ],
+      "name": "Colonist--Marshal"
+    },
+    {
+      "careerSkills": [
+        "Charm",
+        "Coordination",
+        "Deception",
+        "Melee"
+      ],
+      "name": "Colonist--Performer"
+    },
+    {
+      "careerSkills": [
+        "Astrogation",
+        "Coordination",
+        "Negotiation",
+        "Streetwise"
+      ],
+      "name": "Explorer--Fringer"
+    },
+    {
+      "careerSkills": [
+        "Athletics",
+        "Medicine",
+        "Piloting (Planetary)",
+        "Survival"
+      ],
+      "name": "Explorer--Scout"
+    },
+    {
+      "careerSkills": [
+        "Core Worlds",
+        "Deception",
+        "Negotiation",
+        "Underworld"
+      ],
+      "name": "Explorer--Trader"
+    },
+    {
+      "careerSkills": [
+        "Athletics",
+        "Discipline",
+        "Education",
+        "Lore"
+      ],
+      "name": "Explorer--Archaeologist"
+    },
+    {
+      "careerSkills": [
+        "Xenology",
+        "Ranged (Heavy)",
+        "Stealth",
+        "Survival"
+      ],
+      "name": "Explorer--Big-Game Hunter"
+    },
+    {
+      "careerSkills": [
+        "Cool",
+        "Gunnery",
+        "Mechanics",
+        "Piloting (Planetary)"
+      ],
+      "name": "Explorer--Driver"
+    },
+    {
+      "careerSkills": [
+        "Gunnery",
+        "Perception",
+        "Piloting (Planetary)",
+        "Ranged (Heavy)"
+      ],
+      "name": "Hired Gun--Bodyguard"
+    },
+    {
+      "careerSkills": [
+        "Coercion",
+        "Melee",
+        "Resilience",
+        "Survival"
+      ],
+      "name": "Hired Gun--Marauder"
+    },
+    {
+      "careerSkills": [
+        "Brawl",
+        "Coercion",
+        "Underworld",
+        "Streetwise"
+      ],
+      "name": "Hired Gun--Enforcer"
+    },
+    {
+      "careerSkills": [
+        "Computers",
+        "Cool",
+        "Mechanics",
+        "Skullduggery"
+      ],
+      "name": "Hired Gun--Demolitionist"
+    },
+    {
+      "careerSkills": [
+        "Gunnery",
+        "Perception",
+        "Ranged (Heavy)",
+        "Resilience"
+      ],
+      "name": "Hired Gun--Heavy"
+    },
+    {
+      "careerSkills": [
+        "Discipline",
+        "Gunnery",
+        "Leadership",
+        "Ranged (Heavy)"
+      ],
+      "name": "Hired Gun--Mercenary Soldier"
+    },
+    {
+      "careerSkills": [
+        "Astrogation",
+        "Gunnery",
+        "Piloting (Planetary)",
+        "Piloting (Space)"
+      ],
+      "name": "Smuggler--Pilot"
+    },
+    {
+      "careerSkills": [
+        "Charm",
+        "Cool",
+        "Deception",
+        "Ranged (Light)"
+      ],
+      "name": "Smuggler--Scoundrel"
+    },
+    {
+      "careerSkills": [
+        "Computers",
+        "Skullduggery",
+        "Stealth",
+        "Vigilance"
+      ],
+      "name": "Smuggler--Thief"
+    },
+    {
+      "careerSkills": [
+        "Coercion",
+        "Cool",
+        "Outer Rim",
+        "Ranged (Light)"
+      ],
+      "name": "Smuggler--Gunslinger"
+    },
+    {
+      "careerSkills": [
+        "Charm",
+        "Cool",
+        "Leadership",
+        "Negotiation"
+      ],
+      "name": "Smuggler--Charmer"
+    },
+    {
+      "careerSkills": [
+        "Computers",
+        "Cool",
+        "Deception",
+        "Skullduggery"
+      ],
+      "name": "Smuggler--Gambler"
+    },
+    {
+      "careerSkills": [
+        "Brawl",
+        "Mechanics",
+        "Piloting (Space)",
+        "Skullduggery"
+      ],
+      "name": "Technician--Mechanic"
+    },
+    {
+      "careerSkills": [
+        "Education",
+        "Mechanics",
+        "Streetwise",
+        "Underworld"
+      ],
+      "name": "Technician--Outlaw Tech"
+    },
+    {
+      "careerSkills": [
+        "Computers",
+        "Education",
+        "Stealth",
+        "Underworld"
+      ],
+      "name": "Technician--Slicer"
+    },
+    {
+      "careerSkills": [
+        "Athletics",
+        "Mechanics",
+        "Medicine",
+        "Vigilance"
+      ],
+      "name": "Technician--Cyber Tech"
+    },
+    {
+      "careerSkills": [
+        "Computers",
+        "Cool",
+        "Mechanics",
+        "Leadership"
+      ],
+      "name": "Technician--Droid Tech"
+    },
+    {
+      "careerSkills": [
+        "Gunnery",
+        "Mechanics",
+        "Piloting (Space)",
+        "Streetwise"
+      ],
+      "name": "Technician--Modder"
+    },
+    {
+      "careerSkills": [
+        "Discipline",
+        "Education",
+        "Xenology",
+        "Medicine"
+      ],
+      "name": "Consular--Healer"
+    },
+    {
+      "careerSkills": [
+        "Discipline",
+        "Leadership",
+        "Lightsaber",
+        "Negotiation"
+      ],
+      "name": "Consular--Niman Disciple"
+    },
+    {
+      "careerSkills": [
+        "Astrogation",
+        "Charm",
+        "Cool",
+        "Lore"
+      ],
+      "name": "Consular--Sage"
+    },
+    {
+      "careerSkills": [],
+      "name": "Consular--Arbiter"
+    },
+    {
+      "careerSkills": [],
+      "name": "Consular--Ascetic"
+    },
+    {
+      "careerSkills": [],
+      "name": "Consular--Teacher"
+    },
+    {
+      "careerSkills": [
+        "Astrogation",
+        "Computers",
+        "Education",
+        "Mechanics"
+      ],
+      "name": "Sentinel--Artisan"
+    },
+    {
+      "careerSkills": [
+        "Underworld",
+        "Skullduggery",
+        "Stealth",
+        "Streetwise"
+      ],
+      "name": "Sentinel--Shadow"
+    },
+    {
+      "careerSkills": [
+        "Athletics",
+        "Lightsaber",
+        "Resilience",
+        "Skullduggery"
+      ],
+      "name": "Sentinel--Shien Expert"
+    },
+    {
+      "careerSkills": [
+        "Education",
+        "Underworld",
+        "Perception",
+        "Streetwise"
+      ],
+      "name": "Sentinel--Investigator"
+    },
+    {
+      "careerSkills": [
+        "Cool",
+        "Coordination",
+        "Piloting (Planetary)",
+        "Piloting (Space)"
+      ],
+      "name": "Sentinel--Racer"
+    },
+    {
+      "careerSkills": [
+        "Coordination",
+        "Lightsaber",
+        "Stealth",
+        "Vigilance"
+      ],
+      "name": "Sentinel--Sentry"
+    },
+    {
+      "careerSkills": [
+        "Charm",
+        "Discipline",
+        "Core Worlds",
+        "Negotiation"
+      ],
+      "name": "Diplomat--Ambassador"
+    },
+    {
+      "careerSkills": [
+        "Coercion",
+        "Deception",
+        "Underworld",
+        "Streetwise"
+      ],
+      "name": "Diplomat--Agitator"
+    },
+    {
+      "careerSkills": [
+        "Computers",
+        "Negotiation",
+        "Skullduggery",
+        "Vigilance"
+      ],
+      "name": "Diplomat--Quartermaster"
+    },
+    {
+      "careerSkills": [
+        "Coercion",
+        "Deception",
+        "Negotiation",
+        "Vigilance"
+      ],
+      "name": "Diplomat--Advocate"
+    },
+    {
+      "careerSkills": [
+        "Computers",
+        "Education",
+        "Warfare",
+        "Perception"
+      ],
+      "name": "Diplomat--Analyst"
+    },
+    {
+      "careerSkills": [
+        "Charm",
+        "Deception",
+        "Warfare",
+        "Perception"
+      ],
+      "name": "Diplomat--Propagandist"
+    },
+    {
+      "careerSkills": [
+        "Cool",
+        "Gunnery",
+        "Mechanics",
+        "Piloting (Planetary)"
+      ],
+      "name": "Ace--Driver"
+    },
+    {
+      "careerSkills": [
+        "Discipline",
+        "Gunnery",
+        "Ranged (Heavy)",
+        "Resilience"
+      ],
+      "name": "Ace--Gunner"
+    },
+    {
+      "careerSkills": [
+        "Astrogation",
+        "Gunnery",
+        "Piloting (Planetary)",
+        "Piloting (Space)"
+      ],
+      "name": "Ace--Pilot"
+    },
+    {
+      "careerSkills": [
+        "Athletics",
+        "Xenology",
+        "Perception",
+        "Survival"
+      ],
+      "name": "Ace--Beast Rider"
+    },
+    {
+      "careerSkills": [
+        "Cool",
+        "Coordination",
+        "Piloting (Planetary)",
+        "Piloting (Space)"
+      ],
+      "name": "Ace--Hotshot"
+    },
+    {
+      "careerSkills": [
+        "Gunnery",
+        "Underworld",
+        "Mechanics",
+        "Resilience"
+      ],
+      "name": "Ace--Rigger"
+    },
+    {
+      "careerSkills": [
+        "Astrogation",
+        "Computers",
+        "Education",
+        "Outer Rim"
+      ],
+      "name": "Commander--Commodore"
+    },
+    {
+      "careerSkills": [
+        "Gunnery",
+        "Mechanics",
+        "Piloting (Planetary)",
+        "Piloting (Space)"
+      ],
+      "name": "Commander--Squadron Leader"
+    },
+    {
+      "careerSkills": [
+        "Brawl",
+        "Discipline",
+        "Leadership",
+        "Ranged (Heavy)"
+      ],
+      "name": "Commander--Tactician"
+    },
+    {
+      "careerSkills": [
+        "Cool",
+        "Leadership",
+        "Negotiation",
+        "Core Worlds"
+      ],
+      "name": "Commander--Figurehead"
+    },
+    {
+      "careerSkills": [
+        "Discipline",
+        "Medicine",
+        "Ranged (Heavy)",
+        "Education"
+      ],
+      "name": "Commander--Instructor"
+    },
+    {
+      "careerSkills": [
+        "Computers",
+        "Cool",
+        "Vigilance",
+        "Warfare"
+      ],
+      "name": "Commander--Strategist"
+    },
+    {
+      "careerSkills": [
+        "Brawl",
+        "Mechanics",
+        "Piloting (Space)",
+        "Skullduggery"
+      ],
+      "name": "Engineer--Mechanic"
+    },
+    {
+      "careerSkills": [
+        "Coordination",
+        "Mechanics",
+        "Skullduggery",
+        "Stealth"
+      ],
+      "name": "Engineer--Saboteur"
+    },
+    {
+      "careerSkills": [
+        "Computers",
+        "Education",
+        "Lore",
+        "Medicine"
+      ],
+      "name": "Engineer--Scientist"
+    },
+    {
+      "careerSkills": [
+        "Brawl",
+        "Melee",
+        "Resilience",
+        "Survival"
+      ],
+      "name": "Soldier--Commando"
+    },
+    {
+      "careerSkills": [
+        "Xenology",
+        "Medicine",
+        "Resilience",
+        "Vigilance"
+      ],
+      "name": "Soldier--Medic"
+    },
+    {
+      "careerSkills": [
+        "Cool",
+        "Perception",
+        "Ranged (Heavy)",
+        "Ranged (Light)"
+      ],
+      "name": "Soldier--Sharpshooter"
+    },
+    {
+      "careerSkills": [
+        "Deception",
+        "Melee",
+        "Skullduggery",
+        "Streetwise"
+      ],
+      "name": "Spy--Infiltrator"
+    },
+    {
+      "careerSkills": [
+        "Athletics",
+        "Medicine",
+        "Piloting (Planetary)",
+        "Survival"
+      ],
+      "name": "Spy--Scout"
+    },
+    {
+      "careerSkills": [
+        "Computers",
+        "Education",
+        "Underworld",
+        "Stealth"
+      ],
+      "name": "Spy--Slicer"
+    },
+    {
+      "careerSkills": [
+        "Discipline",
+        "Leadership",
+        "Perception",
+        "Piloting (Planetary)"
+      ],
+      "name": "Guardian--Peacekeeper"
+    },
+    {
+      "careerSkills": [
+        "Athletics",
+        "Medicine",
+        "Ranged (Light)",
+        "Resilience"
+      ],
+      "name": "Guardian--Protector"
+    },
+    {
+      "careerSkills": [
+        "Discipline",
+        "Lore",
+        "Lightsaber",
+        "Vigilance"
+      ],
+      "name": "Guardian--Soresu Defender"
+    },
+    {
+      "careerSkills": [
+        "Outer Rim",
+        "Lightsaber",
+        "Mechanics",
+        "Resilience"
+      ],
+      "name": "Guardian--Armorer"
+    },
+    {
+      "careerSkills": [
+        "Brawl",
+        "Coercion",
+        "Discipline",
+        "Underworld"
+      ],
+      "name": "Guardian--Warden"
+    },
+    {
+      "careerSkills": [
+        "Leadership",
+        "Perception",
+        "Ranged (Light)",
+        "Survival"
+      ],
+      "name": "Guardian--Warleader"
+    },
+    {
+      "careerSkills": [
+        "Charm",
+        "Deception",
+        "Negotiation",
+        "Streetwise"
+      ],
+      "name": "Mystic--Advisor"
+    },
+    {
+      "careerSkills": [
+        "Charm",
+        "Cool",
+        "Coordination",
+        "Lightsaber"
+      ],
+      "name": "Mystic--Makashi Duelist"
+    },
+    {
+      "careerSkills": [
+        "Discipline",
+        "Lore",
+        "Survival",
+        "Vigilance"
+      ],
+      "name": "Mystic--Seer"
+    },
+    {
+      "careerSkills": [
+        "Athletics",
+        "Coordination",
+        "Lightsaber",
+        "Perception"
+      ],
+      "name": "Seeker--Ataru Striker"
+    },
+    {
+      "careerSkills": [
+        "Coordination",
+        "Ranged (Heavy)",
+        "Stealth",
+        "Vigilance"
+      ],
+      "name": "Seeker--Hunter"
+    },
+    {
+      "careerSkills": [
+        "Medicine",
+        "Ranged (Light)",
+        "Resilience",
+        "Survival"
+      ],
+      "name": "Seeker--Pathfinder"
+    },
+    {
+      "careerSkills": [
+        "Discipline",
+        "Melee",
+        "Perception",
+        "Ranged (Heavy)"
+      ],
+      "name": "Seeker--Executioner"
+    },
+    {
+      "careerSkills": [
+        "Discipline",
+        "Xenology",
+        "Stealth",
+        "Survival"
+      ],
+      "name": "Seeker--Hermit"
+    },
+    {
+      "careerSkills": [
+        "Astrogation",
+        "Outer Rim",
+        "Perception",
+        "Survival"
+      ],
+      "name": "Seeker--Navigator"
+    },
+    {
+      "careerSkills": [
+        "Coercion",
+        "Underworld",
+        "Ranged (Light)",
+        "Streetwise"
+      ],
+      "name": "Warrior--Aggressor"
+    },
+    {
+      "careerSkills": [
+        "Athletics",
+        "Coordination",
+        "Lightsaber",
+        "Melee"
+      ],
+      "name": "Warrior--Shii-Cho Knight"
+    },
+    {
+      "careerSkills": [
+        "Astrogation",
+        "Gunnery",
+        "Mechanics",
+        "Piloting (Space)"
+      ],
+      "name": "Warrior--Starfighter Ace"
+    }
+  ],
+  "careers": [
+    {
+      "careerSkills": [
+        "Athletics",
+        "Brawl",
+        "Perception",
+        "Piloting (Planetary)",
+        "Piloting (Space)",
+        "Ranged (Heavy)",
+        "Streetwise",
+        "Vigilance"
+      ],
+      "name": "Bounty Hunter",
+      "specializations": [
+        "Bounty Hunter--Assassin",
+        "Bounty Hunter--Gadgeteer",
+        "Bounty Hunter--Survivalist",
+        "Bounty Hunter--Martial Artist",
+        "Bounty Hunter--Skip Tracer",
+        "Bounty Hunter--Operator"
+      ]
+    },
+    {
+      "careerSkills": [
+        "Charm",
+        "Core Worlds",
+        "Deception",
+        "Education",
+        "Leadership",
+        "Lore",
+        "Negotiation",
+        "Streetwise"
+      ],
+      "name": "Colonist",
+      "specializations": [
+        "Colonist--Doctor",
+        "Colonist--Politico",
+        "Colonist--Scholar",
+        "Colonist--Entrepreneuer",
+        "Colonist--Marshal",
+        "Colonist--Performer"
+      ]
+    },
+    {
+      "careerSkills": [
+        "Astrogation",
+        "Cool",
+        "Lore",
+        "Outer Rim",
+        "Perception",
+        "Piloting (Space)",
+        "Survival",
+        "Xenology"
+      ],
+      "name": "Explorer",
+      "specializations": [
+        "Explorer--Fringer",
+        "Explorer--Scout",
+        "Explorer--Trader",
+        "Explorer--Archaeologist",
+        "Explorer--Big-Game Hunter",
+        "Explorer--Driver"
+      ]
+    },
+    {
+      "careerSkills": [
+        "Athletics",
+        "Brawl",
+        "Discipline",
+        "Melee",
+        "Piloting (Planetary)",
+        "Ranged (Light)",
+        "Resilience",
+        "Vigilance"
+      ],
+      "name": "Hired Gun",
+      "specializations": [
+        "Hired Gun--Bodyguard",
+        "Hired Gun--Marauder",
+        "Hired Gun--Mercenary Soldier",
+        "Hired Gun--Enforcer",
+        "Hired Gun--Demolitionist",
+        "Hired Gun--Heavy"
+      ]
+    },
+    {
+      "careerSkills": [
+        "Coordination",
+        "Deception",
+        "Perception",
+        "Piloting (Space)",
+        "Skullduggery",
+        "Streetwise",
+        "Underworld",
+        "Vigilance"
+      ],
+      "name": "Smuggler",
+      "specializations": [
+        "Smuggler--Pilot",
+        "Smuggler--Scoundrel",
+        "Smuggler--Thief",
+        "Smuggler--Gunslinger",
+        "Smuggler--Charmer",
+        "Smuggler--Gambler"
+      ]
+    },
+    {
+      "careerSkills": [
+        "Astrogation",
+        "Computers",
+        "Coordination",
+        "Discipline",
+        "Mechanics",
+        "Outer Rim",
+        "Perception",
+        "Piloting (Planetary)"
+      ],
+      "name": "Technician",
+      "specializations": [
+        "Technician--Mechanic",
+        "Technician--Outlaw Tech",
+        "Technician--Slicer",
+        "Technician--Cyber Tech",
+        "Technician--Droid Tech",
+        "Technician--Modder"
+      ]
+    },
+    {
+      "careerSkills": [
+        "Cool",
+        "Discipline",
+        "Education",
+        "Lore",
+        "Leadership",
+        "Negotiation"
+      ],
+      "name": "Consular",
+      "specializations": [
+        "Consular--Healer",
+        "Consular--Niman Disciple",
+        "Consular--Sage",
+        "Consular--Arbiter",
+        "Consular--Ascetic",
+        "Consular--Teacher"
+      ]
+    },
+    {
+      "careerSkills": [
+        "Computers",
+        "Deception",
+        "Core Worlds",
+        "Perception",
+        "Skullduggery",
+        "Stealth"
+      ],
+      "name": "Sentinel",
+      "specializations": [
+        "Sentinel--Artisan",
+        "Sentinel--Shadow",
+        "Sentinel--Shien Expert",
+        "Sentinel--Investigator",
+        "Sentinel--Racer",
+        "Sentinel--Sentry"
+      ]
+    },
+    {
+      "careerSkills": [
+        "Charm",
+        "Deception",
+        "Core Worlds",
+        "Lore",
+        "Outer Rim",
+        "Xenology",
+        "Leadership",
+        "Negotiation"
+      ],
+      "name": "Diplomat",
+      "specializations": [
+        "Diplomat--Ambassador",
+        "Diplomat--Agitator",
+        "Diplomat--Quartermaster",
+        "Diplomat--Advocate",
+        "Diplomat--Analyst",
+        "Diplomat--Propagandist"
+      ]
+    },
+    {
+      "careerSkills": [
+        "Astrogation",
+        "Cool",
+        "Gunnery",
+        "Mechanics",
+        "Perception",
+        "Piloting (Planetary)",
+        "Piloting (Space)",
+        "Ranged (Light)"
+      ],
+      "name": "Ace",
+      "specializations": [
+        "Ace--Driver",
+        "Ace--Gunner",
+        "Ace--Pilot",
+        "Ace--Beast Rider",
+        "Ace--Hotshot",
+        "Ace--Rigger"
+      ]
+    },
+    {
+      "careerSkills": [
+        "Coercion",
+        "Cool",
+        "Discipline",
+        "Warfare",
+        "Leadership",
+        "Perception",
+        "Ranged (Light)",
+        "Vigilance"
+      ],
+      "name": "Commander",
+      "specializations": [
+        "Commander--Commodore",
+        "Commander--Squadron Leader",
+        "Commander--Tactician",
+        "Commander--Figurehead",
+        "Commander--Instructor",
+        "Commander--Strategist"
+      ]
+    },
+    {
+      "careerSkills": [
+        "Athletics",
+        "Computers",
+        "Education",
+        "Mechanics",
+        "Perception",
+        "Piloting (Space)",
+        "Ranged (Light)",
+        "Vigilance"
+      ],
+      "name": "Engineer",
+      "specializations": [
+        "Engineer--Mechanic",
+        "Engineer--Saboteur",
+        "Engineer--Scientist"
+      ]
+    },
+    {
+      "careerSkills": [
+        "Athletics",
+        "Brawl",
+        "Warfare",
+        "Medicine",
+        "Melee",
+        "Ranged (Light)",
+        "Ranged (Heavy)",
+        "Survival"
+      ],
+      "name": "Soldier",
+      "specializations": [
+        "Soldier--Commando",
+        "Soldier--Medic",
+        "Soldier--Sharpshooter"
+      ]
+    },
+    {
+      "careerSkills": [
+        "Computers",
+        "Cool",
+        "Coordination",
+        "Deception",
+        "Warfare",
+        "Perception",
+        "Skullduggery",
+        "Stealth"
+      ],
+      "name": "Spy",
+      "specializations": [
+        "Spy--Infiltrator",
+        "Spy--Scout",
+        "Spy--Slicer"
+      ]
+    },
+    {
+      "careerSkills": [
+        "Brawl",
+        "Cool",
+        "Discipline",
+        "Melee",
+        "Resiliance",
+        "Vigilance"
+      ],
+      "name": "Guardian",
+      "specializations": [
+        "Guardian--Peacekeeper",
+        "Guardian--Protector",
+        "Guardian--Soresu Defender",
+        "Guardian--Armorer",
+        "Guardian--Warden",
+        "Guardian--Warleader"
+      ]
+    },
+    {
+      "careerSkills": [
+        "Charm",
+        "Coercion",
+        "Lore",
+        "Outer Rim",
+        "Perception",
+        "Vigilance"
+      ],
+      "name": "Mystic",
+      "specializations": [
+        "Mystic--Advisor",
+        "Mystic--Makashi Duelist",
+        "Mystic--Seer"
+      ]
+    },
+    {
+      "careerSkills": [
+        "Xenology",
+        "Piloting (Planetary)",
+        "Piloting (Space)",
+        "Ranged (Heavy)",
+        "Survival",
+        "Vigilance"
+      ],
+      "name": "Seeker",
+      "specializations": [
+        "Seeker--Ataru Striker",
+        "Seeker--Hunter",
+        "Seeker--Pathfinder",
+        "Seeker--Executioner",
+        "Seeker--Hermit",
+        "Seeker--Navigator"
+      ]
+    },
+    {
+      "careerSkills": [
+        "Athletics",
+        "Brawl",
+        "Cool",
+        "Melee",
+        "Perception",
+        "Survival"
+      ],
+      "name": "Warrior",
+      "specializations": [
+        "Warrior--Aggressor",
+        "Warrior--Shii-Cho Knight",
+        "Warrior--Starfighter Ace"
+      ]
+    }
+  ]
+}
