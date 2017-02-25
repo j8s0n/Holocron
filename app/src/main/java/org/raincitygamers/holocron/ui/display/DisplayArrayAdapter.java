@@ -41,11 +41,8 @@ import org.raincitygamers.holocron.ui.display.pages.rowdata.SkillActionRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.ThresholdRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.ToggleRowData;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Set;
 
 import static org.raincitygamers.holocron.rules.managers.CharacterManager.getActiveCharacter;
@@ -54,12 +51,9 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   private final FragmentInvalidator invalidator;
   private static final float IGNORED_ENCUMBRANCE = 0.2f;
   private TextView encumbrance;
-  private final List<RowData> rowDataList;
-  private final Map<String, List<RowData>> removedRowsMap = new HashMap<>();
 
   public DisplayArrayAdapter(Context context, List<RowData> objects, @Nullable FragmentInvalidator invalidator) {
     super(context, -1, objects);
-    this.rowDataList = objects;
     this.invalidator = invalidator;
   }
 
@@ -82,7 +76,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       case KEY_VALUE:
         return displayKeyValuePair(convertView, parent, ((KeyValueRowData)rowData).getPair());
       case SECTION_ID:
-        return displaySection(convertView, parent, ((SectionRowData) rowData), position);
+        return displaySection(convertView, parent, ((SectionRowData) rowData));
       case SKILL_ACTION:
         return displaySkillAction(convertView, parent, (SkillActionRowData) rowData);
       case THRESHOLD:
@@ -308,8 +302,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   }
 
   @NotNull
-  private View displaySection(View convertView, @NotNull ViewGroup parent, @NotNull SectionRowData sectionRowData,
-                              final int position) {
+  private View displaySection(View convertView, @NotNull ViewGroup parent, @NotNull SectionRowData sectionRowData) {
     ViewHolder viewHolder;
     final String sectionLabel = sectionRowData.getSectionId();
     final String pageName = sectionRowData.getContainerPage();
@@ -332,39 +325,19 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     */
 
     viewHolder.sectionLabel.setText(sectionLabel);
-    viewHolder.sectionLabel.setOnLongClickListener(new View.OnLongClickListener() {
+    convertView.setOnLongClickListener(new View.OnLongClickListener() {
       @Override
       public boolean onLongClick(View v) {
-        if (removedRowsMap.containsKey(sectionLabel)) {
-          unhideSection(position + 1, pageName, sectionLabel);
-        }
-        else {
-          hideSection(position + 1, pageName, sectionLabel);
+        CharacterManager.getActiveCharacter().toggleSection(pageName, sectionLabel);
+        if (invalidator != null) {
+          invalidator.invalidate();
         }
 
-        notifyDataSetChanged();
         return true;
       }
     });
 
     return convertView;
-  }
-
-  private void hideSection(int nextIndex, @NotNull String pageName, @NotNull String sectionLabel) {
-    List<RowData> removedRows = new ArrayList<>();
-    while (nextIndex < rowDataList.size() && !rowDataList.get(nextIndex).getType().equals(RowData.Type.SECTION_ID)) {
-      removedRows.add(rowDataList.get(nextIndex));
-      rowDataList.remove(nextIndex);
-    }
-
-    removedRowsMap.put(sectionLabel, removedRows);
-    CharacterManager.getActiveCharacter().hideSection(pageName, sectionLabel);
-  }
-
-  private void unhideSection(int nextIndex, @NotNull String pageName, @NotNull String sectionLabel) {
-    rowDataList.addAll(nextIndex, removedRowsMap.get(sectionLabel));
-    removedRowsMap.remove(sectionLabel);
-    CharacterManager.getActiveCharacter().unhideSection(pageName, sectionLabel);
   }
 
   @NotNull

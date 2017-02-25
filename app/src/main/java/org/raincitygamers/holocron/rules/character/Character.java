@@ -221,29 +221,33 @@ public class Character {
   @NotNull
   public List<RowData> getBasics() {
     List<RowData> rowData = new ArrayList<>();
-    rowData.addAll(getIdentityBasics());
+    rowData.addAll(getIdentityBasics("Basics"));
     rowData.addAll(getCharacteristics("Basics"));
     rowData.addAll(getDefense("Basics"));
     return rowData;
   }
 
   @NotNull
-  private List<RowData> getIdentityBasics() {
+  private List<RowData> getIdentityBasics(@NotNull String page) {
     List<RowData> rowData = new ArrayList<>();
-    rowData.add(KeyValueRowData.of("Name", name));
-    rowData.add(KeyValueRowData.of("Species", species));
-    rowData.add(KeyValueRowData.of("Career", career.getName()));
-    String specializationLabel = "Specialization";
-    if (specializations.size() > 1) {
-      specializationLabel = "Specializations";
-    }
+    String sectionId = "Identity";
+    rowData.add(SectionRowData.of(sectionId, page));
+    if (!hiddenSections.contains(HiddenSection.of(page, sectionId))) {
+      rowData.add(KeyValueRowData.of("Name", name));
+      rowData.add(KeyValueRowData.of("Species", species));
+      rowData.add(KeyValueRowData.of("Career", career.getName()));
+      String specializationLabel = "Specialization";
+      if (specializations.size() > 1) {
+        specializationLabel = "Specializations";
+      }
 
-    for (Specialization spec : specializations) {
-      rowData.add(KeyValueRowData.of(specializationLabel, spec.getPrettyName()));
-      specializationLabel = "";
-    }
+      for (Specialization spec : specializations) {
+        rowData.add(KeyValueRowData.of(specializationLabel, spec.getPrettyName()));
+        specializationLabel = "";
+      }
 
-    rowData.add(KeyValueRowData.of("XP", String.format(Locale.US,  "%d", xp)));
+      rowData.add(KeyValueRowData.of("XP", String.format(Locale.US, "%d", xp)));
+    }
 
     return rowData;
   }
@@ -251,9 +255,12 @@ public class Character {
   @NotNull
   private List<RowData> getCharacteristics(@NotNull String page) {
     List<RowData> rowData = new ArrayList<>();
-    rowData.add(SectionRowData.of("Characteristics", page));
-    for (Characteristic ch : Characteristic.values()) {
-      rowData.add(KeyValueRowData.of(ch.toString(), String.format(Locale.US, "%d", getCharacteristicScore(ch))));
+    String sectionId = "Characteristics";
+    rowData.add(SectionRowData.of(sectionId, page));
+    if (!hiddenSections.contains(HiddenSection.of(page, sectionId))) {
+      for (Characteristic ch : Characteristic.values()) {
+        rowData.add(KeyValueRowData.of(ch.toString(), String.format(Locale.US, "%d", getCharacteristicScore(ch))));
+      }
     }
 
     return rowData;
@@ -262,13 +269,16 @@ public class Character {
   @NotNull
   private List<RowData> getDefense(@NotNull String page) {
     List<RowData> rowData = new ArrayList<>();
-    rowData.add(SectionRowData.of("Defense", page));
-    rowData.add(ThresholdRowData.of("Wounds", String.format(Locale.US, " %d / %d", wounds, woundThreshold),
-                                    ThresholdRowData.WOUNDS));
-    rowData.add(ThresholdRowData.of("Strain", String.format(Locale.US, " %d / %d", strain, strainThreshold),
-                                    ThresholdRowData.STRAIN));
-    rowData.add(KeyValueRowData.of("Soak", String.format(Locale.US, "%d", soak)));
-    rowData.add(KeyValueRowData.of("Defense (M/R)", String.format(Locale.US, "%d / %d", meleeDefense, rangedDefense)));
+    String sectionId = "Defense";
+    rowData.add(SectionRowData.of(sectionId, page));
+    if (!hiddenSections.contains(HiddenSection.of(page, sectionId))) {
+      rowData.add(ThresholdRowData.of("Wounds", String.format(Locale.US, " %d / %d", wounds, woundThreshold),
+                                      ThresholdRowData.WOUNDS));
+      rowData.add(ThresholdRowData.of("Strain", String.format(Locale.US, " %d / %d", strain, strainThreshold),
+                                      ThresholdRowData.STRAIN));
+      rowData.add(KeyValueRowData.of("Soak", String.format(Locale.US, "%d", soak)));
+      rowData.add(KeyValueRowData.of("Defense (M/R)", String.format(Locale.US, "%d / %d", meleeDefense, rangedDefense)));
+    }
 
     return rowData;
   }
@@ -286,9 +296,12 @@ public class Character {
   @NotNull
   private List<RowData> getAttackActions(@NotNull String page) {
     List<RowData> rowData = new ArrayList<>();
-    rowData.add(SectionRowData.of("Attacks", page));
-    for (AttackAction attackAction : attackActions) {
-      rowData.add(AttackActionRowData.of(attackAction));
+    String sectionId = "Attacks";
+    rowData.add(SectionRowData.of(sectionId, page));
+    if (!hiddenSections.contains(HiddenSection.of(page, sectionId))) {
+      for (AttackAction attackAction : attackActions) {
+        rowData.add(AttackActionRowData.of(attackAction));
+      }
     }
 
     return rowData;
@@ -297,9 +310,12 @@ public class Character {
   @NotNull
   private List<RowData> getSkillActions(@NotNull String page) {
     List<RowData> rowData = new ArrayList<>();
-    rowData.add(SectionRowData.of("Skills", page));
-    for (SkillAction skillAction : skillActions) {
-      rowData.add(SkillActionRowData.of(skillAction));
+    String sectionId = "Skills";
+    rowData.add(SectionRowData.of(sectionId, page));
+    if (!hiddenSections.contains(HiddenSection.of(page, sectionId))) {
+      for (SkillAction skillAction : skillActions) {
+        rowData.add(SkillActionRowData.of(skillAction));
+      }
     }
 
     return rowData;
@@ -308,9 +324,12 @@ public class Character {
   @NotNull
   private List<RowData> getActionConditions(@NotNull String page) {
     List<RowData> rowData = new ArrayList<>();
-    rowData.add(SectionRowData.of("Conditions", page));
-    for (Map.Entry<String, Boolean> condition : actionConditions.entrySet()) {
-      rowData.add(ToggleRowData.of(condition.getKey(), condition.getValue()));
+    String sectionId = "Conditions";
+    rowData.add(SectionRowData.of(sectionId, page));
+    if (!hiddenSections.contains(HiddenSection.of(page, sectionId))) {
+      for (Map.Entry<String, Boolean> condition : actionConditions.entrySet()) {
+        rowData.add(ToggleRowData.of(condition.getKey(), condition.getValue()));
+      }
     }
 
     return rowData;
@@ -939,12 +958,14 @@ public class Character {
     }
   }
 
-  public void hideSection(@NotNull String pageName, @NotNull String sectionName) {
-    hiddenSections.add(HiddenSection.of(pageName, sectionName));
-  }
-
-  public void unhideSection(@NotNull String pageName, @NotNull String sectionName) {
-    hiddenSections.remove(HiddenSection.of(pageName, sectionName));
+  public void toggleSection(@NotNull String pageName, @NotNull String sectionName) {
+    HiddenSection hiddenSection = HiddenSection.of(pageName, sectionName);
+    if (hiddenSections.contains(hiddenSection)) {
+      hiddenSections.remove(hiddenSection);
+    }
+    else {
+      hiddenSections.add(hiddenSection);
+    }
   }
 
   public boolean isSectionHidden(@NotNull String pageName, @NotNull String sectionName) {

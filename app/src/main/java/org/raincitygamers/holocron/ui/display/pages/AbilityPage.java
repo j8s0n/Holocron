@@ -8,13 +8,14 @@ import android.widget.ListView;
 
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.ui.ContentPage;
+import org.raincitygamers.holocron.ui.FragmentInvalidator;
 import org.raincitygamers.holocron.ui.display.DisplayArrayAdapter;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbilityPage extends ContentPage {
+public abstract class AbilityPage extends ContentPage implements FragmentInvalidator {
   private List<RowData> abilities = new ArrayList<>();
   private DisplayArrayAdapter adapter;
 
@@ -42,9 +43,14 @@ public abstract class AbilityPage extends ContentPage {
     View result = inflater.inflate(R.layout.display_abilities, container, false);
 
     ListView skillListView = (ListView) result.findViewById(R.id.ability_group_list);
-    adapter = new DisplayArrayAdapter(getActivity(), abilities, null);
+    adapter = new DisplayArrayAdapter(getActivity(), abilities, this);
     skillListView.setAdapter(adapter);
 
     return result;
+  }
+
+  @Override
+  public void invalidate() {
+    displayAbilities();
   }
 }

@@ -25,12 +25,15 @@ public class TalentsPage extends AbilityPage {
 
     for (Map.Entry<Specialization, List<Integer>> entry : pc.getTalents().entrySet()) {
       Specialization specialization = entry.getKey();
-      rowData.add(SectionRowData.of(specialization.getName(), "Talents"));
-      List<Talent> talentTree = TalentManager.getList(specialization);
-      List<Integer> chosenTalents = entry.getValue();
-      Collections.sort(chosenTalents);
-      for (Integer i : chosenTalents) {
-        rowData.add(AbilityRowData.of(talentTree.get(i)));
+      String pageName = "Talents";
+      rowData.add(SectionRowData.of(specialization.getName(), pageName));
+      if (!pc.isSectionHidden(pageName, specialization.getName())) {
+        List<Talent> talentTree = TalentManager.getList(specialization);
+        List<Integer> chosenTalents = entry.getValue();
+        Collections.sort(chosenTalents);
+        for (Integer i : chosenTalents) {
+          rowData.add(AbilityRowData.of(talentTree.get(i)));
+        }
       }
     }
 
