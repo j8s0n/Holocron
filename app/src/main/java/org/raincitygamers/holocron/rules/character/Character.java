@@ -77,9 +77,12 @@ public class Character {
   private static final String FORCE_POWERS_KEY = "force_powers";
   private static final String DESCRIPTION_KEY = "description";
   private static final String ACTION_CONDITIONS_KEY = "action_conditions";
-  private static final String SKILL_ACTION_KEYS = "skill_actions";
-  private static final String ATTACK_ACTION_KEYS = "attack_actions";
+  private static final String SKILL_ACTIONS_KEY = "skill_actions";
+  private static final String ATTACK_ACTIONS_KEY = "attack_actions";
   private static final String SET_KEY = "set";
+  private static final String HIDDEN_SECTIONS_KEY = "hidden_sections";
+  private static final String SECTION_KEY = "section";
+  private static final String PAGE_KEY = "page";
 
   @Getter private static final MostRecentAccessComparator mostRecentAccessComparator = new MostRecentAccessComparator();
   @Getter private final List<InventoryItem> inventory = new ArrayList<>();
@@ -96,6 +99,7 @@ public class Character {
   private Map<String, Boolean> actionConditions = new HashMap<>();
   private List<SkillAction> skillActions = new ArrayList<>();
   private List<AttackAction> attackActions = new ArrayList<>();
+
   @Getter @Setter private int age;
   @Getter @Setter private String height;
   @Getter @Setter private String weight;
@@ -177,6 +181,7 @@ public class Character {
     this.actionConditions.putAll(builder.actionConditions);
     this.skillActions.addAll(builder.skillActions);
     this.attackActions.addAll(builder.attackActions);
+    this.hiddenSections.addAll(builder.hiddenSections);
   }
 
   public int getCharacteristicScore(@NotNull Characteristic characteristic) {
@@ -375,9 +380,10 @@ public class Character {
     o.put(INVENTORY_KEY, InventoryItem.toJsonArray(inventory));
     o.put(TALENTS_KEY, Talent.toJsonArray(talents));
     o.put(ACTION_CONDITIONS_KEY, actionConditionsAsJsonArray());
-    o.put(ATTACK_ACTION_KEYS, attackActionsAsJsonArray());
-    o.put(SKILL_ACTION_KEYS, skillActionsAsJsonArray());
+    o.put(ATTACK_ACTIONS_KEY, attackActionsAsJsonArray());
+    o.put(SKILL_ACTIONS_KEY, skillActionsAsJsonArray());
     o.put(FORCE_POWERS_KEY, ForcePowerUpgrade.toJsonArray(forcePowers));
+    o.put(HIDDEN_SECTIONS_KEY, hiddenSectionsAsJsonArray());
     o.put(DESCRIPTION_KEY, description);
     o.put(WOUNDS_KEY, wounds);
     o.put(WOUND_THRESHOLD_KEY, woundThreshold);
@@ -482,6 +488,19 @@ public class Character {
   }
 
   @NotNull
+  private JSONArray hiddenSectionsAsJsonArray() throws JSONException {
+    JSONArray a = new JSONArray();
+    for (HiddenSection hiddenSection : hiddenSections) {
+      JSONObject o = new JSONObject();
+      o.put(PAGE_KEY, hiddenSection.getPageName());
+      o.put(SECTION_KEY, hiddenSection.getSectionName());
+      a.put(o);
+    }
+
+    return a;
+  }
+
+  @NotNull
   private static Character valueOf(@NotNull Builder builder) {
     return new Character(builder);
   }
@@ -522,8 +541,9 @@ public class Character {
                               .xp(getJsonInt(jsonObject, XP_KEY))
                               .credits(getJsonInt(jsonObject, CREDITS_KEY))
                               .actionConditions(parseActionConditions(getJsonArray(jsonObject, ACTION_CONDITIONS_KEY)))
-                              .skillActions(parseSkillActions(getJsonArray(jsonObject, SKILL_ACTION_KEYS)))
-                              .attackActions(parseAttackActions(getJsonArray(jsonObject, ATTACK_ACTION_KEYS)))
+                              .skillActions(parseSkillActions(getJsonArray(jsonObject, SKILL_ACTIONS_KEY)))
+                              .attackActions(parseAttackActions(getJsonArray(jsonObject, ATTACK_ACTIONS_KEY)))
+                              .hiddenSections(parseHiddenSections(getJsonArray(jsonObject, HIDDEN_SECTIONS_KEY)))
                               .build();
     for (Map.Entry<Skill, Integer> skill : skills.entrySet()) {
       character.setSkillScore(skill.getKey(), skill.getValue());
@@ -685,6 +705,20 @@ public class Character {
     return attackActions;
   }
 
+  @NotNull private static List<HiddenSection> parseHiddenSections(@NotNull JSONArray jsonArray) {
+    List<HiddenSection> hiddenSections = new ArrayList<>();
+    for (int i = 0; i < jsonArray.length(); i++) {
+      try {
+        hiddenSections.add(HiddenSection.of(jsonArray.getJSONObject(i)));
+      }
+      catch (JSONException e) {
+        Log.e(LOG_TAG, String.format(Locale.US, "Error reading hidden section at index %d.", i), e);
+      }
+    }
+
+    return hiddenSections;
+  }
+
   public Summary makeSummary() {
     return new Summary(characterId, name, species, career.getName(), accessTime);
   }
@@ -786,6 +820,7 @@ public class Character {
     private Map<String, Boolean> actionConditions = new HashMap<>();
     private List<SkillAction> skillActions = new ArrayList<>();
     private List<AttackAction> attackActions = new ArrayList<>();
+    private List<HiddenSection> hiddenSections = new ArrayList<>();
 
     private final Career career;
     private final Specialization specialization;
@@ -921,6 +956,13 @@ public class Character {
     }
 
     @NotNull
+    Builder hiddenSections(@NotNull List<HiddenSection> hiddenSections) {
+
+      this.hiddenSections.addAll(hiddenSections);
+      return this;
+    }
+
+    @NotNull
     Builder xp(int xp) {
       this.xp = xp;
       return this;
@@ -978,6 +1020,12 @@ public class Character {
   private static class HiddenSection {
     private final String pageName;
     private final String sectionName;
+
+    public static HiddenSection of(@NotNull JSONObject jsonObject) throws JSONException {
+      String pageName = jsonObject.getString(PAGE_KEY);
+      String sectionName = jsonObject.getString(SECTION_KEY);
+      return HiddenSection.of(pageName, sectionName);
+    }
   }
 
   private static class MostRecentAccessComparator implements Comparator<Character.Summary> {
