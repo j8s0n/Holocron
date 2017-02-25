@@ -1,179 +1,177 @@
-{
-  "skills": [
+[
   {
-    "name": "Astrogation",
-    "type": "General",
-    "characteristic": "Intellect"
+    "name":"Astrogation",
+    "type":"General",
+    "characteristic":"Intellect"
   },
   {
-    "name": "Athletics",
-    "type": "General",
-    "characteristic": "Brawn"
+    "name":"Athletics",
+    "type":"General",
+    "characteristic":"Brawn"
   },
   {
-    "name": "Charm",
-    "type": "General",
-    "characteristic": "Presence"
+    "name":"Charm",
+    "type":"General",
+    "characteristic":"Presence"
   },
   {
-    "name": "Coercion",
-    "type": "General",
-    "characteristic": "Willpower"
+    "name":"Coercion",
+    "type":"General",
+    "characteristic":"Willpower"
   },
   {
-    "name": "Computers",
-    "type": "General",
-    "characteristic": "Intellect"
+    "name":"Computers",
+    "type":"General",
+    "characteristic":"Intellect"
   },
   {
-    "name": "Cool",
-    "type": "General",
-    "characteristic": "Presence"
+    "name":"Cool",
+    "type":"General",
+    "characteristic":"Presence"
   },
   {
-    "name": "Coordination",
-    "type": "General",
-    "characteristic": "Agility"
+    "name":"Coordination",
+    "type":"General",
+    "characteristic":"Agility"
   },
   {
-    "name": "Deception",
-    "type": "General",
-    "characteristic": "Cunning"
+    "name":"Deception",
+    "type":"General",
+    "characteristic":"Cunning"
   },
   {
-    "name": "Discipline",
-    "type": "General",
-    "characteristic": "Willpower"
+    "name":"Discipline",
+    "type":"General",
+    "characteristic":"Willpower"
   },
   {
-    "name": "Leadership",
-    "type": "General",
-    "characteristic": "Presence"
+    "name":"Leadership",
+    "type":"General",
+    "characteristic":"Presence"
   },
   {
-    "name": "Mechanics",
-    "type": "General",
-    "characteristic": "Intellect"
+    "name":"Mechanics",
+    "type":"General",
+    "characteristic":"Intellect"
   },
   {
-    "name": "Medicine",
-    "type": "General",
-    "characteristic": "Intellect"
+    "name":"Medicine",
+    "type":"General",
+    "characteristic":"Intellect"
   },
   {
-    "name": "Negotiation",
-    "type": "General",
-    "characteristic": "Presence"
+    "name":"Negotiation",
+    "type":"General",
+    "characteristic":"Presence"
   },
   {
-    "name": "Perception",
-    "type": "General",
-    "characteristic": "Cunning"
+    "name":"Perception",
+    "type":"General",
+    "characteristic":"Cunning"
   },
   {
-    "name": "Piloting (Planetary)",
-    "type": "General",
-    "characteristic": "Agility"
+    "name":"Piloting (Planetary)",
+    "type":"General",
+    "characteristic":"Agility"
   },
   {
-    "name": "Piloting (Space)",
-    "type": "General",
-    "characteristic": "Agility"
+    "name":"Piloting (Space)",
+    "type":"General",
+    "characteristic":"Agility"
   },
   {
-    "name": "Resiliance",
-    "type": "General",
-    "characteristic": "Brawn"
+    "name":"Resiliance",
+    "type":"General",
+    "characteristic":"Brawn"
   },
   {
-    "name": "Skullduggery",
-    "type": "General",
-    "characteristic": "Cunning"
+    "name":"Skullduggery",
+    "type":"General",
+    "characteristic":"Cunning"
   },
   {
-    "name": "Stealth",
-    "type": "General",
-    "characteristic": "Agility"
+    "name":"Stealth",
+    "type":"General",
+    "characteristic":"Agility"
   },
   {
-    "name": "Streetwise",
-    "type": "General",
-    "characteristic": "Cunning"
+    "name":"Streetwise",
+    "type":"General",
+    "characteristic":"Cunning"
   },
   {
-    "name": "Survival",
-    "type": "General",
-    "characteristic": "Cunning"
+    "name":"Survival",
+    "type":"General",
+    "characteristic":"Cunning"
   },
   {
-    "name": "Vigilance",
-    "type": "General",
-    "characteristic": "Willpower"
+    "name":"Vigilance",
+    "type":"General",
+    "characteristic":"Willpower"
   },
   {
-    "name": "Brawl",
-    "type": "Combat",
-    "characteristic": "Brawn"
+    "name":"Brawl",
+    "type":"Combat",
+    "characteristic":"Brawn"
   },
   {
-    "name": "Gunnery",
-    "type": "Combat",
-    "characteristic": "Agility"
+    "name":"Gunnery",
+    "type":"Combat",
+    "characteristic":"Agility"
   },
   {
-    "name": "Lightsaber",
-    "type": "Combat",
-    "characteristic": "Brawn"
+    "name":"Lightsaber",
+    "type":"Combat",
+    "characteristic":"Brawn"
   },
   {
-    "name": "Melee",
-    "type": "Combat",
-    "characteristic": "Brawn"
+    "name":"Melee",
+    "type":"Combat",
+    "characteristic":"Brawn"
   },
   {
-    "name": "Ranged (Heavy)",
-    "type": "Combat",
-    "characteristic": "Agility"
+    "name":"Ranged (Heavy)",
+    "type":"Combat",
+    "characteristic":"Agility"
   },
   {
-    "name": "Ranged (Light)",
-    "type": "Combat",
-    "characteristic": "Agility"
+    "name":"Ranged (Light)",
+    "type":"Combat",
+    "characteristic":"Agility"
   },
   {
-    "name": "Core Worlds",
-    "type": "Knowledge",
-    "characteristic": "Intellect"
+    "name":"Core Worlds",
+    "type":"Knowledge",
+    "characteristic":"Intellect"
   },
   {
-    "name": "Education",
-    "type": "Knowledge",
-    "characteristic": "Intellect"
+    "name":"Education",
+    "type":"Knowledge",
+    "characteristic":"Intellect"
   },
   {
-    "name": "Lore",
-    "type": "Knowledge",
-    "characteristic": "Intellect"
+    "name":"Lore",
+    "type":"Knowledge",
+    "characteristic":"Intellect"
   },
   {
-    "name": "Outer Rim",
-    "type": "Knowledge",
-    "characteristic": "Intellect"
+    "name":"Outer Rim",
+    "type":"Knowledge",
+    "characteristic":"Intellect"
   },
   {
-    "name": "Underworld",
-    "type": "Knowledge",
-    "characteristic": "Intellect"
+    "name":"Underworld",
+    "type":"Knowledge",
+    "characteristic":"Intellect"
   },
   {
-    "name": "Warfare",
-    "type": "Knowledge",
-    "characteristic": "Intellect"
+    "name":"Warfare",
+    "type":"Knowledge",
+    "characteristic":"Intellect"
   },
   {
-    "name": "Xenology",
-    "type": "Knowledge",
-    "characteristic": "Intellect"
+    "name":"Xenology",
+    "type":"Knowledge",
+    "characteristic":"Intellect"
   }
-  ]
-}
+]
