@@ -5,9 +5,6 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import org.jetbrains.annotations.NotNull;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -17,44 +14,26 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 abstract class ManagerBase {
   private static final String BASE_URL = "https://raw.githubusercontent.com/j8s0n/Holocron/master/DataFiles/";
   private static final String LOG_TAG = ManagerBase.class.getSimpleName();
 
-  @NotNull
-  static Map<String, JSONArray> getFileContent(@NotNull final Context context, @NotNull final String fileName,
-                                               @NotNull final String[] fields) {
-    final Map<String, JSONArray> result = new HashMap<>();
+  static void getFileContent(@NotNull final Context context, @NotNull final String fileName,
+                               @NotNull final ConentParser parser) {
     if (!Arrays.asList(context.fileList()).contains(fileName)) {
       AsyncTask.execute(new Runnable() {
         @Override
         public void run() {
-          try {
-            String content = downloadLatestFile(context, fileName);
-            JSONObject o = new JSONObject(content);
-            for (String field : fields) {
-              result.put(field, o.getJSONArray(field));
-            }
-          }
-          catch (JSONException e) {
-            Log.e(LOG_TAG, "Exception parsing " + fileName + "from the interwebs.", e);
-          }
+          parser.parse(downloadLatestFile(context, fileName));
         }
       });
     }
     else {
       try {
         FileInputStream fis = context.openFileInput(fileName);
-        String input = readInputStream(fis);
+        parser.parse(readInputStream(fis));
         fis.close();
-        JSONObject o = new JSONObject(input);
-        for (String field : fields) {
-          result.put(field, o.getJSONArray(field));
-        }
-        return result;
       }
       catch (FileNotFoundException e) {
         Log.e(LOG_TAG, "Unable to find file: " + fileName, e);
@@ -62,12 +41,7 @@ abstract class ManagerBase {
       catch (IOException e) {
         Log.e(LOG_TAG, "Unable to read or close file: " + fileName, e);
       }
-      catch (JSONException e) {
-        Log.e(LOG_TAG, "Exception parsing " + fileName + "from the interwebs.", e);
-      }
     }
-
-    return result;
   }
 
   @NotNull
@@ -105,5 +79,9 @@ abstract class ManagerBase {
     }
 
     return "";
+  }
+
+  interface ConentParser {
+    void parse(@NotNull String content);
   }
 }

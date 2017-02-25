@@ -18,6 +18,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public final class CareerManager extends ManagerBase{
@@ -70,10 +71,19 @@ public final class CareerManager extends ManagerBase{
   }
 
   public static void loadCareers(@NotNull Context context) {
-    Map<String, JSONArray> arrays = getFileContent(context, CAREERS_FILE,
-                                                   new String[]{CAREERS_LABEL, SPECIALIZATIONS_LABEL});
-    parseCareers(arrays.get(CAREERS_LABEL));
-    parseSpecializations(arrays.get(SPECIALIZATIONS_LABEL));
+    getFileContent(context, CAREERS_FILE, new ConentParser() {
+      @Override
+      public void parse(@NotNull String content) {
+        try {
+          JSONObject o = new JSONObject(content);
+          CareerManager.parseCareers(o.getJSONArray(CAREERS_LABEL));
+          CareerManager.parseSpecializations(o.getJSONArray(SPECIALIZATIONS_LABEL));
+        }
+        catch (JSONException e) {
+          Log.e(LOG_TAG, "Unable to parse Careers.json.", e);
+        }
+      }
+    });
   }
 
   private static void parseCareers(@NotNull JSONArray careersJson) {
@@ -96,7 +106,7 @@ public final class CareerManager extends ManagerBase{
 
         careerMap.put(name, new Career(name, careerSkillsBuilder.build(), specializationsBuilder.build()));
       } catch (JSONException e) {
-        Log.e(LOG_TAG, "Unable to parse Careers.json.", e);
+        Log.e(LOG_TAG, String.format(Locale.US, "Unable to parse Career object at index: %d", i), e);
       }
     }
   }
@@ -115,7 +125,7 @@ public final class CareerManager extends ManagerBase{
 
         specializationMap.put(name, new Specialization(name, careerSkillsBuilder.build()));
       } catch (JSONException e) {
-        Log.e(LOG_TAG, "Unable to parse Careers.json.", e);
+        Log.e(LOG_TAG, String.format(Locale.US, "Unable to parse Specialization object at index: %d", i), e);
       }
     }
   }

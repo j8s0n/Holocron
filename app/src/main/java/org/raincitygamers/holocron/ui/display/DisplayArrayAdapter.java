@@ -124,7 +124,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       viewHolder.attackName = (TextView) convertView.findViewById(R.id.attack_name);
       viewHolder.diceLayout = (LinearLayout) convertView.findViewById(R.id.dice_layout);
       viewHolder.damageValue = (TextView) convertView.findViewById(R.id.damage_value);
-      viewHolder.critValue = (TextView) convertView.findViewById(R.id.crit_value);
+      viewHolder.criticalValue = (TextView) convertView.findViewById(R.id.crit_value);
       viewHolder.rangeValue = (TextView) convertView.findViewById(R.id.range_value);
       viewHolder.attackText = (TextView) convertView.findViewById(R.id.attack_text);
       convertView.setTag(viewHolder);
@@ -153,7 +153,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     }
 
     viewHolder.damageValue.setText(String.format(Locale.US, "%d", damage));
-    viewHolder.critValue.setText(criticalString);
+    viewHolder.criticalValue.setText(criticalString);
     viewHolder.rangeValue.setText(attackAction.getRange().getName());
     viewHolder.attackText.setText(attackAction.getText());
     return convertView;
@@ -317,12 +317,6 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     else {
       viewHolder = (ViewHolder) convertView.getTag();
     }
-
-    /*
-    if (CharacterManager.getActiveCharacter().isSectionHidden(pageName, sectionLabel)) {
-      hideSection(position + 1, pageName, sectionLabel);
-    }
-    */
 
     viewHolder.sectionLabel.setText(sectionLabel);
     convertView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -521,7 +515,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
 
     // Attack Action
     TextView damageValue;
-    TextView critValue;
+    TextView criticalValue;
     TextView rangeValue;
     TextView attackText;
 

@@ -12,14 +12,14 @@ import org.raincitygamers.holocron.rules.traits.Skill;
 
 import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 
 
-public final class SkillManager extends ManagerBase {
+public final class SkillManager extends ManagerBase  {
   private static final String LOG_TAG = SkillManager.class.getSimpleName();
   private static final String SKILLS_FILE = "Skills.json";
 
-  private static final String SKILLS_LABEL = "skills";
   private static final String NAME_KEY = "name";
   private static final String TYPE_KEY = "type";
   private static final String CHARACTERISTIC_KEY = "characteristic";
@@ -62,8 +62,17 @@ public final class SkillManager extends ManagerBase {
   }
 
   public static void loadSkills(@NotNull Context context) {
-    Map<String, JSONArray> arrays = getFileContent(context, SKILLS_FILE, new String[]{SKILLS_LABEL});
-    parseSkills(arrays.get(SKILLS_LABEL));
+    getFileContent(context, SKILLS_FILE, new ConentParser() {
+      @Override
+      public void parse(@NotNull String content) {
+        try {
+          SkillManager.parseSkills(new JSONArray(content));
+        }
+        catch (JSONException e) {
+          Log.e(LOG_TAG, "Unable to parse Skills.json.", e);
+        }
+      }
+    });
   }
 
   private static void parseSkills(@NotNull JSONArray skillsJson) {
@@ -73,13 +82,11 @@ public final class SkillManager extends ManagerBase {
         String name = skillObject.getString(NAME_KEY);
         Characteristic characteristic = Characteristic.of(skillObject.getString(CHARACTERISTIC_KEY));
         String skillType = skillObject.getString(TYPE_KEY).toUpperCase();
-
         addSkill(new Skill(name, Skill.Type.valueOf(skillType), characteristic));
       }
       catch (JSONException e) {
-        Log.e(LOG_TAG, "Unable to parse Skills.json.", e);
+        Log.e(LOG_TAG, String.format(Locale.US, "Unable to parse Skill object at index: %d", i), e);
       }
-
     }
   }
 

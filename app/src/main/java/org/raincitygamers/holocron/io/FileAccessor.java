@@ -23,7 +23,6 @@ public final class FileAccessor {
   private static File GameData = new File(Environment.getExternalStorageDirectory(), "GameData");
   private static File Holocron = new File(GameData, "Holocron");
   private static File Rules = new File(Holocron, "Rules");
-  private static File Talents = new File(Rules, "Talents");
   private static File ForcePowers = new File(Rules, "ForcePowers");
   private static File Characters = new File(Holocron, "Characters");
   private static final String LOG_TAG = FileAccessor.class.getSimpleName();
@@ -62,21 +61,6 @@ public final class FileAccessor {
   }
 
   @NotNull
-  public static Map<String, String> getTalentsContent() {
-    Map<String, String>  talentMap = new HashMap<>();
-    for (File f : Talents.listFiles()) {
-      String fileName = f.getName();
-      int index = fileName.indexOf(".json");
-      if (index > 0) {
-        String specializationName = fileName.substring(0, index).replace('_', ' ');
-        talentMap.put(specializationName, readFile(f));
-      }
-    }
-
-    return talentMap;
-  }
-
-  @NotNull
   public static Map<String, String> getForcePowersContent() {
     Map<String, String>  forcePowersMap = new HashMap<>();
     for (File f : ForcePowers.listFiles()) {
@@ -89,12 +73,6 @@ public final class FileAccessor {
     }
 
     return forcePowersMap;
-  }
-
-  @NotNull
-  public static String getCareerContent() {
-    File careers = new File(Rules, "Careers.json");
-    return readFile(careers);
   }
 
   @NotNull
@@ -139,9 +117,6 @@ public final class FileAccessor {
       }
 
       os.write(data.getBytes());
-    }
-    catch (FileNotFoundException e) {
-      throw new IllegalStateException("Unable to write file: " + file.getAbsoluteFile(), e);
     }
     catch (IOException e) {
       throw new IllegalStateException("Unable to write file: " + file.getAbsoluteFile(), e);

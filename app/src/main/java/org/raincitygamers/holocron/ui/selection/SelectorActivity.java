@@ -18,6 +18,7 @@ import org.raincitygamers.holocron.rules.character.Character.Summary;
 import org.raincitygamers.holocron.rules.managers.CareerManager;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.rules.managers.SkillManager;
+import org.raincitygamers.holocron.rules.managers.TalentManager;
 import org.raincitygamers.holocron.ui.ActivityBase;
 import org.raincitygamers.holocron.ui.chooser.ChooserActivity;
 import org.raincitygamers.holocron.ui.display.DisplayActivity;
@@ -28,10 +29,8 @@ import java.util.List;
 import java.util.UUID;
 
 public class SelectorActivity extends ActivityBase {
-  private static final String LOG_TAG = SelectorActivity.class.getSimpleName();
   private List<Summary> characters = new ArrayList<>();
   private CharacterArrayAdapter characterArrayAdapter;
-  private ListView characterListView;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +40,7 @@ public class SelectorActivity extends ActivityBase {
     checkPermissions();
     CareerManager.loadCareers(this);
     SkillManager.loadSkills(this);
+    TalentManager.loadTalents(this);
 
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
     assert fab != null;
@@ -53,7 +53,7 @@ public class SelectorActivity extends ActivityBase {
     });
 
 
-    characterListView = (ListView) findViewById(R.id.character_selection_list);
+    ListView characterListView = (ListView) findViewById(R.id.character_selection_list);
     characterArrayAdapter = new CharacterArrayAdapter(this, characters);
     final SwipeActionAdapter swipeActionAdapter = new SwipeActionAdapter(characterArrayAdapter);
     swipeActionAdapter.setListView(characterListView);
@@ -96,7 +96,9 @@ public class SelectorActivity extends ActivityBase {
   protected void onResume() {
     super.onResume();
     if (permissionGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-      CharacterManager.clearActiveCharacter();
+      // TODO????
+      // Create an async and wait for the files to all load, before displaying characters.
+      // CharacterManager.clearActiveCharacter();
       displayCharacters();
     }
   }
@@ -122,10 +124,7 @@ public class SelectorActivity extends ActivityBase {
 
     @Override
     public boolean hasActions(int position, SwipeDirection direction) {
-      if (direction.isLeft()) {
-        return true;
-      }
-      return direction.isRight();
+      return direction.isLeft() || direction.isRight();
     }
 
     @Override
