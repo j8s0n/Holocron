@@ -1,5 +1,6 @@
 package org.raincitygamers.holocron.rules.managers;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.google.common.collect.ImmutableList;
@@ -9,7 +10,6 @@ import org.jetbrains.annotations.Nullable;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.raincitygamers.holocron.io.FileAccessor;
 import org.raincitygamers.holocron.rules.character.Career;
 import org.raincitygamers.holocron.rules.character.Specialization;
 
@@ -20,8 +20,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public final class CareerManager {
+public final class CareerManager extends ManagerBase{
   private static final String LOG_TAG = CareerManager.class.getSimpleName();
+  private static final String CAREERS_FILE = "Careers.json";
   private static final String CAREERS_LABEL = "careers";
   private static final String SPECIALIZATIONS_LABEL = "specializations";
   private static final String NAME_KEY = "name";
@@ -29,10 +30,6 @@ public final class CareerManager {
   private static final String CAREER_SKILLS_KEY = "careerSkills";
   private static Map<String, Career> careerMap = new LinkedHashMap<>();
   private static Map<String, Specialization> specializationMap = new HashMap<>();
-
-  static {
-    loadCareers();
-  }
 
   private CareerManager() {
   }
@@ -63,7 +60,7 @@ public final class CareerManager {
   }
 
   @NotNull
-  public static List<Specialization> getSpecializations() {
+  static List<Specialization> getSpecializations() {
     return new ArrayList<>(specializationMap.values());
   }
 
@@ -72,16 +69,11 @@ public final class CareerManager {
     return specializationMap.get(name);
   }
 
-  private static void loadCareers() {
-    String careerJson = FileAccessor.getCareerContent();
-    // Log.i(LOG_TAG, "Careers: " + careerJson);
-    try {
-      JSONObject o = new JSONObject(careerJson);
-      parseCareers(o.getJSONArray(CAREERS_LABEL));
-      parseSpecializations(o.getJSONArray(SPECIALIZATIONS_LABEL));
-    } catch (JSONException e) {
-      Log.e(LOG_TAG, "Exception parsing careerJson", e);
-    }
+  public static void loadCareers(@NotNull Context context) {
+    Map<String, JSONArray> arrays = getFileContent(context, CAREERS_FILE,
+                                                   new String[]{CAREERS_LABEL, SPECIALIZATIONS_LABEL});
+    parseCareers(arrays.get(CAREERS_LABEL));
+    parseSpecializations(arrays.get(SPECIALIZATIONS_LABEL));
   }
 
   private static void parseCareers(@NotNull JSONArray careersJson) {

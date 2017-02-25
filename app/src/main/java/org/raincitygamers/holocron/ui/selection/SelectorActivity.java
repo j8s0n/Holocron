@@ -15,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.Character.Summary;
+import org.raincitygamers.holocron.rules.managers.CareerManager;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.rules.managers.SkillManager;
 import org.raincitygamers.holocron.ui.ActivityBase;
@@ -38,6 +39,7 @@ public class SelectorActivity extends ActivityBase {
     setContentView(R.layout.activity_selector);
 
     checkPermissions();
+    CareerManager.loadCareers(this);
     SkillManager.loadSkills(this);
 
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
