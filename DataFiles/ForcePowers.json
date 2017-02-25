@@ -1,0 +1,187 @@
+[
+  {
+    "graph": [
+      {
+        "tier": 10,
+        "column": 1,
+        "description": "Spend FP to gain vague personal hints up to a day in the future.",
+        "name": "Basic Power",
+        "row": 1
+      },
+      {
+        "tier": 10,
+        "column": 1,
+        "description": "Roll Foresee during initiative. Use FP for success.",
+        "name": "Control",
+        "row": 2
+      },
+      {
+        "tier": 5,
+        "column": 2,
+        "description": "Spend FP to pick out details equal to Strength upgrades.",
+        "name": "Strength",
+        "row": 2
+      },
+      {
+        "tier": 5,
+        "column": 1,
+        "description": "Spend FP to increase targets equal to Magnitude upgrades.",
+        "name": "Magnitude",
+        "row": 3
+      },
+      {
+        "tier": 5,
+        "column": 2,
+        "description": "Spend FP to increase range equal to Range upgrades.",
+        "name": "Range",
+        "row": 3
+      },
+      {
+        "tier": 10,
+        "column": 3,
+        "description": "Affected targets increase ranged and melee defense by two for first round.",
+        "name": "Control",
+        "row": 3
+      },
+      {
+        "tier": 5,
+        "column": 4,
+        "description": "Spend FP to increase days into the future equal to Duration upgrades.",
+        "name": "Duration",
+        "row": 3
+      },
+      {
+        "tier": 5,
+        "column": 1,
+        "description": "Spend FP to increase targets equal to Magnitude upgrades.",
+        "name": "Magnitude",
+        "row": 4
+      },
+      {
+        "tier": 5,
+        "column": 2,
+        "description": "Spend FP to increase range equal to Range upgrades.",
+        "name": "Range",
+        "row": 4
+      },
+      {
+        "tier": 5,
+        "column": 3,
+        "description": "Spend FP to increase range equal to Range upgrades.",
+        "name": "Range",
+        "row": 4
+      },
+      {
+        "tier": 5,
+        "column": 4,
+        "description": "Spend FP to pick out details equal to Strength ranks.",
+        "name": "Strength",
+        "row": 4
+      },
+      {
+        "tier": 15,
+        "column": 1,
+        "description": "When using for initiative, may spend FP to allow targets one maneuver before combat.",
+        "name": "Control",
+        "row": 5
+      },
+      {
+        "tier": 5,
+        "column": 2,
+        "description": "Spend FP to increase days into the future equal to Duration upgrades.",
+        "name": "Duration",
+        "row": 5
+      }
+    ],
+    "name": "Foresee"
+  },
+  {
+    "graph": [
+      {
+        "tier": 10,
+        "column": 1,
+        "description": "Spend FP to sense living things in short range. Spend FP to sense emotional state of target in engaged range.",
+        "name": "Basic Power",
+        "row": 1
+      },
+      {
+        "tier": 10,
+        "column": 1,
+        "description": "Commit FD: once per round upgrade incoming attack.",
+        "name": "Control",
+        "row": 2
+      },
+      {
+        "tier": 10,
+        "column": 2,
+        "description": "Spend FP to sense current thoughts of engaged target.",
+        "name": "Control",
+        "row": 2
+      },
+      {
+        "tier": 10,
+        "column": 1,
+        "description": "Ongoing effect works additional time per round.",
+        "name": "Duration",
+        "row": 3
+      },
+      {
+        "tier": 5,
+        "column": 2,
+        "description": "Spend FP to increase range equal to Range upgrades.",
+        "name": "Range",
+        "row": 3
+      },
+      {
+        "tier": 5,
+        "column": 3,
+        "description": "Spend FP to increase targets equal to Magnitude upgrades.",
+        "name": "Magnitude",
+        "row": 3
+      },
+      {
+        "tier": 10,
+        "column": 1,
+        "description": "Ongoing effect upgrades twice per attack.",
+        "name": "Strength",
+        "row": 4
+      },
+      {
+        "tier": 10,
+        "column": 2,
+        "description": "Spend FP to increase range equal to Range upgrades.",
+        "name": "Range",
+        "row": 4
+      },
+      {
+        "tier": 10,
+        "column": 3,
+        "description": "Spend FP to increase targets equal to Magnitude upgrades.",
+        "name": "Magnitude",
+        "row": 4
+      },
+      {
+        "tier": 10,
+        "column": 1,
+        "description": "Commit FD: once per round upgrade outgoing attack.",
+        "name": "Control",
+        "row": 5
+      },
+      {
+        "tier": 10,
+        "column": 2,
+        "description": "Spend FP to increase range equal to Range upgrades.",
+        "name": "Range",
+        "row": 5
+      },
+      {
+        "tier": 10,
+        "column": 3,
+        "description": "Spend FP to increase targets equal to Magnitude upgrades.",
+        "name": "Magnitude",
+        "row": 5
+      }
+    ],
+    "name": "Sense"
+  }
+]
