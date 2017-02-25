@@ -13,11 +13,10 @@ import com.wdullaer.swipeactionadapter.SwipeDirection;
 
 import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
-import org.raincitygamers.holocron.rules.managers.CareerManager;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.Character.Summary;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
-import org.raincitygamers.holocron.rules.managers.TalentManager;
+import org.raincitygamers.holocron.rules.managers.SkillManager;
 import org.raincitygamers.holocron.ui.ActivityBase;
 import org.raincitygamers.holocron.ui.chooser.ChooserActivity;
 import org.raincitygamers.holocron.ui.display.DisplayActivity;
@@ -38,6 +37,9 @@ public class SelectorActivity extends ActivityBase {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_selector);
 
+    checkPermissions();
+    SkillManager.loadSkills(this);
+
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
     assert fab != null;
     fab.setOnClickListener(new View.OnClickListener() {
@@ -48,9 +50,6 @@ public class SelectorActivity extends ActivityBase {
       }
     });
 
-    if (!permissionGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-      displayPermissionAlert("Storage");
-    }
 
     characterListView = (ListView) findViewById(R.id.character_selection_list);
     characterArrayAdapter = new CharacterArrayAdapter(this, characters);
@@ -77,9 +76,18 @@ public class SelectorActivity extends ActivityBase {
         startActivity(intent);
       }
     });
+  }
 
-    // This is to kickstart the file reads.
-    TalentManager.getList(CareerManager.getSpecializations().get(0));
+  private void checkPermissions() {
+    if (!permissionGranted(Manifest.permission.ACCESS_NETWORK_STATE) ||
+        !permissionGranted(Manifest.permission.INTERNET)) {
+      displayPermissionAlert("Network");
+    }
+
+    if (!permissionGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+      displayPermissionAlert("Storage");
+    }
+
   }
 
   @Override
@@ -115,10 +123,7 @@ public class SelectorActivity extends ActivityBase {
       if (direction.isLeft()) {
         return true;
       }
-      if (direction.isRight()) {
-        return true;
-      }
-      return false;
+      return direction.isRight();
     }
 
     @Override

@@ -62,12 +62,6 @@ public final class FileAccessor {
   }
 
   @NotNull
-  public static String getSkillContent() {
-    File skills = new File(Rules, "Skills.json");
-    return readFile(skills);
-  }
-
-  @NotNull
   public static Map<String, String> getTalentsContent() {
     Map<String, String>  talentMap = new HashMap<>();
     for (File f : Talents.listFiles()) {
@@ -101,24 +95,6 @@ public final class FileAccessor {
   public static String getCareerContent() {
     File careers = new File(Rules, "Careers.json");
     return readFile(careers);
-  }
-
-  @NotNull
-  public static String getWeaponContent() {
-    File weapons = new File(Rules, "Weapons.json");
-    return readFile(weapons);
-  }
-
-  @NotNull
-  public static String getArmorContent() {
-    File armor = new File(Rules, "Armor.json");
-    return readFile(armor);
-  }
-
-  @NotNull
-  public static String getGearContent() {
-    File gear = new File(Rules, "Gear.json");
-    return readFile(gear);
   }
 
   @NotNull
