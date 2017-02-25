@@ -17,6 +17,7 @@ import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.Character.Summary;
 import org.raincitygamers.holocron.rules.managers.CareerManager;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
+import org.raincitygamers.holocron.rules.managers.ForcePowerManager;
 import org.raincitygamers.holocron.rules.managers.SkillManager;
 import org.raincitygamers.holocron.rules.managers.TalentManager;
 import org.raincitygamers.holocron.ui.ActivityBase;
@@ -41,6 +42,7 @@ public class SelectorActivity extends ActivityBase {
     CareerManager.loadCareers(this);
     SkillManager.loadSkills(this);
     TalentManager.loadTalents(this);
+    ForcePowerManager.loadForcePowers(this);
 
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
     assert fab != null;

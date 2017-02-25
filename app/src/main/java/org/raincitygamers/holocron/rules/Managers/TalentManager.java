@@ -18,8 +18,8 @@ import java.util.Locale;
 import java.util.Map;
 
 public final class TalentManager extends ManagerBase{
-  private static final String TALENTS_FILE = "Talents.json";
   private static final String LOG_TAG = TalentManager.class.getSimpleName();
+  private static final String TALENTS_FILE = "Talents.json";
   private static final String NAME_KEY = "name";
   private static final String GRAPH_KEY = "graph";
 
@@ -66,7 +66,6 @@ public final class TalentManager extends ManagerBase{
       }
     }
   }
-
 
   private static void loadTalent(@NotNull String specializationName, @NotNull JSONArray talentsGraph) {
     List<Talent> talents = new ArrayList<>();
