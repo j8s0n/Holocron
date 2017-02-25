@@ -1,6 +1,6 @@
 [
   {
-    "content": [
+    "graph": [
       {
         "tier": 5,
         "column": 1,
@@ -145,7 +145,7 @@
     "name": "Bounty Hunter--Gadgeteer"
   },
   {
-    "content": [
+    "graph": [
       {
         "tier": 5,
         "column": 1,
@@ -290,7 +290,7 @@
     "name": "Hired Gun--Demolitionist"
   },
   {
-    "content": [
+    "graph": [
       {
         "tier": 5,
         "column": 1,
@@ -435,7 +435,7 @@
     "name": "Smuggler--Gunslinger"
   },
   {
-    "content": [
+    "graph": [
       {
         "tier": 5,
         "column": 1,
@@ -580,7 +580,7 @@
     "name": "Consular--Sage"
   },
   {
-    "content": [
+    "graph": [
       {
         "tier": 5,
         "column": 1,
@@ -725,7 +725,7 @@
     "name": "Bounty Hunter--Assassin"
   },
   {
-    "content": [
+    "graph": [
       {
         "tier": 5,
         "column": 1,
@@ -870,7 +870,7 @@
     "name": "Sentinel--Sentry"
   },
   {
-    "content": [
+    "graph": [
       {
         "tier": 5,
         "column": 1,
