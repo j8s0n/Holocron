@@ -132,6 +132,8 @@ public final class CharacterManager extends ManagerBase {
   public static void removeCharacter(@NotNull Summary summary, @NotNull Context context) {
     characters.remove(summary.getCharacterId());
     writeSummaries(context);
+    String fileName = Character.buildFileName(summary.getCharacterId());
+    context.deleteFile(fileName);
   }
 
   public static void setActiveCharacter(@NotNull Character character) {
