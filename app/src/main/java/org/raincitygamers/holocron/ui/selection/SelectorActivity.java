@@ -89,22 +89,14 @@ public class SelectorActivity extends ActivityBase {
         !permissionGranted(Manifest.permission.INTERNET)) {
       displayPermissionAlert("Network");
     }
-
-    if (!permissionGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-      displayPermissionAlert("Storage");
-    }
-
   }
 
   @Override
   protected void onResume() {
     super.onResume();
-    if (permissionGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-      // TODO????
-      // Create an async and wait for the files to all load, before displaying characters.
-      // CharacterManager.clearActiveCharacter();
-      displayCharacters();
-    }
+    displayCharacters();
+    // TODO????
+    // Create an async and wait for the files to all load, before displaying characters.
   }
 
   private void displayCharacters() {
