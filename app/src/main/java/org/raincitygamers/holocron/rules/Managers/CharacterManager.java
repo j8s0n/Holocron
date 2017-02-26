@@ -1,7 +1,9 @@
 package org.raincitygamers.holocron.rules.managers;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import org.jetbrains.annotations.NotNull;
@@ -14,6 +16,7 @@ import org.raincitygamers.holocron.rules.character.Character.Summary;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -29,12 +32,7 @@ public final class CharacterManager extends ManagerBase {
   private CharacterManager() {
   }
 
-  @NotNull
   public static Character getActiveCharacter() {
-    if (activeCharacter == null) {
-      throw new IllegalStateException("There is no valid character. How did we get here?");
-    }
-
     return activeCharacter;
   }
 
@@ -68,15 +66,34 @@ public final class CharacterManager extends ManagerBase {
   }
 
   private static void loadSingleCharacter(@NotNull Context context, @NotNull final UUID characterId) {
-    String fileName = characterId.toString() + ".json";
+    String fileName = Character.buildFileName(characterId);
     getFileContent(context, fileName, false, new ContentParser() {
       @Override
       public void parse(@NotNull String content) {
         try {
-          CharacterManager.setActiveCharacter(Character.valueOf(new JSONObject(content), characterId));
+          setActiveCharacter(Character.valueOf(new JSONObject(content)));
         }
         catch (JSONException e) {
           Log.e(LOG_TAG, "Error reading Character: " + characterId, e);
+        }
+      }
+    });
+  }
+
+  public static void loadCharacterFromContent(@NotNull final Uri uri, @NotNull final AppCompatActivity activity,
+                                              @NotNull final Runnable finisher) {
+    AsyncTask.execute(new Runnable() {
+      @Override
+      public void run() {
+        try {
+          InputStream is = activity.getContentResolver().openInputStream(uri);
+          String content = readInputStream(is);
+          setActiveCharacter(Character.valueOf(new JSONObject(content)));
+          saveActiveCharacter(activity);
+          activity.runOnUiThread(finisher);
+        }
+        catch (IOException | JSONException e) {
+          Log.e(LOG_TAG, "Error reading character from content URI.", e);
         }
       }
     });

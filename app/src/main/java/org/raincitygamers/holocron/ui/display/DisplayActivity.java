@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import org.json.JSONException;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
@@ -34,6 +35,9 @@ import org.raincitygamers.holocron.ui.display.pages.GeneralSkillsPage;
 import org.raincitygamers.holocron.ui.display.pages.KnowledgeSkillsPage;
 import org.raincitygamers.holocron.ui.display.pages.TalentsPage;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -47,8 +51,7 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
   private int currentPageNumber = 0;
 
   private static final String LOG_TAG = DisplayActivity.class.getSimpleName();
-  private static final long THIRTY_SECONDS = 300000; // TODO:!!!!
-  // private static final long THIRTY_SECONDS = 3000;
+  private static final long THIRTY_SECONDS = 3000;
   private Timer timer;
 
   private final List<ContentPage> contentPages = new ArrayList<>();
@@ -65,13 +68,14 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
     contentPages.add(new KnowledgeSkillsPage());
     contentPages.add(new GearPage());
     contentPages.add(new TalentsPage());
-    if (activeCharacter.getForceRating() > 0) {
+    if (activeCharacter != null && activeCharacter.getForceRating() > 0) {
       contentPages.add(new ForcePowersPage());
     }
 
     contentPages.add(new DescriptionPage());
     otherDrawerCommands.add(new DrawerCommand("Edit", new CommandAction() {
-      @Override public void act() {
+      @Override
+      public void act() {
         drawerLayout.closeDrawer(drawerList);
         CharacterManager.setActiveCharacter(activeCharacter);
         CharacterManager.saveCharacter(DisplayActivity.this, activeCharacter);
@@ -100,6 +104,16 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    Intent intent = getIntent();
+    if (intent.getData() != null) {
+      CharacterManager.loadCharacterFromContent(intent.getData(), this, new Runnable() {
+        @Override
+        public void run() {
+          finishingTouches();
+        }
+      });
+    }
+
     setContentView(R.layout.activity_character);
     sendBroadcast(new Intent(ChooserActivity.ACTION_FINISH));
 
@@ -115,8 +129,15 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
       actionBar.setHomeButtonEnabled(true);
     }
 
-    selectPage(activeCharacter.getLastOpenPage());
-    setTitle();
+    finishingTouches();
+  }
+
+  private void finishingTouches() {
+    activeCharacter = CharacterManager.getActiveCharacter();
+    if (activeCharacter != null) {
+      selectPage(activeCharacter.getLastOpenPage());
+      setTitle();
+    }
   }
 
   private void addDrawerItems() {
@@ -241,9 +262,32 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
       return true;
     }
 
+    if (id == R.id.menu_item_share) {
+      sendCharacter();
+      return true;
+    }
+
     // Activate the navigation drawer toggle
     return drawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
 
+  }
+
+  private void sendCharacter() {
+    try {
+      Character character = CharacterManager.getActiveCharacter();
+      File tempFile = File.createTempFile(character.getCharacterId().toString(), ".holocron", getExternalCacheDir());
+      FileOutputStream fos = new FileOutputStream(tempFile);
+      fos.write(character.toJsonObject().toString().getBytes());
+
+      Uri path = Uri.fromFile(tempFile);
+      Intent intent = new Intent(Intent.ACTION_SEND);
+      intent.setType("application/json");
+      intent.putExtra(Intent.EXTRA_STREAM, path);
+      startActivity(Intent.createChooser(intent, "Send character..."));
+    }
+    catch (IOException | JSONException e) {
+      Log.e(LOG_TAG, "Error sending character as attachment.", e);
+    }
   }
 
   @Override

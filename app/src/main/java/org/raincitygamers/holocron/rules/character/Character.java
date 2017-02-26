@@ -507,14 +507,14 @@ public class Character {
 
   // Methods for reading from the JSON file.
   @NotNull
-  public static Character valueOf(@NotNull JSONObject jsonObject, @NotNull UUID characterId)
-  throws IllegalArgumentException {
+  public static Character valueOf(@NotNull JSONObject jsonObject) throws IllegalArgumentException {
     String name = getJsonString(jsonObject, NAME_KEY);
     Career career = CareerManager.getCareer(getJsonString(jsonObject, CAREER_KEY));
     List<Specialization> specializations = parseSpecializations(getJsonArray(jsonObject, SPECIALIZATIONS_KEY));
     String species = getJsonString(jsonObject, SPECIES_KEY);
     Map<Skill, Integer> skills = parseSkills(getJsonArray(jsonObject, SKILLS_KEY));
     Map<Characteristic, Integer> characteristics = parseCharacteristics(getJsonArray(jsonObject, CHARACTERISTICS_KEY));
+    UUID characterId = UUID.fromString(getJsonString(jsonObject, ID_KEY));
 
     // TODO Robustness on missing fields.
     Character character = new Builder(name, career, specializations.get(0), species, characterId)

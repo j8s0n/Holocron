@@ -22,7 +22,6 @@ import org.raincitygamers.holocron.rules.character.AttackAction;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.InventoryItem;
 import org.raincitygamers.holocron.rules.character.SkillAction;
-import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.rules.traits.Ability;
 import org.raincitygamers.holocron.rules.traits.DicePool;
 import org.raincitygamers.holocron.ui.CreditEditorActivity;
@@ -322,7 +321,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     convertView.setOnLongClickListener(new View.OnLongClickListener() {
       @Override
       public boolean onLongClick(View v) {
-        CharacterManager.getActiveCharacter().toggleSection(pageName, sectionLabel);
+        getActiveCharacter().toggleSection(pageName, sectionLabel);
         if (invalidator != null) {
           invalidator.invalidate();
         }
@@ -442,7 +441,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     viewHolder.toggleSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
       @Override
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        CharacterManager.getActiveCharacter().setActionConditionState(rowData.getName(),
+        getActiveCharacter().setActionConditionState(rowData.getName(),
                                                                       viewHolder.toggleSwitch.isChecked());
         refreshPage();
       }

@@ -28,6 +28,11 @@
       android:name=".ui.display.DisplayActivity"
       android:label="@string/title_activity_character"
       android:screenOrientation="portrait">
+      <intent-filter >
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <data android:mimeType="application/json" />
+      </intent-filter>
     </activity>
     <activity android:name=".ui.InventoryEditorActivity">
     </activity>
