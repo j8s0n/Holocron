@@ -11,7 +11,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -83,6 +82,12 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
         intent.putExtra(EDIT_ACTIVE_CHARACTER, true);
         intent.putExtra(CURRENT_OPEN_PAGE, contentPages.get(currentPageNumber).getTitle());
         startActivity(intent);
+      }
+    }));
+    otherDrawerCommands.add(new DrawerCommand("Share", new CommandAction() {
+      @Override
+      public void act() {
+       sendCharacter();
       }
     }));
   }
@@ -244,38 +249,20 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
   }
 
   @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    // Inflate the menu; this adds items to the action bar if it is present.
-    getMenuInflater().inflate(R.menu.menu_main, menu);
-    return true;
-  }
-
-  @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     // Handle action bar item clicks here. The action bar will
     // automatically handle clicks on the Home/Up button, so long
     // as you specify a parent activity in AndroidManifest.xml.
     int id = item.getItemId();
 
-    //noinspection SimplifiableIfStatement
-    if (id == R.id.action_settings) {
-      return true;
-    }
-
-    if (id == R.id.menu_item_share) {
-      sendCharacter();
-      return true;
-    }
-
     // Activate the navigation drawer toggle
     return drawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
-
   }
 
   private void sendCharacter() {
     try {
       Character character = CharacterManager.getActiveCharacter();
-      File tempFile = File.createTempFile(character.getCharacterId().toString(), ".holocron", getExternalCacheDir());
+      File tempFile = File.createTempFile(character.getCharacterId().toString(), ".json", getExternalCacheDir());
       FileOutputStream fos = new FileOutputStream(tempFile);
       fos.write(character.toJsonObject().toString().getBytes());
 
