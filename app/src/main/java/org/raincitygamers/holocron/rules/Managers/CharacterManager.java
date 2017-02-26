@@ -47,7 +47,7 @@ public final class CharacterManager extends ManagerBase {
   }
 
   public static void loadCharacters(@NotNull Context context) {
-    getFileContent(context, CHARACTERS_FILE, true, new ContentParser() {
+    getFileContent(context, CHARACTERS_FILE, false, new ContentParser() {
       @Override
       public void parse(@NotNull String content) {
         try {
