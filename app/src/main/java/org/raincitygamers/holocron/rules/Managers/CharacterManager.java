@@ -87,10 +87,12 @@ public final class CharacterManager extends ManagerBase {
       public void run() {
         try {
           InputStream is = activity.getContentResolver().openInputStream(uri);
-          String content = readInputStream(is);
-          setActiveCharacter(Character.valueOf(new JSONObject(content)));
-          saveActiveCharacter(activity);
-          activity.runOnUiThread(finisher);
+          if (is != null) {
+            String content = readInputStream(is);
+            setActiveCharacter(Character.valueOf(new JSONObject(content)));
+            saveActiveCharacter(activity);
+            activity.runOnUiThread(finisher);
+          }
         }
         catch (IOException | JSONException e) {
           Log.e(LOG_TAG, "Error reading character from content URI.", e);

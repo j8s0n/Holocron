@@ -45,7 +45,7 @@ abstract class ManagerBase {
   }
 
   @NotNull
-  protected static String readInputStream(@NotNull InputStream is) throws IOException {
+  static String readInputStream(@NotNull InputStream is) throws IOException {
     byte[] buffer = new byte[65536];
     StringBuilder sb = new StringBuilder();
     int count;
