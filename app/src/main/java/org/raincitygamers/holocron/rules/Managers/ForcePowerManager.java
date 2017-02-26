@@ -40,7 +40,7 @@ public class ForcePowerManager extends ManagerBase {
   }
 
   public static void loadForcePowers(@NotNull Context context) {
-    getFileContent(context, FORCE_POWERS_FILE, new ConentParser() {
+    getFileContent(context, FORCE_POWERS_FILE, true, new ContentParser() {
       @Override
       public void parse(@NotNull String content) {
         try {

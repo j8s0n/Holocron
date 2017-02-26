@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
 import android.view.Menu;
@@ -23,15 +24,15 @@ import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.ui.ActivityBase;
 import org.raincitygamers.holocron.ui.ContentPage;
 import org.raincitygamers.holocron.ui.chooser.ChooserActivity;
-import org.raincitygamers.holocron.ui.display.pages.ForcePowersPage;
-import org.raincitygamers.holocron.ui.display.pages.TalentsPage;
 import org.raincitygamers.holocron.ui.display.pages.ActionsPage;
 import org.raincitygamers.holocron.ui.display.pages.BasicsPage;
-import org.raincitygamers.holocron.ui.display.pages.DescriptionPage;
-import org.raincitygamers.holocron.ui.display.pages.GearPage;
 import org.raincitygamers.holocron.ui.display.pages.CombatSkillsPage;
+import org.raincitygamers.holocron.ui.display.pages.DescriptionPage;
+import org.raincitygamers.holocron.ui.display.pages.ForcePowersPage;
+import org.raincitygamers.holocron.ui.display.pages.GearPage;
 import org.raincitygamers.holocron.ui.display.pages.GeneralSkillsPage;
 import org.raincitygamers.holocron.ui.display.pages.KnowledgeSkillsPage;
+import org.raincitygamers.holocron.ui.display.pages.TalentsPage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +42,6 @@ import java.util.TimerTask;
 public class DisplayActivity extends ActivityBase implements ContentPage.OnFragmentInteractionListener {
   private ListView drawerList;
   private DrawerLayout drawerLayout;
-  private ArrayAdapter<String> adapter;
   private ActionBarDrawerToggle drawerToggle;
   private Character activeCharacter;
   private int currentPageNumber = 0;
@@ -74,7 +74,7 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
       @Override public void act() {
         drawerLayout.closeDrawer(drawerList);
         CharacterManager.setActiveCharacter(activeCharacter);
-        CharacterManager.saveCharacter(activeCharacter);
+        CharacterManager.saveCharacter(DisplayActivity.this, activeCharacter);
         Intent intent = new Intent(DisplayActivity.this, ChooserActivity.class);
         intent.putExtra(EDIT_ACTIVE_CHARACTER, true);
         intent.putExtra(CURRENT_OPEN_PAGE, contentPages.get(currentPageNumber).getTitle());
@@ -88,7 +88,7 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
     super.onPause();
 
     timer.cancel();
-    CharacterManager.saveActiveCharacter();
+    CharacterManager.saveActiveCharacter(this);
   }
 
   @Override
@@ -109,8 +109,12 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
     addDrawerItems();
     setUpDrawer();
 
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    getSupportActionBar().setHomeButtonEnabled(true);
+    ActionBar actionBar = getSupportActionBar();
+    if (actionBar != null) {
+      actionBar.setDisplayHomeAsUpEnabled(true);
+      actionBar.setHomeButtonEnabled(true);
+    }
+
     selectPage(activeCharacter.getLastOpenPage());
     setTitle();
   }
@@ -125,7 +129,7 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
       drawerEntries.add(command.getLabel());
     }
 
-    adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, drawerEntries);
+    ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, drawerEntries);
     drawerList.setAdapter(adapter);
 
     drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -147,7 +151,11 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
       /** Called when a drawer has settled in a completely open state. */
       public void onDrawerOpened(View drawerView) {
         super.onDrawerOpened(drawerView);
-        getSupportActionBar().setTitle("Switch Page");
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+          actionBar.setTitle("Switch Page");
+        }
+
         invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
       }
 
@@ -160,7 +168,7 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
     };
 
     drawerToggle.setDrawerIndicatorEnabled(true);
-    drawerLayout.setDrawerListener(drawerToggle);
+    drawerLayout.addDrawerListener(drawerToggle);
   }
 
   private void selectPage(int pageNumber) {
@@ -177,7 +185,10 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
 
   private void setTitle() {
     String title = activeCharacter.getName() + " - " + contentPages.get(currentPageNumber).getTitle();
-    getSupportActionBar().setTitle(title);
+    ActionBar actionBar = getSupportActionBar();
+    if (actionBar != null) {
+      actionBar.setTitle(title);
+    }
   }
 
   private void autoSaveCharacter() {
@@ -188,8 +199,8 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
       public void run() {
         handler.post(new Runnable() {
           public void run() {
-            Log.i(LOG_TAG, "Autosave: " + activeCharacter.getName());
-            CharacterManager.saveActiveCharacter();
+            Log.i(LOG_TAG, "Auto save: " + activeCharacter.getName());
+            CharacterManager.saveActiveCharacter(DisplayActivity.this);
           }
         });
       }
@@ -231,11 +242,8 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
     }
 
     // Activate the navigation drawer toggle
-    if (drawerToggle.onOptionsItemSelected(item)) {
-      return true;
-    }
+    return drawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
 
-    return super.onOptionsItemSelected(item);
   }
 
   @Override

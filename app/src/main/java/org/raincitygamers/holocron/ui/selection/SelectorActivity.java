@@ -1,6 +1,7 @@
 package org.raincitygamers.holocron.ui.selection;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -43,6 +44,7 @@ public class SelectorActivity extends ActivityBase {
     SkillManager.loadSkills(this);
     TalentManager.loadTalents(this);
     ForcePowerManager.loadForcePowers(this);
+    CharacterManager.loadCharacters(this);
 
     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
     assert fab != null;
@@ -65,7 +67,7 @@ public class SelectorActivity extends ActivityBase {
         .addBackground(SwipeDirection.DIRECTION_FAR_RIGHT, R.layout.row_bg_right)
         .addBackground(SwipeDirection.DIRECTION_NORMAL_RIGHT, R.layout.row_bg_right);
 
-    swipeActionAdapter.setSwipeActionListener(new SwipeActionHandler(swipeActionAdapter, characters));
+    swipeActionAdapter.setSwipeActionListener(new SwipeActionHandler(swipeActionAdapter, characters, this));
     swipeActionAdapter.setFixedBackgrounds(false);
     swipeActionAdapter.setFadeOut(false);
     swipeActionAdapter.setFarSwipeFraction(0.7f);
@@ -76,7 +78,7 @@ public class SelectorActivity extends ActivityBase {
         Intent intent = new Intent(SelectorActivity.this, DisplayActivity.class);
         Summary summary = characters.get(position);
 
-        CharacterManager.loadActiveCharacter(summary.getFileName(), summary.getCharacterId());
+        CharacterManager.loadCharacterToActiveState(SelectorActivity.this, summary.getCharacterId());
         startActivity(intent);
       }
     });
@@ -118,10 +120,13 @@ public class SelectorActivity extends ActivityBase {
   private static class SwipeActionHandler implements SwipeActionAdapter.SwipeActionListener {
     private final SwipeActionAdapter swipeActionAdapter;
     private final List<Summary> characters;
+    private final Context context;
 
-    private SwipeActionHandler(@NotNull SwipeActionAdapter swipeActionAdapter, @NotNull List<Summary> characters) {
+    private SwipeActionHandler(@NotNull SwipeActionAdapter swipeActionAdapter, @NotNull List<Summary> characters,
+                               @NotNull Context context) {
       this.swipeActionAdapter = swipeActionAdapter;
       this.characters = characters;
+      this.context = context;
     }
 
     @Override
@@ -145,7 +150,7 @@ public class SelectorActivity extends ActivityBase {
         case DIRECTION_NORMAL_LEFT:
           break;
         case DIRECTION_FAR_RIGHT:
-          removeEntry(positionList[i]);
+          removeEntry(positionList[i], context);
           break;
         case DIRECTION_NORMAL_RIGHT:
           break;
@@ -155,8 +160,8 @@ public class SelectorActivity extends ActivityBase {
       }
     }
 
-    private void removeEntry(int position) {
-      CharacterManager.removeCharacter(characters.get(position));
+    private void removeEntry(int position, @NotNull Context context) {
+      CharacterManager.removeCharacter(characters.get(position), context);
       characters.remove(position);
     }
   }

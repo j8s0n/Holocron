@@ -40,7 +40,7 @@ public final class TalentManager extends ManagerBase{
   }
 
   public static void loadTalents(@NotNull Context context) {
-    getFileContent(context, TALENTS_FILE, new ConentParser() {
+    getFileContent(context, TALENTS_FILE, true, new ContentParser() {
       @Override
       public void parse(@NotNull String content) {
         try {

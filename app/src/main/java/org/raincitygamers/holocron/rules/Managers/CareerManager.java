@@ -60,18 +60,13 @@ public final class CareerManager extends ManagerBase{
     }
   }
 
-  @NotNull
-  static List<Specialization> getSpecializations() {
-    return new ArrayList<>(specializationMap.values());
-  }
-
   @Nullable
   public static Specialization getSpecialization(@NotNull String name) {
     return specializationMap.get(name);
   }
 
   public static void loadCareers(@NotNull Context context) {
-    getFileContent(context, CAREERS_FILE, new ConentParser() {
+    getFileContent(context, CAREERS_FILE, true, new ContentParser() {
       @Override
       public void parse(@NotNull String content) {
         try {

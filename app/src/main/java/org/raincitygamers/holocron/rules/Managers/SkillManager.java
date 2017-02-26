@@ -62,7 +62,7 @@ public final class SkillManager extends ManagerBase  {
   }
 
   public static void loadSkills(@NotNull Context context) {
-    getFileContent(context, SKILLS_FILE, new ConentParser() {
+    getFileContent(context, SKILLS_FILE, true, new ContentParser() {
       @Override
       public void parse(@NotNull String content) {
         try {

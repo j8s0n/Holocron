@@ -57,7 +57,7 @@ public class Character {
   private static final String SKILLS_KEY = "skills";
   private static final String SCORE_KEY = "score";
   private static final String TIMESTAMP_KEY = "last_access_timestamp";
-  private static final String ID_KEY = "character_id_key";
+  private static final String ID_KEY = "character_id";
   private static final String LAST_OPEN_PAGE_KEY = "last_open_page";
   private static final String XP_KEY = "xp";
   private static final String CREDITS_KEY = "credits";
@@ -723,12 +723,8 @@ public class Character {
     return new Summary(characterId, name, species, career.getName(), accessTime);
   }
 
-  private static String buildFileName(@NotNull String characterName, @NotNull UUID characterId) {
-    return characterName.replace(' ', '_') + "." + characterId.toString();
-  }
-
-  public String getFileName() {
-    return buildFileName(name, characterId);
+  public static String buildFileName(@NotNull UUID characterId) {
+    return characterId.toString() + ".json";
   }
 
   public int getEncumbrance() {
@@ -772,25 +768,36 @@ public class Character {
     private final String career;
     private final long timestamp;
 
-    public static Summary valueOf(JSONObject characterJson, UUID characterId) throws JSONException {
+    @NotNull
+    public static Summary valueOf(@NotNull JSONObject characterJson) throws JSONException {
       String name = characterJson.getString(NAME_KEY);
       Career career = CareerManager.getCareer(characterJson.getString(CAREER_KEY));
       String species = characterJson.getString(SPECIES_KEY);
       long timestamp = characterJson.getLong(TIMESTAMP_KEY);
+      UUID characterId = UUID.fromString(characterJson.getString(ID_KEY));
 
       return new Summary(characterId, name, species, career.getName(), timestamp);
     }
 
+    @NotNull
     public String getBlurb() {
       return species + " - " + career;
     }
 
+    @NotNull
     public String getTimestampString() {
       return new Date(timestamp).toString();
     }
 
-    public String getFileName() {
-      return Character.buildFileName(name, characterId);
+    @NotNull
+    public JSONObject toJson() throws JSONException {
+      JSONObject o = new JSONObject();
+      o.put(NAME_KEY, name);
+      o.put(CAREER_KEY, career);
+      o.put(SPECIES_KEY, species);
+      o.put(TIMESTAMP_KEY, timestamp);
+      o.put(ID_KEY, characterId.toString());
+      return o;
     }
   }
 

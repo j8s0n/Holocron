@@ -10,6 +10,7 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
 import android.view.Menu;
@@ -20,7 +21,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
@@ -46,9 +46,8 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
   public static final String ACTION_FINISH = ChooserActivity.class.getCanonicalName();
   private ListView drawerList;
   private DrawerLayout drawerLayout;
-  private ArrayAdapter<String> adapter;
   private ActionBarDrawerToggle drawerToggle;
-  @NotNull @Getter private Character activeCharacter;
+  @Getter private Character activeCharacter;
   private int currentPage = -1;
   private FinishReceiver finishReceiver;
   @Getter @Setter private boolean chooserDone = false;
@@ -59,8 +58,6 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
   private final List<DrawerCommand> otherDrawerCommands = new ArrayList<>();
 
   public ChooserActivity() {
-    // This is where we populate what shows up in the menu.
-    // If it's white, I need to add an empty constructor.
     contentPages.add(new BasicsChooser());
     contentPages.add(new CharacteristicsChooser());
     contentPages.add(new GeneralSkillsChooser());
@@ -73,7 +70,7 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
     otherDrawerCommands.add(new DrawerCommand("Done", new CommandAction() {
       @Override public void act() {
         CharacterManager.setActiveCharacter(activeCharacter);
-        CharacterManager.saveCharacter(activeCharacter);
+        CharacterManager.saveCharacter(ChooserActivity.this, activeCharacter);
         if (editActiveCharacter) {
           finish();
         }
@@ -99,7 +96,7 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
     if (editActiveCharacter) {
       activeCharacter = CharacterManager.getActiveCharacter();
       String currentOpenPage = getIntent().getStringExtra(CURRENT_OPEN_PAGE);
-      // Set the current page to the one matching the page open in the displayer, or the basics if no matcher.
+      // Set the current page to the one matching the page open in the display, or the basics if no matcher.
       for (int i = 0; i < contentPages.size(); i++) {
         if (contentPages.get(i).getTitle().contains(currentOpenPage)) {
           newPage = i;
@@ -121,8 +118,12 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
     addDrawerItems();
     setUpDrawer();
 
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    getSupportActionBar().setHomeButtonEnabled(true);
+    ActionBar actionBar = getSupportActionBar();
+    if (actionBar != null) {
+      actionBar.setDisplayHomeAsUpEnabled(true);
+      actionBar.setHomeButtonEnabled(true);
+    }
+
     selectPage(newPage);
     setTitle();
   }
@@ -155,7 +156,7 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
       drawerEntries.add(command.getLabel());
     }
 
-    adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, drawerEntries);
+    ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, drawerEntries);
     drawerList.setAdapter(adapter);
 
     drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -178,7 +179,11 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
         super.onDrawerOpened(drawerView);
         final InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(findViewById(android.R.id.content).getWindowToken(), 0);
-        getSupportActionBar().setTitle("Switch Page");
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+          actionBar.setTitle("Switch Page");
+        }
+
         invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
       }
 
@@ -191,7 +196,7 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
     };
 
     drawerToggle.setDrawerIndicatorEnabled(true);
-    drawerLayout.setDrawerListener(drawerToggle);
+    drawerLayout.addDrawerListener(drawerToggle);
   }
 
   private void selectPage(int pageNumber) {
@@ -207,7 +212,10 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
 
   private void setTitle() {
     String title = contentPages.get(currentPage).getTitle();
-    getSupportActionBar().setTitle(title);
+    ActionBar actionBar = getSupportActionBar();
+    if (actionBar != null) {
+      actionBar.setTitle(title);
+    }
   }
 
   @Override
@@ -243,11 +251,8 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
     }
 
     // Activate the navigation drawer toggle
-    if (drawerToggle.onOptionsItemSelected(item)) {
-      return true;
-    }
+    return drawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
 
-    return super.onOptionsItemSelected(item);
   }
 
   @Override

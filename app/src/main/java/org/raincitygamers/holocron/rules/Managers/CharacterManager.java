@@ -1,29 +1,30 @@
 package org.raincitygamers.holocron.rules.managers;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.raincitygamers.holocron.io.FileAccessor;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.Character.Summary;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public final class CharacterManager {
+public final class CharacterManager extends ManagerBase {
   private static final String LOG_TAG = CharacterManager.class.getSimpleName();
+  private static final String CHARACTERS_FILE = "Characters.json";
+
   private static final Map<UUID, Summary> characters = new LinkedHashMap<>();
   private static Character activeCharacter;
-
-  static {
-    loadCharacters();
-  }
 
   private CharacterManager() {
   }
@@ -37,33 +38,82 @@ public final class CharacterManager {
     return activeCharacter;
   }
 
-  public static void saveCharacter(@NotNull Character character) {
+  public static void saveCharacter(@NotNull Context context, @NotNull Character character) {
     characters.put(character.getCharacterId(), character.makeSummary());
     character.updateTimestamp();
-    writeCharacter(character);
+    characters.put(character.getCharacterId(), character.makeSummary());
+    writeSummaries(context);
+    writeCharacter(context, character);
   }
 
-  private static void loadCharacters() {
-    characters.clear();
-    for (Map.Entry<UUID, String> entry : FileAccessor.getAllCharacterContent().entrySet()) {
-      try {
-        JSONObject characterJson = new JSONObject(entry.getValue());
-        characters.put(entry.getKey(), Summary.valueOf(characterJson, entry.getKey()));
+  public static void loadCharacters(@NotNull Context context) {
+    getFileContent(context, CHARACTERS_FILE, true, new ContentParser() {
+      @Override
+      public void parse(@NotNull String content) {
+        try {
+          characters.clear();
+          JSONArray charactersJson = new JSONArray(content);
+          for (int i = 0; i < charactersJson.length(); i++) {
+            JSONObject character = charactersJson.getJSONObject(i);
+            Summary summary = Summary.valueOf(character);
+            characters.put(summary.getCharacterId(), summary);
+          }
+        }
+        catch (JSONException e) {
+          Log.e(LOG_TAG, "Error reading Characters.json", e);
+        }
+
       }
-      catch (JSONException | NullPointerException e) {
-        Log.e(LOG_TAG, "Error reading character file: " + entry.getKey(), e);
-      }
-    }
+    });
   }
 
-  private static void writeCharacter(@NotNull final Character character) {
+  private static void loadSingleCharacter(@NotNull Context context, @NotNull final UUID characterId) {
+    String fileName = characterId.toString() + ".json";
+    getFileContent(context, fileName, false, new ContentParser() {
+      @Override
+      public void parse(@NotNull String content) {
+        try {
+          CharacterManager.setActiveCharacter(Character.valueOf(new JSONObject(content), characterId));
+        }
+        catch (JSONException e) {
+          Log.e(LOG_TAG, "Error reading Character: " + characterId, e);
+        }
+      }
+    });
+  }
+
+  private static void writeSummaries(@NotNull final Context context) {
     AsyncTask.execute(new Runnable() {
       @Override
       public void run() {
         try {
-          FileAccessor.writeCharacterContent(character);
+          JSONArray summaries = new JSONArray();
+          for (Summary summary : characters.values()) {
+            summaries.put(summary.toJson());
+          }
+
+          FileOutputStream fos = context.openFileOutput(CHARACTERS_FILE, Context.MODE_PRIVATE);
+          fos.write(summaries.toString().getBytes());
+          fos.close();
         }
-        catch (JSONException e) {
+        catch (IOException | JSONException e) {
+          Log.e(LOG_TAG, "Error writing character summaries.", e);
+        }
+      }
+    });
+  }
+
+  private static void writeCharacter(@NotNull final Context context, @NotNull final Character character) {
+    AsyncTask.execute(new Runnable() {
+      @Override
+      public void run() {
+        try {
+          FileOutputStream fos = context.openFileOutput(Character.buildFileName(character.getCharacterId()),
+                                                        Context.MODE_PRIVATE);
+          fos.write(character.toJsonObject().toString().getBytes());
+          fos.close();
+        }
+        catch (JSONException | IOException e) {
           Log.e(LOG_TAG, "Error writing character: '" + character.getName() + "' " + character.getCharacterId(), e);
         }
       }
@@ -79,35 +129,24 @@ public final class CharacterManager {
     return characters.keySet();
   }
 
-  public static void removeCharacter(@NotNull Summary summary) {
+  public static void removeCharacter(@NotNull Summary summary, @NotNull Context context) {
     characters.remove(summary.getCharacterId());
-    FileAccessor.removeFile(summary.getFileName());
-  }
-
-  public static void clearActiveCharacter() {
-    activeCharacter = null;
+    writeSummaries(context);
   }
 
   public static void setActiveCharacter(@NotNull Character character) {
     activeCharacter = character;
   }
 
-  public static void loadActiveCharacter(@NotNull String characterFileName, @NotNull UUID characterId) {
-    try {
-      if (activeCharacter == null || !activeCharacter.getCharacterId().equals(characterId)) {
-        activeCharacter = Character.valueOf(new JSONObject(FileAccessor.getCharacterContent(characterFileName)),
-                                            characterId);
-      }
-    }
-    catch (JSONException e) {
-      Log.e(LOG_TAG, "Error reading character file: " + characterId, e);
-      throw new IllegalStateException("No valid character to display.", e);
+  public static void loadCharacterToActiveState(@NotNull Context context, @NotNull UUID characterId) {
+    if (activeCharacter == null || !activeCharacter.getCharacterId().equals(characterId)) {
+      loadSingleCharacter(context, characterId);
     }
   }
 
-  public static void saveActiveCharacter() {
+  public static void saveActiveCharacter(@NotNull Context context) {
     if (activeCharacter != null) {
-      saveCharacter(activeCharacter);
+      saveCharacter(context, activeCharacter);
     }
   }
 }

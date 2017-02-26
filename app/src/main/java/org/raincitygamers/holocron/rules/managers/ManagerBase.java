@@ -19,9 +19,9 @@ abstract class ManagerBase {
   private static final String BASE_URL = "https://raw.githubusercontent.com/j8s0n/Holocron/master/DataFiles/";
   private static final String LOG_TAG = ManagerBase.class.getSimpleName();
 
-  static void getFileContent(@NotNull final Context context, @NotNull final String fileName,
-                               @NotNull final ConentParser parser) {
-    if (!Arrays.asList(context.fileList()).contains(fileName)) {
+  static void getFileContent(@NotNull final Context context, @NotNull final String fileName, boolean checkInternet,
+                             @NotNull final ContentParser parser) {
+    if (!Arrays.asList(context.fileList()).contains(fileName) && checkInternet) {
       AsyncTask.execute(new Runnable() {
         @Override
         public void run() {
@@ -81,7 +81,7 @@ abstract class ManagerBase {
     return "";
   }
 
-  interface ConentParser {
+  interface ContentParser {
     void parse(@NotNull String content);
   }
 }
