@@ -1,6 +1,7 @@
 package org.raincitygamers.holocron.ui;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,8 @@ import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.InventoryItem;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
+
+import java.util.Locale;
 
 public class InventoryEditorActivity extends ActivityBase {
   private static final String LOG_TAG = InventoryEditorActivity.class.getSimpleName();
@@ -21,12 +24,16 @@ public class InventoryEditorActivity extends ActivityBase {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.inventory_editor);
-    getSupportActionBar().setTitle("Inventory Editor");
+    ActionBar actionBar = getSupportActionBar();
+    if (actionBar != null) {
+      actionBar.setTitle("Inventory Editor");
+    }
+
     inventoryItemToEdit = getIntent().getIntExtra(INVENTORY_ITEM_TO_EDIT, -1);
 
     if (inventoryItemToEdit > -1) {
       Button okayButton = (Button) findViewById(R.id.okay_button);
-      okayButton.setText("Update");
+      okayButton.setText(R.string.update_text);
       // Populate fields with inventory item.
       InventoryItem item = CharacterManager.getActiveCharacter().getInventory().get(inventoryItemToEdit);
       setEntryValues(item);
@@ -40,8 +47,8 @@ public class InventoryEditorActivity extends ActivityBase {
   private void setEntryValues(@NotNull InventoryItem item) {
     setEditTextValue(R.id.item_name_entry, item.getName());
     setEditTextValue(R.id.item_location_entry, item.getLocation());
-    setEditTextValue(R.id.item_encumbrance_entry, String.format("%d", item.getEncumbrance()));
-    setEditTextValue(R.id.item_quantity_entry, String.format("%d", item.getQuantity()));
+    setEditTextValue(R.id.item_encumbrance_entry, String.format(Locale.US, "%d", item.getEncumbrance()));
+    setEditTextValue(R.id.item_quantity_entry, String.format(Locale.US, "%d", item.getQuantity()));
     setEditTextValue(R.id.item_description_entry, item.getDescription());
   }
 

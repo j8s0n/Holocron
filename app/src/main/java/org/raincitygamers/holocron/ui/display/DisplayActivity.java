@@ -42,7 +42,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class DisplayActivity extends ActivityBase implements ContentPage.OnFragmentInteractionListener {
+public class DisplayActivity extends ActivityBase {
   private ListView drawerList;
   private DrawerLayout drawerLayout;
   private ActionBarDrawerToggle drawerToggle;
@@ -87,7 +87,7 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
     otherDrawerCommands.add(new DrawerCommand("Share", new CommandAction() {
       @Override
       public void act() {
-       sendCharacter();
+        sendCharacter();
       }
     }));
   }
@@ -250,12 +250,6 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    // Handle action bar item clicks here. The action bar will
-    // automatically handle clicks on the Home/Up button, so long
-    // as you specify a parent activity in AndroidManifest.xml.
-    int id = item.getItemId();
-
-    // Activate the navigation drawer toggle
     return drawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
   }
 
@@ -275,10 +269,5 @@ public class DisplayActivity extends ActivityBase implements ContentPage.OnFragm
     catch (IOException | JSONException e) {
       Log.e(LOG_TAG, "Error sending character as attachment.", e);
     }
-  }
-
-  @Override
-  public void onNavFragmentInteraction(Uri uri) {
-    Log.i(LOG_TAG, "onNavFragmentInteraction called");
   }
 }

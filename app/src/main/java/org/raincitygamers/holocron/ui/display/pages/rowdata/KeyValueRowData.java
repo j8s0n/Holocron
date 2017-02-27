@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 public class KeyValueRowData implements RowData {
   private final KvPair pair;
 
-  protected KeyValueRowData(@NotNull String key, @NotNull String value) {
+  KeyValueRowData(@NotNull String key, @NotNull String value) {
     this.pair = KvPair.of(key, value);
   }
 

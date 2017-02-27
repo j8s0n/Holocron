@@ -12,12 +12,11 @@ import org.raincitygamers.holocron.ui.display.pages.rowdata.SectionRowData;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class ForcePowersPage extends AbilityPage {
-  private Character pc = CharacterManager.getActiveCharacter();
   public ForcePowersPage() {
-
   }
 
   @Override
@@ -29,7 +28,7 @@ public class ForcePowersPage extends AbilityPage {
   protected List<RowData> getRowData() {
     Character pc = CharacterManager.getActiveCharacter();
     List<RowData> rowData = new ArrayList<>();
-    rowData.add(0, KeyValueRowData.of("Force Rating", String.format("%d", pc.getForceRating())));
+    rowData.add(0, KeyValueRowData.of("Force Rating", String.format(Locale.US, "%d", pc.getForceRating())));
 
     for (Map.Entry<String, List<Integer>> entry : pc.getForcePowers().entrySet()) {
       String powerName = entry.getKey();

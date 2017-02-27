@@ -12,14 +12,16 @@ import org.raincitygamers.holocron.R;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import lombok.Getter;
 
-public class ScoreGroupArrayAdapter extends ArrayAdapter<ScoreRating> {
+class ScoreGroupArrayAdapter extends ArrayAdapter<ScoreRating> {
+  @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
   @Getter private final Map<String, Integer> scores = new HashMap<>();
 
-  public ScoreGroupArrayAdapter(Context context, List<ScoreRating> objects) {
+  ScoreGroupArrayAdapter(Context context, List<ScoreRating> objects) {
     super(context, -1, objects);
   }
 
@@ -27,6 +29,10 @@ public class ScoreGroupArrayAdapter extends ArrayAdapter<ScoreRating> {
   @Override
   public View getView(int position, View convertView, @NonNull ViewGroup parent) {
     final ScoreRating scoreRating = getItem(position);
+    if (scoreRating == null) {
+      return convertView;
+    }
+
     final ViewHolder viewHolder;
 
     if (convertView == null) {
@@ -45,7 +51,7 @@ public class ScoreGroupArrayAdapter extends ArrayAdapter<ScoreRating> {
     }
 
     viewHolder.scoreLabel.setText(scoreRating.getScoreLabel());
-    viewHolder.scoreEntry.setText(String.format("%d", scoreRating.getScoreValue()));
+    viewHolder.scoreEntry.setText(String.format(Locale.US, "%d", scoreRating.getScoreValue()));
     viewHolder.isCareerSkill.setVisibility(scoreRating.isCareerSkill() ? View.VISIBLE : View.INVISIBLE);
     viewHolder.downButton.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -54,7 +60,7 @@ public class ScoreGroupArrayAdapter extends ArrayAdapter<ScoreRating> {
         value = Math.max(scoreRating.getMinimumValue(), value - 1);
         scores.put(scoreRating.getScoreLabel(), value);
         scoreRating.setScoreValue(value);
-        viewHolder.scoreEntry.setText(String.format("%d", value));
+        viewHolder.scoreEntry.setText(String.format(Locale.US, "%d", value));
       }
     });
 
@@ -65,7 +71,7 @@ public class ScoreGroupArrayAdapter extends ArrayAdapter<ScoreRating> {
         value = Math.min(scoreRating.getMaximumValue(), value + 1);
         scores.put(scoreRating.getScoreLabel(), value);
         scoreRating.setScoreValue(value);
-        viewHolder.scoreEntry.setText(String.format("%d", value));
+        viewHolder.scoreEntry.setText(String.format(Locale.US, "%d", value));
       }
     });
 

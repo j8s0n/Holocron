@@ -6,16 +6,16 @@ import android.widget.EditText;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 
+import java.util.Locale;
+
 public class CreditEditorActivity extends ActivityBase {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.credit_editor);
-    // getSupportActionBar().setTitle("Credit Editor");
-
 
     EditText creditEntry = (EditText)findViewById(R.id.credits_entry);
-    creditEntry.setText(String.format("%d", CharacterManager.getActiveCharacter().getCredits()));
+    creditEntry.setText(String.format(Locale.US, "%d", CharacterManager.getActiveCharacter().getCredits()));
     creditEntry.requestFocus();
   }
 

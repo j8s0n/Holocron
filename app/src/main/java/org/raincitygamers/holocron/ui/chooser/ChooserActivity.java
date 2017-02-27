@@ -7,12 +7,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -41,7 +39,7 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
-public class ChooserActivity extends ActivityBase implements ContentPage.OnFragmentInteractionListener {
+public class ChooserActivity extends ActivityBase {
   public static final String ACTION_FINISH = ChooserActivity.class.getCanonicalName();
   private ListView drawerList;
   private DrawerLayout drawerLayout;
@@ -52,7 +50,6 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
   @Getter @Setter private boolean chooserDone = false;
   @Getter private boolean editActiveCharacter;
 
-  private static final String LOG_TAG = DisplayActivity.class.getSimpleName();
   private final List<ContentPage> contentPages = new ArrayList<>();
   private final List<DrawerCommand> otherDrawerCommands = new ArrayList<>();
 
@@ -67,7 +64,8 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
     contentPages.add(new DescriptionChooser());
 
     otherDrawerCommands.add(new DrawerCommand("Done", new CommandAction() {
-      @Override public void act() {
+      @Override
+      public void act() {
         CharacterManager.setActiveCharacter(activeCharacter);
         CharacterManager.saveCharacter(ChooserActivity.this, activeCharacter);
         if (editActiveCharacter) {
@@ -232,18 +230,7 @@ public class ChooserActivity extends ActivityBase implements ContentPage.OnFragm
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    // Handle action bar item clicks here. The action bar will
-    // automatically handle clicks on the Home/Up button, so long
-    // as you specify a parent activity in AndroidManifest.xml.
-    int id = item.getItemId();
-
-    // Activate the navigation drawer toggle
     return drawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
-  }
-
-  @Override
-  public void onNavFragmentInteraction(Uri uri) {
-    Log.i(LOG_TAG, "onNavFragmentInteraction called");
   }
 
   private final class FinishReceiver extends BroadcastReceiver {

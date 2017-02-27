@@ -1,6 +1,7 @@
 package org.raincitygamers.holocron.ui.selection;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +13,14 @@ import org.raincitygamers.holocron.rules.character.Character.Summary;
 
 import java.util.List;
 
-public class CharacterArrayAdapter extends ArrayAdapter<Summary> {
-  public CharacterArrayAdapter(Context context, List<Summary> objects) {
+class CharacterArrayAdapter extends ArrayAdapter<Summary> {
+  CharacterArrayAdapter(Context context, List<Summary> objects) {
     super(context, -1, objects);
   }
 
+  @NonNull
   @Override
-  public View getView(int position, View convertView, ViewGroup parent) {
+  public View getView(int position, View convertView, @NonNull ViewGroup parent) {
     Summary character = getItem(position);
     ViewHolder viewHolder;
 
@@ -35,9 +37,12 @@ public class CharacterArrayAdapter extends ArrayAdapter<Summary> {
       viewHolder = (ViewHolder) convertView.getTag();
     }
 
-    viewHolder.characterName.setText(character.getName());
-    viewHolder.characterCareer.setText(character.getBlurb());
-    viewHolder.lastAccessDate.setText(character.getTimestampString());
+    if (character != null) {
+      viewHolder.characterName.setText(character.getName());
+      viewHolder.characterCareer.setText(character.getBlurb());
+      viewHolder.lastAccessDate.setText(character.getTimestampString());
+
+    }
     return  convertView;
   }
 

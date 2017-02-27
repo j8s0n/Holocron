@@ -22,7 +22,7 @@ public class Specialization {
     this.prettyName = makePretty(name);
   }
 
-  public static String makePretty(@NotNull String specialization) {
+  static String makePretty(@NotNull String specialization) {
     int doubleDash = specialization.indexOf("--");
     String prettyName;
     if (doubleDash > -1) {

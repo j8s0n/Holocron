@@ -20,6 +20,7 @@ import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class GearPage extends ContentPage {
   private List<RowData> rowData = new ArrayList<>();
@@ -49,9 +50,9 @@ public class GearPage extends ContentPage {
   private List<RowData> getRowData() {
     Character pc = CharacterManager.getActiveCharacter();
     List<RowData> rowData = new ArrayList<>();
-    rowData.add(KeyValueRowData.of("Encumbrance", String.format("%d / %d", pc.getEncumbrance(),
+    rowData.add(KeyValueRowData.of("Encumbrance", String.format(Locale.US, "%d / %d", pc.getEncumbrance(),
                                                                 pc.getEncumbranceThreshold())));
-    rowData.add(KeyValueRowData.of("Credits", String.format("%d", pc.getCredits())));
+    rowData.add(KeyValueRowData.of("Credits", String.format(Locale.US, "%d", pc.getCredits())));
     for (InventoryItem item : pc.getInventory()) {
       rowData.add(InventoryItemRowData.of(item));
     }

@@ -22,8 +22,11 @@ public class DescriptionPage extends ContentPage {
   @Override
   public void onResume() {
     super.onResume();
-    TextView description = (TextView) getView().findViewById(R.id.description_text);
-    description.setText(CharacterManager.getActiveCharacter().getDescription());
+    View view = getView();
+    if (view != null) {
+      TextView description = (TextView) view.findViewById(R.id.description_text);
+      description.setText(CharacterManager.getActiveCharacter().getDescription());
+    }
   }
 
   @Override

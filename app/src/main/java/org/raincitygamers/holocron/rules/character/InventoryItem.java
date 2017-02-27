@@ -51,7 +51,7 @@ public class InventoryItem {
   }
 
   @NotNull
-  public static List<InventoryItem> parseInventory(@NotNull JSONArray jsonArray) {
+  static List<InventoryItem> parseInventory(@NotNull JSONArray jsonArray) {
     List<InventoryItem> inventory = new ArrayList<>();
 
     for (int i = 0; i < jsonArray.length(); i++) {
@@ -95,7 +95,7 @@ public class InventoryItem {
   }
 
   @NotNull
-  public static JSONArray toJsonArray(@NotNull List<InventoryItem> inventory) throws JSONException {
+  static JSONArray toJsonArray(@NotNull List<InventoryItem> inventory) throws JSONException {
     JSONArray a = new JSONArray();
     for (InventoryItem item : inventory) {
       a.put(item.toJson());

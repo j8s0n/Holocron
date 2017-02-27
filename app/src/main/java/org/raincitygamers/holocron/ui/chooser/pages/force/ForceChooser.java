@@ -22,6 +22,7 @@ import org.raincitygamers.holocron.ui.chooser.ChooserBase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class ForceChooser extends ChooserBase {
@@ -68,8 +69,13 @@ public class ForceChooser extends ChooserBase {
 
   private void setUpForcePowerButtons() {
     showHideWidgets(forceRating > 0);
-    TextView decreaseRating = (TextView) getView().findViewById(R.id.score_rating_down_button);
-    TextView increaseRating = (TextView) getView().findViewById(R.id.score_rating_up_button);
+    View view = getView();
+    if (view == null) {
+      return;
+    }
+
+    TextView decreaseRating = (TextView) view.findViewById(R.id.score_rating_down_button);
+    TextView increaseRating = (TextView) view.findViewById(R.id.score_rating_up_button);
     decreaseRating.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -95,8 +101,12 @@ public class ForceChooser extends ChooserBase {
   }
 
   private void setUpPowerChoiceButtons() {
+    View view = getView();
+    if (view == null) {
+      return;
+    }
 
-    Button addUpgrade = (Button) getView().findViewById(R.id.add_power_upgrade);
+    Button addUpgrade = (Button) view.findViewById(R.id.add_power_upgrade);
     addUpgrade.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -110,7 +120,7 @@ public class ForceChooser extends ChooserBase {
       }
     });
 
-    Button removeUpgrade = (Button) getView().findViewById(R.id.remove_power_upgrade);
+    Button removeUpgrade = (Button) view.findViewById(R.id.remove_power_upgrade);
     removeUpgrade.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -128,24 +138,39 @@ public class ForceChooser extends ChooserBase {
   }
 
   private void updateForceRating(int forceRating) {
-    TextView forceRatingEntry = (TextView) getView().findViewById(R.id.score_rating_entry);
-    forceRatingEntry.setText(String.format("%d", forceRating));
+    View view = getView();
+    if (view == null) {
+      return;
+    }
+
+    TextView forceRatingEntry = (TextView) view.findViewById(R.id.score_rating_entry);
+    forceRatingEntry.setText(String.format(Locale.US, "%d", forceRating));
   }
 
   private void showHideWidgets(boolean show) {
+    View view = getView();
+    if (view == null) {
+      return;
+    }
+
     int visibility = show ? View.VISIBLE : View.INVISIBLE;
-    getView().findViewById(R.id.force_power_label).setVisibility(visibility);
-    getView().findViewById(R.id.force_power_spinner).setVisibility(visibility);
-    getView().findViewById(R.id.available_upgrades_label).setVisibility(visibility);
-    getView().findViewById(R.id.available_spinner).setVisibility(visibility);
-    getView().findViewById(R.id.add_power_upgrade).setVisibility(visibility);
-    getView().findViewById(R.id.acquired_upgrades_label).setVisibility(visibility);
-    getView().findViewById(R.id.known_spinner).setVisibility(visibility);
-    getView().findViewById(R.id.remove_power_upgrade).setVisibility(visibility);
+    view.findViewById(R.id.force_power_label).setVisibility(visibility);
+    view.findViewById(R.id.force_power_spinner).setVisibility(visibility);
+    view.findViewById(R.id.available_upgrades_label).setVisibility(visibility);
+    view.findViewById(R.id.available_spinner).setVisibility(visibility);
+    view.findViewById(R.id.add_power_upgrade).setVisibility(visibility);
+    view.findViewById(R.id.acquired_upgrades_label).setVisibility(visibility);
+    view.findViewById(R.id.known_spinner).setVisibility(visibility);
+    view.findViewById(R.id.remove_power_upgrade).setVisibility(visibility);
   }
 
   private void buildForcePowersSpinner() {
-    Spinner forcePowersSpinner = (Spinner) getView().findViewById(R.id.force_power_spinner);
+    View view = getView();
+    if (view == null) {
+      return;
+    }
+
+    Spinner forcePowersSpinner = (Spinner) view.findViewById(R.id.force_power_spinner);
     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line,
                                                            forcePowerNames);
     arrayAdapter.notifyDataSetChanged();
@@ -165,8 +190,13 @@ public class ForceChooser extends ChooserBase {
   }
 
   private void buildUpgradeSpinners() {
-    knownUpgradesSpinner = (Spinner) getView().findViewById(R.id.known_spinner);
-    availableUpgradesSpinner = (Spinner) getView().findViewById(R.id.available_spinner);
+    View view = getView();
+    if (view == null) {
+      return;
+    }
+
+    knownUpgradesSpinner = (Spinner) view.findViewById(R.id.known_spinner);
+    availableUpgradesSpinner = (Spinner) view.findViewById(R.id.available_spinner);
 
     List<SpinnerEntry> knownUpgrades = new ArrayList<>();
     List<SpinnerEntry> availableUpgrades = new ArrayList<>();
@@ -202,17 +232,19 @@ public class ForceChooser extends ChooserBase {
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    // Inflate the layout for this fragment
-    View result = inflater.inflate(R.layout.choose_force_powers, container, false);
-
-    return result;
+    return inflater.inflate(R.layout.choose_force_powers, container, false);
   }
 
   @Override
   public void onActivityCreated(Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
+    View view = getView();
+    if (view == null) {
+      return;
+    }
+
     final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-    imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
   }
 
   @Override
@@ -226,11 +258,11 @@ public class ForceChooser extends ChooserBase {
     final int row;
     final int column;
 
-    public SpinnerEntry(@NotNull Ability ability, int index) {
+    SpinnerEntry(@NotNull Ability ability, int index) {
       this.index = index;
       this.row = ability.getRow();
       this.column = ability.getColumn();
-      this.display = String.format("%s (Row %d, Col %d)", ability.getName(), row, column);
+      this.display = String.format(Locale.US, "%s (Row %d, Col %d)", ability.getName(), row, column);
     }
 
     @Override

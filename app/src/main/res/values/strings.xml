@@ -37,4 +37,5 @@
   <string name="ranged_defense">Ranged Defense</string>
   <string name="xp">Experience Points</string>
   <string name="title_activity_credit_editor">CreditEditor</string>
+  <string name="update_text">Update</string>
 </resources>

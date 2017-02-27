@@ -12,8 +12,6 @@ import org.raincitygamers.holocron.ui.chooser.ChooserBase;
 public class DescriptionChooser extends ChooserBase {
   private static final String LOG_TAG = DescriptionChooser.class.getSimpleName();
 
-  private View view;
-
   public DescriptionChooser() {
   }
 
@@ -24,15 +22,19 @@ public class DescriptionChooser extends ChooserBase {
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    view = inflater.inflate(R.layout.choose_description, container, false);
-    return view;
+    return inflater.inflate(R.layout.choose_description, container, false);
   }
 
   @Override
   public void onResume() {
     super.onResume();
 
-    EditText description = (EditText) getView().findViewById(R.id.description_entry);
+    View view = getView();
+    if (view == null) {
+      return;
+    }
+
+    EditText description = (EditText) view.findViewById(R.id.description_entry);
     description.setText(getActiveCharacter().getDescription());
   }
 

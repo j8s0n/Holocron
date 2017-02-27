@@ -8,7 +8,7 @@ import lombok.Getter;
 public class InventoryItemRowData implements RowData {
   @Getter private final InventoryItem item;
 
-  public InventoryItemRowData(@NotNull InventoryItem item) {
+  private InventoryItemRowData(@NotNull InventoryItem item) {
     this.item = item;
   }
 

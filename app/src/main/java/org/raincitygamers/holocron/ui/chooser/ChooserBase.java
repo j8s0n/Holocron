@@ -1,6 +1,7 @@
 package org.raincitygamers.holocron.ui.chooser;
 
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 
 import org.jetbrains.annotations.NotNull;
@@ -20,15 +21,27 @@ public abstract class ChooserBase extends ContentPage {
       return Integer.parseInt(readEditText(resourceId));
     }
     catch (NumberFormatException e) {
-      EditText textField = (EditText) getView().findViewById(resourceId);
-      Log.e(getLogTag(), "Invalid value for " + textField.getHint());
+      View view = getView();
+      CharSequence field = "";
+      if (view != null) {
+        EditText textField = (EditText) view.findViewById(resourceId);
+        field = textField.getHint();
+      }
+
+      Log.e(getLogTag(), "Invalid value for " + field);
     }
 
     return 0;
   }
 
   protected String readEditText(int editTextId) {
-    EditText editText = (EditText) getView().findViewById(editTextId);
-    return editText.getText().toString();
+    View view = getView();
+    CharSequence chars = "";
+    if (view != null) {
+      EditText editText = (EditText) view.findViewById(editTextId);
+      return editText.getText().toString();
+    }
+
+    return chars.toString();
   }
 }

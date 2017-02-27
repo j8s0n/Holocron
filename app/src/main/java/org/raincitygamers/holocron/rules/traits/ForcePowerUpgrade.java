@@ -40,7 +40,7 @@ public class ForcePowerUpgrade extends Ability {
         taken.put(i);
       }
 
-      o.put(THINGK_TAKEN_KEY, taken);
+      o.put(THING_TAKEN_KEY, taken);
       a.put(o);
     }
 
@@ -56,7 +56,7 @@ public class ForcePowerUpgrade extends Ability {
       try {
         JSONObject o = jsonArray.getJSONObject(i);
         powerName = o.getString(NAME_KEY);
-        JSONArray a = o.getJSONArray(THINGK_TAKEN_KEY);
+        JSONArray a = o.getJSONArray(THING_TAKEN_KEY);
         for (int j = 0; j < a.length(); j++) {
           powerIndices.add(a.getInt(j));
         }
