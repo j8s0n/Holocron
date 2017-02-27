@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.chooser.pages.scoregroup;
+package org.raincitygamers.holocron.ui.chooser.pages;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

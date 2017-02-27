@@ -1,25 +1,23 @@
-package org.raincitygamers.holocron.ui.chooser.pages.skills;
+package org.raincitygamers.holocron.ui.chooser.pages;
 
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.managers.SkillManager;
 import org.raincitygamers.holocron.rules.traits.Skill;
-import org.raincitygamers.holocron.ui.chooser.pages.scoregroup.ScoreGroupChooser;
-import org.raincitygamers.holocron.ui.chooser.pages.scoregroup.ScoreRating;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-public class KnowledgeSkillsChooser extends ScoreGroupChooser {
-  private static final String LOG_TAG = KnowledgeSkillsChooser.class.getSimpleName();
+public class CombatSkillsChooser extends ScoreGroupChooser {
+  private static final String LOG_TAG = CombatSkillsChooser.class.getSimpleName();
 
-  public KnowledgeSkillsChooser() {
+  public CombatSkillsChooser() {
   }
 
   @Override
   public String getTitle() {
-    return "Choose Knowledge Skills";
+    return "Choose Combat Skills";
   }
 
   @Override
@@ -37,7 +35,7 @@ public class KnowledgeSkillsChooser extends ScoreGroupChooser {
   protected Collection<ScoreRating> getScoreRatings() {
     List<ScoreRating> scores = new ArrayList<>();
     Character pc = getActiveCharacter();
-    for (Skill skill : SkillManager.getKnowledgeSkills()) {
+    for (Skill skill : SkillManager.getCombatSkills()) {
       boolean isCareerSkill = pc.isCareerSkill(skill);
       scores.add(ScoreRating.of(skill.getName(), pc.getSkillScore(skill), 0, 5, isCareerSkill));
     }

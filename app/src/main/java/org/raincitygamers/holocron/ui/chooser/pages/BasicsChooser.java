@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.chooser.pages.basics;
+package org.raincitygamers.holocron.ui.chooser.pages;
 
 import android.os.Bundle;
 import android.util.Log;

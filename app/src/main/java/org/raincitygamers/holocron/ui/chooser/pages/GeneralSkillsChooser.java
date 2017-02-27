@@ -1,10 +1,8 @@
-package org.raincitygamers.holocron.ui.chooser.pages.skills;
+package org.raincitygamers.holocron.ui.chooser.pages;
 
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.managers.SkillManager;
 import org.raincitygamers.holocron.rules.traits.Skill;
-import org.raincitygamers.holocron.ui.chooser.pages.scoregroup.ScoreGroupChooser;
-import org.raincitygamers.holocron.ui.chooser.pages.scoregroup.ScoreRating;
 
 import java.util.ArrayList;
 import java.util.Collection;
