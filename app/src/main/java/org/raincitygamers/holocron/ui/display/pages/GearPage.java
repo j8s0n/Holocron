@@ -1,8 +1,10 @@
 package org.raincitygamers.holocron.ui.display.pages;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
@@ -12,6 +14,7 @@ import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.InventoryItem;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.ui.ContentPage;
+import org.raincitygamers.holocron.ui.InventoryEditorActivity;
 import org.raincitygamers.holocron.ui.display.DisplayArrayAdapter;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.ButtonRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.InventoryItemRowData;
@@ -57,8 +60,14 @@ public class GearPage extends ContentPage {
       rowData.add(InventoryItemRowData.of(item));
     }
 
-    rowData.add(ButtonRowData.of("Add Item"));
-
+    rowData.add(ButtonRowData.of("Add Item", new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(getActivity(), InventoryEditorActivity.class);
+        intent.putExtra(InventoryEditorActivity.INVENTORY_ITEM_TO_EDIT, -1);
+        getActivity().startActivity(intent);
+      }
+    }));
     return rowData;
   }
 

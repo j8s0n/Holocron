@@ -7,6 +7,9 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -67,7 +70,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       case ATTACK_ACTION:
         return displayAttackAction(convertView, parent, (AttackActionRowData) rowData);
       case BUTTON:
-        return displayButton(convertView, parent, ((ButtonRowData) rowData).getButtonText());
+        return displayButton(convertView, parent, ((ButtonRowData) rowData));
       case DICE_POOL:
         return displayDicePool(convertView, parent, ((DicePoolRowData) rowData).getDicePool());
       case INVENTORY:
@@ -159,7 +162,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   }
 
   @NotNull
-  private View displayButton(View convertView, @NotNull ViewGroup parent, @NotNull String buttonText) {
+  private View displayButton(View convertView, @NotNull ViewGroup parent, @NotNull ButtonRowData button) {
     ViewHolder viewHolder;
     if (convertView == null || !convertView.getTag().equals(RowData.Type.BUTTON)) {
       viewHolder = new ViewHolder();
@@ -173,15 +176,8 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       viewHolder = (ViewHolder) convertView.getTag();
     }
 
-    viewHolder.button.setText(buttonText);
-    viewHolder.button.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Intent intent = new Intent(getContext(), InventoryEditorActivity.class);
-        intent.putExtra(InventoryEditorActivity.INVENTORY_ITEM_TO_EDIT, -1);
-        getContext().startActivity(intent);
-      }
-    });
+    viewHolder.button.setText(button.getButtonText());
+    viewHolder.button.setOnClickListener(button.getOnClickListener());
     return convertView;
   }
 
@@ -284,7 +280,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     viewHolder.value.setText(pair.getValue());
 
     if (pair.getKey().equals("Credits")) {
-      convertView.setOnLongClickListener(new View.OnLongClickListener() {
+      convertView.setOnLongClickListener(new OnLongClickListener() {
         @Override
         public boolean onLongClick(View v) {
           Intent intent = new Intent(getContext(), CreditEditorActivity.class);
@@ -318,7 +314,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     }
 
     viewHolder.sectionLabel.setText(sectionLabel);
-    convertView.setOnLongClickListener(new View.OnLongClickListener() {
+    convertView.setOnLongClickListener(new OnLongClickListener() {
       @Override
       public boolean onLongClick(View v) {
         getActiveCharacter().toggleSection(pageName, sectionLabel);
@@ -383,7 +379,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     viewHolder.key.setText(rowData.getPair().getKey());
     viewHolder.value.setText(rowData.getPair().getValue());
     final Character pc = getActiveCharacter();
-    viewHolder.value.setOnTouchListener(new View.OnTouchListener() {
+    viewHolder.value.setOnTouchListener(new OnTouchListener() {
       @Override
       public boolean onTouch(View v, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_UP) {
@@ -402,7 +398,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       }
     });
 
-    viewHolder.key.setOnLongClickListener(new View.OnLongClickListener() {
+    viewHolder.key.setOnLongClickListener(new OnLongClickListener() {
       @Override
       public boolean onLongClick(View v) {
         if (rowData.getThreshold().equals(ThresholdRowData.STRAIN)) {
@@ -460,7 +456,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       }
     });
 
-    viewHolder.quantity.setOnLongClickListener(new View.OnLongClickListener() {
+    viewHolder.quantity.setOnLongClickListener(new OnLongClickListener() {
       @Override
       public boolean onLongClick(View v) {
         item.setQuantity(Math.max(0, item.getQuantity() - 1));
@@ -470,7 +466,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       }
     });
 
-    viewHolder.quantity.setOnClickListener(new View.OnClickListener() {
+    viewHolder.quantity.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
         item.setQuantity(item.getQuantity() + 1);
@@ -479,7 +475,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       }
     });
 
-    viewHolder.name.setOnLongClickListener(new View.OnLongClickListener() {
+    viewHolder.name.setOnLongClickListener(new OnLongClickListener() {
       @Override
       public boolean onLongClick(View v) {
         Intent intent = new Intent(getContext(), InventoryEditorActivity.class);
