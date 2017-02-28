@@ -36,15 +36,19 @@
       </intent-filter>
     </activity>
     <activity
-      android:name=".ui.InventoryEditorActivity"
+      android:name=".ui.display.InventoryEditorActivity"
       android:screenOrientation="portrait"
       >
     </activity>
     <activity
-      android:name=".ui.CreditEditorActivity"
+      android:name=".ui.display.CreditEditorActivity"
       android:screenOrientation="portrait"
-      android:label="@string/title_activity_credit_editor"
-      android:theme="@style/AppTheme.NoActionBar">
+      android:label="@string/title_activity_credit_editor">
+    </activity>
+    <activity
+      android:name=".ui.display.ConditionEditorActivity"
+      android:screenOrientation="portrait"
+      android:label="@string/title_activity_credit_editor">
     </activity>
   </application>
 

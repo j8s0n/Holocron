@@ -22,6 +22,8 @@ import org.raincitygamers.holocron.ui.display.pages.rowdata.ThresholdRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.ToggleRowData;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
@@ -341,9 +343,11 @@ public class Character {
   }
 
   public void setActionConditionState(@NotNull String actionCondition, boolean state) {
-    // TODO: Should this only act as an updater?
-    // TODO: If so, what do we do if the key isn't found?
     actionConditions.put(actionCondition, state);
+  }
+
+  public boolean removeActionCondition(@NotNull String actionCondition) {
+    return actionConditions.remove(actionCondition);
   }
 
   @NotNull
@@ -356,6 +360,13 @@ public class Character {
     }
 
     return activeConditions;
+  }
+
+  @NotNull
+  public Collection<String> getAllConditions() {
+    List<String> conditions = new ArrayList<>(actionConditions.keySet());
+    Collections.sort(conditions);
+    return conditions;
   }
 
   public void updateTimestamp() {
@@ -755,6 +766,11 @@ public class Character {
 
   public void setStrain(int i) {
     strain = Math.max(i, 0);
+  }
+
+  @NotNull
+  public String getFileName() {
+    return name.replace(' ', '_') + ".json";
   }
 
   @Getter

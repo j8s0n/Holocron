@@ -1,10 +1,11 @@
-package org.raincitygamers.holocron.ui;
+package org.raincitygamers.holocron.ui.display;
 
 import android.os.Bundle;
 import android.widget.EditText;
 
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
+import org.raincitygamers.holocron.ui.ActivityBase;
 
 import java.util.Locale;
 

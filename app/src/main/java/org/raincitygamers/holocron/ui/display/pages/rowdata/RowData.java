@@ -8,8 +8,10 @@ public interface RowData {
 
   enum Type {
     ABILITY,
+    ADDER,
     ATTACK_ACTION,
     BUTTON,
+    CONDITION_EDITOR,
     DICE_POOL,
     INVENTORY,
     KEY_VALUE,

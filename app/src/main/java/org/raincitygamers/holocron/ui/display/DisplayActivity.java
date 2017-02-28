@@ -256,7 +256,7 @@ public class DisplayActivity extends ActivityBase {
   private void sendCharacter() {
     try {
       Character character = CharacterManager.getActiveCharacter();
-      File tempFile = File.createTempFile(character.getCharacterId().toString(), ".json", getExternalCacheDir());
+      File tempFile = new File(getExternalCacheDir(), character.getFileName());
       FileOutputStream fos = new FileOutputStream(tempFile);
       fos.write(character.toJsonObject().toString().getBytes());
 

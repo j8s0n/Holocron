@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui;
+package org.raincitygamers.holocron.ui.display;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.InventoryItem;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
+import org.raincitygamers.holocron.ui.ActivityBase;
 
 import java.util.Locale;
 
@@ -23,7 +24,7 @@ public class InventoryEditorActivity extends ActivityBase {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.inventory_editor);
+    setContentView(R.layout.edit_inventory);
     ActionBar actionBar = getSupportActionBar();
     if (actionBar != null) {
       actionBar.setTitle("Inventory Editor");

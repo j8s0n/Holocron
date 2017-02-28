@@ -14,7 +14,7 @@ import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.InventoryItem;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.ui.ContentPage;
-import org.raincitygamers.holocron.ui.InventoryEditorActivity;
+import org.raincitygamers.holocron.ui.display.InventoryEditorActivity;
 import org.raincitygamers.holocron.ui.display.DisplayArrayAdapter;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.ButtonRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.InventoryItemRowData;

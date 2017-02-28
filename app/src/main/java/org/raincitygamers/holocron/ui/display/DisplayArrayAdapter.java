@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -27,12 +28,12 @@ import org.raincitygamers.holocron.rules.character.InventoryItem;
 import org.raincitygamers.holocron.rules.character.SkillAction;
 import org.raincitygamers.holocron.rules.traits.Ability;
 import org.raincitygamers.holocron.rules.traits.DicePool;
-import org.raincitygamers.holocron.ui.CreditEditorActivity;
 import org.raincitygamers.holocron.ui.FragmentInvalidator;
-import org.raincitygamers.holocron.ui.InventoryEditorActivity;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.AbilityRowData;
+import org.raincitygamers.holocron.ui.display.pages.rowdata.AdderRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.AttackActionRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.ButtonRowData;
+import org.raincitygamers.holocron.ui.display.pages.rowdata.ConditionEditorRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.DicePoolRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.InventoryItemRowData;
 import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData;
@@ -66,19 +67,23 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     if (rowData != null) {
       switch (rowData.getType()) {
       case ABILITY:
-        return displayAbility(convertView, parent, ((AbilityRowData)rowData).getAbility());
+        return displayAbility(convertView, parent, ((AbilityRowData) rowData).getAbility());
+      case ADDER:
+        return displayAdder(convertView, parent, (AdderRowData) rowData);
       case ATTACK_ACTION:
         return displayAttackAction(convertView, parent, (AttackActionRowData) rowData);
       case BUTTON:
-        return displayButton(convertView, parent, ((ButtonRowData) rowData));
+        return displayButton(convertView, parent, (ButtonRowData) rowData);
+      case CONDITION_EDITOR:
+        return displayCondition(convertView, parent, (ConditionEditorRowData) rowData);
       case DICE_POOL:
         return displayDicePool(convertView, parent, ((DicePoolRowData) rowData).getDicePool());
       case INVENTORY:
         return displayInventory(convertView, parent, ((InventoryItemRowData) rowData).getItem());
       case KEY_VALUE:
-        return displayKeyValuePair(convertView, parent, ((KeyValueRowData)rowData).getPair());
+        return displayKeyValuePair(convertView, parent, ((KeyValueRowData) rowData).getPair());
       case SECTION_ID:
-        return displaySection(convertView, parent, ((SectionRowData) rowData));
+        return displaySection(convertView, parent, (SectionRowData) rowData);
       case SKILL_ACTION:
         return displaySkillAction(convertView, parent, (SkillActionRowData) rowData);
       case THRESHOLD:
@@ -113,6 +118,32 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     viewHolder.name.setText(ability.getName());
     viewHolder.description.setText(ability.getDescription());
     viewHolder.tier.setText(String.format(Locale.US, "%d", ability.getTier()));
+    return convertView;
+  }
+
+  @NotNull
+  private View displayAdder(View convertView, @NotNull ViewGroup parent, @NotNull final AdderRowData adder) {
+    final ViewHolder viewHolder;
+    if (convertView == null || !convertView.getTag().equals(RowData.Type.ADDER)) {
+      viewHolder = new ViewHolder();
+      LayoutInflater inflater = LayoutInflater.from(getContext());
+      convertView = inflater.inflate(R.layout.list_item_adder, parent, false);
+      viewHolder.itemEntry = (EditText) convertView.findViewById(R.id.item_entry);
+      viewHolder.addButton = (TextView) convertView.findViewById(R.id.add_button);
+      convertView.setTag(viewHolder);
+      viewHolder.type = RowData.Type.ADDER;
+    }
+    else {
+      viewHolder = (ViewHolder) convertView.getTag();
+    }
+
+    viewHolder.addButton.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        adder.getAddPerformer().performAdd(viewHolder.itemEntry.getText().toString());
+      }
+    });
+
     return convertView;
   }
 
@@ -178,6 +209,27 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
 
     viewHolder.button.setText(button.getButtonText());
     viewHolder.button.setOnClickListener(button.getOnClickListener());
+    return convertView;
+  }
+
+  @NotNull
+  private View displayCondition(View convertView, @NotNull ViewGroup parent, @NotNull ConditionEditorRowData rowData) {
+    ViewHolder viewHolder;
+    if (convertView == null || !convertView.getTag().equals(RowData.Type.CONDITION_EDITOR)) {
+      viewHolder = new ViewHolder();
+      LayoutInflater inflater = LayoutInflater.from(getContext());
+      convertView = inflater.inflate(R.layout.list_item_condition, parent, false);
+      viewHolder.conditionName = (TextView) convertView.findViewById(R.id.item_entry);
+      viewHolder.removeButton = (TextView) convertView.findViewById(R.id.remove_button);
+      convertView.setTag(viewHolder);
+      viewHolder.type = RowData.Type.CONDITION_EDITOR;
+    }
+    else {
+      viewHolder = (ViewHolder) convertView.getTag();
+    }
+
+    viewHolder.conditionName.setText(rowData.getCondition());
+    viewHolder.removeButton.setOnClickListener(rowData.getOnClickListener());
     return convertView;
   }
 
@@ -438,7 +490,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       @Override
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         getActiveCharacter().setActionConditionState(rowData.getName(),
-                                                                      viewHolder.toggleSwitch.isChecked());
+                                                     viewHolder.toggleSwitch.isChecked());
         refreshPage();
       }
     });
@@ -517,8 +569,16 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     // Ability
     TextView tier;
 
+    // Adder
+    EditText itemEntry;
+    TextView addButton;
+
     // Button
     Button button;
+
+    // Condition Editor
+    TextView conditionName;
+    TextView removeButton;
 
     // Dice Pool
     TextView skillName;
