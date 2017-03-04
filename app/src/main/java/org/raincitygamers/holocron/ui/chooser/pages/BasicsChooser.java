@@ -109,8 +109,8 @@ public class BasicsChooser extends ChooserBase {
     ch.setRangedDefense(readIntValue(R.id.ranged_defense));
 
     ch.setCareer(selectedCareer);
-    ch.getSpecializations().clear();
-    ch.getSpecializations().add(selectedSpecialization);
+    ch.getSecondarySpecializations().clear();
+    ch.getSecondarySpecializations().add(selectedSpecialization);
     ch.setXp(readIntValue(R.id.xp));
   }
 
@@ -152,7 +152,7 @@ public class BasicsChooser extends ChooserBase {
 
     spinner.setAdapter(arrayAdapter);
     if (character != null) {
-      spinner.setSelection(specializations.indexOf(character.getSpecializations().get(0).getPrettyName()));
+      spinner.setSelection(specializations.indexOf(character.getPrimarySpecialization().getPrettyName()));
     }
 
     spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

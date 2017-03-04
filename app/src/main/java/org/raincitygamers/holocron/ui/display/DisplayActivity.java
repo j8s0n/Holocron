@@ -50,7 +50,8 @@ public class DisplayActivity extends ActivityBase {
   private int currentPageNumber = 0;
 
   private static final String LOG_TAG = DisplayActivity.class.getSimpleName();
-  private static final long THIRTY_SECONDS = 3000;
+  private static final long THIRTY_SECONDS = 300000;
+  // private static final long THIRTY_SECONDS = 3000;
   private Timer timer;
 
   private final List<ContentPage> contentPages = new ArrayList<>();

@@ -48,6 +48,8 @@ public class Character {
   private static final String SPECIES_KEY = "species";
   private static final String CAREER_KEY = "career";
   private static final String SPECIALIZATIONS_KEY = "specializations";
+  private static final String PRIMARY_KEY = "primary";
+  private static final String SECONDARY_KEY = "secondary";
   private static final String OBLIGATIONS_KEY = "obligations";
   private static final String AGE_KEY = "age";
   private static final String HEIGHT_KEY = "height";
@@ -96,7 +98,8 @@ public class Character {
   @Getter @Setter private String species;
   @Getter @Setter private Career career;
   @Getter private final UUID characterId;
-  @Getter private final List<Specialization> specializations = new ArrayList<>();
+  @Getter private Specialization primarySpecialization;
+  @Getter private final Set<Specialization> secondarySpecializations = new HashSet<>();
   @Getter private List<Obligation> obligations = new ArrayList<>();
   private Map<String, Boolean> actionConditions = new HashMap<>();
   private List<SkillAction> skillActions = new ArrayList<>();
@@ -137,7 +140,7 @@ public class Character {
     name = "";
     species = "";
     career = CareerManager.getCareers().get(0);
-    this.specializations.add(CareerManager.getSpecialization(career.getSpecializations().get(0)));
+    this.primarySpecialization = CareerManager.getSpecialization(career.getSpecializations().get(0));
     this.age = 0;
     this.height = "";
     this.weight = "";
@@ -156,7 +159,8 @@ public class Character {
     this.name = builder.name;
     this.species = builder.species;
     this.career = builder.career;
-    this.specializations.add(builder.specialization);
+    this.primarySpecialization = builder.primarySpecialization;
+    this.secondarySpecializations.addAll(builder.secondarySpecializations);
     this.age = builder.age;
     this.height = builder.height;
     this.weight = builder.weight;
@@ -208,7 +212,7 @@ public class Character {
       return true;
     }
 
-    for (Specialization specialization : specializations) {
+    for (Specialization specialization : secondarySpecializations) {
       if (specialization.getCareerSkills().contains(skill.getName())) {
         return true;
       }
@@ -221,8 +225,12 @@ public class Character {
     skills.put(skill, value);
   }
 
-  private void addSpecialization(@NotNull Specialization specialization) {
-    specializations.add(specialization);
+  public void addSecondarySpecialization(@NotNull Specialization specialization) {
+    secondarySpecializations.add(specialization);
+  }
+
+  public boolean removeSecondarySpecialization(@NotNull Specialization specialization) {
+    return secondarySpecializations.remove(specialization);
   }
 
   @NotNull
@@ -244,13 +252,13 @@ public class Character {
       rowData.add(KeyValueRowData.of("Species", species));
       rowData.add(KeyValueRowData.of("Career", career.getName()));
       String specializationLabel = "Specialization";
-      if (specializations.size() > 1) {
+      if (secondarySpecializations.size() > 0) {
         specializationLabel = "Specializations";
       }
 
-      for (Specialization spec : specializations) {
-        rowData.add(KeyValueRowData.of(specializationLabel, spec.getPrettyName()));
-        specializationLabel = "";
+      rowData.add(KeyValueRowData.of (specializationLabel, primarySpecialization.getPrettyName()));
+      for (Specialization spec : secondarySpecializations) {
+        rowData.add(KeyValueRowData.of("", spec.getPrettyName()));
       }
 
       rowData.add(KeyValueRowData.of("XP", String.format(Locale.US, "%d", xp)));
@@ -380,7 +388,7 @@ public class Character {
     o.put(NAME_KEY, name);
     o.put(SPECIES_KEY, species);
     o.put(CAREER_KEY, career.getName());
-    o.put(SPECIALIZATIONS_KEY, specializationsAsJsonArray());
+    o.put(SPECIALIZATIONS_KEY, specializationsAsJsonObject());
     o.put(OBLIGATIONS_KEY, obligationsAsJsonArray());
     o.put(AGE_KEY, age);
     o.put(HEIGHT_KEY, height);
@@ -489,13 +497,17 @@ public class Character {
   }
 
   @NotNull
-  private JSONArray specializationsAsJsonArray() {
-    JSONArray a = new JSONArray();
-    for (Specialization specialization : specializations) {
-      a.put(specialization.getName());
+  private JSONObject specializationsAsJsonObject() throws JSONException {
+    JSONObject o = new JSONObject();
+    o.put(PRIMARY_KEY, primarySpecialization.getName());
+
+    JSONArray otherSpecializations = new JSONArray();
+    for (Specialization specialization : secondarySpecializations) {
+      otherSpecializations.put(specialization.getName());
     }
 
-    return a;
+    o.put(SECONDARY_KEY, otherSpecializations);
+    return o;
   }
 
   @NotNull
@@ -521,14 +533,20 @@ public class Character {
   public static Character valueOf(@NotNull JSONObject jsonObject) throws IllegalArgumentException {
     String name = getJsonString(jsonObject, NAME_KEY);
     Career career = CareerManager.getCareer(getJsonString(jsonObject, CAREER_KEY));
-    List<Specialization> specializations = parseSpecializations(getJsonArray(jsonObject, SPECIALIZATIONS_KEY));
+    JSONObject specializations = getJsonObject(jsonObject, SPECIALIZATIONS_KEY);
+    Specialization primarySpecialization = CareerManager.getSpecialization(getJsonString(specializations, PRIMARY_KEY));
+    if (primarySpecialization == null) {
+      throw new IllegalArgumentException("Invalid specialization: " + getJsonString(specializations, PRIMARY_KEY));
+    }
+
+    List<Specialization> secondarySpecializations = parseSpecializations(getJsonArray(specializations, SECONDARY_KEY));
     String species = getJsonString(jsonObject, SPECIES_KEY);
     Map<Skill, Integer> skills = parseSkills(getJsonArray(jsonObject, SKILLS_KEY));
     Map<Characteristic, Integer> characteristics = parseCharacteristics(getJsonArray(jsonObject, CHARACTERISTICS_KEY));
     UUID characterId = UUID.fromString(getJsonString(jsonObject, ID_KEY));
 
     // TODO Robustness on missing fields.
-    Character character = new Builder(name, career, specializations.get(0), species, characterId)
+    Character character = new Builder(name, career, primarySpecialization, species, characterId)
                               .age(getJsonInt(jsonObject, AGE_KEY))
                               .height(getJsonString(jsonObject, HEIGHT_KEY))
                               .weight(getJsonString(jsonObject, WEIGHT_KEY))
@@ -555,6 +573,7 @@ public class Character {
                               .skillActions(parseSkillActions(getJsonArray(jsonObject, SKILL_ACTIONS_KEY)))
                               .attackActions(parseAttackActions(getJsonArray(jsonObject, ATTACK_ACTIONS_KEY)))
                               .hiddenSections(parseHiddenSections(getJsonArray(jsonObject, HIDDEN_SECTIONS_KEY)))
+                              .secondarySpecializations(secondarySpecializations)
                               .build();
     for (Map.Entry<Skill, Integer> skill : skills.entrySet()) {
       character.setSkillScore(skill.getKey(), skill.getValue());
@@ -564,13 +583,21 @@ public class Character {
       character.setCharacteristicScore(characteristic.getKey(), characteristic.getValue());
     }
 
-    for (Specialization specialization : specializations.subList(1, specializations.size())) {
-      character.addSpecialization(specialization);
-    }
     // TODO:
     // Obligation
 
     return character;
+  }
+
+  @NotNull
+  private static JSONObject getJsonObject(@NotNull JSONObject jsonObject, @NotNull String key) {
+    try {
+      return jsonObject.getJSONObject(key);
+    }
+    catch (JSONException e) {
+      Log.e(LOG_TAG, "Error reading value for " + key, e);
+      return new JSONObject();
+    }
   }
 
   @NotNull
@@ -661,7 +688,7 @@ public class Character {
         specializations.add(CareerManager.getSpecialization(jsonArray.getString(i)));
       }
       catch (JSONException e) {
-        Log.e(LOG_TAG, String.format(Locale.US, "Error reading specialization at index %d.", i), e);
+        Log.e(LOG_TAG, String.format(Locale.US, "Error reading secondarySpecialization at index %d.", i), e);
       }
     }
 
@@ -846,9 +873,10 @@ public class Character {
     private List<HiddenSection> hiddenSections = new ArrayList<>();
 
     private final Career career;
-    private final Specialization specialization;
+    private final Specialization primarySpecialization;
     private final String species;
     private final UUID characterId;
+    private List<Specialization> secondarySpecializations = new ArrayList<>();
     private Map<Specialization, List<Integer>> talents;
     private Map<String, List<Integer>> forcePowers;
 
@@ -858,10 +886,16 @@ public class Character {
                    @NotNull String species, @NotNull UUID characterId) {
       this.name = name;
       this.career = career;
-      this.specialization = specialization;
+      this.primarySpecialization = specialization;
       this.species = species;
       this.accessTime = System.currentTimeMillis();
       this.characterId = characterId;
+    }
+
+    @NotNull
+    Builder secondarySpecializations(List<Specialization> secondarySpecializations) {
+      this.secondarySpecializations.addAll(secondarySpecializations);
+      return this;
     }
 
     @NotNull

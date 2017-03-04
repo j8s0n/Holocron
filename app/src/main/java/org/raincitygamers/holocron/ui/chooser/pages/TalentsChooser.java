@@ -28,7 +28,7 @@ import java.util.Map;
 public class TalentsChooser extends ChooserBase {
   private static final String LOG_TAG = TalentsChooser.class.getSimpleName();
 
-  private List<Specialization> specializations;
+  private List<Specialization> specializations = new ArrayList<>();
   private Map<Specialization, List<Integer>> talentsTaken;
   private List<String> specializationNames;
   private Specialization chosenSpecialization;
@@ -48,7 +48,8 @@ public class TalentsChooser extends ChooserBase {
   public void onResume() {
     super.onResume();
     Character pc = getActiveCharacter();
-    specializations = pc.getSpecializations();
+    specializations.add(pc.getPrimarySpecialization());
+    specializations.addAll(pc.getSecondarySpecializations());
     talentsTaken = pc.getTalents();
 
     // Clean out any specializations the user dropped.
