@@ -26,8 +26,8 @@ public class TalentsPage extends AbilityPage {
     for (Map.Entry<Specialization, List<Integer>> entry : pc.getTalents().entrySet()) {
       Specialization specialization = entry.getKey();
       String pageName = "Talents";
-      rowData.add(SectionRowData.of(specialization.getName(), pageName));
-      if (!pc.isSectionHidden(pageName, specialization.getName())) {
+      rowData.add(SectionRowData.of(specialization.getLongPrettyName(), pageName));
+      if (!pc.isSectionHidden(pageName, specialization.getLongPrettyName())) {
         List<Talent> talentTree = TalentManager.getList(specialization);
         List<Integer> chosenTalents = entry.getValue();
         Collections.sort(chosenTalents);

@@ -228,9 +228,11 @@ public class Character {
 
   public void addSecondarySpecialization(@NotNull Specialization specialization) {
     secondarySpecializations.add(specialization);
+    talents.put(specialization, new ArrayList<Integer>());
   }
 
   public boolean removeSecondarySpecialization(@NotNull Specialization specialization) {
+    talents.remove(specialization);
     return secondarySpecializations.remove(specialization);
   }
 
@@ -259,7 +261,7 @@ public class Character {
 
       rowData.add(KeyValueRowData.of (specializationLabel, primarySpecialization.getPrettyName()));
       for (Specialization spec : secondarySpecializations) {
-        rowData.add(KeyValueRowData.of("", spec.getPrettyName()));
+        rowData.add(KeyValueRowData.of("", spec.getLongPrettyName()));
       }
 
       rowData.add(KeyValueRowData.of("XP", String.format(Locale.US, "%d", xp)));

@@ -71,12 +71,12 @@ public class TalentsChooser extends ChooserBase {
       specializationNames.add(s.getName());
     }
 
-    final View view = getView();
-    if (view == null) {
+    final View fragmentView = getView();
+    if (fragmentView == null) {
       return;
     }
 
-    Button addTalent = (Button) view.findViewById(R.id.add_talent);
+    Button addTalent = (Button) fragmentView.findViewById(R.id.add_talent);
     addTalent.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -86,11 +86,11 @@ public class TalentsChooser extends ChooserBase {
 
         SpinnerEntry entry = (SpinnerEntry) availableTalentsSpinner.getSelectedItem();
         talentsTaken.get(chosenSpecialization).add(entry.index);
-        buildTalentSpinners(view);
+        buildTalentSpinners(fragmentView);
       }
     });
 
-    Button removeTalent = (Button) view.findViewById(R.id.remove_talent);
+    Button removeTalent = (Button) fragmentView.findViewById(R.id.remove_talent);
     removeTalent.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -101,14 +101,15 @@ public class TalentsChooser extends ChooserBase {
         SpinnerEntry entry = (SpinnerEntry) knownTalentsSpinner.getSelectedItem();
         int index = talentsTaken.get(chosenSpecialization).indexOf(entry.index);
         talentsTaken.get(chosenSpecialization).remove(index);
-        buildTalentSpinners(view);
+        buildTalentSpinners(fragmentView);
       }
     });
 
-    buildSpecializationsSpinner(view);
+    buildSpecializationsSpinner(fragmentView);
   }
 
   private void buildSpecializationsSpinner(@NotNull View view) {
+    final View fragmentView = view;
     Spinner specializationsSpinner = (Spinner) view.findViewById(R.id.specialization_spinner);
     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line,
                                                            specializationNames);
@@ -119,7 +120,7 @@ public class TalentsChooser extends ChooserBase {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         chosenSpecialization = specializations.get(position);
-        buildTalentSpinners(view);
+        buildTalentSpinners(fragmentView);
       }
 
       @Override
