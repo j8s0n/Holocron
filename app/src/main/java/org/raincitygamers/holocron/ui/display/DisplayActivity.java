@@ -120,7 +120,7 @@ public class DisplayActivity extends ActivityBase {
       });
     }
 
-    setContentView(R.layout.activity_character);
+    setContentView(R.layout.menu_layout);
     sendBroadcast(new Intent(ChooserActivity.ACTION_FINISH));
 
     drawerList = (ListView) findViewById(R.id.navList);

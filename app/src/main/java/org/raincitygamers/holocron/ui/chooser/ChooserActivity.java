@@ -107,7 +107,7 @@ public class ChooserActivity extends ActivityBase {
       registerReceiver(finishReceiver, new IntentFilter(ACTION_FINISH));
     }
 
-    setContentView(R.layout.activity_character);
+    setContentView(R.layout.menu_layout);
 
     drawerList = (ListView) findViewById(R.id.navList);
     drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

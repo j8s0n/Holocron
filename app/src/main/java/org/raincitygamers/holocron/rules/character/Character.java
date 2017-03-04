@@ -28,6 +28,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -98,8 +99,8 @@ public class Character {
   @Getter @Setter private String species;
   @Getter @Setter private Career career;
   @Getter private final UUID characterId;
-  @Getter private Specialization primarySpecialization;
-  @Getter private final Set<Specialization> secondarySpecializations = new HashSet<>();
+  @Getter @Setter private Specialization primarySpecialization;
+  @Getter private final Set<Specialization> secondarySpecializations = new LinkedHashSet<>();
   @Getter private List<Obligation> obligations = new ArrayList<>();
   private Map<String, Boolean> actionConditions = new HashMap<>();
   private List<SkillAction> skillActions = new ArrayList<>();

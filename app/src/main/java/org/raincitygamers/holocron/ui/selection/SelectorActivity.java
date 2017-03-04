@@ -37,7 +37,7 @@ public class SelectorActivity extends ActivityBase {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_selector);
+    setContentView(R.layout.selector);
 
     checkPermissions();
     CareerManager.loadCareers(this);

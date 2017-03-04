@@ -38,4 +38,6 @@
   <string name="xp">Experience Points</string>
   <string name="title_activity_credit_editor">CreditEditor</string>
   <string name="update_text">Update</string>
+  <string name="title_activity_condition_editor">ConditionEditor</string>
+  <string name="title_activity_more_specializations">MoreSpecializations</string>
 </resources>

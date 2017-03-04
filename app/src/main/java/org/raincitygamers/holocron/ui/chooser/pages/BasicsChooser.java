@@ -1,5 +1,6 @@
 package org.raincitygamers.holocron.ui.chooser.pages;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,9 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.Career;
@@ -18,9 +21,9 @@ import org.raincitygamers.holocron.rules.character.Specialization;
 import org.raincitygamers.holocron.rules.managers.CareerManager;
 import org.raincitygamers.holocron.ui.chooser.ChooserActivity;
 import org.raincitygamers.holocron.ui.chooser.ChooserBase;
+import org.raincitygamers.holocron.ui.chooser.MoreSpecializationsActivity;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class BasicsChooser extends ChooserBase {
@@ -50,6 +53,15 @@ public class BasicsChooser extends ChooserBase {
     // Inflate the layout for this fragment
     view = inflater.inflate(R.layout.choose_basics, container, false);
     parentActivity = (ChooserActivity) getActivity();
+    Button button = (Button) view.findViewById(R.id.more_specializations_button);
+    button.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(getActivity(), MoreSpecializationsActivity.class);
+        startActivity(intent);
+      }
+    });
+
     return view;
   }
 
@@ -83,8 +95,11 @@ public class BasicsChooser extends ChooserBase {
   }
 
   private void setEditText(int resourceId, String value) {
-    EditText editText = (EditText) getView().findViewById(resourceId);
-    editText.setText(value);
+    View view = getView();
+    if (view != null) {
+      EditText editText = (EditText) view.findViewById(resourceId);
+      editText.setText(value);
+    }
   }
 
   @Override
@@ -109,8 +124,7 @@ public class BasicsChooser extends ChooserBase {
     ch.setRangedDefense(readIntValue(R.id.ranged_defense));
 
     ch.setCareer(selectedCareer);
-    ch.getSecondarySpecializations().clear();
-    ch.getSecondarySpecializations().add(selectedSpecialization);
+    ch.setPrimarySpecialization(selectedSpecialization);
     ch.setXp(readIntValue(R.id.xp));
   }
 
@@ -132,19 +146,16 @@ public class BasicsChooser extends ChooserBase {
 
       @Override
       public void onNothingSelected(AdapterView<?> parentView) {
-        buildSpecializationSpinner(null, null);
-        selectedCareer = null;
-        selectedSpecialization = null;
       }
     });
   }
 
-  private void buildSpecializationSpinner(@Nullable final Career career, @Nullable Character character) {
+  private void buildSpecializationSpinner(@NotNull final Career career, @Nullable Character character) {
     final Spinner spinner = (Spinner) view.findViewById(R.id.specializations);
     final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(),
                                                                  android.R.layout.simple_dropdown_item_1line,
                                                                  specializations);
-    List<String> specializationsList = career == null ? Collections.<String>emptyList() : career.getPrettySpecializations();
+    List<String> specializationsList = career.getPrettySpecializations();
     careers.remove(getResources().getString(R.string.select_a_career));
     specializations.clear();
     specializations.addAll(specializationsList);

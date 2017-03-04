@@ -13,8 +13,7 @@
     android:theme="@style/AppTheme">
     <activity
       android:name=".ui.selection.SelectorActivity"
-      android:screenOrientation="portrait"
-      >
+      android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
@@ -31,24 +30,29 @@
       android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="android.intent.action.VIEW"/>
+
         <category android:name="android.intent.category.DEFAULT"/>
+
         <data android:mimeType="application/json"/>
       </intent-filter>
     </activity>
     <activity
       android:name=".ui.display.InventoryEditorActivity"
-      android:screenOrientation="portrait"
-      >
+      android:screenOrientation="portrait">
     </activity>
     <activity
       android:name=".ui.display.CreditEditorActivity"
-      android:screenOrientation="portrait"
-      android:label="@string/title_activity_credit_editor">
+      android:label="@string/title_activity_credit_editor"
+      android:screenOrientation="portrait">
     </activity>
     <activity
       android:name=".ui.display.ConditionEditorActivity"
-      android:screenOrientation="portrait"
-      android:label="@string/title_activity_credit_editor">
+      android:label="@string/title_activity_condition_editor"
+      android:screenOrientation="portrait">
+    </activity>
+    <activity
+      android:name=".ui.chooser.MoreSpecializationsActivity"
+      android:screenOrientation="portrait">
     </activity>
   </application>
 

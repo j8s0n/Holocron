@@ -14,6 +14,7 @@ import org.raincitygamers.holocron.rules.character.Career;
 import org.raincitygamers.holocron.rules.character.Specialization;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -79,6 +80,11 @@ public final class CareerManager extends ManagerBase{
         }
       }
     });
+  }
+
+  @NotNull
+  public static Collection<Specialization> getSpecializations() {
+    return specializationMap.values();
   }
 
   private static void parseCareers(@NotNull JSONArray careersJson) {
