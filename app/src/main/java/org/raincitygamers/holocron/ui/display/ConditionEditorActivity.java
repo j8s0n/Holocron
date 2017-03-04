@@ -30,7 +30,7 @@ public class ConditionEditorActivity extends ActivityBase implements FragmentInv
 
     ActionBar actionBar = getSupportActionBar();
     if (actionBar != null) {
-      actionBar.setTitle("Conditions Editor");
+      actionBar.setTitle(CharacterManager.getActiveCharacter().getName() + " - Conditions Editor");
     }
 
     arrayAdapter = new DisplayArrayAdapter(this, rowData, this);

@@ -28,15 +28,24 @@ class SpecializationsArrayAdapter extends ArrayAdapter<SpecializationsArrayAdapt
   @NonNull
   @Override
   public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-    LayoutInflater inflater = LayoutInflater.from(getContext());
-    convertView = inflater.inflate(R.layout.list_item_specialization, parent, false);
-
-    final ViewHolder viewHolder = new ViewHolder();
-    viewHolder.specializationName = (TextView) convertView.findViewById(R.id.specialization_name);
-    viewHolder.selected = (Switch) convertView.findViewById(R.id.selected);
-    convertView.setTag(viewHolder);
-
     final SpecializationRowData specialization = getItem(position);
+    final ViewHolder viewHolder;
+
+    // if (convertView == null) {
+      viewHolder = new ViewHolder();
+      LayoutInflater inflater = LayoutInflater.from(getContext());
+      convertView = inflater.inflate(R.layout.list_item_specialization, parent, false);
+      viewHolder.specializationName = (TextView) convertView.findViewById(R.id.specialization_name);
+      viewHolder.selected = (Switch) convertView.findViewById(R.id.selected);
+      viewHolder.selected.setChecked(specialization.isSelected());
+      convertView.setTag(viewHolder);
+    /*
+    }
+    else {
+      viewHolder = (ViewHolder) convertView.getTag();
+    }
+    */
+
     if (specialization != null) {
       viewHolder.specializationName.setText(specialization.getSpecialization().getLongPrettyName());
       viewHolder.selected.setChecked(specialization.isSelected());
@@ -54,7 +63,7 @@ class SpecializationsArrayAdapter extends ArrayAdapter<SpecializationsArrayAdapt
       });
     }
 
-    return convertView;
+    return  convertView;
   }
 
   private static class ViewHolder {

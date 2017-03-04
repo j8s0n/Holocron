@@ -1,6 +1,7 @@
 package org.raincitygamers.holocron.ui.display;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.widget.EditText;
 
 import org.raincitygamers.holocron.R;
@@ -15,14 +16,19 @@ public class CreditEditorActivity extends ActivityBase {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.credit_editor);
 
-    EditText creditEntry = (EditText)findViewById(R.id.credits_entry);
+    ActionBar actionBar = getSupportActionBar();
+    if (actionBar != null) {
+      actionBar.setTitle(CharacterManager.getActiveCharacter().getName() + " - Credit Editor");
+    }
+
+    EditText creditEntry = (EditText) findViewById(R.id.credits_entry);
     creditEntry.setText(String.format(Locale.US, "%d", CharacterManager.getActiveCharacter().getCredits()));
     creditEntry.requestFocus();
   }
 
   @Override
   protected void onPause() {
-    EditText creditEntry = (EditText)findViewById(R.id.credits_entry);
+    EditText creditEntry = (EditText) findViewById(R.id.credits_entry);
     CharacterManager.getActiveCharacter().setCredits(Integer.parseInt(creditEntry.getText().toString()));
     super.onPause();
   }

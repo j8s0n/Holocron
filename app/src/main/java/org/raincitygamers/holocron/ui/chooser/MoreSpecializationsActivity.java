@@ -1,6 +1,7 @@
 package org.raincitygamers.holocron.ui.chooser;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
@@ -25,6 +26,11 @@ public class MoreSpecializationsActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.choose_more_specializations);
+
+    ActionBar actionBar = getSupportActionBar();
+    if (actionBar != null) {
+      actionBar.setTitle("More Specializations");
+    }
 
     Character pc = CharacterManager.getActiveCharacter();
     Set<Specialization> secondarySpecializations = pc.getSecondarySpecializations();
