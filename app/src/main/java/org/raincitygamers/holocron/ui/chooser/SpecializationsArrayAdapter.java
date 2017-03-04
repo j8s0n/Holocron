@@ -6,11 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import org.raincitygamers.holocron.R;
+import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.Specialization;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 
@@ -31,7 +31,7 @@ class SpecializationsArrayAdapter extends ArrayAdapter<SpecializationsArrayAdapt
     final SpecializationRowData specialization = getItem(position);
     final ViewHolder viewHolder;
 
-    // if (convertView == null) {
+    if (convertView == null) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_specialization, parent, false);
@@ -39,31 +39,31 @@ class SpecializationsArrayAdapter extends ArrayAdapter<SpecializationsArrayAdapt
       viewHolder.selected = (Switch) convertView.findViewById(R.id.selected);
       viewHolder.selected.setChecked(specialization.isSelected());
       convertView.setTag(viewHolder);
-    /*
     }
     else {
       viewHolder = (ViewHolder) convertView.getTag();
     }
-    */
 
     if (specialization != null) {
+      final Character pc = CharacterManager.getActiveCharacter();
       viewHolder.specializationName.setText(specialization.getSpecialization().getLongPrettyName());
       viewHolder.selected.setChecked(specialization.isSelected());
-      viewHolder.selected.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+      viewHolder.selected.setOnClickListener(new View.OnClickListener() {
         @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        public void onClick(View v) {
+          boolean isChecked = viewHolder.selected.isChecked();
           specialization.selected = isChecked;
           if (isChecked) {
-            CharacterManager.getActiveCharacter().addSecondarySpecialization(specialization.getSpecialization());
+            pc.addSecondarySpecialization(specialization.getSpecialization());
           }
           else {
-            CharacterManager.getActiveCharacter().removeSecondarySpecialization(specialization.getSpecialization());
+            pc.removeSecondarySpecialization(specialization.getSpecialization());
           }
         }
       });
     }
 
-    return  convertView;
+    return convertView;
   }
 
   private static class ViewHolder {
