@@ -58,7 +58,13 @@ public class DicePool {
                                      @NotNull Map<BonusType, Integer> pool, @NotNull BonusType type) {
     int width = 0;
     if (pool.containsKey(type)) {
-      width += placeBonusInLayout(layout, context, type, pool.get(type));
+      int bonusCount = pool.get(type);
+      if (bonusCount < 0 && type.equals(BonusType.SETBACK_DIE)) {
+        bonusCount = Math.abs(bonusCount);
+        type = BonusType.NEGATIVE_SETBACK_DIE;
+      }
+
+      width += placeBonusInLayout(layout, context, type, bonusCount);
     }
 
     return width;
@@ -158,6 +164,7 @@ public class DicePool {
     FAILURE("Failure", R.drawable.ic_failure),
     FORCE_DIE("Force Die", R.drawable.ic_force_die),
     FORCE_POINT("Force Point", R.drawable.ic_force_point),
+    NEGATIVE_SETBACK_DIE("Negative Setback Die", R.drawable.ic_negative_setback_die),
     PROFICIENCY_DIE("Proficiency Die", R.drawable.ic_proficiency_die),
     SETBACK_DIE("Setback Die", R.drawable.ic_setback_die),
     SKILL_RANK("Skill Rank", 0),
