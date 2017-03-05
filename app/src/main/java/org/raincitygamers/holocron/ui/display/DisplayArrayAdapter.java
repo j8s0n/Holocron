@@ -435,7 +435,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       @Override
       public boolean onTouch(View v, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_UP) {
-          int adjustment = (event.getX() > v.getWidth() / 2.0f) ? 1 : -1;
+          int adjustment = (event.getX() > v.getWidth() / 2.0f) ? -1 : 1;
           if (rowData.getThreshold().equals(ThresholdRowData.STRAIN)) {
             pc.setStrain(pc.getStrain() + adjustment);
           }
