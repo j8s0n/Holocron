@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class ForcePowerManager extends ManagerBase {
   private static final String LOG_TAG = ForcePowerManager.class.getSimpleName();
-  private static final String FORCE_POWERS_FILE = "ForcePowers.json";
+  static final String FORCE_POWERS_FILE = "ForcePowers.json";
   private static final String NAME_KEY = "name";
   private static final String GRAPH_KEY = "graph";
 
@@ -40,7 +40,7 @@ public class ForcePowerManager extends ManagerBase {
   }
 
   public static void loadForcePowers(@NotNull Context context) {
-    getFileContent(context, FORCE_POWERS_FILE, true, new ContentParser() {
+    getFileContent(context, FORCE_POWERS_FILE, FileSource.LOCAL_FIRST, new ContentParser() {
       @Override
       public void parse(@NotNull String content) {
         try {
@@ -75,7 +75,7 @@ public class ForcePowerManager extends ManagerBase {
         powerUpgrades.add(ForcePowerUpgrade.of(o));
       }
       catch (JSONException e) {
-        Log.e(LOG_TAG, "Error converting talent: " + powerGraph.toString());
+        Log.e(LOG_TAG, "Error converting force power: " + powerName, e);
       }
     }
 

@@ -18,7 +18,7 @@ import java.util.Map;
 
 public final class SkillManager extends ManagerBase  {
   private static final String LOG_TAG = SkillManager.class.getSimpleName();
-  private static final String SKILLS_FILE = "Skills.json";
+  static final String SKILLS_FILE = "Skills.json";
 
   private static final String NAME_KEY = "name";
   private static final String TYPE_KEY = "type";
@@ -62,7 +62,7 @@ public final class SkillManager extends ManagerBase  {
   }
 
   public static void loadSkills(@NotNull Context context) {
-    getFileContent(context, SKILLS_FILE, true, new ContentParser() {
+    getFileContent(context, SKILLS_FILE, FileSource.LOCAL_FIRST, new ContentParser() {
       @Override
       public void parse(@NotNull String content) {
         try {

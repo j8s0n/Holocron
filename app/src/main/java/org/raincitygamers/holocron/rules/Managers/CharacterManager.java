@@ -14,7 +14,6 @@ import org.json.JSONObject;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.Character.Summary;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
@@ -45,7 +44,7 @@ public final class CharacterManager extends ManagerBase {
   }
 
   public static void loadCharacters(@NotNull Context context) {
-    getFileContent(context, CHARACTERS_FILE, false, new ContentParser() {
+    getFileContent(context, CHARACTERS_FILE, FileSource.LOCAL_FIRST, new ContentParser() {
       @Override
       public void parse(@NotNull String content) {
         try {
@@ -67,7 +66,7 @@ public final class CharacterManager extends ManagerBase {
 
   private static void loadSingleCharacter(@NotNull Context context, @NotNull final UUID characterId) {
     String fileName = Character.buildFileName(characterId);
-    getFileContent(context, fileName, false, new ContentParser() {
+    getFileContent(context, fileName, FileSource.LOCAL_ONLY, new ContentParser() {
       @Override
       public void parse(@NotNull String content) {
         try {
@@ -111,11 +110,9 @@ public final class CharacterManager extends ManagerBase {
             summaries.put(summary.toJson());
           }
 
-          FileOutputStream fos = context.openFileOutput(CHARACTERS_FILE, Context.MODE_PRIVATE);
-          fos.write(summaries.toString().getBytes());
-          fos.close();
+          writeStringToFile(context, CHARACTERS_FILE, summaries.toString(2));
         }
-        catch (IOException | JSONException e) {
+        catch (JSONException e) {
           Log.e(LOG_TAG, "Error writing character summaries.", e);
         }
       }
@@ -127,12 +124,10 @@ public final class CharacterManager extends ManagerBase {
       @Override
       public void run() {
         try {
-          FileOutputStream fos = context.openFileOutput(Character.buildFileName(character.getCharacterId()),
-                                                        Context.MODE_PRIVATE);
-          fos.write(character.toJsonObject().toString().getBytes());
-          fos.close();
+          writeStringToFile(context, Character.buildFileName(character.getCharacterId()),
+                            character.toJsonObject().toString(2));
         }
-        catch (JSONException | IOException e) {
+        catch (JSONException e) {
           Log.e(LOG_TAG, "Error writing character: '" + character.getName() + "' " + character.getCharacterId(), e);
         }
       }

@@ -24,7 +24,7 @@ import java.util.Map;
 
 public final class CareerManager extends ManagerBase{
   private static final String LOG_TAG = CareerManager.class.getSimpleName();
-  private static final String CAREERS_FILE = "Careers.json";
+  static final String CAREERS_FILE = "Careers.json";
   private static final String CAREERS_LABEL = "careers";
   private static final String SPECIALIZATIONS_LABEL = "specializations";
   private static final String NAME_KEY = "name";
@@ -67,7 +67,7 @@ public final class CareerManager extends ManagerBase{
   }
 
   public static void loadCareers(@NotNull Context context) {
-    getFileContent(context, CAREERS_FILE, true, new ContentParser() {
+    getFileContent(context, CAREERS_FILE, FileSource.LOCAL_FIRST, new ContentParser() {
       @Override
       public void parse(@NotNull String content) {
         try {

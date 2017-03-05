@@ -18,6 +18,7 @@ import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.Character.Summary;
 import org.raincitygamers.holocron.rules.managers.CareerManager;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
+import org.raincitygamers.holocron.rules.managers.DownloadManager;
 import org.raincitygamers.holocron.rules.managers.ForcePowerManager;
 import org.raincitygamers.holocron.rules.managers.SkillManager;
 import org.raincitygamers.holocron.rules.managers.TalentManager;
@@ -40,6 +41,7 @@ public class SelectorActivity extends ActivityBase {
     setContentView(R.layout.selector);
 
     checkPermissions();
+    DownloadManager.checkForUpdates(this);
     CareerManager.loadCareers(this);
     SkillManager.loadSkills(this);
     TalentManager.loadTalents(this);

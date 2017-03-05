@@ -897,7 +897,12 @@ public class Character {
 
     @NotNull
     Builder secondarySpecializations(List<Specialization> secondarySpecializations) {
-      this.secondarySpecializations.addAll(secondarySpecializations);
+      for (Specialization specialization : secondarySpecializations) {
+        if (!specialization.equals(primarySpecialization)) {
+          this.secondarySpecializations.add(specialization);
+        }
+      }
+
       return this;
     }
 
