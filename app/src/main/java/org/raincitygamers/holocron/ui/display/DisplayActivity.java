@@ -88,6 +88,7 @@ public class DisplayActivity extends ActivityBase {
     otherDrawerCommands.add(new DrawerCommand("Share", new CommandAction() {
       @Override
       public void act() {
+        drawerLayout.closeDrawer(drawerList);
         sendCharacter();
       }
     }));
@@ -259,7 +260,7 @@ public class DisplayActivity extends ActivityBase {
       Character character = CharacterManager.getActiveCharacter();
       File tempFile = new File(getExternalCacheDir(), character.getFileName());
       FileOutputStream fos = new FileOutputStream(tempFile);
-      fos.write(character.toJsonObject().toString().getBytes());
+      fos.write(character.toJsonObject().toString(2).getBytes());
 
       Uri path = Uri.fromFile(tempFile);
       Intent intent = new Intent(Intent.ACTION_SEND);
