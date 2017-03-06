@@ -147,11 +147,46 @@
   {
     "graph": [
       {
-        "tier": 25,
+        "tier": 5,
+        "column": 1,
+        "description": "Remove setback per rank from charm and leadership.",
+        "name": "Kill with Kindness",
+        "row": 1
+      },
+      {
+        "tier": 5,
         "column": 2,
-        "description": " +1 to a characteristic",
-        "name": "Dedication",
-        "row": 5
+        "description": "Strain +1",
+        "name": "Grit",
+        "row": 1
+      },
+      {
+        "tier": 5,
+        "column": 3,
+        "description": "Remove Setback per rank from coercsion and deception",
+        "name": "Plausible Deniability",
+        "row": 1
+      },
+      {
+        "tier": 5,
+        "column": 4,
+        "description": "Wounds +2",
+        "name": "Toughened",
+        "row": 1
+      },
+      {
+        "tier": 10,
+        "column": 1,
+        "description": "Average Leadership check, each success causes an ally in close to recover a strain. Spend advantage to recover extra.",
+        "name": "Inspiring Rhetoric",
+        "row": 2
+      },
+      {
+        "tier": 10,
+        "column": 2,
+        "description": "Remove setback per rank from charm and leadership.",
+        "name": "Kill with Kindness",
+        "row": 2
       },
       {
         "tier": 10,
@@ -162,16 +197,16 @@
       },
       {
         "tier": 10,
-        "column": 1,
-        "description": "Average Leadership check, each success causes an ally in close to recover a strain. Spend advantage to recover extra.",
-        "name": "Inspiring Rhetoric",
+        "column": 4,
+        "description": "Remove Setback per rank from coercsion and deception",
+        "name": "Plausible Deniability",
         "row": 2
       },
       {
         "tier": 15,
-        "column": 4,
-        "description": "Choose two skills to become career skills.",
-        "name": "Well Rounded",
+        "column": 1,
+        "description": "Suffer strain up to ranks, upgrade incoming attack difficulty by that number.",
+        "name": "Dodge",
         "row": 3
       },
       {
@@ -189,60 +224,11 @@
         "row": 3
       },
       {
-        "tier": 25,
-        "column": 3,
-        "description": "Once per session, reroll a Charm or Deception check.",
-        "name": "Natural Charmer",
-        "row": 5
-      },
-      {
-        "tier": 5,
-        "column": 1,
-        "description": "Remove setback per rank from charm and leadership.",
-        "name": "Kill with Kindness",
-        "row": 1
-      },
-      {
-        "tier": 10,
-        "column": 2,
-        "description": "Remove setback per rank from charm and leadership.",
-        "name": "Kill with Kindness",
-        "row": 2
-      },
-      {
-        "tier": 5,
-        "column": 3,
-        "description": "Remove Setback per rank from coercsion and deception",
-        "name": "Plausible Deniability",
-        "row": 1
-      },
-      {
-        "tier": 10,
+        "tier": 15,
         "column": 4,
-        "description": "Remove Setback per rank from coercsion and deception",
-        "name": "Plausible Deniability",
-        "row": 2
-      },
-      {
-        "tier": 25,
-        "column": 1,
-        "description": "Spend a DP to ignore effects of criticals on Willpower and Presence checks until the end of the encounter.",
-        "name": "Steely Nerves",
-        "row": 5
-      },
-      {
-        "tier": 25,
-        "column": 4,
-        "description": "Spend a DP to recover strain equal to Presence.",
-        "name": "Intense Presence",
-        "row": 5
-      },
-      {
-        "tier": 5,
-        "column": 2,
-        "description": "Strain +1",
-        "name": "Grit",
-        "row": 1
+        "description": "Choose two skills to become career skills.",
+        "name": "Well Rounded",
+        "row": 3
       },
       {
         "tier": 20,
@@ -266,13 +252,6 @@
         "row": 4
       },
       {
-        "tier": 15,
-        "column": 1,
-        "description": "Suffer strain up to ranks, upgrade incoming attack difficulty by that number.",
-        "name": "Dodge",
-        "row": 3
-      },
-      {
         "tier": 20,
         "column": 4,
         "description": "Upgrading incoming coercion, deception, charm checks by one per rank.",
@@ -280,11 +259,32 @@
         "row": 4
       },
       {
-        "tier": 5,
+        "tier": 25,
+        "column": 1,
+        "description": "Spend a DP to ignore effects of criticals on Willpower and Presence checks until the end of the encounter.",
+        "name": "Steely Nerves",
+        "row": 5
+      },
+      {
+        "tier": 25,
+        "column": 2,
+        "description": " +1 to a characteristic",
+        "name": "Dedication",
+        "row": 5
+      },
+      {
+        "tier": 25,
+        "column": 3,
+        "description": "Once per session, reroll a Charm or Deception check.",
+        "name": "Natural Charmer",
+        "row": 5
+      },
+      {
+        "tier": 25,
         "column": 4,
-        "description": "Wounds +2",
-        "name": "Toughened",
-        "row": 1
+        "description": "Spend a DP to recover strain equal to Presence.",
+        "name": "Intense Presence",
+        "row": 5
       }
     ],
     "name": "Colonist--Politico"
@@ -1452,32 +1452,32 @@
   {
     "graph": [
       {
-        "tier": 25,
-        "column": 2,
-        "description": " +1 to a characteristic",
-        "name": "Dedication",
-        "row": 5
+        "tier": 5,
+        "column": 1,
+        "description": "Perform Brace maneuver to reduce one Setback from environment per rank",
+        "name": "Brace",
+        "row": 1
       },
       {
-        "tier": 20,
+        "tier": 5,
         "column": 2,
-        "description": "Add a hardpoint to one item",
-        "name": "Tinkerer",
-        "row": 4
+        "description": "Wounds +2",
+        "name": "Toughened",
+        "row": 1
       },
       {
-        "tier": 10,
+        "tier": 5,
         "column": 3,
-        "description": "Add one damage per rank to one ranged hit at close or engaged range",
-        "name": "Point Blank",
-        "row": 2
+        "description": "Suffer strain up to ranks, reduce difficulty of coercion or upgrade incoming coercion difficulty by that number",
+        "name": "Intimidating",
+        "row": 1
       },
       {
-        "tier": 10,
+        "tier": 5,
         "column": 4,
-        "description": "After hit, spend 2 Advantage to disorient target for one round per rank",
-        "name": "Disorient",
-        "row": 2
+        "description": "Maneuver, suffer strain up to ranks to upgrade incoming melee difficulty by that number",
+        "name": "Defensive Stance",
+        "row": 1
       },
       {
         "tier": 10,
@@ -1494,31 +1494,31 @@
         "row": 2
       },
       {
-        "tier": 20,
+        "tier": 10,
+        "column": 3,
+        "description": "Add one damage per rank to one ranged hit at close or engaged range",
+        "name": "Point Blank",
+        "row": 2
+      },
+      {
+        "tier": 10,
+        "column": 4,
+        "description": "After hit, spend 2 Advantage to disorient target for one round per rank",
+        "name": "Disorient",
+        "row": 2
+      },
+      {
+        "tier": 15,
         "column": 1,
-        "description": "Choose one weapon, armor, or gear and give it a permanent improvement",
-        "name": "Jury Rigged",
-        "row": 4
+        "description": "Wounds +2",
+        "name": "Toughened",
+        "row": 3
       },
       {
         "tier": 15,
         "column": 2,
         "description": "Increase soak of worn armor by one",
         "name": "Armor Master",
-        "row": 3
-      },
-      {
-        "tier": 5,
-        "column": 4,
-        "description": "Maneuver, suffer strain up to ranks to upgrade incoming melee difficulty by that number",
-        "name": "Defensive Stance",
-        "row": 1
-      },
-      {
-        "tier": 15,
-        "column": 4,
-        "description": "May make melee damage strain",
-        "name": "Stunning Blow",
         "row": 3
       },
       {
@@ -1529,11 +1529,25 @@
         "row": 3
       },
       {
-        "tier": 5,
+        "tier": 15,
+        "column": 4,
+        "description": "May make melee damage strain",
+        "name": "Stunning Blow",
+        "row": 3
+      },
+      {
+        "tier": 20,
         "column": 1,
-        "description": "Perform Brace maneuver to reduce one Setback from environment per rank",
-        "name": "Brace",
-        "row": 1
+        "description": "Choose one weapon, armor, or gear and give it a permanent improvement",
+        "name": "Jury Rigged",
+        "row": 4
+      },
+      {
+        "tier": 20,
+        "column": 2,
+        "description": "Add a hardpoint to one item",
+        "name": "Tinkerer",
+        "row": 4
       },
       {
         "tier": 20,
@@ -1541,27 +1555,6 @@
         "description": "Pick a combat skill, add damage equal to ranks to one hit per round",
         "name": "Deadly Accuracy",
         "row": 4
-      },
-      {
-        "tier": 25,
-        "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Placeholder",
-        "row": 5
-      },
-      {
-        "tier": 5,
-        "column": 3,
-        "description": "Suffer strain up to ranks, reduce difficulty of coercion or upgrade incoming coercion difficulty by that number",
-        "name": "Intimidating",
-        "row": 1
-      },
-      {
-        "tier": 25,
-        "column": 1,
-        "description": "Suffer strain up to ranks, reduce difficulty of coercion or upgrade incoming coercion difficulty by that number",
-        "name": "Intimidating",
-        "row": 5
       },
       {
         "tier": 20,
@@ -1572,24 +1565,31 @@
       },
       {
         "tier": 25,
+        "column": 1,
+        "description": "Suffer strain up to ranks, reduce difficulty of coercion or upgrade incoming coercion difficulty by that number",
+        "name": "Intimidating",
+        "row": 5
+      },
+      {
+        "tier": 25,
+        "column": 2,
+        "description": " +1 to a characteristic",
+        "name": "Dedication",
+        "row": 5
+      },
+      {
+        "tier": 25,
         "column": 3,
         "description": "When wearing armor with soak of 2 or higher, gain +1 defense",
         "name": "Improved Armor Master",
         "row": 5
       },
       {
-        "tier": 5,
-        "column": 2,
-        "description": "Wounds +2",
-        "name": "Toughened",
-        "row": 1
-      },
-      {
-        "tier": 15,
-        "column": 1,
-        "description": "Wounds +2",
-        "name": "Toughened",
-        "row": 3
+        "tier": 25,
+        "column": 4,
+        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "name": "Placeholder",
+        "row": 5
       }
     ],
     "name": "Bounty Hunter--Gadgeteer"
@@ -2032,17 +2032,52 @@
   {
     "graph": [
       {
-        "tier": 25,
+        "tier": 5,
+        "column": 1,
+        "description": "Wounds +2",
+        "name": "Toughened",
+        "row": 1
+      },
+      {
+        "tier": 5,
+        "column": 2,
+        "description": "Three strain to reduce ranged damage by two plus ranks",
+        "name": "Reflect",
+        "row": 1
+      },
+      {
+        "tier": 5,
+        "column": 3,
+        "description": "Strain +1",
+        "name": "Grit",
+        "row": 1
+      },
+      {
+        "tier": 5,
         "column": 4,
-        "description": " +1 to a characteristic",
-        "name": "Dedication",
-        "row": 5
+        "description": "Remove setback per rank from Athletics and Coordination. Reduce damage and strain from falling by one per rank.",
+        "name": "Conditioned",
+        "row": 1
       },
       {
         "tier": 10,
         "column": 1,
         "description": "Add Boost per rank to Vigilance.",
         "name": "Uncanny Reactions",
+        "row": 2
+      },
+      {
+        "tier": 10,
+        "column": 2,
+        "description": "Strain +1",
+        "name": "Grit",
+        "row": 2
+      },
+      {
+        "tier": 10,
+        "column": 3,
+        "description": "Three strain to reduce ranged damage by two plus ranks",
+        "name": "Reflect",
         "row": 2
       },
       {
@@ -2058,6 +2093,48 @@
         "description": "Add Boost to Stealth.",
         "name": "Sleight of Mind",
         "row": 3
+      },
+      {
+        "tier": 15,
+        "column": 2,
+        "description": "Perform Saber Throw at long range. Spend 2FP to have saber return.",
+        "name": "Improved Saber Throw",
+        "row": 3
+      },
+      {
+        "tier": 15,
+        "column": 3,
+        "description": "Make lightsaber attack at up to medium range adding FR. Spend FP to activate, and FP to have lightsaber return.",
+        "name": "Saber Throw",
+        "row": 3
+      },
+      {
+        "tier": 15,
+        "column": 4,
+        "description": "Once per session, as incidental, make force check, spend FP to reduce range by 1 and land safe, spend FP to reduce range by 1.",
+        "name": "Impossible Fall",
+        "row": 3
+      },
+      {
+        "tier": 20,
+        "column": 1,
+        "description": "Suffer strain up to ranks, upgrade incoming attack difficulty by that number.",
+        "name": "Dodge",
+        "row": 4
+      },
+      {
+        "tier": 20,
+        "column": 2,
+        "description": "Make hard Deception check to make minion group or rival flee encounter.",
+        "name": "Fear the Shadows",
+        "row": 4
+      },
+      {
+        "tier": 20,
+        "column": 3,
+        "description": "May always use Vigilance for initiative.",
+        "name": "Constant Vigilance",
+        "row": 4
       },
       {
         "tier": 20,
@@ -2074,90 +2151,6 @@
         "row": 5
       },
       {
-        "tier": 20,
-        "column": 2,
-        "description": "Make hard Deception check to make minion group or rival flee encounter.",
-        "name": "Fear the Shadows",
-        "row": 4
-      },
-      {
-        "tier": 15,
-        "column": 3,
-        "description": "Make lightsaber attack at up to medium range adding FR. Spend FP to activate, and FP to have lightsaber return.",
-        "name": "Saber Throw",
-        "row": 3
-      },
-      {
-        "tier": 20,
-        "column": 3,
-        "description": "May always use Vigilance for initiative.",
-        "name": "Constant Vigilance",
-        "row": 4
-      },
-      {
-        "tier": 15,
-        "column": 4,
-        "description": "Once per session, as incidental, make force check, spend FP to reduce range by 1 and land safe, spend FP to reduce range by 1.",
-        "name": "Impossible Fall",
-        "row": 3
-      },
-      {
-        "tier": 15,
-        "column": 2,
-        "description": "Perform Saber Throw at long range. Spend 2FP to have saber return.",
-        "name": "Improved Saber Throw",
-        "row": 3
-      },
-      {
-        "tier": 5,
-        "column": 4,
-        "description": "Remove setback per rank from Athletics and Coordination. Reduce damage and strain from falling by one per rank.",
-        "name": "Conditioned",
-        "row": 1
-      },
-      {
-        "tier": 5,
-        "column": 3,
-        "description": "Strain +1",
-        "name": "Grit",
-        "row": 1
-      },
-      {
-        "tier": 10,
-        "column": 2,
-        "description": "Strain +1",
-        "name": "Grit",
-        "row": 2
-      },
-      {
-        "tier": 20,
-        "column": 1,
-        "description": "Suffer strain up to ranks, upgrade incoming attack difficulty by that number.",
-        "name": "Dodge",
-        "row": 4
-      },
-      {
-        "tier": 25,
-        "column": 3,
-        "description": "Suffer strain up to ranks, upgrade incoming attack difficulty by that number.",
-        "name": "Dodge",
-        "row": 5
-      },
-      {
-        "tier": 5,
-        "column": 2,
-        "description": "Three strain to reduce ranged damage by two plus ranks",
-        "name": "Reflect",
-        "row": 1
-      },
-      {
-        "tier": 10,
-        "column": 3,
-        "description": "Three strain to reduce ranged damage by two plus ranks",
-        "name": "Reflect",
-        "row": 2
-      },
-      {
         "tier": 25,
         "column": 2,
         "description": "When reflecting hit that generated despair or 3threat, hit one target in medium with same damage as original.",
@@ -2165,11 +2158,18 @@
         "row": 5
       },
       {
-        "tier": 5,
-        "column": 1,
-        "description": "Wounds +2",
-        "name": "Toughened",
-        "row": 1
+        "tier": 25,
+        "column": 3,
+        "description": "Suffer strain up to ranks, upgrade incoming attack difficulty by that number.",
+        "name": "Dodge",
+        "row": 5
+      },
+      {
+        "tier": 25,
+        "column": 4,
+        "description": " +1 to a characteristic",
+        "name": "Dedication",
+        "row": 5
       }
     ],
     "name": "Sentinel--Sentry"
@@ -2902,25 +2902,11 @@
   {
     "graph": [
       {
-        "tier": 25,
+        "tier": 5,
         "column": 1,
-        "description": " +1 to a characteristic",
-        "name": "Dedication",
-        "row": 5
-      },
-      {
-        "tier": 10,
-        "column": 1,
-        "description": " +10 per rank on critical rolls",
-        "name": "Lethal Blows",
-        "row": 2
-      },
-      {
-        "tier": 20,
-        "column": 2,
-        "description": " +10 per rank on critical rolls",
-        "name": "Lethal Blows",
-        "row": 4
+        "description": "Strain +1",
+        "name": "Grit",
+        "row": 1
       },
       {
         "tier": 5,
@@ -2930,6 +2916,34 @@
         "row": 1
       },
       {
+        "tier": 5,
+        "column": 3,
+        "description": "Suffer up to one strain per rank to add that many successes to initiative.",
+        "name": "Rapid Reaction",
+        "row": 1
+      },
+      {
+        "tier": 5,
+        "column": 4,
+        "description": "Draw one weapon as an incidental",
+        "name": "Quick Draw",
+        "row": 1
+      },
+      {
+        "tier": 10,
+        "column": 1,
+        "description": " +10 per rank on critical rolls",
+        "name": "Lethal Blows",
+        "row": 2
+      },
+      {
+        "tier": 10,
+        "column": 2,
+        "description": "Strain +1",
+        "name": "Grit",
+        "row": 2
+      },
+      {
         "tier": 10,
         "column": 3,
         "description": "Add one boost per rank against targets that have not acted yet",
@@ -2937,18 +2951,18 @@
         "row": 2
       },
       {
-        "tier": 15,
+        "tier": 10,
         "column": 4,
-        "description": "Decrease crit rating by one, against target that hasn't acted",
-        "name": "Sorry About the Mess",
-        "row": 3
+        "description": "Quick draw twice per round",
+        "name": "Improved Quick Draw",
+        "row": 2
       },
       {
-        "tier": 20,
+        "tier": 15,
         "column": 1,
-        "description": "Decrease difficulty against fear by one per rank",
-        "name": "Confidence",
-        "row": 4
+        "description": "Wounds +2",
+        "name": "Toughened",
+        "row": 3
       },
       {
         "tier": 15,
@@ -2965,11 +2979,53 @@
         "row": 3
       },
       {
-        "tier": 5,
+        "tier": 15,
         "column": 4,
-        "description": "Draw one weapon as an incidental",
-        "name": "Quick Draw",
-        "row": 1
+        "description": "Decrease crit rating by one, against target that hasn't acted",
+        "name": "Sorry About the Mess",
+        "row": 3
+      },
+      {
+        "tier": 20,
+        "column": 1,
+        "description": "Decrease difficulty against fear by one per rank",
+        "name": "Confidence",
+        "row": 4
+      },
+      {
+        "tier": 20,
+        "column": 2,
+        "description": " +10 per rank on critical rolls",
+        "name": "Lethal Blows",
+        "row": 4
+      },
+      {
+        "tier": 20,
+        "column": 3,
+        "description": "Suffer two strain to not increase difficulty of Ranged (Light) attack with thwo weapons",
+        "name": "Guns Blazing",
+        "row": 4
+      },
+      {
+        "tier": 20,
+        "column": 4,
+        "description": "Suffer up to one strain per rank to add that many successes to initiative.",
+        "name": "Rapid Reaction",
+        "row": 4
+      },
+      {
+        "tier": 25,
+        "column": 1,
+        "description": " +1 to a characteristic",
+        "name": "Dedication",
+        "row": 5
+      },
+      {
+        "tier": 25,
+        "column": 2,
+        "description": "Ranged (Light) two weapon attacks can target separate opponents",
+        "name": "Spitfire",
+        "row": 5
       },
       {
         "tier": 25,
@@ -2984,62 +3040,6 @@
         "description": "Pick a combat skill, add damage equal to ranks to one hit per round",
         "name": "Deadly Accuracy",
         "row": 5
-      },
-      {
-        "tier": 10,
-        "column": 4,
-        "description": "Quick draw twice per round",
-        "name": "Improved Quick Draw",
-        "row": 2
-      },
-      {
-        "tier": 25,
-        "column": 2,
-        "description": "Ranged (Light) two weapon attacks can target separate opponents",
-        "name": "Spitfire",
-        "row": 5
-      },
-      {
-        "tier": 5,
-        "column": 1,
-        "description": "Strain +1",
-        "name": "Grit",
-        "row": 1
-      },
-      {
-        "tier": 10,
-        "column": 2,
-        "description": "Strain +1",
-        "name": "Grit",
-        "row": 2
-      },
-      {
-        "tier": 20,
-        "column": 3,
-        "description": "Suffer two strain to not increase difficulty of Ranged (Light) attack with thwo weapons",
-        "name": "Guns Blazing",
-        "row": 4
-      },
-      {
-        "tier": 5,
-        "column": 3,
-        "description": "Suffer up to one strain per rank to add that many successes to initiative.",
-        "name": "Rapid Reaction",
-        "row": 1
-      },
-      {
-        "tier": 20,
-        "column": 4,
-        "description": "Suffer up to one strain per rank to add that many successes to initiative.",
-        "name": "Rapid Reaction",
-        "row": 4
-      },
-      {
-        "tier": 15,
-        "column": 1,
-        "description": "Wounds +2",
-        "name": "Toughened",
-        "row": 3
       }
     ],
     "name": "Smuggler--Gunslinger"
@@ -3192,6 +3192,132 @@
   {
     "graph": [
       {
+        "tier": 5,
+        "column": 1,
+        "description": "When making a Medicine check to heal wounds, heal one extra wound per rank",
+        "name": "Surgeon",
+        "row": 1
+      },
+      {
+        "tier": 5,
+        "column": 2,
+        "description": "Increase recovery from long term care or bacta tank by one per rank",
+        "name": "Bacta Specialist",
+        "row": 1
+      },
+      {
+        "tier": 5,
+        "column": 3,
+        "description": "Strain +1",
+        "name": "Grit",
+        "row": 1
+      },
+      {
+        "tier": 5,
+        "column": 4,
+        "description": "When voluntarily suffering strain, reduce by one to a minimum of one",
+        "name": "Resolve",
+        "row": 1
+      },
+      {
+        "tier": 10,
+        "column": 1,
+        "description": "Make average medicine check, target increases one characteristic by one until the end of the encounter and suffers 4 strain",
+        "name": "Stim Application",
+        "row": 2
+      },
+      {
+        "tier": 10,
+        "column": 2,
+        "description": "Strain +1",
+        "name": "Grit",
+        "row": 2
+      },
+      {
+        "tier": 10,
+        "column": 3,
+        "description": "When making a Medicine check to heal wounds, heal one extra wound per rank",
+        "name": "Surgeon",
+        "row": 2
+      },
+      {
+        "tier": 10,
+        "column": 4,
+        "description": "When voluntarily suffering strain, reduce by one to a minimum of one",
+        "name": "Resolve",
+        "row": 2
+      },
+      {
+        "tier": 15,
+        "column": 1,
+        "description": "When making a Medicine check to heal wounds, heal one extra wound per rank",
+        "name": "Surgeon",
+        "row": 3
+      },
+      {
+        "tier": 15,
+        "column": 2,
+        "description": "Strain +1",
+        "name": "Grit",
+        "row": 3
+      },
+      {
+        "tier": 15,
+        "column": 3,
+        "description": "Increase recovery from long term care or bacta tank by one per rank",
+        "name": "Bacta Specialist",
+        "row": 3
+      },
+      {
+        "tier": 15,
+        "column": 4,
+        "description": "When making Brawl check, instead of dealing damage, deal strain plus ranks in medicine, ignoring soak",
+        "name": "Pressure Point",
+        "row": 3
+      },
+      {
+        "tier": 20,
+        "column": 1,
+        "description": "Make Stim Application check Hard to only suffer one strain",
+        "name": "Improved Stim Application",
+        "row": 4
+      },
+      {
+        "tier": 20,
+        "column": 2,
+        "description": "Once per session, reroll a medicine check",
+        "name": "Natural Doctor",
+        "row": 4
+      },
+      {
+        "tier": 20,
+        "column": 3,
+        "description": "Wounds +2",
+        "name": "Toughened",
+        "row": 4
+      },
+      {
+        "tier": 20,
+        "column": 4,
+        "description": "On a hit, spend a destiny point to increase damage by intellect rating",
+        "name": "Anatomy Lessons",
+        "row": 4
+      },
+      {
+        "tier": 25,
+        "column": 1,
+        "description": "When performing Stim Application, spend Triumph to increase another characteristic",
+        "name": "Supreme Stim Application",
+        "row": 5
+      },
+      {
+        "tier": 25,
+        "column": 2,
+        "description": "Once per round, suffer 2 strain to decrease Medicine difficulty by 1",
+        "name": "Master Doctor",
+        "row": 5
+      },
+      {
         "tier": 25,
         "column": 3,
         "description": " +1 to a characteristic",
@@ -3204,132 +3330,6 @@
         "description": "Dodge Incidental: suffer X strain up to ranks, upgrade attack by X",
         "name": "Dodge",
         "row": 5
-      },
-      {
-        "tier": 5,
-        "column": 2,
-        "description": "Increase recovery from long term care or bacta tank by one per rank",
-        "name": "Bacta Specialist",
-        "row": 1
-      },
-      {
-        "tier": 15,
-        "column": 3,
-        "description": "Increase recovery from long term care or bacta tank by one per rank",
-        "name": "Bacta Specialist",
-        "row": 3
-      },
-      {
-        "tier": 10,
-        "column": 1,
-        "description": "Make average medicine check, target increases one characteristic by one until the end of the encounter and suffers 4 strain",
-        "name": "Stim Application",
-        "row": 2
-      },
-      {
-        "tier": 20,
-        "column": 1,
-        "description": "Make Stim Application check Hard to only suffer one strain",
-        "name": "Improved Stim Application",
-        "row": 4
-      },
-      {
-        "tier": 20,
-        "column": 4,
-        "description": "On a hit, spend a destiny point to increase damage by intellect rating",
-        "name": "Anatomy Lessons",
-        "row": 4
-      },
-      {
-        "tier": 25,
-        "column": 2,
-        "description": "Once per round, suffer 2 strain to decrease Medicine difficulty by 1",
-        "name": "Master Doctor",
-        "row": 5
-      },
-      {
-        "tier": 20,
-        "column": 2,
-        "description": "Once per session, reroll a medicine check",
-        "name": "Natural Doctor",
-        "row": 4
-      },
-      {
-        "tier": 5,
-        "column": 3,
-        "description": "Strain +1",
-        "name": "Grit",
-        "row": 1
-      },
-      {
-        "tier": 10,
-        "column": 2,
-        "description": "Strain +1",
-        "name": "Grit",
-        "row": 2
-      },
-      {
-        "tier": 15,
-        "column": 2,
-        "description": "Strain +1",
-        "name": "Grit",
-        "row": 3
-      },
-      {
-        "tier": 5,
-        "column": 1,
-        "description": "When making a Medicine check to heal wounds, heal one extra wound per rank",
-        "name": "Surgeon",
-        "row": 1
-      },
-      {
-        "tier": 10,
-        "column": 3,
-        "description": "When making a Medicine check to heal wounds, heal one extra wound per rank",
-        "name": "Surgeon",
-        "row": 2
-      },
-      {
-        "tier": 15,
-        "column": 1,
-        "description": "When making a Medicine check to heal wounds, heal one extra wound per rank",
-        "name": "Surgeon",
-        "row": 3
-      },
-      {
-        "tier": 15,
-        "column": 4,
-        "description": "When making Brawl check, instead of dealing damage, deal strain plus ranks in medicine, ignoring soak",
-        "name": "Pressure Point",
-        "row": 3
-      },
-      {
-        "tier": 25,
-        "column": 1,
-        "description": "When performing Stim Application, spend Triumph to increase another characteristic",
-        "name": "Supreme Stim Application",
-        "row": 5
-      },
-      {
-        "tier": 5,
-        "column": 4,
-        "description": "When voluntarily suffering strain, reduce by one to a minimum of one",
-        "name": "Resolve",
-        "row": 1
-      },
-      {
-        "tier": 10,
-        "column": 4,
-        "description": "When voluntarily suffering strain, reduce by one to a minimum of one",
-        "name": "Resolve",
-        "row": 2
-      },
-      {
-        "tier": 20,
-        "column": 3,
-        "description": "Wounds +2",
-        "name": "Toughened",
-        "row": 4
       }
     ],
     "name": "Colonist--Doctor"
@@ -5077,60 +5077,25 @@
   {
     "graph": [
       {
-        "tier": 25,
+        "tier": 5,
         "column": 1,
-        "description": " +1 to a characteristic",
-        "name": "Dedication",
-        "row": 5
+        "description": "Three strain to reduce melee damage by two plus ranks",
+        "name": "Parry",
+        "row": 1
       },
       {
-        "tier": 15,
+        "tier": 5,
         "column": 2,
-        "description": "Add boost die to charm, coercion, and deception checks",
-        "name": "Sense Emotions",
-        "row": 3
+        "description": "Upgrade incoming charm, coercion, or deception difficulty by ranks",
+        "name": "Nobody's Fool",
+        "row": 1
       },
       {
-        "tier": 25,
+        "tier": 5,
         "column": 3,
-        "description": "Force rating +1",
-        "name": "Force Rating",
-        "row": 5
-      },
-      {
-        "tier": 10,
-        "column": 1,
-        "description": "Melee/brawl weapon gains defense equal to ranks",
-        "name": "Defensive Training",
-        "row": 2
-      },
-      {
-        "tier": 15,
-        "column": 4,
-        "description": "Melee/brawl weapon gains defense equal to ranks",
-        "name": "Defensive Training",
-        "row": 3
-      },
-      {
-        "tier": 20,
-        "column": 3,
-        "description": "Niman check against target in medium range with FD, spend FP to move target one range closer or gain success",
-        "name": "Draw Closer",
-        "row": 4
-      },
-      {
-        "tier": 25,
-        "column": 2,
-        "description": "Spend triumph or three advantage on missed Niman attack to perform move force power as maneuver",
-        "name": "Force Assault",
-        "row": 5
-      },
-      {
-        "tier": 20,
-        "column": 1,
-        "description": "Spend triumph or two advantage with lightsaber to disarm enemy",
-        "name": "Sum Djem",
-        "row": 4
+        "description": "Three strain to reduce ranged damage by two plus ranks",
+        "name": "Reflect",
+        "row": 1
       },
       {
         "tier": 5,
@@ -5140,67 +5105,11 @@
         "row": 1
       },
       {
-        "tier": 25,
-        "column": 4,
-        "description": "Suffer strain to perform Center of Being as incidental",
-        "name": "Improved Center of Being",
-        "row": 5
-      },
-      {
-        "tier": 20,
-        "column": 4,
-        "description": "Take maneuver, until next turn incoming attacks have one higher crit rating",
-        "name": "Center of Being",
-        "row": 4
-      },
-      {
-        "tier": 5,
-        "column": 1,
-        "description": "Three strain to reduce melee damage by two plus ranks",
-        "name": "Parry",
-        "row": 1
-      },
-      {
         "tier": 10,
-        "column": 4,
-        "description": "Three strain to reduce melee damage by two plus ranks",
-        "name": "Parry",
-        "row": 2
-      },
-      {
-        "tier": 15,
         "column": 1,
-        "description": "Three strain to reduce melee damage by two plus ranks",
-        "name": "Parry",
-        "row": 3
-      },
-      {
-        "tier": 5,
-        "column": 3,
-        "description": "Three strain to reduce ranged damage by two plus ranks",
-        "name": "Reflect",
-        "row": 1
-      },
-      {
-        "tier": 15,
-        "column": 3,
-        "description": "Three strain to reduce ranged damage by two plus ranks",
-        "name": "Reflect",
-        "row": 3
-      },
-      {
-        "tier": 20,
-        "column": 2,
-        "description": "Three strain to reduce ranged damage by two plus ranks",
-        "name": "Reflect",
-        "row": 4
-      },
-      {
-        "tier": 5,
-        "column": 2,
-        "description": "Upgrade incoming charm, coercion, or deception difficulty by ranks",
-        "name": "Nobody's Fool",
-        "row": 1
+        "description": "Melee/brawl weapon gains defense equal to ranks",
+        "name": "Defensive Training",
+        "row": 2
       },
       {
         "tier": 10,
@@ -5215,6 +5124,97 @@
         "description": "Wounds +2",
         "name": "Toughened",
         "row": 2
+      },
+      {
+        "tier": 10,
+        "column": 4,
+        "description": "Three strain to reduce melee damage by two plus ranks",
+        "name": "Parry",
+        "row": 2
+      },
+      {
+        "tier": 15,
+        "column": 1,
+        "description": "Three strain to reduce melee damage by two plus ranks",
+        "name": "Parry",
+        "row": 3
+      },
+      {
+        "tier": 15,
+        "column": 2,
+        "description": "Add boost die to charm, coercion, and deception checks",
+        "name": "Sense Emotions",
+        "row": 3
+      },
+      {
+        "tier": 15,
+        "column": 3,
+        "description": "Three strain to reduce ranged damage by two plus ranks",
+        "name": "Reflect",
+        "row": 3
+      },
+      {
+        "tier": 15,
+        "column": 4,
+        "description": "Melee/brawl weapon gains defense equal to ranks",
+        "name": "Defensive Training",
+        "row": 3
+      },
+      {
+        "tier": 20,
+        "column": 1,
+        "description": "Spend triumph or two advantage with lightsaber to disarm enemy",
+        "name": "Sum Djem",
+        "row": 4
+      },
+      {
+        "tier": 20,
+        "column": 2,
+        "description": "Three strain to reduce ranged damage by two plus ranks",
+        "name": "Reflect",
+        "row": 4
+      },
+      {
+        "tier": 20,
+        "column": 3,
+        "description": "Niman check against target in medium range with FD, spend FP to move target one range closer or gain success",
+        "name": "Draw Closer",
+        "row": 4
+      },
+      {
+        "tier": 20,
+        "column": 4,
+        "description": "Take maneuver, until next turn incoming attacks have one higher crit rating",
+        "name": "Center of Being",
+        "row": 4
+      },
+      {
+        "tier": 25,
+        "column": 1,
+        "description": " +1 to a characteristic",
+        "name": "Dedication",
+        "row": 5
+      },
+      {
+        "tier": 25,
+        "column": 2,
+        "description": "Spend triumph or three advantage on missed Niman attack to perform move force power as maneuver",
+        "name": "Force Assault",
+        "row": 5
+      },
+      {
+        "tier": 25,
+        "column": 3,
+        "description": "Force rating +1",
+        "name": "Force Rating",
+        "row": 5
+      },
+      {
+        "tier": 25,
+        "column": 4,
+        "description": "Suffer strain to perform Center of Being as incidental",
+        "name": "Improved Center of Being",
+        "row": 5
       }
     ],
     "name": "Consular--Niman Disciple"
@@ -7392,7 +7392,7 @@
         "row": 5
       }
     ],
-    "name": "Colonist--Entrepreneuer"
+    "name": "Colonist--Scholar"
   },
   {
     "graph": [
@@ -10877,11 +10877,67 @@
   {
     "graph": [
       {
-        "tier": 25,
+        "tier": 5,
+        "column": 1,
+        "description": "Increase blast damage by ranks.",
+        "name": "Powerful Blast",
+        "row": 1
+      },
+      {
+        "tier": 5,
         "column": 2,
-        "description": " +1 to a characteristic",
-        "name": "Dedication",
-        "row": 5
+        "description": "Strain +1",
+        "name": "Grit",
+        "row": 1
+      },
+      {
+        "tier": 5,
+        "column": 3,
+        "description": "Spend ADV to exclude one target per rank from blast damage.",
+        "name": "Selective Detonation",
+        "row": 1
+      },
+      {
+        "tier": 5,
+        "column": 4,
+        "description": "Remove setback per rank from Cool and Skullduggery.",
+        "name": "Steady Nerves",
+        "row": 1
+      },
+      {
+        "tier": 10,
+        "column": 1,
+        "description": "Wounds +2",
+        "name": "Toughened",
+        "row": 2
+      },
+      {
+        "tier": 10,
+        "column": 2,
+        "description": "Spend destiny to move into cover or out of blast as incidental.",
+        "name": "Time to Go",
+        "row": 2
+      },
+      {
+        "tier": 10,
+        "column": 3,
+        "description": "Increase blast damage by ranks.",
+        "name": "Powerful Blast",
+        "row": 2
+      },
+      {
+        "tier": 10,
+        "column": 4,
+        "description": "Strain +1",
+        "name": "Grit",
+        "row": 2
+      },
+      {
+        "tier": 15,
+        "column": 1,
+        "description": "Soak +1",
+        "name": "Enduring",
+        "row": 3
       },
       {
         "tier": 15,
@@ -10891,25 +10947,25 @@
         "row": 3
       },
       {
-        "tier": 25,
+        "tier": 15,
         "column": 3,
-        "description": "Decrease cost to activate blast by 1 to a minimum of 1.",
-        "name": "Master Grenadier",
-        "row": 5
+        "description": "Remove setback per rank from Cool and Skullduggery.",
+        "name": "Steady Nerves",
+        "row": 3
       },
       {
-        "tier": 5,
+        "tier": 15,
+        "column": 4,
+        "description": "Suffer up to one strain per rank to add that many successes to initiative.",
+        "name": "Rapid Reaction",
+        "row": 3
+      },
+      {
+        "tier": 20,
         "column": 1,
-        "description": "Increase blast damage by ranks.",
-        "name": "Powerful Blast",
-        "row": 1
-      },
-      {
-        "tier": 10,
-        "column": 3,
-        "description": "Increase blast damage by ranks.",
-        "name": "Powerful Blast",
-        "row": 2
+        "description": "Once per session, hard mechanics check to build explosive with damage equal to Int + Mechanics + successes.",
+        "name": "Improvised Detonation",
+        "row": 4
       },
       {
         "tier": 20,
@@ -10920,9 +10976,16 @@
       },
       {
         "tier": 20,
-        "column": 1,
-        "description": "Once per session, hard mechanics check to build explosive with damage equal to Int + Mechanics + successes.",
-        "name": "Improvised Detonation",
+        "column": 3,
+        "description": "Strain +1",
+        "name": "Grit",
+        "row": 4
+      },
+      {
+        "tier": 20,
+        "column": 4,
+        "description": "Spend ADV to exclude one target per rank from blast damage.",
+        "name": "Selective Detonation",
         "row": 4
       },
       {
@@ -10933,39 +10996,18 @@
         "row": 5
       },
       {
-        "tier": 5,
-        "column": 4,
-        "description": "Remove setback per rank from Cool and Skullduggery.",
-        "name": "Steady Nerves",
-        "row": 1
+        "tier": 25,
+        "column": 2,
+        "description": " +1 to a characteristic",
+        "name": "Dedication",
+        "row": 5
       },
       {
-        "tier": 15,
+        "tier": 25,
         "column": 3,
-        "description": "Remove setback per rank from Cool and Skullduggery.",
-        "name": "Steady Nerves",
-        "row": 3
-      },
-      {
-        "tier": 15,
-        "column": 1,
-        "description": "Soak +1",
-        "name": "Enduring",
-        "row": 3
-      },
-      {
-        "tier": 5,
-        "column": 3,
-        "description": "Spend ADV to exclude one target per rank from blast damage.",
-        "name": "Selective Detonation",
-        "row": 1
-      },
-      {
-        "tier": 20,
-        "column": 4,
-        "description": "Spend ADV to exclude one target per rank from blast damage.",
-        "name": "Selective Detonation",
-        "row": 4
+        "description": "Decrease cost to activate blast by 1 to a minimum of 1.",
+        "name": "Master Grenadier",
+        "row": 5
       },
       {
         "tier": 25,
@@ -10973,48 +11015,6 @@
         "description": "Spend ADV to exclude one target per rank from blast damage.",
         "name": "Selective Detonation",
         "row": 5
-      },
-      {
-        "tier": 10,
-        "column": 2,
-        "description": "Spend destiny to move into cover or out of blast as incidental.",
-        "name": "Time to Go",
-        "row": 2
-      },
-      {
-        "tier": 5,
-        "column": 2,
-        "description": "Strain +1",
-        "name": "Grit",
-        "row": 1
-      },
-      {
-        "tier": 10,
-        "column": 4,
-        "description": "Strain +1",
-        "name": "Grit",
-        "row": 2
-      },
-      {
-        "tier": 20,
-        "column": 3,
-        "description": "Strain +1",
-        "name": "Grit",
-        "row": 4
-      },
-      {
-        "tier": 15,
-        "column": 4,
-        "description": "Suffer up to one strain per rank to add that many successes to initiative.",
-        "name": "Rapid Reaction",
-        "row": 3
-      },
-      {
-        "tier": 10,
-        "column": 1,
-        "description": "Wounds +2",
-        "name": "Toughened",
-        "row": 2
       }
     ],
     "name": "Hired Gun--Demolitionist"
@@ -11892,32 +11892,11 @@
   {
     "graph": [
       {
-        "tier": 25,
-        "column": 2,
-        "description": " +1 to a characteristic",
-        "name": "Dedication",
-        "row": 5
-      },
-      {
-        "tier": 20,
-        "column": 4,
-        "description": "Add boost per rank to resist/recover from poisons/toxins. Reduce poison duration by one round per rank.",
-        "name": "Blooded",
-        "row": 4
-      },
-      {
-        "tier": 10,
-        "column": 3,
-        "description": "Add Boost per rank when interacting with animals. Add +10 per rank on criticals against beasts or animals.",
-        "name": "Hunter",
-        "row": 2
-      },
-      {
-        "tier": 20,
-        "column": 2,
-        "description": "Add Boost per rank when interacting with animals. Add +10 per rank on criticals against beasts or animals.",
-        "name": "Hunter",
-        "row": 4
+        "tier": 5,
+        "column": 1,
+        "description": "Remove up to two setback from skill checks to find food, water, or shelter. Survival checks take half the time.",
+        "name": "Forager",
+        "row": 1
       },
       {
         "tier": 5,
@@ -11927,17 +11906,24 @@
         "row": 1
       },
       {
-        "tier": 15,
+        "tier": 5,
         "column": 3,
-        "description": "Add one boost per rank on stealth and coordination",
-        "name": "Stalker",
-        "row": 3
+        "description": "Remove setback per rank from checks to move through terrain or manage environmental effects. Decrease overland travel time by half.",
+        "name": "Outdoorsman",
+        "row": 1
+      },
+      {
+        "tier": 5,
+        "column": 4,
+        "description": "Remove setback per rank from tracking checks. Tracking checks take half the time.",
+        "name": "Expert Tracker",
+        "row": 1
       },
       {
         "tier": 10,
-        "column": 4,
-        "description": "After hit, spend Destiny Point to add damage equal to Cunning.",
-        "name": "Soft Spot",
+        "column": 1,
+        "description": "Remove setback per rank from checks to move through terrain or manage environmental effects. Decrease overland travel time by half.",
+        "name": "Outdoorsman",
         "row": 2
       },
       {
@@ -11948,32 +11934,25 @@
         "row": 2
       },
       {
-        "tier": 15,
-        "column": 4,
-        "description": "Once per session, reroll resilience or survival",
-        "name": "Natural Outdoorsman",
-        "row": 3
-      },
-      {
-        "tier": 5,
-        "column": 3,
-        "description": "Remove setback per rank from checks to move through terrain or manage environmental effects. Decrease overland travel time by half.",
-        "name": "Outdoorsman",
-        "row": 1
-      },
-      {
         "tier": 10,
-        "column": 1,
-        "description": "Remove setback per rank from checks to move through terrain or manage environmental effects. Decrease overland travel time by half.",
-        "name": "Outdoorsman",
+        "column": 3,
+        "description": "Add Boost per rank when interacting with animals. Add +10 per rank on criticals against beasts or animals.",
+        "name": "Hunter",
         "row": 2
       },
       {
-        "tier": 5,
+        "tier": 10,
         "column": 4,
-        "description": "Remove setback per rank from tracking checks. Tracking checks take half the time.",
-        "name": "Expert Tracker",
-        "row": 1
+        "description": "After hit, spend Destiny Point to add damage equal to Cunning.",
+        "name": "Soft Spot",
+        "row": 2
+      },
+      {
+        "tier": 15,
+        "column": 1,
+        "description": "Wounds +2",
+        "name": "Toughened",
+        "row": 3
       },
       {
         "tier": 15,
@@ -11983,6 +11962,34 @@
         "row": 3
       },
       {
+        "tier": 15,
+        "column": 3,
+        "description": "Add one boost per rank on stealth and coordination",
+        "name": "Stalker",
+        "row": 3
+      },
+      {
+        "tier": 15,
+        "column": 4,
+        "description": "Once per session, reroll resilience or survival",
+        "name": "Natural Outdoorsman",
+        "row": 3
+      },
+      {
+        "tier": 20,
+        "column": 1,
+        "description": "Wounds +2",
+        "name": "Toughened",
+        "row": 4
+      },
+      {
+        "tier": 20,
+        "column": 2,
+        "description": "Add Boost per rank when interacting with animals. Add +10 per rank on criticals against beasts or animals.",
+        "name": "Hunter",
+        "row": 4
+      },
+      {
         "tier": 20,
         "column": 3,
         "description": "Remove setback per rank from tracking checks. Tracking checks take half the time.",
@@ -11990,11 +11997,11 @@
         "row": 4
       },
       {
-        "tier": 5,
-        "column": 1,
-        "description": "Remove up to two setback from skill checks to find food, water, or shelter. Survival checks take half the time.",
-        "name": "Forager",
-        "row": 1
+        "tier": 20,
+        "column": 4,
+        "description": "Add boost per rank to resist/recover from poisons/toxins. Reduce poison duration by one round per rank.",
+        "name": "Blooded",
+        "row": 4
       },
       {
         "tier": 25,
@@ -12005,9 +12012,9 @@
       },
       {
         "tier": 25,
-        "column": 4,
-        "description": "Spend a DP to ignore effects of criticals on brawn and agility checks until the end of the encounter.",
-        "name": "Heroic Fortitude",
+        "column": 2,
+        "description": " +1 to a characteristic",
+        "name": "Dedication",
         "row": 5
       },
       {
@@ -12018,18 +12025,11 @@
         "row": 5
       },
       {
-        "tier": 15,
-        "column": 1,
-        "description": "Wounds +2",
-        "name": "Toughened",
-        "row": 3
-      },
-      {
-        "tier": 20,
-        "column": 1,
-        "description": "Wounds +2",
-        "name": "Toughened",
-        "row": 4
+        "tier": 25,
+        "column": 4,
+        "description": "Spend a DP to ignore effects of criticals on brawn and agility checks until the end of the encounter.",
+        "name": "Heroic Fortitude",
+        "row": 5
       }
     ],
     "name": "Bounty Hunter--Survivalist"
@@ -12327,88 +12327,11 @@
   {
     "graph": [
       {
-        "tier": 10,
+        "tier": 5,
         "column": 1,
-        "description": "Choose charm, coercion, deception, or negotiation: spend triumph to gain successes equal to ranks",
-        "name": "Smooth Talker",
-        "row": 2
-      },
-      {
-        "tier": 15,
-        "column": 2,
-        "description": "Choose charm, coercion, deception, or negotiation: spend triumph to gain successes equal to ranks",
-        "name": "Smooth Talker",
-        "row": 3
-      },
-      {
-        "tier": 10,
-        "column": 4,
-        "description": "Choose one knowledge skill: spend triumph to gain successes equal to ranks",
-        "name": "Knowledge Specialization",
-        "row": 2
-      },
-      {
-        "tier": 15,
-        "column": 3,
-        "description": "Choose one knowledge skill: spend triumph to gain successes equal to ranks",
-        "name": "Knowledge Specialization",
-        "row": 3
-      },
-      {
-        "tier": 20,
-        "column": 4,
-        "description": "Choose one knowledge skill: spend triumph to gain successes equal to ranks",
-        "name": "Knowledge Specialization",
-        "row": 4
-      },
-      {
-        "tier": 20,
-        "column": 1,
-        "description": "Force rating +1",
-        "name": "Force Rating",
-        "row": 4
-      },
-      {
-        "tier": 25,
-        "column": 4,
-        "description": "Force rating +1",
-        "name": "Force Rating",
-        "row": 5
-      },
-      {
-        "tier": 15,
-        "column": 1,
-        "description": "Once per encounter, perform average knowledge check to add triumph to one ally's roll",
-        "name": "Valuable Facts",
-        "row": 3
-      },
-      {
-        "tier": 15,
-        "column": 4,
-        "description": "Once per session, average astrogation check to add FP to all force rolls in next encounter",
-        "name": "One with the Universe",
-        "row": 3
-      },
-      {
-        "tier": 25,
-        "column": 3,
-        "description": "Once per session, reroll cool or negotiation check",
-        "name": "Natural Negotiator",
-        "row": 5
-      },
-      {
-        "tier": 25,
-        "column": 2,
-        "description": "Once per session, spent two strain to perform force power action as maneuver",
-        "name": "The Force is My Ally",
-        "row": 5
-      },
-      {
-        "tier": 10,
-        "column": 3,
-        "description": "Reduce fear check difficulty by one",
-        "name": "Confidence",
-        "row": 2
+        "description": "Strain +1",
+        "name": "Grit",
+        "row": 1
       },
       {
         "tier": 5,
@@ -12425,11 +12348,81 @@
         "row": 1
       },
       {
+        "tier": 5,
+        "column": 4,
+        "description": "Strain +1",
+        "name": "Grit",
+        "row": 1
+      },
+      {
+        "tier": 10,
+        "column": 1,
+        "description": "Choose charm, coercion, deception, or negotiation: spend triumph to gain successes equal to ranks",
+        "name": "Smooth Talker",
+        "row": 2
+      },
+      {
         "tier": 10,
         "column": 2,
         "description": "Remove setback per rank from knowledge. Research takes half time.",
         "name": "Researcher",
         "row": 2
+      },
+      {
+        "tier": 10,
+        "column": 3,
+        "description": "Reduce fear check difficulty by one",
+        "name": "Confidence",
+        "row": 2
+      },
+      {
+        "tier": 10,
+        "column": 4,
+        "description": "Choose one knowledge skill: spend triumph to gain successes equal to ranks",
+        "name": "Knowledge Specialization",
+        "row": 2
+      },
+      {
+        "tier": 15,
+        "column": 1,
+        "description": "Once per encounter, perform average knowledge check to add triumph to one ally's roll",
+        "name": "Valuable Facts",
+        "row": 3
+      },
+      {
+        "tier": 15,
+        "column": 2,
+        "description": "Choose charm, coercion, deception, or negotiation: spend triumph to gain successes equal to ranks",
+        "name": "Smooth Talker",
+        "row": 3
+      },
+      {
+        "tier": 15,
+        "column": 3,
+        "description": "Choose one knowledge skill: spend triumph to gain successes equal to ranks",
+        "name": "Knowledge Specialization",
+        "row": 3
+      },
+      {
+        "tier": 15,
+        "column": 4,
+        "description": "Once per session, average astrogation check to add FP to all force rolls in next encounter",
+        "name": "One with the Universe",
+        "row": 3
+      },
+      {
+        "tier": 20,
+        "column": 1,
+        "description": "Force rating +1",
+        "name": "Force Rating",
+        "row": 4
+      },
+      {
+        "tier": 20,
+        "column": 2,
+        "description": "Strain +1",
+        "name": "Grit",
+        "row": 4
       },
       {
         "tier": 20,
@@ -12439,24 +12432,10 @@
         "row": 4
       },
       {
-        "tier": 5,
-        "column": 1,
-        "description": "Strain +1",
-        "name": "Grit",
-        "row": 1
-      },
-      {
-        "tier": 5,
-        "column": 4,
-        "description": "Strain +1",
-        "name": "Grit",
-        "row": 1
-      },
-      {
         "tier": 20,
-        "column": 2,
-        "description": "Strain +1",
-        "name": "Grit",
+        "column": 4,
+        "description": "Choose one knowledge skill: spend triumph to gain successes equal to ranks",
+        "name": "Knowledge Specialization",
         "row": 4
       },
       {
@@ -12464,6 +12443,27 @@
         "column": 1,
         "description": "When recovering strain, roll force die and spend FP to recover more",
         "name": "Balance",
+        "row": 5
+      },
+      {
+        "tier": 25,
+        "column": 2,
+        "description": "Once per session, spent two strain to perform force power action as maneuver",
+        "name": "The Force is My Ally",
+        "row": 5
+      },
+      {
+        "tier": 25,
+        "column": 3,
+        "description": "Once per session, reroll cool or negotiation check",
+        "name": "Natural Negotiator",
+        "row": 5
+      },
+      {
+        "tier": 25,
+        "column": 4,
+        "description": "Force rating +1",
+        "name": "Force Rating",
         "row": 5
       }
     ],
@@ -12612,7 +12612,7 @@
         "row": 5
       }
     ],
-    "name": "Colonist--Scholar"
+    "name": "Colonist--Entrepreneuer"
   },
   {
     "graph": [
@@ -13487,11 +13487,11 @@
   {
     "graph": [
       {
-        "tier": 25,
-        "column": 3,
-        "description": " +1 to a characteristic",
-        "name": "Dedication",
-        "row": 5
+        "tier": 5,
+        "column": 1,
+        "description": "Strain +1",
+        "name": "Grit",
+        "row": 1
       },
       {
         "tier": 5,
@@ -13501,18 +13501,32 @@
         "row": 1
       },
       {
-        "tier": 15,
+        "tier": 5,
         "column": 3,
-        "description": " +10 per rank on critical rolls",
-        "name": "Lethal Blows",
-        "row": 3
+        "description": "Add one boost per rank on stealth and coordination",
+        "name": "Stalker",
+        "row": 1
       },
       {
-        "tier": 20,
+        "tier": 5,
         "column": 4,
-        "description": " +10 per rank on critical rolls",
-        "name": "Lethal Blows",
-        "row": 4
+        "description": "Dodge Incidental: suffer X strain up to ranks, upgrade attack by X",
+        "name": "Dodge",
+        "row": 1
+      },
+      {
+        "tier": 10,
+        "column": 1,
+        "description": "Precise Aim Maneuver: Suffer X strain up to ranks, reduce target's defense by X",
+        "name": "Precise Aim",
+        "row": 2
+      },
+      {
+        "tier": 10,
+        "column": 2,
+        "description": "Once per round stand up as an incidental",
+        "name": "Jump Up",
+        "row": 2
       },
       {
         "tier": 10,
@@ -13520,41 +13534,6 @@
         "description": "Add one boost per rank against targets that have not acted yet",
         "name": "Quick Strike",
         "row": 2
-      },
-      {
-        "tier": 5,
-        "column": 3,
-        "description": "Add one boost per rank on stealth and coordination",
-        "name": "Stalker",
-        "row": 1
-      },
-      {
-        "tier": 15,
-        "column": 2,
-        "description": "Add one boost per rank on stealth and coordination",
-        "name": "Stalker",
-        "row": 3
-      },
-      {
-        "tier": 20,
-        "column": 1,
-        "description": "Add one boost per rank on stealth and coordination",
-        "name": "Stalker",
-        "row": 4
-      },
-      {
-        "tier": 5,
-        "column": 4,
-        "description": "Dodge Incidental: suffer X strain up to ranks, upgrade attack by X",
-        "name": "Dodge",
-        "row": 1
-      },
-      {
-        "tier": 20,
-        "column": 3,
-        "description": "Dodge Incidental: suffer X strain up to ranks, upgrade attack by X",
-        "name": "Dodge",
-        "row": 4
       },
       {
         "tier": 10,
@@ -13572,38 +13551,31 @@
       },
       {
         "tier": 15,
+        "column": 2,
+        "description": "Add one boost per rank on stealth and coordination",
+        "name": "Stalker",
+        "row": 3
+      },
+      {
+        "tier": 15,
+        "column": 3,
+        "description": " +10 per rank on critical rolls",
+        "name": "Lethal Blows",
+        "row": 3
+      },
+      {
+        "tier": 15,
         "column": 4,
         "description": "On a hit, spend a destiny point to increase damage by intellect rating",
         "name": "Anatomy Lessons",
         "row": 3
       },
       {
-        "tier": 10,
-        "column": 2,
-        "description": "Once per round stand up as an incidental",
-        "name": "Jump Up",
-        "row": 2
-      },
-      {
-        "tier": 25,
-        "column": 2,
-        "description": "Pick a combat skill, add damage equal to ranks to one hit per round",
-        "name": "Deadly Accuracy",
-        "row": 5
-      },
-      {
-        "tier": 10,
+        "tier": 20,
         "column": 1,
-        "description": "Precise Aim Maneuver: Suffer X strain up to ranks, reduce target's defense by X",
-        "name": "Precise Aim",
-        "row": 2
-      },
-      {
-        "tier": 25,
-        "column": 1,
-        "description": "Precise Aim Maneuver: Suffer X strain up to ranks, reduce target's defense by X",
-        "name": "Precise Aim",
-        "row": 5
+        "description": "Add one boost per rank on stealth and coordination",
+        "name": "Stalker",
+        "row": 4
       },
       {
         "tier": 20,
@@ -13613,11 +13585,39 @@
         "row": 4
       },
       {
-        "tier": 5,
+        "tier": 20,
+        "column": 3,
+        "description": "Dodge Incidental: suffer X strain up to ranks, upgrade attack by X",
+        "name": "Dodge",
+        "row": 4
+      },
+      {
+        "tier": 20,
+        "column": 4,
+        "description": " +10 per rank on critical rolls",
+        "name": "Lethal Blows",
+        "row": 4
+      },
+      {
+        "tier": 25,
         "column": 1,
-        "description": "Strain +1",
-        "name": "Grit",
-        "row": 1
+        "description": "Precise Aim Maneuver: Suffer X strain up to ranks, reduce target's defense by X",
+        "name": "Precise Aim",
+        "row": 5
+      },
+      {
+        "tier": 25,
+        "column": 2,
+        "description": "Pick a combat skill, add damage equal to ranks to one hit per round",
+        "name": "Deadly Accuracy",
+        "row": 5
+      },
+      {
+        "tier": 25,
+        "column": 3,
+        "description": " +1 to a characteristic",
+        "name": "Dedication",
+        "row": 5
       },
       {
         "tier": 25,
