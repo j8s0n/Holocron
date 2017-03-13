@@ -16,6 +16,7 @@ import org.raincitygamers.holocron.ui.chooser.SpecializationsArrayAdapter.Specia
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -32,13 +33,16 @@ public class MoreSpecializationsActivity extends AppCompatActivity {
       actionBar.setTitle("More Specializations");
     }
 
+    Set<Specialization> secondarySpecializations = new HashSet<>();
     Character pc = CharacterManager.getActiveCharacter();
-    Set<Specialization> secondarySpecializations = pc.getSecondarySpecializations();
+    Specialization primarySpecialization = pc.getPrimarySpecialization();
+    secondarySpecializations.addAll(pc.getSecondarySpecializations());
+
     List<Specialization> specializations = Lists.newArrayList(CareerManager.getSpecializations());
     Collections.sort(specializations);
 
     for (Specialization specialization : specializations) {
-      if (!pc.getPrimarySpecialization().equals(specialization)) {
+      if (!primarySpecialization.equals(specialization)) {
         this.specializations.add(SpecializationRowData.of(specialization,
                                                           secondarySpecializations.contains(specialization)));
       }

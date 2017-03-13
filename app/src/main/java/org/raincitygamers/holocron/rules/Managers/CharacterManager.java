@@ -44,12 +44,12 @@ public final class CharacterManager extends ManagerBase {
   }
 
   public static void loadCharacters(@NotNull Context context) {
-    getFileContent(context, CHARACTERS_FILE, FileSource.LOCAL_FIRST, new ContentParser() {
+    getFileContent(context, CHARACTERS_FILE, FileSource.LOCAL_ONLY, new ContentParser() {
       @Override
       public void parse(@NotNull String content) {
         try {
           characters.clear();
-          JSONArray charactersJson = new JSONArray(content);
+          JSONArray charactersJson = content.isEmpty() ? new JSONArray() : new JSONArray(content);
           for (int i = 0; i < charactersJson.length(); i++) {
             JSONObject character = charactersJson.getJSONObject(i);
             Summary summary = Summary.valueOf(character);

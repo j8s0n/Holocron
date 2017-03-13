@@ -28,6 +28,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
@@ -91,15 +92,15 @@ public class Character {
 
   @Getter private static final MostRecentAccessComparator mostRecentAccessComparator = new MostRecentAccessComparator();
   @Getter private final List<InventoryItem> inventory = new ArrayList<>();
-  @Getter private final Map<Specialization, List<Integer>> talents = new HashMap<>();
-  @Getter private final Map<String, List<Integer>> forcePowers = new HashMap<>();
+  private final Map<Specialization, List<Integer>> talents = new LinkedHashMap<>();
+  @Getter private final Map<String, List<Integer>> forcePowers = new LinkedHashMap<>();
 
   private String logger = Character.class.getSimpleName();
   @Getter @Setter private String name;
   @Getter @Setter private String species;
   @Getter @Setter private Career career;
   @Getter private final UUID characterId;
-  @Getter @Setter private Specialization primarySpecialization;
+  @Getter private Specialization primarySpecialization;
   @Getter private final Set<Specialization> secondarySpecializations = new LinkedHashSet<>();
   @Getter private List<Obligation> obligations = new ArrayList<>();
   private Map<String, Boolean> actionConditions = new HashMap<>();
@@ -226,6 +227,50 @@ public class Character {
     skills.put(skill, value);
   }
 
+  public Map<Specialization, List<Integer>> getTalents() {
+    if (!talents.entrySet().iterator().next().equals(primarySpecialization)) {
+      return fixTalents();
+    }
+
+    if (secondarySpecializations.size() + 1 != talents.size()) {
+      return fixTalents();
+    }
+
+    for (Specialization specialization : secondarySpecializations) {
+      if (!talents.containsKey(specialization)) {
+        return fixTalents();
+      }
+    }
+
+    return talents;
+  }
+
+  public Map<Specialization, List<Integer>> fixTalents() {
+    LinkedHashMap<Specialization, List<Integer>> newTalents = new LinkedHashMap<>();
+    newTalents.put(primarySpecialization, getOrDefault(primarySpecialization, talents, new ArrayList<Integer>()));
+    for (Specialization specialization : secondarySpecializations) {
+      newTalents.put(specialization, getOrDefault(specialization, talents, new ArrayList<Integer>()));
+    }
+
+    talents.clear();
+    talents.putAll(newTalents);
+    return talents;
+  }
+
+  private <K, V> V getOrDefault(K key, Map<K, V> map, V defaultValue) {
+    if (talents.containsKey(key)) {
+      return map.get(key);
+    }
+
+    return defaultValue;
+  }
+
+  public void setPrimarySpecialization(@NotNull Specialization specialization) {
+    talents.remove(primarySpecialization);
+    primarySpecialization = specialization;
+    talents.put(specialization, new ArrayList<Integer>());
+  }
+
   public void addSecondarySpecialization(@NotNull Specialization specialization) {
     secondarySpecializations.add(specialization);
     talents.put(specialization, new ArrayList<Integer>());
@@ -259,7 +304,7 @@ public class Character {
         specializationLabel = "Specializations";
       }
 
-      rowData.add(KeyValueRowData.of (specializationLabel, primarySpecialization.getPrettyName()));
+      rowData.add(KeyValueRowData.of(specializationLabel, primarySpecialization.getPrettyName()));
       for (Specialization spec : secondarySpecializations) {
         rowData.add(KeyValueRowData.of("", spec.getLongPrettyName()));
       }
@@ -295,7 +340,8 @@ public class Character {
       rowData.add(ThresholdRowData.of("Strain", String.format(Locale.US, " %d / %d", strain, strainThreshold),
                                       ThresholdRowData.STRAIN));
       rowData.add(KeyValueRowData.of("Soak", String.format(Locale.US, "%d", soak)));
-      rowData.add(KeyValueRowData.of("Defense (M/R)", String.format(Locale.US, "%d / %d", meleeDefense, rangedDefense)));
+      rowData.add(KeyValueRowData.of("Defense (M/R)",
+                                     String.format(Locale.US, "%d / %d", meleeDefense, rangedDefense)));
     }
 
     return rowData;
@@ -746,7 +792,8 @@ public class Character {
     return attackActions;
   }
 
-  @NotNull private static List<HiddenSection> parseHiddenSections(@NotNull JSONArray jsonArray) {
+  @NotNull
+  private static List<HiddenSection> parseHiddenSections(@NotNull JSONArray jsonArray) {
     List<HiddenSection> hiddenSections = new ArrayList<>();
     for (int i = 0; i < jsonArray.length(); i++) {
       try {
@@ -886,7 +933,7 @@ public class Character {
     private String description;
 
     Builder(@NotNull String name, @NotNull Career career, @NotNull Specialization specialization,
-                   @NotNull String species, @NotNull UUID characterId) {
+            @NotNull String species, @NotNull UUID characterId) {
       this.name = name;
       this.career = career;
       this.primarySpecialization = specialization;

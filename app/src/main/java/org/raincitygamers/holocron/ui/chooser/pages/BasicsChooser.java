@@ -19,6 +19,7 @@ import org.raincitygamers.holocron.rules.character.Career;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.Specialization;
 import org.raincitygamers.holocron.rules.managers.CareerManager;
+import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.ui.chooser.ChooserActivity;
 import org.raincitygamers.holocron.ui.chooser.ChooserBase;
 import org.raincitygamers.holocron.ui.chooser.MoreSpecializationsActivity;
@@ -58,6 +59,7 @@ public class BasicsChooser extends ChooserBase {
       @Override
       public void onClick(View v) {
         Intent intent = new Intent(getActivity(), MoreSpecializationsActivity.class);
+        CharacterManager.setActiveCharacter(getActiveCharacter());
         startActivity(intent);
       }
     });
@@ -169,7 +171,8 @@ public class BasicsChooser extends ChooserBase {
     spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
       @Override
       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        selectedSpecialization = CareerManager.getSpecialization(career.getName() + "--" +specializations.get(position));
+        selectedSpecialization =
+            CareerManager.getSpecialization(career.getName() + "--" + specializations.get(position));
       }
 
       @Override
