@@ -6,7 +6,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.raincitygamers.holocron.rules.managers.SkillManager;
 import org.raincitygamers.holocron.rules.traits.Characteristic;
-import org.raincitygamers.holocron.rules.traits.DicePool;
+import org.raincitygamers.holocron.rules.traits.DicePool.BonusType;
 import org.raincitygamers.holocron.rules.traits.Skill;
 
 import java.util.HashMap;
@@ -33,7 +33,15 @@ public class SkillAction {
   private final String name;
   private final Characteristic characteristic;
   private final Skill skill;
-  private Map<String, Map<DicePool.BonusType, Integer>> conditionalBonusesMap = new HashMap<>();
+  private Map<String, Map<BonusType, Integer>> conditionalBonusesMap = new HashMap<>();
+
+  private SkillAction(@NotNull String name, @NotNull Characteristic characteristic, @NotNull Skill skill,
+                      @NotNull Map<String, Map<BonusType, Integer>> conditionalBonusesMap) {
+    this.name = name;
+    this.characteristic = characteristic;
+    this.skill = skill;
+    this.conditionalBonusesMap.putAll(conditionalBonusesMap);
+  }
 
   @NotNull
   public static SkillAction of(@NotNull JSONObject jsonObject) throws JSONException {
@@ -46,17 +54,23 @@ public class SkillAction {
       String condition = bonusesForCondition.getString(CONDITION_KEY);
       JSONArray bonuses = bonusesForCondition.getJSONArray(BONUSES_KEY);
 
-      Map<DicePool.BonusType, Integer> bonusesMap = new HashMap<>();
+      Map<BonusType, Integer> bonusesMap = new HashMap<>();
       for (int j = 0; j < bonuses.length(); j++) {
         JSONObject bonus = bonuses.getJSONObject(j);
         String type = bonus.getString(TYPE_KEY);
         int count = bonus.getInt(COUNT_KEY);
-        bonusesMap.put(DicePool.BonusType.of(type), count);
+        bonusesMap.put(BonusType.of(type), count);
       }
 
       skillAction.conditionalBonusesMap.put(condition, bonusesMap);
     }
     return skillAction;
+  }
+
+  @NotNull
+  public static SkillAction of(@NotNull String name, @NotNull Characteristic characteristic, @NotNull Skill skill,
+                               @NotNull Map<String, Map<BonusType, Integer>> conditionalBonusesMap) {
+    return new SkillAction(name, characteristic, skill, conditionalBonusesMap);
   }
 
   @NotNull
@@ -66,11 +80,11 @@ public class SkillAction {
     o.put(CHARACTERISTIC_KEY, characteristic.toString());
     o.put(SKILL_KEY, skill.getName());
     JSONArray conditionalBonuses = new JSONArray();
-    for (Map.Entry<String, Map<DicePool.BonusType, Integer>> entry : conditionalBonusesMap.entrySet()) {
+    for (Map.Entry<String, Map<BonusType, Integer>> entry : conditionalBonusesMap.entrySet()) {
       JSONObject bonusesForCondition = new JSONObject();
       bonusesForCondition.put(CONDITION_KEY, entry.getKey());
       JSONArray bonuses = new JSONArray();
-      for (Map.Entry<DicePool.BonusType, Integer> bonus : entry.getValue().entrySet()) {
+      for (Map.Entry<BonusType, Integer> bonus : entry.getValue().entrySet()) {
         JSONObject bonusEntry = new JSONObject();
         bonusEntry.put(TYPE_KEY, bonus.getKey().toString());
         bonusEntry.put(COUNT_KEY, bonus.getValue());
@@ -86,9 +100,9 @@ public class SkillAction {
   }
 
   @NotNull
-  public Map<DicePool.BonusType, Integer> getPoolBonus(@NotNull Set<String> activeConditions) {
-    Map<DicePool.BonusType, Integer> poolBonus = new HashMap<>();
-    for (Map.Entry<String, Map<DicePool.BonusType, Integer>> entry : conditionalBonusesMap.entrySet()) {
+  public Map<BonusType, Integer> getPoolBonus(@NotNull Set<String> activeConditions) {
+    Map<BonusType, Integer> poolBonus = new HashMap<>();
+    for (Map.Entry<String, Map<BonusType, Integer>> entry : conditionalBonusesMap.entrySet()) {
       if (activeConditions.contains(entry.getKey())) {
         incrementAll(poolBonus, entry.getValue());
       }
@@ -97,14 +111,37 @@ public class SkillAction {
     return poolBonus;
   }
 
-  private void incrementAll(Map<DicePool.BonusType, Integer> pool, Map<DicePool.BonusType, Integer> bonus) {
-    for (Map.Entry<DicePool.BonusType, Integer> entry : bonus.entrySet()) {
+  private void incrementAll(Map<BonusType, Integer> pool, Map<BonusType, Integer> bonus) {
+    for (Map.Entry<BonusType, Integer> entry : bonus.entrySet()) {
       if (pool.containsKey(entry.getKey())) {
         pool.put(entry.getKey(), entry.getValue() + pool.get(entry.getKey()));
       }
       else {
         pool.put(entry.getKey(), entry.getValue());
       }
+    }
+  }
+
+  public static class Builder {
+    @Getter @Setter private String name;
+    @Getter @Setter private Characteristic characteristic;
+    @Getter @Setter private Skill skill;
+    private Map<String, Map<BonusType, Integer>> conditionalBonusesMap = new HashMap<>();
+
+    public void addConditional(@NotNull String conditionalName, @NotNull Map<BonusType, Integer> bonuses) {
+      conditionalBonusesMap.put(conditionalName, bonuses);
+    }
+
+    public SkillAction build() {
+      return SkillAction.of(name, characteristic, skill, conditionalBonusesMap);
+    }
+
+    public void from(@NotNull SkillAction skillAction) {
+      name = skillAction.name;
+      characteristic = skillAction.characteristic;
+      skill = skillAction.skill;
+      conditionalBonusesMap.clear();
+      conditionalBonusesMap.putAll(skillAction.conditionalBonusesMap);
     }
   }
 }

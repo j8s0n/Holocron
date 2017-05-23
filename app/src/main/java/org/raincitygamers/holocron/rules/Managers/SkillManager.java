@@ -3,6 +3,8 @@ package org.raincitygamers.holocron.rules.managers;
 import android.content.Context;
 import android.util.Log;
 
+import com.google.common.collect.ImmutableList;
+
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -10,8 +12,9 @@ import org.json.JSONObject;
 import org.raincitygamers.holocron.rules.traits.Characteristic;
 import org.raincitygamers.holocron.rules.traits.Skill;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -47,18 +50,26 @@ public final class SkillManager extends ManagerBase  {
   }
 
   @NotNull
-  public static Collection<Skill> getCombatSkills() {
-    return combatSkills.values();
+  public static List<Skill> getCombatSkills() {
+    return ImmutableList.copyOf(combatSkills.values());
   }
 
   @NotNull
-  public static Collection<Skill> getGeneralSkills() {
-    return generalSkills.values();
+  public static List<Skill> getGeneralSkills() {
+    return ImmutableList.copyOf(generalSkills.values());
   }
 
   @NotNull
-  public static Collection<Skill> getKnowledgeSkills() {
-    return knowledgeSkills.values();
+  public static List<Skill> getKnowledgeSkills() {
+    return ImmutableList.copyOf(knowledgeSkills.values());
+  }
+
+  public static List<Skill> getAllSkills() {
+    List<Skill> skills = new ArrayList<>();
+    skills.addAll(generalSkills.values());
+    skills.addAll(combatSkills.values());
+    skills.addAll(knowledgeSkills.values());
+    return ImmutableList.copyOf(skills);
   }
 
   public static void loadSkills(@NotNull Context context) {

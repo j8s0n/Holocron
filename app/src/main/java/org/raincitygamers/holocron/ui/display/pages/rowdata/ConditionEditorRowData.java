@@ -16,6 +16,6 @@ public class ConditionEditorRowData implements RowData {
   @NotNull
   @Override
   public Type getType() {
-    return Type.CONDITION_EDITOR;
+    return Type.EDIT_CONDITION;
   }
 }

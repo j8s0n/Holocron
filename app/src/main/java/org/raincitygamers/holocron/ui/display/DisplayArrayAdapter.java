@@ -74,10 +74,10 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
         return displayAttackAction(convertView, parent, (AttackActionRowData) rowData);
       case BUTTON:
         return displayButton(convertView, parent, (ButtonRowData) rowData);
-      case CONDITION_EDITOR:
-        return displayCondition(convertView, parent, (ConditionEditorRowData) rowData);
       case DICE_POOL:
         return displayDicePool(convertView, parent, ((DicePoolRowData) rowData).getDicePool());
+      case EDIT_CONDITION:
+        return displayRemoveCondition(convertView, parent, (ConditionEditorRowData) rowData);
       case INVENTORY:
         return displayInventory(convertView, parent, ((InventoryItemRowData) rowData).getItem());
       case KEY_VALUE:
@@ -213,34 +213,13 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   }
 
   @NotNull
-  private View displayCondition(View convertView, @NotNull ViewGroup parent, @NotNull ConditionEditorRowData rowData) {
-    ViewHolder viewHolder;
-    if (convertView == null || !convertView.getTag().equals(RowData.Type.CONDITION_EDITOR)) {
-      viewHolder = new ViewHolder();
-      LayoutInflater inflater = LayoutInflater.from(getContext());
-      convertView = inflater.inflate(R.layout.list_item_condition, parent, false);
-      viewHolder.conditionName = (TextView) convertView.findViewById(R.id.item_entry);
-      viewHolder.removeButton = (TextView) convertView.findViewById(R.id.remove_button);
-      convertView.setTag(viewHolder);
-      viewHolder.type = RowData.Type.CONDITION_EDITOR;
-    }
-    else {
-      viewHolder = (ViewHolder) convertView.getTag();
-    }
-
-    viewHolder.conditionName.setText(rowData.getCondition());
-    viewHolder.removeButton.setOnClickListener(rowData.getOnClickListener());
-    return convertView;
-  }
-
-  @NotNull
   private View displayDicePool(View convertView, @NotNull ViewGroup parent, @NotNull DicePool dicePool) {
     ViewHolder viewHolder;
     if (convertView == null || !convertView.getTag().equals(RowData.Type.DICE_POOL)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_skill, parent, false);
-      viewHolder.skillName = (TextView) convertView.findViewById(R.id.attack_name);
+      viewHolder.poolName = (TextView) convertView.findViewById(R.id.attack_name);
       viewHolder.skillChar = (TextView) convertView.findViewById(R.id.skill_char);
       viewHolder.diceLayout = (LinearLayout) convertView.findViewById(R.id.dice_layout);
       viewHolder.skillRating = (TextView) convertView.findViewById(R.id.skill_rating);
@@ -252,7 +231,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       viewHolder = (ViewHolder) convertView.getTag();
     }
 
-    viewHolder.skillName.setText(dicePool.getSkill().getName());
+    viewHolder.poolName.setText(dicePool.getSkill().getName());
     viewHolder.skillChar.setText("(" + dicePool.getSkill().getCharacteristic().getAbbreviation() + ")");
     viewHolder.isCareerSkill.setVisibility(dicePool.isCareerSkill() ? View.VISIBLE : View.INVISIBLE);
     dicePool.populateLayout(viewHolder.diceLayout, getContext());
@@ -345,6 +324,27 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       encumbrance = viewHolder.value;
     }
 
+    return convertView;
+  }
+
+  @NotNull
+  private View displayRemoveCondition(View convertView, @NotNull ViewGroup parent, @NotNull ConditionEditorRowData rowData) {
+    ViewHolder viewHolder;
+    if (convertView == null || !convertView.getTag().equals(RowData.Type.EDIT_CONDITION)) {
+      viewHolder = new ViewHolder();
+      LayoutInflater inflater = LayoutInflater.from(getContext());
+      convertView = inflater.inflate(R.layout.list_item_remove_action, parent, false);
+      viewHolder.conditionName = (TextView) convertView.findViewById(R.id.item_entry);
+      viewHolder.removeButton = (TextView) convertView.findViewById(R.id.remove_button);
+      convertView.setTag(viewHolder);
+      viewHolder.type = RowData.Type.EDIT_CONDITION;
+    }
+    else {
+      viewHolder = (ViewHolder) convertView.getTag();
+    }
+
+    viewHolder.conditionName.setText(rowData.getCondition());
+    viewHolder.removeButton.setOnClickListener(rowData.getOnClickListener());
     return convertView;
   }
 
@@ -581,7 +581,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     TextView removeButton;
 
     // Dice Pool
-    TextView skillName;
+    TextView poolName;
 
     // Inventory
     TextView quantity;

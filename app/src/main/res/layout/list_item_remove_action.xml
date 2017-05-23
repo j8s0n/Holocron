@@ -8,13 +8,13 @@
                                              android:padding="8dp">
 
   <TextView
-    android:text="Condition Name"
+    android:id="@+id/item_entry"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/item_entry"
-    app:layout_constraintTop_toTopOf="parent"
+    android:text="Entry Name"
     android:textAppearance="?android:attr/textAppearanceMedium"
-    app:layout_constraintLeft_toLeftOf="parent"/>
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toTopOf="parent"/>
 
   <TextView
     android:text="Remove"

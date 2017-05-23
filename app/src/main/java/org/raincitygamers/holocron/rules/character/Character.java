@@ -2,6 +2,9 @@ package org.raincitygamers.holocron.rules.character;
 
 import android.util.Log;
 
+import com.google.common.collect.ImmutableCollection;
+import com.google.common.collect.ImmutableList;
+
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -245,7 +248,7 @@ public class Character {
     return talents;
   }
 
-  public Map<Specialization, List<Integer>> fixTalents() {
+  private Map<Specialization, List<Integer>> fixTalents() {
     LinkedHashMap<Specialization, List<Integer>> newTalents = new LinkedHashMap<>();
     newTalents.put(primarySpecialization, getOrDefault(primarySpecialization, talents, new ArrayList<Integer>()));
     for (Specialization specialization : secondarySpecializations) {
@@ -350,15 +353,15 @@ public class Character {
   @NotNull
   public List<RowData> getActions() {
     List<RowData> rowData = new ArrayList<>();
-    rowData.addAll(getAttackActions("Action"));
-    rowData.addAll(getSkillActions("Action"));
+    rowData.addAll(getAttackActionsToShow("Action"));
+    rowData.addAll(getSkillActionsToShow("Action"));
     rowData.addAll(getDefense("Action"));
-    rowData.addAll(getActionConditions("Action"));
+    rowData.addAll(getActionConditionsToShow("Action"));
     return rowData;
   }
 
   @NotNull
-  private List<RowData> getAttackActions(@NotNull String page) {
+  private List<RowData> getAttackActionsToShow(@NotNull String page) {
     List<RowData> rowData = new ArrayList<>();
     String sectionId = "Attacks";
     rowData.add(SectionRowData.of(sectionId, page));
@@ -372,7 +375,7 @@ public class Character {
   }
 
   @NotNull
-  private List<RowData> getSkillActions(@NotNull String page) {
+  private List<RowData> getSkillActionsToShow(@NotNull String page) {
     List<RowData> rowData = new ArrayList<>();
     String sectionId = "Skills";
     rowData.add(SectionRowData.of(sectionId, page));
@@ -386,7 +389,7 @@ public class Character {
   }
 
   @NotNull
-  private List<RowData> getActionConditions(@NotNull String page) {
+  private List<RowData> getActionConditionsToShow(@NotNull String page) {
     List<RowData> rowData = new ArrayList<>();
     String sectionId = "Conditions";
     rowData.add(SectionRowData.of(sectionId, page));
@@ -407,6 +410,10 @@ public class Character {
     return actionConditions.remove(actionCondition);
   }
 
+  public boolean removeSkillAction(@NotNull SkillAction skillAction) {
+    return skillActions.remove(skillAction);
+  }
+
   @NotNull
   public Set<String> getActiveConditions() {
     Set<String> activeConditions = new HashSet<>();
@@ -417,6 +424,24 @@ public class Character {
     }
 
     return activeConditions;
+  }
+
+  @NotNull
+  public ImmutableCollection<SkillAction> getAllSkillActions() {
+    return ImmutableList.copyOf(skillActions);
+  }
+
+  @NotNull
+  public SkillAction getSkillAction(@NotNull String skillActionName) {
+    // TODO: Change the skill actions to a map? Is the cost of linear lookup worth it?
+
+    for (SkillAction skillAction : skillActions) {
+      if (skillAction.getName().equals(skillActionName)) {
+        return skillAction;
+      }
+    }
+
+    return SkillAction.of("", Characteristic.BRAWN, SkillManager.getGeneralSkills().iterator().next());
   }
 
   @NotNull

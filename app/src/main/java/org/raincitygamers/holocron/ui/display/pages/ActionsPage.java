@@ -41,6 +41,26 @@ public class ActionsPage extends ContentPage implements FragmentInvalidator {
   private void displayActions() {
     rowData.clear();
     rowData.addAll(CharacterManager.getActiveCharacter().getActions());
+    rowData.add(ButtonRowData.of("Edit Skills", new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        // TODO: Create a menu driven interface, similar to the character generator
+        // Page 1:  Skill Action Name Edit box
+        //          Skill To Use
+        //          Characteristic to Use
+        // Page 2:  Show current conditionals (Name - bonus dice)
+        // Page 3:  New conditional:
+        //            Spinner of conditions
+        //            Each symbol with a number and increment/decrement buttons
+        //            "Apply conditional bonus" button
+        // Page 4:  Done
+        /*
+        Intent intent = new Intent(getActivity(), SkillActionEditorActivity.class);
+        getActivity().startActivity(intent);
+        */
+      }
+    }));
+
     rowData.add(ButtonRowData.of("Edit Conditions", new OnClickListener() {
       @Override
       public void onClick(View v) {
