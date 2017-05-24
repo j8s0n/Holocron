@@ -1,59 +1,42 @@
 package org.raincitygamers.holocron.ui.chooser;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
-import org.raincitygamers.holocron.R;
+import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
-import org.raincitygamers.holocron.ui.ActivityBase;
-import org.raincitygamers.holocron.ui.ContentPage;
+import org.raincitygamers.holocron.ui.DrawerActivityBase;
 import org.raincitygamers.holocron.ui.chooser.pages.BasicsChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.CharacteristicsChooser;
+import org.raincitygamers.holocron.ui.chooser.pages.CombatSkillsChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.DescriptionChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.ForceChooser;
-import org.raincitygamers.holocron.ui.chooser.pages.CombatSkillsChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.GeneralSkillsChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.KnowledgeSkillsChooser;
 import org.raincitygamers.holocron.ui.chooser.pages.TalentsChooser;
 import org.raincitygamers.holocron.ui.display.DisplayActivity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import lombok.Getter;
 import lombok.Setter;
 
-public class ChooserActivity extends ActivityBase {
+// TODO:
+// Convert this into an abstract base class.
+// Derive ChooserActivity from it.
+// Also derive the new EditSkillActionActivity from it.
+public class ChooserActivity extends DrawerActivityBase {
   public static final String ACTION_FINISH = ChooserActivity.class.getCanonicalName();
-  private ListView drawerList;
-  private DrawerLayout drawerLayout;
-  private ActionBarDrawerToggle drawerToggle;
-  @Getter private Character activeCharacter;
-  private int currentPage = -1;
   private FinishReceiver finishReceiver;
   @Getter @Setter private boolean chooserDone = false;
+
+  @Getter private Character activeCharacter;
   @Getter private boolean editActiveCharacter;
 
-  private final List<ContentPage> contentPages = new ArrayList<>();
-  private final List<DrawerCommand> otherDrawerCommands = new ArrayList<>();
-
   public ChooserActivity() {
+    currentPage = 0;
     contentPages.add(new BasicsChooser());
     contentPages.add(new CharacteristicsChooser());
     contentPages.add(new GeneralSkillsChooser());
@@ -81,11 +64,6 @@ public class ChooserActivity extends ActivityBase {
   }
 
   @Override
-  protected void onResume() {
-    super.onResume();
-  }
-
-  @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     editActiveCharacter = getIntent().getBooleanExtra(EDIT_ACTIVE_CHARACTER, false);
@@ -107,22 +85,7 @@ public class ChooserActivity extends ActivityBase {
       registerReceiver(finishReceiver, new IntentFilter(ACTION_FINISH));
     }
 
-    setContentView(R.layout.menu_layout);
-
-    drawerList = (ListView) findViewById(R.id.navList);
-    drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
-    addDrawerItems();
-    setUpDrawer();
-
-    ActionBar actionBar = getSupportActionBar();
-    if (actionBar != null) {
-      actionBar.setDisplayHomeAsUpEnabled(true);
-      actionBar.setHomeButtonEnabled(true);
-    }
-
     selectPage(newPage);
-    setTitle();
   }
 
   @Override
@@ -143,94 +106,10 @@ public class ChooserActivity extends ActivityBase {
     super.onBackPressed();
   }
 
-  private void addDrawerItems() {
-    List<String> drawerEntries = new ArrayList<>();
-    for (ContentPage page : contentPages) {
-      drawerEntries.add(page.getTitle());
-    }
-
-    for (DrawerCommand command : otherDrawerCommands) {
-      drawerEntries.add(command.getLabel());
-    }
-
-    ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, drawerEntries);
-    drawerList.setAdapter(adapter);
-
-    drawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-      @Override
-      public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (position < contentPages.size()) {
-          selectPage(position);
-        }
-        else {
-          otherDrawerCommands.get(position - contentPages.size()).getAction().act();
-        }
-      }
-    });
-  }
-
-  private void setUpDrawer() {
-    drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_open, R.string.drawer_close) {
-      /** Called when a drawer has settled in a completely open state. */
-      public void onDrawerOpened(View drawerView) {
-        super.onDrawerOpened(drawerView);
-        final InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(findViewById(android.R.id.content).getWindowToken(), 0);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-          actionBar.setTitle("Switch Page");
-        }
-
-        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-      }
-
-      /** Called when a drawer has settled in a completely closed state. */
-      public void onDrawerClosed(View view) {
-        super.onDrawerClosed(view);
-        setTitle();
-        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-      }
-    };
-
-    drawerToggle.setDrawerIndicatorEnabled(true);
-    drawerLayout.addDrawerListener(drawerToggle);
-  }
-
-  private void selectPage(int pageNumber) {
-    Fragment displayPage = contentPages.get(pageNumber);
-    FragmentManager fragmentManager = getFragmentManager();
-    if (pageNumber != currentPage) {
-      currentPage = pageNumber;
-      fragmentManager.beginTransaction().replace(R.id.content_frame, displayPage).commit();
-    }
-
-    drawerLayout.closeDrawer(drawerList);
-  }
-
-  private void setTitle() {
-    String title = contentPages.get(currentPage).getTitle();
-    ActionBar actionBar = getSupportActionBar();
-    if (actionBar != null) {
-      actionBar.setTitle(title);
-    }
-  }
-
+  @NotNull
   @Override
-  protected void onPostCreate(Bundle savedInstanceState) {
-    super.onPostCreate(savedInstanceState);
-    // Sync the toggle state after onRestoreInstanceState has occurred.
-    drawerToggle.syncState();
-  }
-
-  @Override
-  public void onConfigurationChanged(Configuration newConfig) {
-    super.onConfigurationChanged(newConfig);
-    drawerToggle.onConfigurationChanged(newConfig);
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    return drawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
+  protected String getTitleString() {
+    return contentPages.get(currentPage).getTitle();
   }
 
   private final class FinishReceiver extends BroadcastReceiver {

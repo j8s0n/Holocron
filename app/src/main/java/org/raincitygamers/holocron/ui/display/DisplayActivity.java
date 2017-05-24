@@ -165,6 +165,7 @@ public class DisplayActivity extends ActivityBase {
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (position < contentPages.size()) {
           selectPage(position);
+          // TODO: Have to pass this in as a lambda.
           activeCharacter.setLastOpenPage(position);
         }
         else {
@@ -202,6 +203,7 @@ public class DisplayActivity extends ActivityBase {
   private void selectPage(int pageNumber) {
     currentPageNumber = pageNumber;
     Fragment displayPage = contentPages.get(pageNumber);
+    // TODO: Will need a lambda for this.
     activeCharacter.setLastOpenPage(pageNumber);
     FragmentManager fragmentManager = getFragmentManager();
     fragmentManager.beginTransaction()
