@@ -74,6 +74,7 @@ public abstract class DrawerActivityBase extends ActivityBase {
       @Override
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (position < contentPages.size()) {
+          reactToPageSelection(position);
           selectPage(position);
         }
         else {
@@ -108,24 +109,34 @@ public abstract class DrawerActivityBase extends ActivityBase {
   }
 
   @NotNull
-  protected abstract String getTitleString();
+  protected String getTitleString() {
+    if (currentPage >= 0 && currentPage < contentPages.size()) {
+      return contentPages.get(currentPage).getTitle();
+    }
+
+    return "";
+  }
+
 
   protected void selectPage(int pageNumber) {
+    if (pageNumber < 0 || pageNumber >= contentPages.size()) {
+      Log.e(LOG_TAG, String.format(Locale.getDefault(), "Invalid page number: %d", currentPage));
+      return;
+    }
+
     Fragment displayPage = contentPages.get(pageNumber);
-    FragmentManager fragmentManager = getFragmentManager();
-    // TODO: Add current page check from ChooserActivity here.
-    fragmentManager.beginTransaction().replace(R.id.content_frame, displayPage).commit();
     if (pageNumber != currentPage) {
+      FragmentManager fragmentManager = getFragmentManager();
       currentPage = pageNumber;
       fragmentManager.beginTransaction().replace(R.id.content_frame, displayPage).commit();
     }
 
 
     drawerLayout.closeDrawer(drawerList);
-    setTitle();
+    setDefaultTitle();
   }
 
-  protected void setTitle() {
+  protected void setDefaultTitle() {
     if (currentPage >= 0 && currentPage < contentPages.size()) {
       setTitle(contentPages.get(currentPage).getTitle());
     }
@@ -140,6 +151,8 @@ public abstract class DrawerActivityBase extends ActivityBase {
       actionBar.setTitle(title);
     }
   }
+
+  protected abstract void reactToPageSelection(int position);
 
   @Override
   protected void onPostCreate(Bundle savedInstanceState) {

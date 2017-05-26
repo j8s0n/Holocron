@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 
-import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.ui.DrawerActivityBase;
@@ -23,10 +22,6 @@ import org.raincitygamers.holocron.ui.display.DisplayActivity;
 import lombok.Getter;
 import lombok.Setter;
 
-// TODO:
-// Convert this into an abstract base class.
-// Derive ChooserActivity from it.
-// Also derive the new EditSkillActionActivity from it.
 public class ChooserActivity extends DrawerActivityBase {
   public static final String ACTION_FINISH = ChooserActivity.class.getCanonicalName();
   private FinishReceiver finishReceiver;
@@ -64,6 +59,15 @@ public class ChooserActivity extends DrawerActivityBase {
   }
 
   @Override
+  public void onBackPressed() {
+    if (finishReceiver != null) {
+      unregisterReceiver(finishReceiver);
+    }
+
+    super.onBackPressed();
+  }
+
+  @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     editActiveCharacter = getIntent().getBooleanExtra(EDIT_ACTIVE_CHARACTER, false);
@@ -98,18 +102,8 @@ public class ChooserActivity extends DrawerActivityBase {
   }
 
   @Override
-  public void onBackPressed() {
-    if (finishReceiver != null) {
-      unregisterReceiver(finishReceiver);
-    }
+  protected void reactToPageSelection(int position) {
 
-    super.onBackPressed();
-  }
-
-  @NotNull
-  @Override
-  protected String getTitleString() {
-    return contentPages.get(currentPage).getTitle();
   }
 
   private final class FinishReceiver extends BroadcastReceiver {
