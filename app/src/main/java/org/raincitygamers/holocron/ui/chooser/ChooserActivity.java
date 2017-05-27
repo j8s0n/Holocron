@@ -31,7 +31,6 @@ public class ChooserActivity extends DrawerActivityBase {
   @Getter private boolean editActiveCharacter;
 
   public ChooserActivity() {
-    currentPage = 0;
     contentPages.add(new BasicsChooser());
     contentPages.add(new CharacteristicsChooser());
     contentPages.add(new GeneralSkillsChooser());

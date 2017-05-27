@@ -31,15 +31,17 @@ public class ForcePowersPage extends AbilityPage {
     rowData.add(0, KeyValueRowData.of("Force Rating", String.format(Locale.US, "%d", pc.getForceRating())));
 
     for (Map.Entry<String, List<Integer>> entry : pc.getForcePowers().entrySet()) {
-      String powerName = entry.getKey();
-      String pageName = "Force Powers";
-      rowData.add(SectionRowData.of(powerName, pageName));
-      if (!pc.isSectionHidden(pageName, powerName)) {
-        List<ForcePowerUpgrade> powerUpgradeList = ForcePowerManager.getList(powerName);
-        List<Integer> chosenPowerUpgrades = entry.getValue();
-        Collections.sort(chosenPowerUpgrades);
-        for (Integer i : chosenPowerUpgrades) {
-          rowData.add(AbilityRowData.of(powerUpgradeList.get(i)));
+      if (!entry.getValue().isEmpty()) {
+        String powerName = entry.getKey();
+        String pageName = "Force Powers";
+        rowData.add(SectionRowData.of(powerName, pageName));
+        if (!pc.isSectionHidden(pageName, powerName)) {
+          List<ForcePowerUpgrade> powerUpgradeList = ForcePowerManager.getList(powerName);
+          List<Integer> chosenPowerUpgrades = entry.getValue();
+          Collections.sort(chosenPowerUpgrades);
+          for (Integer i : chosenPowerUpgrades) {
+            rowData.add(AbilityRowData.of(powerUpgradeList.get(i)));
+          }
         }
       }
     }

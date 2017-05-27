@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
@@ -32,8 +33,7 @@ public class DisplayActivity extends DrawerActivityBase {
   private Character activeCharacter;
 
   private static final String LOG_TAG = DisplayActivity.class.getSimpleName();
-  private static final long THIRTY_SECONDS = 300000;
-  // private static final long THIRTY_SECONDS = 3000;
+  private static final long TEN_SECONDS = 10000;
   private Timer timer;
 
   public DisplayActivity() {
@@ -61,6 +61,7 @@ public class DisplayActivity extends DrawerActivityBase {
         Intent intent = new Intent(DisplayActivity.this, ChooserActivity.class);
         intent.putExtra(EDIT_ACTIVE_CHARACTER, true);
         intent.putExtra(CURRENT_OPEN_PAGE, contentPages.get(currentPage).getTitle());
+        // TODO: Mark a field here to repopulate the drawer.
         startActivity(intent);
       }
     }));
@@ -84,6 +85,7 @@ public class DisplayActivity extends DrawerActivityBase {
   @Override
   protected void onResume() {
     super.onResume();
+    // TODO: If the repopulate field is true, clean out the drawer and repopulate it.
     autoSaveCharacter();
   }
 
@@ -124,14 +126,21 @@ public class DisplayActivity extends DrawerActivityBase {
     activeCharacter.setLastOpenPage(pageNumber);
   }
 
+  @NotNull
   @Override
-  protected void setDefaultTitle() {
+  protected String getTitleString() {
     if (currentPage >= 0 && currentPage < contentPages.size()) {
-      setTitle(activeCharacter.getName() + " - " + contentPages.get(currentPage).getTitle());
+      return activeCharacter.getName() + " - " + contentPages.get(currentPage).getTitle();
     }
     else {
       Log.e(LOG_TAG, String.format(Locale.getDefault(), "Current page %d out of range.", currentPage));
+      return "";
     }
+  }
+
+  @Override
+  protected void setDefaultTitle() {
+    setTitle(getTitleString());
   }
 
   private void autoSaveCharacter() {
@@ -149,7 +158,7 @@ public class DisplayActivity extends DrawerActivityBase {
       }
     };
 
-    timer.scheduleAtFixedRate(saveCharacter, THIRTY_SECONDS, THIRTY_SECONDS);
+    timer.scheduleAtFixedRate(saveCharacter, TEN_SECONDS, TEN_SECONDS);
   }
 
   private void sendCharacter() {

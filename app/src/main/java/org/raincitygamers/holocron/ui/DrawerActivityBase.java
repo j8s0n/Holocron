@@ -152,7 +152,8 @@ public abstract class DrawerActivityBase extends ActivityBase {
     }
   }
 
-  protected abstract void reactToPageSelection(int position);
+  protected void reactToPageSelection(int position) {
+  }
 
   @Override
   protected void onPostCreate(Bundle savedInstanceState) {
