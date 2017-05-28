@@ -12,8 +12,10 @@ import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.SkillAction;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 
-import java.util.HashMap;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
 import lombok.Getter;
 import lombok.NonNull;
@@ -23,12 +25,16 @@ import lombok.RequiredArgsConstructor;
 public class DicePool {
   @Getter @NonNull private final Characteristic characteristic;
   @Getter @NonNull private final Skill skill;
-  private final Map<BonusType, Integer> bonuses = new HashMap<>();
+  private final Map<BonusType, Integer> bonuses = new LinkedHashMap<>();
 
   public void populateLayout(@NotNull LinearLayout layout, @NotNull Context context) {
+    populateLayout(layout, context, getPool(), Collections.EMPTY_SET);
+  }
+
+  public static void populateLayout(@NotNull LinearLayout layout, @NotNull Context context,
+                                    @NotNull Map<BonusType, Integer> pool, Set<BonusType> extraBonuses) {
     int layoutWidth = 0;
     layout.removeAllViews();
-    Map<BonusType, Integer> pool = getPool();
     layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.PROFICIENCY_DIE);
     layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.ABILITY_DIE);
     layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.FORCE_DIE);
@@ -36,17 +42,30 @@ public class DicePool {
     layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.SETBACK_DIE);
     layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.TRIUMPH);
     layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.SUCCESS);
+    layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.FORCE_DIE);
     layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.FORCE_POINT);
     layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.FAILURE);
     layoutWidth += placeAdvantageOrThreatInLayout(layout, context, pool);
+    if (extraBonuses.contains(BonusType.CRITICAL)) {
+      layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.CRITICAL);
+    }
+    if (extraBonuses.contains(BonusType.DAMAGE)) {
+      layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.DAMAGE);
+    }
+    if (extraBonuses.contains(BonusType.SKILL_RANK)) {
+      layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.SKILL_RANK);
+    }
+    if (extraBonuses.contains(BonusType.UPGRADE)) {
+      layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.UPGRADE);
+    }
 
     ViewGroup.LayoutParams params = layout.getLayoutParams();
     params.width = layoutWidth;
     layout.setLayoutParams(params);
   }
 
-  private int placeAdvantageOrThreatInLayout(@NotNull LinearLayout layout, @NotNull Context context,
-                                             @NotNull Map<BonusType, Integer> pool) {
+  private static int placeAdvantageOrThreatInLayout(@NotNull LinearLayout layout, @NotNull Context context,
+                                                    @NotNull Map<BonusType, Integer> pool) {
     int advantageCount = pool.containsKey(BonusType.ADVANTAGE) ? pool.get(BonusType.ADVANTAGE) : 0;
     int threatCount = pool.containsKey(BonusType.THREAT) ? pool.get(BonusType.THREAT) : 0;
     int count = Math.abs(advantageCount - threatCount);
@@ -54,8 +73,8 @@ public class DicePool {
     return placeBonusInLayout(layout, context, type, count);
   }
 
-  private int placeBonusTypeInLayout(@NotNull LinearLayout layout, @NotNull Context context,
-                                     @NotNull Map<BonusType, Integer> pool, @NotNull BonusType type) {
+  private static int placeBonusTypeInLayout(@NotNull LinearLayout layout, @NotNull Context context,
+                                            @NotNull Map<BonusType, Integer> pool, @NotNull BonusType type) {
     int width = 0;
     if (pool.containsKey(type)) {
       int bonusCount = pool.get(type);
@@ -70,8 +89,8 @@ public class DicePool {
     return width;
   }
 
-  private int placeBonusInLayout(@NotNull LinearLayout layout, @NotNull Context context, @NotNull BonusType type,
-                                 int count) {
+  private static int placeBonusInLayout(@NotNull LinearLayout layout, @NotNull Context context,
+                                        @NotNull BonusType type, int count) {
     int width = 0;
     for (int i = 0; i < count; i++) {
       ImageView die = new ImageView(context);
@@ -85,7 +104,7 @@ public class DicePool {
 
   @NotNull
   private Map<BonusType, Integer> getPool() {
-    Map<BonusType, Integer> pool = new HashMap<>(bonuses);
+    Map<BonusType, Integer> pool = new LinkedHashMap<>(bonuses);
     Character pc = CharacterManager.getActiveCharacter();
     int skillScore = pc.getSkillScore(skill);
     if (pool.containsKey(BonusType.SKILL_RANK)) {
@@ -156,22 +175,22 @@ public class DicePool {
   }
 
   public enum BonusType {
-    ABILITY_DIE("Ability Die", R.drawable.ic_ability_die), //TODO!!!!!!!!!!
-    ADVANTAGE("Advantage", R.drawable.ic_advantage), //TODO!!!!!!!!!!
-    BOOST_DIE("Boost Die", R.drawable.ic_boost_die), //TODO!!!!!!!!!!
+    ABILITY_DIE("Ability Die", R.drawable.ic_ability_die),
+    ADVANTAGE("Advantage", R.drawable.ic_advantage),
+    BOOST_DIE("Boost Die", R.drawable.ic_boost_die),
     CRITICAL("Critical", 0),
-    DAMAGE("Damage", 0),
-    FAILURE("Failure", R.drawable.ic_failure), //TODO!!!!!!!!!!
-    FORCE_DIE("Force Die", R.drawable.ic_force_die), //TODO!!!!!!!!!!
+    DAMAGE("Damage", R.drawable.ic_damage),
+    FAILURE("Failure", R.drawable.ic_failure),
+    FORCE_DIE("Force Die", R.drawable.ic_force_die),
     FORCE_POINT("Force Point", R.drawable.ic_force_point),
-    NEGATIVE_SETBACK_DIE("Negative Setback Die", R.drawable.ic_negative_setback_die), //TODO!!!!!!!!!!
-    PROFICIENCY_DIE("Proficiency Die", R.drawable.ic_proficiency_die), //TODO!!!!!!!!!!
-    SETBACK_DIE("Setback Die", R.drawable.ic_setback_die), //TODO!!!!!!!!!!
-    SKILL_RANK("Skill Rank", 0), //TODO!!!!!!!!!!
-    SUCCESS("Success", R.drawable.ic_success), //TODO!!!!!!!!!!
-    THREAT("Threat", R.drawable.ic_threat), //TODO!!!!!!!!!!
-    TRIUMPH("Triumph", R.drawable.ic_triumph), //TODO!!!!!!!!!!
-    UPGRADE("Upgrade", 0); //TODO!!!!!!!!!!
+    NEGATIVE_SETBACK_DIE("Negative Setback Die", R.drawable.ic_negative_setback_die),
+    PROFICIENCY_DIE("Proficiency Die", R.drawable.ic_proficiency_die),
+    SETBACK_DIE("Setback Die", R.drawable.ic_setback_die),
+    SKILL_RANK("Skill Rank", R.drawable.ic_skill_rank),
+    SUCCESS("Success", R.drawable.ic_success),
+    THREAT("Threat", R.drawable.ic_threat),
+    TRIUMPH("Triumph", R.drawable.ic_triumph),
+    UPGRADE("Upgrade", R.drawable.ic_upgrade);
 
     private String name;
     private int resourceId;

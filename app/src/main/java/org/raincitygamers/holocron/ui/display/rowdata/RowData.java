@@ -11,6 +11,7 @@ public interface RowData {
     ADDER,
     ATTACK_ACTION,
     BUTTON,
+    CONDITIONAL_BONUS,
     DICE_POOL,
     EDIT_CONDITION,
     INVENTORY,

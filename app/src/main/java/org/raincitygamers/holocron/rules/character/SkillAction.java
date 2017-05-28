@@ -10,6 +10,7 @@ import org.raincitygamers.holocron.rules.traits.DicePool.BonusType;
 import org.raincitygamers.holocron.rules.traits.Skill;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -33,7 +34,7 @@ public class SkillAction {
   private final String name;
   private final Characteristic characteristic;
   private final Skill skill;
-  private Map<String, Map<BonusType, Integer>> conditionalBonusesMap = new HashMap<>();
+  private Map<String, Map<BonusType, Integer>> conditionalBonusesMap = new LinkedHashMap<>();
 
   private SkillAction(@NotNull String name, @NotNull Characteristic characteristic, @NotNull Skill skill,
                       @NotNull Map<String, Map<BonusType, Integer>> conditionalBonusesMap) {
@@ -126,22 +127,26 @@ public class SkillAction {
     @Getter @Setter private String name;
     @Getter @Setter private Characteristic characteristic;
     @Getter @Setter private Skill skill;
-    private Map<String, Map<BonusType, Integer>> conditionalBonusesMap = new HashMap<>();
+    @Getter private Map<String, Map<BonusType, Integer>> conditionals = new LinkedHashMap<>();
 
-    public void addConditional(@NotNull String conditionalName, @NotNull Map<BonusType, Integer> bonuses) {
-      conditionalBonusesMap.put(conditionalName, bonuses);
+    public void addConditional(@NotNull String conditionalName, @NotNull BonusType bonusType, int count) {
+      if (!conditionals.containsKey(conditionalName)) {
+        conditionals.put(conditionalName, new HashMap<BonusType, Integer>());
+      }
+
+      conditionals.get(conditionalName).put(bonusType, count);
     }
 
     public SkillAction build() {
-      return SkillAction.of(name, characteristic, skill, conditionalBonusesMap);
+      return SkillAction.of(name, characteristic, skill, conditionals);
     }
 
     public void from(@NotNull SkillAction skillAction) {
       name = skillAction.name;
       characteristic = skillAction.characteristic;
       skill = skillAction.skill;
-      conditionalBonusesMap.clear();
-      conditionalBonusesMap.putAll(skillAction.conditionalBonusesMap);
+      conditionals.clear();
+      conditionals.putAll(skillAction.conditionalBonusesMap);
     }
   }
 }

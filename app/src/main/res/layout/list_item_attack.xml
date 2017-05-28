@@ -7,7 +7,7 @@
                                              android:useDefaultMargins="true">
 
   <TextView
-    android:id="@+id/attack_name"
+    android:id="@+id/entry_name"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="Attack Action"
@@ -23,10 +23,10 @@
     android:layout_height="wrap_content"
     android:id="@+id/damage_label"
     android:textAppearance="?android:attr/textAppearanceSmall"
-    app:layout_constraintLeft_toLeftOf="@+id/attack_name"
+    app:layout_constraintLeft_toLeftOf="@+id/entry_name"
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
-    app:layout_constraintTop_toBottomOf="@+id/attack_name"/>
+    app:layout_constraintTop_toBottomOf="@+id/entry_name"/>
 
   <TextView
     android:text="5"
@@ -89,8 +89,8 @@
     android:layout_width="24dp"
     android:layout_height="24dp"
     android:orientation="horizontal"
-    app:layout_constraintTop_toTopOf="@+id/attack_name"
-    app:layout_constraintBottom_toBottomOf="@+id/attack_name"
+    app:layout_constraintTop_toTopOf="@+id/entry_name"
+    app:layout_constraintBottom_toBottomOf="@+id/entry_name"
     android:layout_marginEnd="8dp"
     app:layout_constraintRight_toRightOf="parent">
   </LinearLayout>

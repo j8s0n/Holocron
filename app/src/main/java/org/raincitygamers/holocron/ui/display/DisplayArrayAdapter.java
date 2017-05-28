@@ -32,12 +32,14 @@ import org.raincitygamers.holocron.rules.character.InventoryItem;
 import org.raincitygamers.holocron.rules.character.SkillAction;
 import org.raincitygamers.holocron.rules.traits.Ability;
 import org.raincitygamers.holocron.rules.traits.DicePool;
+import org.raincitygamers.holocron.rules.traits.DicePool.BonusType;
 import org.raincitygamers.holocron.ui.FragmentInvalidator;
 import org.raincitygamers.holocron.ui.display.rowdata.AbilityRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.AdderRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.AttackActionRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.ButtonRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.ConditionEditorRowData;
+import org.raincitygamers.holocron.ui.display.rowdata.ConditionalBonusRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.DicePoolRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.InventoryItemRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.KeyValueRowData;
@@ -50,6 +52,7 @@ import org.raincitygamers.holocron.ui.display.rowdata.TextEditorRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.ThresholdRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.ToggleRowData;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -80,6 +83,8 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
         return displayAttackAction(convertView, parent, (AttackActionRowData) rowData);
       case BUTTON:
         return displayButton(convertView, parent, (ButtonRowData) rowData);
+      case CONDITIONAL_BONUS:
+        return displayConditionalBonus(convertView, parent, ((ConditionalBonusRowData) rowData));
       case DICE_POOL:
         return displayDicePool(convertView, parent, ((DicePoolRowData) rowData).getDicePool());
       case EDIT_CONDITION:
@@ -164,7 +169,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_attack, parent, false);
-      viewHolder.attackName = (TextView) convertView.findViewById(R.id.attack_name);
+      viewHolder.entryName = (TextView) convertView.findViewById(R.id.entry_name);
       viewHolder.diceLayout = (LinearLayout) convertView.findViewById(R.id.dice_layout);
       viewHolder.damageValue = (TextView) convertView.findViewById(R.id.damage_value);
       viewHolder.criticalValue = (TextView) convertView.findViewById(R.id.crit_value);
@@ -181,17 +186,17 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     AttackAction attackAction = rowData.getAttackAction();
     DicePool dicePool = DicePool.of(attackAction);
     dicePool.increasePool(attackAction.getPoolBonus(activeConditions));
-    viewHolder.attackName.setText(attackAction.getName());
+    viewHolder.entryName.setText(attackAction.getName());
     dicePool.populateLayout(viewHolder.diceLayout, getContext());
 
-    int damage = attackAction.getDamage() + dicePool.getBonus(DicePool.BonusType.DAMAGE);
+    int damage = attackAction.getDamage() + dicePool.getBonus(BonusType.DAMAGE);
     int critical = attackAction.getCritical();
     String criticalString;
     if (critical < 0) {
       criticalString = "-";
     }
     else {
-      critical = Math.max(1, critical - dicePool.getBonus(DicePool.BonusType.CRITICAL));
+      critical = Math.max(1, critical - dicePool.getBonus(BonusType.CRITICAL));
       criticalString = String.format(Locale.US, "%d", critical);
     }
 
@@ -223,13 +228,56 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   }
 
   @NotNull
+  private View displayConditionalBonus(View convertView, @NonNull ViewGroup parent, @NotNull ConditionalBonusRowData rowData) {
+    ViewHolder viewHolder;
+    if (convertView == null || !convertView.getTag().equals(RowData.Type.CONDITIONAL_BONUS)) {
+      viewHolder = new ViewHolder();
+      LayoutInflater inflater = LayoutInflater.from(getContext());
+      convertView = inflater.inflate(R.layout.list_item_skill, parent, false);
+      viewHolder.entryName = (TextView) convertView.findViewById(R.id.entry_name);
+      viewHolder.skillChar = (TextView) convertView.findViewById(R.id.skill_char);
+      viewHolder.diceLayout = (LinearLayout) convertView.findViewById(R.id.dice_layout);
+      viewHolder.skillRating = (TextView) convertView.findViewById(R.id.skill_rating);
+      viewHolder.isCareerSkill = (TextView) convertView.findViewById(R.id.career_skill);
+      convertView.setTag(viewHolder);
+      viewHolder.type = RowData.Type.CONDITIONAL_BONUS;
+    }
+    else {
+      viewHolder = (ViewHolder) convertView.getTag();
+    }
+
+    viewHolder.entryName.setText(rowData.getCondition());
+    Set<BonusType> extras = new HashSet<>();
+    extras.add(BonusType.SKILL_RANK);
+    extras.add(BonusType.UPGRADE);
+    DicePool.populateLayout(viewHolder.diceLayout, getContext(), rowData.getBonuses(), extras);
+
+    viewHolder.skillChar.setText("");
+    viewHolder.skillRating.setText("");
+    viewHolder.isCareerSkill.setText("");
+    convertView.setOnLongClickListener(new OnLongClickListener() {
+      @Override
+      public boolean onLongClick(View v) {
+        // TODO: Open in the bonus editor.
+        // TODO: How do I pass values back from the bonus editor?
+        if (invalidator != null) {
+          invalidator.invalidate();
+        }
+
+        return true;
+      }
+    });
+    return convertView;
+  }
+
+  @NotNull
   private View displayDicePool(View convertView, @NotNull ViewGroup parent, @NotNull DicePool dicePool) {
     ViewHolder viewHolder;
     if (convertView == null || !convertView.getTag().equals(RowData.Type.DICE_POOL)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_skill, parent, false);
-      viewHolder.poolName = (TextView) convertView.findViewById(R.id.attack_name);
+      viewHolder.poolName = (TextView) convertView.findViewById(R.id.entry_name);
       viewHolder.skillChar = (TextView) convertView.findViewById(R.id.skill_char);
       viewHolder.diceLayout = (LinearLayout) convertView.findViewById(R.id.dice_layout);
       viewHolder.skillRating = (TextView) convertView.findViewById(R.id.skill_rating);
@@ -399,7 +447,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_skill, parent, false);
-      viewHolder.attackName = (TextView) convertView.findViewById(R.id.attack_name);
+      viewHolder.entryName = (TextView) convertView.findViewById(R.id.entry_name);
       viewHolder.skillChar = (TextView) convertView.findViewById(R.id.skill_char);
       viewHolder.diceLayout = (LinearLayout) convertView.findViewById(R.id.dice_layout);
       viewHolder.skillRating = (TextView) convertView.findViewById(R.id.skill_rating);
@@ -415,7 +463,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     final SkillAction skillAction = rowData.getSkillAction();
     DicePool dicePool = DicePool.of(skillAction);
     dicePool.increasePool(skillAction.getPoolBonus(activeConditions));
-    viewHolder.attackName.setText(skillAction.getName());
+    viewHolder.entryName.setText(skillAction.getName());
     dicePool.populateLayout(viewHolder.diceLayout, getContext());
     viewHolder.skillChar.setText("");
     viewHolder.skillRating.setText("");
@@ -701,7 +749,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     TextView sectionLabel;
 
     // Skill Action
-    TextView attackName;
+    TextView entryName;
     TextView skillChar;
     LinearLayout diceLayout;
     TextView skillRating;

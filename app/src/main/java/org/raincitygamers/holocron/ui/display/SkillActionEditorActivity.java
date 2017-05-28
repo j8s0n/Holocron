@@ -12,15 +12,18 @@ import org.raincitygamers.holocron.rules.character.SkillAction;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.rules.managers.SkillManager;
 import org.raincitygamers.holocron.rules.traits.Characteristic;
+import org.raincitygamers.holocron.rules.traits.DicePool.BonusType;
 import org.raincitygamers.holocron.ui.ActivityBase;
 import org.raincitygamers.holocron.ui.FragmentInvalidator;
 import org.raincitygamers.holocron.ui.display.rowdata.ButtonRowData;
+import org.raincitygamers.holocron.ui.display.rowdata.ConditionalBonusRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.RowData;
 import org.raincitygamers.holocron.ui.display.rowdata.SpinnerRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.TextEditorRowData;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class SkillActionEditorActivity extends ActivityBase implements FragmentInvalidator {
   public static final String SKILL_ACTION_TO_EDIT = "SKILL_ACTION_TO_EDIT";
@@ -60,6 +63,13 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
       name = skillActionToEdit.getName();
       characteristic = skillActionToEdit.getCharacteristic().toString();
       skill = skillActionToEdit.getSkill().getName();
+      Map<String, Map<BonusType, Integer>> bonusesMap = skillActionToEdit.getConditionalBonusesMap();
+      for (Map.Entry<String, Map<BonusType, Integer>> entry : bonusesMap.entrySet()) {
+        String condition = entry.getKey();
+        for (Map.Entry<BonusType, Integer> bonusEntry : entry.getValue().entrySet()) {
+          skillActionBuilder.addConditional(condition, bonusEntry.getKey(), bonusEntry.getValue());
+        }
+      }
     }
 
     rowData.add(TextEditorRowData.of(name, "Name", new TextEditorRowData.EditTextWatcher() {
@@ -69,7 +79,6 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
       }
     }));
 
-    // Add the char spinner.
     List<String> characteristics = Characteristic.getNames();
     int characteristicIndex = characteristics.indexOf(characteristic);
     rowData.add(SpinnerRowData.of(characteristics, characteristicIndex, new SpinnerRowData.SpinnerWatcher() {
@@ -79,7 +88,6 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
       }
     }));
 
-    // Add the skill spinner.
     List<String> skills = SkillManager.getAllSkillNames();
     int skillIndex = skills.indexOf(skill);
     rowData.add(SpinnerRowData.of(skills, skillIndex, new SpinnerRowData.SpinnerWatcher() {
@@ -90,14 +98,15 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
     }));
 
     // Add the conditions layout/row data (with long tap to edit).
+    // Populate from builder.
+    for (Map.Entry<String, Map<BonusType, Integer>> entry : skillActionBuilder.getConditionals().entrySet()) {
+      rowData.add(ConditionalBonusRowData.of(entry.getKey(), entry.getValue()));
+    }
 
-    // TODO: Update the builder in the spinner's select methods.
-    // TODO: Somewhere is a done button. Build the builder and update the pc.
-
-    // Add the new bonus button.
     rowData.add(ButtonRowData.of("Add Bonus", new View.OnClickListener() {
       @Override
       public void onClick(View v) {
+        // TODO::::::::::::::::::::::::::::::::::::::::::::::::::::
         // Add the activity to edit/add a bonus.
         // Add an "always" entry to the top of the conditions.
         // How do I get the values back from the bonus activity????
