@@ -53,8 +53,6 @@ public abstract class DrawerActivityBase extends ActivityBase {
       actionBar.setDisplayHomeAsUpEnabled(true);
       actionBar.setHomeButtonEnabled(true);
     }
-
-    setTitle(getTitleString());
   }
 
   private void addDrawerItems() {
@@ -109,6 +107,7 @@ public abstract class DrawerActivityBase extends ActivityBase {
   }
 
   @NotNull
+  @Override
   protected String getTitleString() {
     if (currentPage >= 0 && currentPage < contentPages.size()) {
       return contentPages.get(currentPage).getTitle();

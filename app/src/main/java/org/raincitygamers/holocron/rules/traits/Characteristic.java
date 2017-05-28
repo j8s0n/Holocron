@@ -2,6 +2,9 @@ package org.raincitygamers.holocron.rules.traits;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum Characteristic {
   BRAWN("Brawn", "Br"),
   AGILITY("Agility", "Ag"),
@@ -36,5 +39,14 @@ public enum Characteristic {
 
   public String getAbbreviation() {
     return abbreviation;
+  }
+
+  public static List<String> getNames() {
+    List<String> names = new ArrayList<>();
+    for (Characteristic c : values()) {
+      names.add(c.toString());
+    }
+
+    return names;
   }
 }

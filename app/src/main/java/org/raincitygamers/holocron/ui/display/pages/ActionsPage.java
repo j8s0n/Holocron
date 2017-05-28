@@ -41,19 +41,32 @@ public class ActionsPage extends ContentPage implements FragmentInvalidator {
   private void displayActions() {
     rowData.clear();
     rowData.addAll(CharacterManager.getActiveCharacter().getActions());
-    rowData.add(ButtonRowData.of("Edit Skills", new OnClickListener() {
+    rowData.add(ButtonRowData.of("Add Skill", new OnClickListener() {
       @Override
       public void onClick(View v) {
-        // TODO: Create a menu driven interface, similar to the character generator
-        // Page 1:  Skill Action Name Edit box
-        //          Skill To Use
-        //          Characteristic to Use
-        // Page 2:  Show current conditionals (Name - bonus dice)
-        // Page 3:  New conditional:
-        //            Spinner of conditions
-        //            Each symbol with a number and increment/decrement buttons
-        //            "Apply conditional bonus" button
-        // Page 4:  Done
+        // TODO: No intermediary.
+        // Have an add button at the bottom.
+        // Bring up the editor.
+        // Have a remove button on the editor.
+        // Long press a skill action to open it in the editor.
+        // In the editor, if there are no conditions on the PC, add a note to add conditions.
+
+        // Intent intent = new Intent(getActivity(), SkillActionEditorActivity.class);
+        // getActivity().startActivity(intent);
+        // BETTER IDEA!!!!!!!!!!!!!! ????
+
+        // FUCK NO!!!!
+        // FUCK NO!!!!
+        // FUCK NO!!!!
+        // FUCK NO!!!!
+        // Just use the drawer activity.
+
+        //  Create the list of current skill actions, with the edit, remove, and add buttons as above.
+        //  For the editor, use a static-ish activity. Show the name, skill spinner, char spinner,
+        //  and either:
+        //    a list of cells for conditions
+        //    - each cell is a condition spinner and grid of dice icons, counts, and +/- buttons.
+        //    same cells but programatically added to the activity
         /*
         Intent intent = new Intent(getActivity(), SkillActionEditorActivity.class);
         getActivity().startActivity(intent);

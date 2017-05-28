@@ -64,14 +64,6 @@ public final class SkillManager extends ManagerBase  {
     return ImmutableList.copyOf(knowledgeSkills.values());
   }
 
-  public static List<Skill> getAllSkills() {
-    List<Skill> skills = new ArrayList<>();
-    skills.addAll(generalSkills.values());
-    skills.addAll(combatSkills.values());
-    skills.addAll(knowledgeSkills.values());
-    return ImmutableList.copyOf(skills);
-  }
-
   public static void loadSkills(@NotNull Context context) {
     getFileContent(context, SKILLS_FILE, FileSource.LOCAL_FIRST, new ContentParser() {
       @Override
@@ -84,6 +76,23 @@ public final class SkillManager extends ManagerBase  {
         }
       }
     });
+  }
+
+  public static List<String> getAllSkillNames() {
+    List<String> skillNames = new ArrayList<>();
+    for (Skill skill : getAllSkills()) {
+      skillNames.add(skill.getName());
+    }
+
+    return skillNames;
+  }
+
+  private static List<Skill> getAllSkills() {
+    List<Skill> skills = new ArrayList<>();
+    skills.addAll(generalSkills.values());
+    skills.addAll(combatSkills.values());
+    skills.addAll(knowledgeSkills.values());
+    return ImmutableList.copyOf(skills);
   }
 
   private static void parseSkills(@NotNull JSONArray skillsJson) {

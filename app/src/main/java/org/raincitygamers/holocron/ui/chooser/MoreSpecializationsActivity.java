@@ -1,17 +1,17 @@
 package org.raincitygamers.holocron.ui.chooser;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
 import com.google.common.collect.Lists;
 
+import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.Specialization;
 import org.raincitygamers.holocron.rules.managers.CareerManager;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
+import org.raincitygamers.holocron.ui.ActivityBase;
 import org.raincitygamers.holocron.ui.chooser.SpecializationsArrayAdapter.SpecializationRowData;
 
 import java.util.ArrayList;
@@ -20,18 +20,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class MoreSpecializationsActivity extends AppCompatActivity {
+public class MoreSpecializationsActivity extends ActivityBase {
   private List<SpecializationRowData> specializations = new ArrayList<>();
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.choose_more_specializations);
-
-    ActionBar actionBar = getSupportActionBar();
-    if (actionBar != null) {
-      actionBar.setTitle("More Specializations");
-    }
 
     Set<Specialization> secondarySpecializations = new HashSet<>();
     Character pc = CharacterManager.getActiveCharacter();
@@ -52,5 +47,11 @@ public class MoreSpecializationsActivity extends AppCompatActivity {
     SpecializationsArrayAdapter adapter = new SpecializationsArrayAdapter(this, this.specializations);
     adapter.notifyDataSetChanged();
     specializationsListView.setAdapter(adapter);
+  }
+
+  @NotNull
+  @Override
+  protected String getTitleString() {
+    return "More Specializations";
   }
 }

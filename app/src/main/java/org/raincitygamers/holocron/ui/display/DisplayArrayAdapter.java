@@ -401,7 +401,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     }
 
     Set<String> activeConditions = getActiveCharacter().getActiveConditions();
-    SkillAction skillAction = rowData.getSkillAction();
+    final SkillAction skillAction = rowData.getSkillAction();
     DicePool dicePool = DicePool.of(skillAction);
     dicePool.increasePool(skillAction.getPoolBonus(activeConditions));
     viewHolder.attackName.setText(skillAction.getName());
@@ -409,6 +409,23 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     viewHolder.skillChar.setText("");
     viewHolder.skillRating.setText("");
     viewHolder.isCareerSkill.setText("");
+    convertView.setOnLongClickListener(new OnLongClickListener() {
+      @Override
+      public boolean onLongClick(View v) {
+        // TODO: Open in the editor activity.
+        /*
+        Intent intent = new Intent(getContext(), SkillActionEditorActivity.class);
+        intent.putExtra(SkillActionEditorActivity.SKILL_ACTION_TO_EDIT, skillAction.getName());
+        getContext().startActivity(intent);
+        */
+
+        if (invalidator != null) {
+          invalidator.invalidate();
+        }
+
+        return true;
+      }
+    });
     return convertView;
   }
 

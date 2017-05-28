@@ -4,15 +4,26 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-public class ActivityBase extends AppCompatActivity {
+public abstract class ActivityBase extends AppCompatActivity {
   public static final String EDIT_ACTIVE_CHARACTER = "edit_active_character";
   public static final String CURRENT_OPEN_PAGE = "current_open_page";
+
+  @Override
+  protected void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    String title = getTitleString();
+    if (title != null) {
+      setTitle(title);
+    }
+  }
 
   protected void displayPermissionAlert(String type) {
     AlertDialog alertDialog = new AlertDialog.Builder(this).create();
@@ -51,6 +62,8 @@ public class ActivityBase extends AppCompatActivity {
            checkPermission(perm, android.os.Process.myPid(), android.os.Process.myUid());
 
   }
+
+  protected abstract String getTitleString();
 
   protected interface CommandAction {
     void act();

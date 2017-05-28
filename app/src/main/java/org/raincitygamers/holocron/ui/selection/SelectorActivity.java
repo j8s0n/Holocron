@@ -86,6 +86,11 @@ public class SelectorActivity extends ActivityBase {
     });
   }
 
+  @Override
+  protected String getTitleString() {
+    return null;
+  }
+
   private void checkPermissions() {
     if (!permissionGranted(Manifest.permission.ACCESS_NETWORK_STATE) ||
         !permissionGranted(Manifest.permission.INTERNET)) {

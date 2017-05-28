@@ -1,7 +1,6 @@
 package org.raincitygamers.holocron.ui.display;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
@@ -20,18 +19,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConditionEditorActivity extends ActivityBase implements FragmentInvalidator {
-  DisplayArrayAdapter arrayAdapter;
-  List<RowData> rowData = new ArrayList<>();
+  private DisplayArrayAdapter arrayAdapter;
+  private List<RowData> rowData = new ArrayList<>();
+  private final Character pc = CharacterManager.getActiveCharacter();
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.edit_conditions);
-
-    ActionBar actionBar = getSupportActionBar();
-    if (actionBar != null) {
-      actionBar.setTitle(CharacterManager.getActiveCharacter().getName() + " - Conditions Editor");
-    }
 
     arrayAdapter = new DisplayArrayAdapter(this, rowData, this);
     ListView conditions = (ListView) findViewById(R.id.conditions_list);
@@ -41,7 +36,6 @@ public class ConditionEditorActivity extends ActivityBase implements FragmentInv
 
   private void listConditions() {
     rowData.clear();
-    final Character pc = CharacterManager.getActiveCharacter();
     for (final String condition : pc.getAllConditions()) {
       rowData.add(ConditionEditorRowData.of(condition, new OnClickListener() {
         @Override
@@ -66,5 +60,11 @@ public class ConditionEditorActivity extends ActivityBase implements FragmentInv
   @Override
   public void invalidate() {
     listConditions();
+  }
+
+  @NotNull
+  @Override
+  protected String getTitleString() {
+    return pc.getName() + " - Conditions Editor";
   }
 }

@@ -2,8 +2,7 @@ package org.raincitygamers.holocron.rules.character;
 
 import android.util.Log;
 
-import com.google.common.collect.ImmutableCollection;
-import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
@@ -107,7 +106,7 @@ public class Character {
   @Getter private final Set<Specialization> secondarySpecializations = new LinkedHashSet<>();
   @Getter private List<Obligation> obligations = new ArrayList<>();
   private Map<String, Boolean> actionConditions = new HashMap<>();
-  private List<SkillAction> skillActions = new ArrayList<>();
+  private Map<String, SkillAction> skillActions = new LinkedHashMap<>();
   private List<AttackAction> attackActions = new ArrayList<>();
 
   @Getter @Setter private int age;
@@ -190,7 +189,7 @@ public class Character {
     this.credits = builder.credits;
     this.talents.putAll(builder.talents);
     this.actionConditions.putAll(builder.actionConditions);
-    this.skillActions.addAll(builder.skillActions);
+    this.skillActions.putAll(builder.skillActions);
     this.attackActions.addAll(builder.attackActions);
     this.hiddenSections.addAll(builder.hiddenSections);
   }
@@ -380,8 +379,8 @@ public class Character {
     String sectionId = "Skills";
     rowData.add(SectionRowData.of(sectionId, page));
     if (!hiddenSections.contains(HiddenSection.of(page, sectionId))) {
-      for (SkillAction skillAction : skillActions) {
-        rowData.add(SkillActionRowData.of(skillAction));
+      for (Map.Entry<String, SkillAction> entry : skillActions.entrySet()) {
+        rowData.add(SkillActionRowData.of(entry.getValue()));
       }
     }
 
@@ -410,8 +409,11 @@ public class Character {
     return actionConditions.remove(actionCondition);
   }
 
-  public boolean removeSkillAction(@NotNull SkillAction skillAction) {
-    return skillActions.remove(skillAction);
+  public void addSkillAction(@NotNull SkillAction skillAction) {
+    skillActions.put(skillAction.getName(), skillAction);
+  }
+  public boolean removeSkillAction(@NotNull String skillActionName) {
+    return (skillActions.remove(skillActionName) != null);
   }
 
   @NotNull
@@ -427,21 +429,18 @@ public class Character {
   }
 
   @NotNull
-  public ImmutableCollection<SkillAction> getAllSkillActions() {
-    return ImmutableList.copyOf(skillActions);
+  public ImmutableMap<String, SkillAction> getAllSkillActions() {
+    return ImmutableMap.copyOf(skillActions);
   }
 
   @NotNull
   public SkillAction getSkillAction(@NotNull String skillActionName) {
-    // TODO: Change the skill actions to a map? Is the cost of linear lookup worth it?
-
-    for (SkillAction skillAction : skillActions) {
-      if (skillAction.getName().equals(skillActionName)) {
-        return skillAction;
-      }
+    if (skillActions.containsKey(skillActionName)) {
+      return skillActions.get(skillActionName);
     }
-
-    return SkillAction.of("", Characteristic.BRAWN, SkillManager.getGeneralSkills().iterator().next());
+    else {
+      return SkillAction.of("", Characteristic.BRAWN, SkillManager.getGeneralSkills().iterator().next());
+    }
   }
 
   @NotNull
@@ -512,7 +511,7 @@ public class Character {
   @NotNull
   private JSONArray skillActionsAsJsonArray() throws JSONException {
     JSONArray a = new JSONArray();
-    for (SkillAction skillAction : skillActions) {
+    for (SkillAction skillAction : skillActions.values()) {
       a.put(skillAction.toJsonObject());
     }
 
@@ -943,7 +942,7 @@ public class Character {
     private int lastOpenPage = 0;
     private List<InventoryItem> inventory = new ArrayList<>();
     private Map<String, Boolean> actionConditions = new HashMap<>();
-    private List<SkillAction> skillActions = new ArrayList<>();
+    private Map<String, SkillAction> skillActions = new LinkedHashMap<>();
     private List<AttackAction> attackActions = new ArrayList<>();
     private List<HiddenSection> hiddenSections = new ArrayList<>();
 
@@ -1082,7 +1081,10 @@ public class Character {
 
     @NotNull
     Builder skillActions(@NotNull List<SkillAction> skillActions) {
-      this.skillActions.addAll(skillActions);
+      for (SkillAction skillAction : skillActions) {
+        this.skillActions.put(skillAction.getName(), skillAction);
+      }
+
       return this;
     }
 

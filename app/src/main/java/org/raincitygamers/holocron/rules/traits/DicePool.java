@@ -156,22 +156,22 @@ public class DicePool {
   }
 
   public enum BonusType {
-    ABILITY_DIE("Ability Die", R.drawable.ic_ability_die),
-    ADVANTAGE("Advantage", R.drawable.ic_advantage),
-    BOOST_DIE("Boost Die", R.drawable.ic_boost_die),
+    ABILITY_DIE("Ability Die", R.drawable.ic_ability_die), //TODO!!!!!!!!!!
+    ADVANTAGE("Advantage", R.drawable.ic_advantage), //TODO!!!!!!!!!!
+    BOOST_DIE("Boost Die", R.drawable.ic_boost_die), //TODO!!!!!!!!!!
     CRITICAL("Critical", 0),
     DAMAGE("Damage", 0),
-    FAILURE("Failure", R.drawable.ic_failure),
-    FORCE_DIE("Force Die", R.drawable.ic_force_die),
+    FAILURE("Failure", R.drawable.ic_failure), //TODO!!!!!!!!!!
+    FORCE_DIE("Force Die", R.drawable.ic_force_die), //TODO!!!!!!!!!!
     FORCE_POINT("Force Point", R.drawable.ic_force_point),
-    NEGATIVE_SETBACK_DIE("Negative Setback Die", R.drawable.ic_negative_setback_die),
-    PROFICIENCY_DIE("Proficiency Die", R.drawable.ic_proficiency_die),
-    SETBACK_DIE("Setback Die", R.drawable.ic_setback_die),
-    SKILL_RANK("Skill Rank", 0),
-    SUCCESS("Success", R.drawable.ic_success),
-    THREAT("Threat", R.drawable.ic_threat),
-    TRIUMPH("Triumph", R.drawable.ic_triumph),
-    UPGRADE("Upgrade", 0);
+    NEGATIVE_SETBACK_DIE("Negative Setback Die", R.drawable.ic_negative_setback_die), //TODO!!!!!!!!!!
+    PROFICIENCY_DIE("Proficiency Die", R.drawable.ic_proficiency_die), //TODO!!!!!!!!!!
+    SETBACK_DIE("Setback Die", R.drawable.ic_setback_die), //TODO!!!!!!!!!!
+    SKILL_RANK("Skill Rank", 0), //TODO!!!!!!!!!!
+    SUCCESS("Success", R.drawable.ic_success), //TODO!!!!!!!!!!
+    THREAT("Threat", R.drawable.ic_threat), //TODO!!!!!!!!!!
+    TRIUMPH("Triumph", R.drawable.ic_triumph), //TODO!!!!!!!!!!
+    UPGRADE("Upgrade", 0); //TODO!!!!!!!!!!
 
     private String name;
     private int resourceId;
