@@ -54,6 +54,10 @@
       android:name=".ui.chooser.MoreSpecializationsActivity"
       android:screenOrientation="portrait">
     </activity>
+    <activity
+      android:name=".ui.display.SkillActionEditorActivity"
+      android:screenOrientation="portrait">
+    </activity>
   </application>
 
 </manifest>

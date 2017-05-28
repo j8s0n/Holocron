@@ -12,8 +12,8 @@ import org.raincitygamers.holocron.rules.traits.DicePool;
 import org.raincitygamers.holocron.rules.traits.Skill;
 import org.raincitygamers.holocron.ui.ContentPage;
 import org.raincitygamers.holocron.ui.display.DisplayArrayAdapter;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.DicePoolRowData;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
+import org.raincitygamers.holocron.ui.display.rowdata.DicePoolRowData;
+import org.raincitygamers.holocron.ui.display.rowdata.RowData;
 
 import java.util.ArrayList;
 import java.util.Collection;

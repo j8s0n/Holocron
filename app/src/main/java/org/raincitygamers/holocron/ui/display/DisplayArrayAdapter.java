@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -29,20 +31,21 @@ import org.raincitygamers.holocron.rules.character.SkillAction;
 import org.raincitygamers.holocron.rules.traits.Ability;
 import org.raincitygamers.holocron.rules.traits.DicePool;
 import org.raincitygamers.holocron.ui.FragmentInvalidator;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.AbilityRowData;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.AdderRowData;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.AttackActionRowData;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.ButtonRowData;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.ConditionEditorRowData;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.DicePoolRowData;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.InventoryItemRowData;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData.KvPair;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.SectionRowData;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.SkillActionRowData;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.ThresholdRowData;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.ToggleRowData;
+import org.raincitygamers.holocron.ui.display.rowdata.AbilityRowData;
+import org.raincitygamers.holocron.ui.display.rowdata.AdderRowData;
+import org.raincitygamers.holocron.ui.display.rowdata.AttackActionRowData;
+import org.raincitygamers.holocron.ui.display.rowdata.ButtonRowData;
+import org.raincitygamers.holocron.ui.display.rowdata.ConditionEditorRowData;
+import org.raincitygamers.holocron.ui.display.rowdata.DicePoolRowData;
+import org.raincitygamers.holocron.ui.display.rowdata.InventoryItemRowData;
+import org.raincitygamers.holocron.ui.display.rowdata.KeyValueRowData;
+import org.raincitygamers.holocron.ui.display.rowdata.KeyValueRowData.KvPair;
+import org.raincitygamers.holocron.ui.display.rowdata.RowData;
+import org.raincitygamers.holocron.ui.display.rowdata.SectionRowData;
+import org.raincitygamers.holocron.ui.display.rowdata.SkillActionRowData;
+import org.raincitygamers.holocron.ui.display.rowdata.TextEditorRowData;
+import org.raincitygamers.holocron.ui.display.rowdata.ThresholdRowData;
+import org.raincitygamers.holocron.ui.display.rowdata.ToggleRowData;
 
 import java.util.List;
 import java.util.Locale;
@@ -86,6 +89,8 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
         return displaySection(convertView, parent, (SectionRowData) rowData);
       case SKILL_ACTION:
         return displaySkillAction(convertView, parent, (SkillActionRowData) rowData);
+      case TEXT_EDITOR:
+return displayTextEdit(convertView, parent, (TextEditorRowData) rowData);
       case THRESHOLD:
         return displayThreshold(convertView, parent, (ThresholdRowData) rowData);
       case TOGGLE:
@@ -412,12 +417,9 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     convertView.setOnLongClickListener(new OnLongClickListener() {
       @Override
       public boolean onLongClick(View v) {
-        // TODO: Open in the editor activity.
-        /*
         Intent intent = new Intent(getContext(), SkillActionEditorActivity.class);
         intent.putExtra(SkillActionEditorActivity.SKILL_ACTION_TO_EDIT, skillAction.getName());
         getContext().startActivity(intent);
-        */
 
         if (invalidator != null) {
           invalidator.invalidate();
@@ -426,6 +428,52 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
         return true;
       }
     });
+    return convertView;
+  }
+
+  @NotNull
+  private View displayTextEdit(View convertView, @NotNull ViewGroup parent, @NotNull final TextEditorRowData rowData) {
+    final ViewHolder viewHolder;
+    if (convertView == null || !convertView.getTag().equals(RowData.Type.TEXT_EDITOR)) {
+      viewHolder = new ViewHolder();
+      LayoutInflater inflater = LayoutInflater.from(getContext());
+      convertView = inflater.inflate(R.layout.list_item_text_editor, parent, false);
+      viewHolder.textEditor = (EditText) convertView.findViewById(R.id.text_editor);
+      convertView.setTag(viewHolder);
+      viewHolder.type = RowData.Type.TEXT_EDITOR;
+    }
+    else {
+      viewHolder = (ViewHolder) convertView.getTag();
+    }
+
+    viewHolder.textEditor.setText(rowData.getTextValue());
+    viewHolder.textEditor.setHint(rowData.getHint());
+    viewHolder.textEditor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+      @Override
+      public void onFocusChange(View v, boolean hasFocus) {
+        if (!hasFocus) {
+          String name = viewHolder.textEditor.getText().toString();
+          rowData.getWatcher().valueUpdated(name);
+          rowData.setTextValue(name);
+        }
+      }
+    });
+
+    viewHolder.textEditor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+      @Override
+      public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        if(actionId == EditorInfo.IME_ACTION_DONE)
+        {
+          String name = v.getText().toString();
+          rowData.getWatcher().valueUpdated(name);
+          rowData.setTextValue(name);
+          return true;
+        }
+
+        return false;
+      }
+    });
+
     return convertView;
   }
 
@@ -619,6 +667,9 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     LinearLayout diceLayout;
     TextView skillRating;
     TextView isCareerSkill;
+
+    // Text Editor
+    EditText textEditor;
 
     // Toggle
     Switch toggleSwitch;

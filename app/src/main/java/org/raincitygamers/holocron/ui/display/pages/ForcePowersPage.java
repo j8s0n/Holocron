@@ -4,10 +4,10 @@ import org.raincitygamers.holocron.rules.traits.ForcePowerUpgrade;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.rules.managers.ForcePowerManager;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.AbilityRowData;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.SectionRowData;
+import org.raincitygamers.holocron.ui.display.rowdata.AbilityRowData;
+import org.raincitygamers.holocron.ui.display.rowdata.KeyValueRowData;
+import org.raincitygamers.holocron.ui.display.rowdata.RowData;
+import org.raincitygamers.holocron.ui.display.rowdata.SectionRowData;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -10,7 +10,7 @@ import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.ui.ContentPage;
 import org.raincitygamers.holocron.ui.FragmentInvalidator;
 import org.raincitygamers.holocron.ui.display.DisplayArrayAdapter;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
+import org.raincitygamers.holocron.ui.display.rowdata.RowData;
 
 import java.util.ArrayList;
 import java.util.List;

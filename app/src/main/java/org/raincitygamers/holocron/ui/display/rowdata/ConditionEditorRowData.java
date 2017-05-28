@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.display.pages.rowdata;
+package org.raincitygamers.holocron.ui.display.rowdata;
 
 import android.view.View.OnClickListener;
 

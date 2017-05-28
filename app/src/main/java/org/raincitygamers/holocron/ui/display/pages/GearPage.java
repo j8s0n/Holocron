@@ -16,10 +16,10 @@ import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.ui.ContentPage;
 import org.raincitygamers.holocron.ui.display.InventoryEditorActivity;
 import org.raincitygamers.holocron.ui.display.DisplayArrayAdapter;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.ButtonRowData;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.InventoryItemRowData;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.KeyValueRowData;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
+import org.raincitygamers.holocron.ui.display.rowdata.ButtonRowData;
+import org.raincitygamers.holocron.ui.display.rowdata.InventoryItemRowData;
+import org.raincitygamers.holocron.ui.display.rowdata.KeyValueRowData;
+import org.raincitygamers.holocron.ui.display.rowdata.RowData;
 
 import java.util.ArrayList;
 import java.util.List;

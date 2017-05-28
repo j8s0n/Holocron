@@ -14,8 +14,9 @@ import org.raincitygamers.holocron.ui.ContentPage;
 import org.raincitygamers.holocron.ui.FragmentInvalidator;
 import org.raincitygamers.holocron.ui.display.ConditionEditorActivity;
 import org.raincitygamers.holocron.ui.display.DisplayArrayAdapter;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.ButtonRowData;
-import org.raincitygamers.holocron.ui.display.pages.rowdata.RowData;
+import org.raincitygamers.holocron.ui.display.SkillActionEditorActivity;
+import org.raincitygamers.holocron.ui.display.rowdata.ButtonRowData;
+import org.raincitygamers.holocron.ui.display.rowdata.RowData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,8 +52,8 @@ public class ActionsPage extends ContentPage implements FragmentInvalidator {
         // Long press a skill action to open it in the editor.
         // In the editor, if there are no conditions on the PC, add a note to add conditions.
 
-        // Intent intent = new Intent(getActivity(), SkillActionEditorActivity.class);
-        // getActivity().startActivity(intent);
+        Intent intent = new Intent(getActivity(), SkillActionEditorActivity.class);
+        getActivity().startActivity(intent);
         // BETTER IDEA!!!!!!!!!!!!!! ????
 
         // FUCK NO!!!!

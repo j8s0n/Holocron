@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.display.pages.rowdata;
+package org.raincitygamers.holocron.ui.display.rowdata;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -17,6 +17,7 @@ public interface RowData {
     KEY_VALUE,
     SECTION_ID,
     SKILL_ACTION,
+    TEXT_EDITOR,
     THRESHOLD,
     TOGGLE
   }
