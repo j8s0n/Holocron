@@ -3,6 +3,7 @@ package org.raincitygamers.holocron.rules.character;
 import android.util.Log;
 
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
@@ -426,6 +427,18 @@ public class Character {
     }
 
     return activeConditions;
+  }
+
+  public List<String> getAvailableConditions(@NotNull String skillActionName) {
+    Set<String> availableConditions = new LinkedHashSet<>(actionConditions.keySet());
+    if (skillActions.containsKey(skillActionName)) {
+      SkillAction skillAction = skillActions.get(skillActionName);
+      for (String condition : skillAction.getConditionalBonuses().keySet()) {
+        availableConditions.remove(condition);
+      }
+    }
+
+    return Lists.newArrayList(availableConditions);
   }
 
   @NotNull

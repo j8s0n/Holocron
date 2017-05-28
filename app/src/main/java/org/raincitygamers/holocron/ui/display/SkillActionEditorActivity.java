@@ -1,5 +1,7 @@
 package org.raincitygamers.holocron.ui.display;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -26,8 +28,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static org.raincitygamers.holocron.ui.display.BonusEditorActivity.BONUS_ARRAY;
+import static org.raincitygamers.holocron.ui.display.BonusEditorActivity.CONDITION_NAME;
+
 public class SkillActionEditorActivity extends ActivityBase implements FragmentInvalidator {
   public static final String SKILL_ACTION_TO_EDIT = "SKILL_ACTION_TO_EDIT";
+  private static final int BONUS_EDITOR_ACTIVITY = 0;
   private DisplayArrayAdapter arrayAdapter;
   private List<RowData> rowData = new ArrayList<>();
   private SkillAction skillActionToEdit;
@@ -65,7 +71,7 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
       skillActionBuilder.setName(name);
       characteristic = skillActionToEdit.getCharacteristic().toString();
       skill = skillActionToEdit.getSkill().getName();
-      Map<String, Map<BonusType, Integer>> bonusesMap = skillActionToEdit.getConditionalBonusesMap();
+      Map<String, Map<BonusType, Integer>> bonusesMap = skillActionToEdit.getConditionalBonuses();
       for (Map.Entry<String, Map<BonusType, Integer>> entry : bonusesMap.entrySet()) {
         String condition = entry.getKey();
         for (Map.Entry<BonusType, Integer> bonusEntry : entry.getValue().entrySet()) {
@@ -108,10 +114,9 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
     rowData.add(ButtonRowData.of("Add Bonus", new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        // TODO::::::::::::::::::::::::::::::::::::::::::::::::::::
-        // Add the activity to edit/add a bonus.
-        // Add an "always" entry to the top of the conditions.
-        // How do I get the values back from the bonus activity????
+        Intent intent = new Intent(SkillActionEditorActivity.this, BonusEditorActivity.class);
+        intent.putExtra(SKILL_ACTION_TO_EDIT, skillActionBuilder.getName());
+        startActivityForResult(intent, BONUS_EDITOR_ACTIVITY);
       }
     }));
 
@@ -147,12 +152,39 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
   }
 
   @Override
+  public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    switch (requestCode) {
+    case BONUS_EDITOR_ACTIVITY: {
+      if (resultCode == Activity.RESULT_OK) {
+        if (data.hasExtra(CONDITION_NAME) && data.hasExtra(BONUS_ARRAY)) {
+          // Added a condition.
+          String conditionName = data.getStringExtra(CONDITION_NAME);
+          List<String> results = data.getStringArrayListExtra(BONUS_ARRAY);
+          for (String bonus : results) {
+            int colon = bonus.indexOf(':');
+            String bonusName = bonus.substring(0, colon);
+            int count = Integer.parseInt(bonus.substring(colon + 1));
+            BonusType bonusType = BonusType.of(bonusName);
+            skillActionBuilder.addConditional(conditionName, bonusType, count);
+          }
+
+        }
+
+        invalidate();
+      }
+      break;
+    }
+    }
+  }
+
+  @Override
   protected String getTitleString() {
     return pc.getName() + " - Skill Action Editor";
   }
 
   @Override
   public void invalidate() {
-
+    listComponents();
   }
 }

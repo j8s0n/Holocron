@@ -34,14 +34,14 @@ public class SkillAction {
   private final String name;
   private final Characteristic characteristic;
   private final Skill skill;
-  private Map<String, Map<BonusType, Integer>> conditionalBonusesMap = new LinkedHashMap<>();
+  @Getter private Map<String, Map<BonusType, Integer>> conditionalBonuses = new LinkedHashMap<>();
 
   private SkillAction(@NotNull String name, @NotNull Characteristic characteristic, @NotNull Skill skill,
-                      @NotNull Map<String, Map<BonusType, Integer>> conditionalBonusesMap) {
+                      @NotNull Map<String, Map<BonusType, Integer>> conditionalBonuses) {
     this.name = name;
     this.characteristic = characteristic;
     this.skill = skill;
-    this.conditionalBonusesMap.putAll(conditionalBonusesMap);
+    this.conditionalBonuses.putAll(conditionalBonuses);
   }
 
   @NotNull
@@ -63,15 +63,19 @@ public class SkillAction {
         bonusesMap.put(BonusType.of(type), count);
       }
 
-      skillAction.conditionalBonusesMap.put(condition, bonusesMap);
+      skillAction.conditionalBonuses.put(condition, bonusesMap);
     }
     return skillAction;
   }
 
   @NotNull
   public static SkillAction of(@NotNull String name, @NotNull Characteristic characteristic, @NotNull Skill skill,
-                               @NotNull Map<String, Map<BonusType, Integer>> conditionalBonusesMap) {
-    return new SkillAction(name, characteristic, skill, conditionalBonusesMap);
+                               @NotNull Map<String, Map<BonusType, Integer>> conditionalBonuses) {
+    return new SkillAction(name, characteristic, skill, conditionalBonuses);
+  }
+
+  public void removeCondition(@NotNull String condition) {
+    conditionalBonuses.remove(condition);
   }
 
   @NotNull
@@ -81,7 +85,7 @@ public class SkillAction {
     o.put(CHARACTERISTIC_KEY, characteristic.toString());
     o.put(SKILL_KEY, skill.getName());
     JSONArray conditionalBonuses = new JSONArray();
-    for (Map.Entry<String, Map<BonusType, Integer>> entry : conditionalBonusesMap.entrySet()) {
+    for (Map.Entry<String, Map<BonusType, Integer>> entry : this.conditionalBonuses.entrySet()) {
       JSONObject bonusesForCondition = new JSONObject();
       bonusesForCondition.put(CONDITION_KEY, entry.getKey());
       JSONArray bonuses = new JSONArray();
@@ -103,7 +107,7 @@ public class SkillAction {
   @NotNull
   public Map<BonusType, Integer> getPoolBonus(@NotNull Set<String> activeConditions) {
     Map<BonusType, Integer> poolBonus = new HashMap<>();
-    for (Map.Entry<String, Map<BonusType, Integer>> entry : conditionalBonusesMap.entrySet()) {
+    for (Map.Entry<String, Map<BonusType, Integer>> entry : conditionalBonuses.entrySet()) {
       if (activeConditions.contains(entry.getKey())) {
         incrementAll(poolBonus, entry.getValue());
       }
@@ -146,7 +150,7 @@ public class SkillAction {
       characteristic = skillAction.characteristic;
       skill = skillAction.skill;
       conditionals.clear();
-      conditionals.putAll(skillAction.conditionalBonusesMap);
+      conditionals.putAll(skillAction.conditionalBonuses);
     }
   }
 }

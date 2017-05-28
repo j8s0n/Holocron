@@ -58,6 +58,10 @@
       android:name=".ui.display.SkillActionEditorActivity"
       android:screenOrientation="portrait">
     </activity>
+    <activity
+      android:name=".ui.display.BonusEditorActivity"
+      android:screenOrientation="portrait">
+    </activity>
   </application>
 
 </manifest>
