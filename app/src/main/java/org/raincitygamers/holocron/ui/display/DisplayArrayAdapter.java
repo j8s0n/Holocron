@@ -13,12 +13,14 @@ import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -43,6 +45,7 @@ import org.raincitygamers.holocron.ui.display.rowdata.KeyValueRowData.KvPair;
 import org.raincitygamers.holocron.ui.display.rowdata.RowData;
 import org.raincitygamers.holocron.ui.display.rowdata.SectionRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.SkillActionRowData;
+import org.raincitygamers.holocron.ui.display.rowdata.SpinnerRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.TextEditorRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.ThresholdRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.ToggleRowData;
@@ -89,8 +92,10 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
         return displaySection(convertView, parent, (SectionRowData) rowData);
       case SKILL_ACTION:
         return displaySkillAction(convertView, parent, (SkillActionRowData) rowData);
+      case SPINNER:
+        return displaySpinner(convertView, parent, (SpinnerRowData) rowData);
       case TEXT_EDITOR:
-return displayTextEdit(convertView, parent, (TextEditorRowData) rowData);
+        return displayTextEdit(convertView, parent, (TextEditorRowData) rowData);
       case THRESHOLD:
         return displayThreshold(convertView, parent, (ThresholdRowData) rowData);
       case TOGGLE:
@@ -333,7 +338,8 @@ return displayTextEdit(convertView, parent, (TextEditorRowData) rowData);
   }
 
   @NotNull
-  private View displayRemoveCondition(View convertView, @NotNull ViewGroup parent, @NotNull ConditionEditorRowData rowData) {
+  private View displayRemoveCondition(View convertView, @NotNull ViewGroup parent, @NotNull ConditionEditorRowData
+                                                                                         rowData) {
     ViewHolder viewHolder;
     if (convertView == null || !convertView.getTag().equals(RowData.Type.EDIT_CONDITION)) {
       viewHolder = new ViewHolder();
@@ -432,6 +438,40 @@ return displayTextEdit(convertView, parent, (TextEditorRowData) rowData);
   }
 
   @NotNull
+  private View displaySpinner(View convertView, @NotNull ViewGroup parent, @NotNull final SpinnerRowData rowData) {
+    final ViewHolder viewHolder;
+    if (convertView == null || !convertView.getTag().equals(RowData.Type.SPINNER)) {
+      viewHolder = new ViewHolder();
+      LayoutInflater inflater = LayoutInflater.from(getContext());
+      convertView = inflater.inflate(R.layout.list_item_spinner, parent, false);
+      viewHolder.spinner = (Spinner) convertView.findViewById(R.id.spinner);
+      convertView.setTag(viewHolder);
+      viewHolder.type = RowData.Type.SPINNER;
+    }
+    else {
+      viewHolder = (ViewHolder) convertView.getTag();
+    }
+
+    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item,
+                                                           rowData.getContent());
+    viewHolder.spinner.setAdapter(arrayAdapter);
+    viewHolder.spinner.setSelection(rowData.getSelectedItem());
+
+    viewHolder.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+        rowData.getSpinnerWatcher().itemSelected(rowData.getContent().get(position));
+      }
+
+      @Override
+      public void onNothingSelected(AdapterView<?> parentView) {
+      }
+    });
+
+    return convertView;
+  }
+
+  @NotNull
   private View displayTextEdit(View convertView, @NotNull ViewGroup parent, @NotNull final TextEditorRowData rowData) {
     final ViewHolder viewHolder;
     if (convertView == null || !convertView.getTag().equals(RowData.Type.TEXT_EDITOR)) {
@@ -462,8 +502,7 @@ return displayTextEdit(convertView, parent, (TextEditorRowData) rowData);
     viewHolder.textEditor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
       @Override
       public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        if(actionId == EditorInfo.IME_ACTION_DONE)
-        {
+        if (actionId == EditorInfo.IME_ACTION_DONE) {
           String name = v.getText().toString();
           rowData.getWatcher().valueUpdated(name);
           rowData.setTextValue(name);
@@ -667,6 +706,9 @@ return displayTextEdit(convertView, parent, (TextEditorRowData) rowData);
     LinearLayout diceLayout;
     TextView skillRating;
     TextView isCareerSkill;
+
+    // Spinner
+    Spinner spinner;
 
     // Text Editor
     EditText textEditor;

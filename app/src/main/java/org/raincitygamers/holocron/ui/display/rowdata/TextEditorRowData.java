@@ -2,23 +2,16 @@ package org.raincitygamers.holocron.ui.display.rowdata;
 
 import org.jetbrains.annotations.NotNull;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 
+@AllArgsConstructor(suppressConstructorProperties = true, staticName = "of")
 public class TextEditorRowData implements RowData {
-  @Getter private final EditTextWatcher watcher;
-  @Getter private final String hint;
-  @Getter @Setter private String textValue;
-
-  public static TextEditorRowData of(@NotNull String textValue, @NotNull String hint, @NotNull EditTextWatcher watcher) {
-    return new TextEditorRowData(textValue, hint, watcher);
-  }
-
-  private TextEditorRowData(@NotNull String textValue, @NotNull String hint, @NotNull EditTextWatcher watcher) {
-    this.watcher = watcher;
-    this.hint = hint;
-    this.textValue = textValue;
-  }
+  @Getter @Setter @NonNull private String textValue;
+  @Getter @NonNull private final String hint;
+  @Getter @NonNull private final EditTextWatcher watcher;
 
   @NotNull
   @Override
