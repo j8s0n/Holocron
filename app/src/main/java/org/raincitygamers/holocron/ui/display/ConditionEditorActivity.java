@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
@@ -49,8 +50,13 @@ public class ConditionEditorActivity extends ActivityBase implements FragmentInv
     rowData.add(AdderRowData.of(new AdderRowData.AddPerformer() {
       @Override
       public void performAdd(@NotNull String thingToAdd) {
-        pc.setActionConditionState(thingToAdd, false);
-        invalidate();
+        if (!thingToAdd.isEmpty()) {
+          pc.setActionConditionState(thingToAdd, false);
+          invalidate();
+        }
+        else {
+          Toast.makeText(ConditionEditorActivity.this, "Please enter a name.", Toast.LENGTH_LONG).show();
+        }
       }
     }));
 

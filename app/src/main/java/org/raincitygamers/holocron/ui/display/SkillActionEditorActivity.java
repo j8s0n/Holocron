@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
@@ -61,6 +62,7 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
     }
     else {
       name = skillActionToEdit.getName();
+      skillActionBuilder.setName(name);
       characteristic = skillActionToEdit.getCharacteristic().toString();
       skill = skillActionToEdit.getSkill().getName();
       Map<String, Map<BonusType, Integer>> bonusesMap = skillActionToEdit.getConditionalBonusesMap();
@@ -116,6 +118,11 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
     rowData.add(ButtonRowData.of("Done", new View.OnClickListener() {
       @Override
       public void onClick(View v) {
+        if (skillActionBuilder.getName() == null || skillActionBuilder.getName().isEmpty()) {
+          Toast.makeText(SkillActionEditorActivity.this, "Please enter a name.", Toast.LENGTH_LONG).show();
+          return;
+        }
+
         SkillAction skillAction = skillActionBuilder.build();
         pc.addSkillAction(skillAction);
         if (skillActionToEdit != null && !skillActionToEdit.getName().equals(skillAction.getName())) {
