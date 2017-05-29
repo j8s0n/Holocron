@@ -84,6 +84,7 @@ public class BonusEditorActivity extends ActivityBase implements FragmentInvalid
 
     // TODO: Put some rows here to enter the numbers.
     // TODO: Put the incoming values in the bonuses map.
+    // TODO: Use the bonuses map to set default values.
     rowData.add(ScoreRowData.of(DicePool.BonusType.BOOST_DIE, 0, watcher));
     rowData.add(ScoreRowData.of(DicePool.BonusType.ADVANTAGE, 1, watcher));
     rowData.add(ScoreRowData.of(DicePool.BonusType.SUCCESS, 2, watcher));
@@ -94,7 +95,10 @@ public class BonusEditorActivity extends ActivityBase implements FragmentInvalid
         Intent resultIntent = new Intent();
         ArrayList<String> results = new ArrayList<>();
         for (Map.Entry<String, Integer> entry : bonuses.entrySet()) {
-          results.add(String.format(Locale.getDefault(), "%s:%d", entry.getKey(), entry.getValue()));
+          int count = entry.getValue();
+          if (count > 0) {
+            results.add(String.format(Locale.getDefault(), "%s:%d", entry.getKey(), count));
+          }
         }
 
         resultIntent.putExtra(CONDITION_NAME, conditionName);
