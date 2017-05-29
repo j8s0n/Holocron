@@ -75,10 +75,29 @@ public class BonusEditorActivity extends ActivityBase implements FragmentInvalid
       }
     }
 
+    // TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //  Bring up skill action editor.
+    //  Tap: "Add Bonus"
+    //  Increment a value.
+    //  Scroll off screen.
+    //    Value goes back to 0.
+    //  Tap Done.
+    //    Bonus is correct.
+    //  Long press the same bonus.
+    //    Values are correct.
+    //  Change one and scroll off screen.
+    //    Value goes back to previous one.
+    // TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
     // TODO: If the condition name is set, just show it as text. Maybe?
     conditions = pc.getAvailableConditions(skillActionName);
     index = 0;
-    conditions.add(0, "Always Active"); // TODO: Not if it's the current name.
+    if (conditionName == null || !conditionName.equals("Always Active")) {
+      conditions.add(0, "Always Active");
+    }
+
     if (conditionName != null) {
       conditions.add(1, conditionName);
       index = 1;
