@@ -3,20 +3,23 @@ package org.raincitygamers.holocron.ui.display.rowdata;
 import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.rules.traits.DicePool.BonusType;
 
-import java.util.Map;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NonNull;
 
 @AllArgsConstructor(suppressConstructorProperties = true, staticName = "of")
-public class ConditionalBonusRowData implements RowData {
-  @Getter private final String condition;
-  @Getter private final String skillActionName;
-  @Getter private final Map<BonusType, Integer> bonuses;
+public class ScoreRowData implements RowData {
+  @Getter @NonNull private final BonusType bonusType;
+  @Getter @NonNull private final int count;
+  @Getter @NonNull private final ScoreRowWatcher watcher;
 
   @NotNull
   @Override
   public Type getType() {
-    return Type.CONDITIONAL_BONUS;
+    return Type.SCORE;
+  }
+
+  public interface ScoreRowWatcher {
+    void valueUpdated(@NotNull BonusType bonusType, int value);
   }
 }

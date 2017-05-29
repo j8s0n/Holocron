@@ -30,14 +30,17 @@ import java.util.Map;
 
 import static org.raincitygamers.holocron.ui.display.BonusEditorActivity.BONUS_ARRAY;
 import static org.raincitygamers.holocron.ui.display.BonusEditorActivity.CONDITION_NAME;
+import static org.raincitygamers.holocron.ui.display.BonusEditorActivity.REMOVE_CONDITION;
 
 public class SkillActionEditorActivity extends ActivityBase implements FragmentInvalidator {
   public static final String SKILL_ACTION_TO_EDIT = "SKILL_ACTION_TO_EDIT";
-  private static final int BONUS_EDITOR_ACTIVITY = 0;
+  public static final int BONUS_EDITOR_ACTIVITY = 0;
   private DisplayArrayAdapter arrayAdapter;
   private List<RowData> rowData = new ArrayList<>();
   private SkillAction skillActionToEdit;
   private SkillAction.Builder skillActionBuilder = new SkillAction.Builder();
+  private boolean readFromBuilder = false;
+
   private final Character pc = CharacterManager.getActiveCharacter();
 
   @Override
@@ -52,16 +55,32 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
     arrayAdapter = new DisplayArrayAdapter(this, rowData, this);
     ListView conditions = (ListView) findViewById(R.id.skill_action_components);
     conditions.setAdapter(arrayAdapter);
-    listComponents();
+    addListItems();
   }
 
-  private void listComponents() {
+  private void addListItems() {
     rowData.clear();
+    addStandardWidgets();
+
+    for (Map.Entry<String, Map<BonusType, Integer>> entry : skillActionBuilder.getConditionals().entrySet()) {
+      rowData.add(ConditionalBonusRowData.of(entry.getKey(), skillActionBuilder.getName(), entry.getValue()));
+    }
+
+    addButtons();
+    arrayAdapter.notifyDataSetChanged();
+  }
+
+  private void addStandardWidgets() {
     String name;
     String characteristic;
     String skill;
 
-    if (skillActionToEdit == null) {
+    if (readFromBuilder) {
+      name = skillActionBuilder.getName();
+      characteristic = skillActionBuilder.getCharacteristic().toString();
+      skill = skillActionBuilder.getSkill().getName();
+    }
+    else if (skillActionToEdit == null) {
       name = "";
       characteristic = Characteristic.BRAWN.toString();
       skill = SkillManager.getAllSkillNames().get(0);
@@ -104,16 +123,13 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
         skillActionBuilder.setSkill(SkillManager.getSkill(item));
       }
     }));
+  }
 
-    // Add the conditions layout/row data (with long tap to edit).
-    // Populate from builder.
-    for (Map.Entry<String, Map<BonusType, Integer>> entry : skillActionBuilder.getConditionals().entrySet()) {
-      rowData.add(ConditionalBonusRowData.of(entry.getKey(), entry.getValue()));
-    }
-
+  private void addButtons() {
     rowData.add(ButtonRowData.of("Add Bonus", new View.OnClickListener() {
       @Override
       public void onClick(View v) {
+        readFromBuilder = true;
         Intent intent = new Intent(SkillActionEditorActivity.this, BonusEditorActivity.class);
         intent.putExtra(SKILL_ACTION_TO_EDIT, skillActionBuilder.getName());
         startActivityForResult(intent, BONUS_EDITOR_ACTIVITY);
@@ -147,8 +163,6 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
         }
       }));
     }
-
-    arrayAdapter.notifyDataSetChanged();
   }
 
   @Override
@@ -168,9 +182,14 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
             BonusType bonusType = BonusType.of(bonusName);
             skillActionBuilder.addConditional(conditionName, bonusType, count);
           }
-
         }
 
+        if (data.hasExtra(REMOVE_CONDITION)) {
+          String condition = data.getStringExtra(REMOVE_CONDITION);
+          skillActionBuilder.removeConditional(condition);
+        }
+
+        readFromBuilder = true;
         invalidate();
       }
       break;
@@ -185,6 +204,6 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
 
   @Override
   public void invalidate() {
-    listComponents();
+    addListItems();
   }
 }

@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -45,6 +46,7 @@ import org.raincitygamers.holocron.ui.display.rowdata.InventoryItemRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.KeyValueRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.KeyValueRowData.KvPair;
 import org.raincitygamers.holocron.ui.display.rowdata.RowData;
+import org.raincitygamers.holocron.ui.display.rowdata.ScoreRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.SectionRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.SkillActionRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.SpinnerRowData;
@@ -58,8 +60,10 @@ import java.util.Locale;
 import java.util.Set;
 
 import static org.raincitygamers.holocron.rules.managers.CharacterManager.getActiveCharacter;
+import static org.raincitygamers.holocron.ui.display.SkillActionEditorActivity.SKILL_ACTION_TO_EDIT;
 
 public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
+
   private final FragmentInvalidator invalidator;
   private static final float IGNORED_ENCUMBRANCE = 0.2f;
   private TextView encumbrance;
@@ -93,6 +97,8 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
         return displayInventory(convertView, parent, ((InventoryItemRowData) rowData).getItem());
       case KEY_VALUE:
         return displayKeyValuePair(convertView, parent, ((KeyValueRowData) rowData).getPair());
+      case SCORE:
+        return displayScore(convertView, parent, (ScoreRowData) rowData);
       case SECTION_ID:
         return displaySection(convertView, parent, (SectionRowData) rowData);
       case SKILL_ACTION:
@@ -228,8 +234,9 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   }
 
   @NotNull
-  private View displayConditionalBonus(View convertView, @NonNull ViewGroup parent, @NotNull ConditionalBonusRowData rowData) {
-    ViewHolder viewHolder;
+  private View displayConditionalBonus(View convertView, @NonNull ViewGroup parent, @NotNull final
+  ConditionalBonusRowData rowData) {
+    final ViewHolder viewHolder;
     if (convertView == null || !convertView.getTag().equals(RowData.Type.CONDITIONAL_BONUS)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
@@ -258,8 +265,15 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     convertView.setOnLongClickListener(new OnLongClickListener() {
       @Override
       public boolean onLongClick(View v) {
-        // TODO: Open in the bonus editor.
-        // TODO: How do I pass values back from the bonus editor?
+        Intent intent = new Intent(getContext(), BonusEditorActivity.class);
+        intent.putExtra(SKILL_ACTION_TO_EDIT, rowData.getSkillActionName());
+        intent.putExtra(BonusEditorActivity.CONDITION_NAME, rowData.getCondition());
+        Context context = getContext();
+        if (context instanceof SkillActionEditorActivity) {
+          SkillActionEditorActivity activity = (SkillActionEditorActivity) context;
+          activity.startActivityForResult(intent, SkillActionEditorActivity.BONUS_EDITOR_ACTIVITY);
+        }
+
         if (invalidator != null) {
           invalidator.invalidate();
         }
@@ -386,8 +400,8 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   }
 
   @NotNull
-  private View displayRemoveCondition(View convertView, @NotNull ViewGroup parent, @NotNull ConditionEditorRowData
-                                                                                         rowData) {
+  private View displayRemoveCondition(View convertView, @NotNull ViewGroup parent,
+                                      @NotNull ConditionEditorRowData rowData) {
     ViewHolder viewHolder;
     if (convertView == null || !convertView.getTag().equals(RowData.Type.EDIT_CONDITION)) {
       viewHolder = new ViewHolder();
@@ -404,6 +418,57 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
 
     viewHolder.conditionName.setText(rowData.getCondition());
     viewHolder.removeButton.setOnClickListener(rowData.getOnClickListener());
+    return convertView;
+  }
+
+  @NotNull
+  private View displayScore(View convertView, @NotNull ViewGroup parent, @NotNull final ScoreRowData rowData) {
+    final ViewHolder viewHolder;
+    if (convertView == null || !convertView.getTag().equals(RowData.Type.SCORE)) {
+      viewHolder = new ViewHolder();
+      LayoutInflater inflater = LayoutInflater.from(getContext());
+      convertView = inflater.inflate(R.layout.list_item_choose_score, parent, false);
+      viewHolder.scoreName = (TextView) convertView.findViewById(R.id.score_rating_label);
+      viewHolder.minusButton = (TextView) convertView.findViewById(R.id.score_rating_down_button);
+      viewHolder.scoreValue = (TextView) convertView.findViewById(R.id.score_rating_entry);
+      viewHolder.plusButton = (TextView) convertView.findViewById(R.id.score_rating_up_button);
+      viewHolder.bonusIcon = (ImageView) convertView.findViewById(R.id.score_rating_image);
+      convertView.setTag(viewHolder);
+      viewHolder.type = RowData.Type.SCORE;
+    }
+    else {
+      viewHolder = (ViewHolder) convertView.getTag();
+    }
+
+    viewHolder.scoreName.setText(rowData.getBonusType().getName());
+    viewHolder.scoreValue.setText(String.format(Locale.getDefault(), "%d", rowData.getCount()));
+    viewHolder.bonusIcon.setImageResource(rowData.getBonusType().getResourceId());
+    viewHolder.minusButton.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        int score = Integer.parseInt(String.valueOf(viewHolder.scoreValue.getText()));
+        if (score > 0) {
+          score--;
+        }
+
+        viewHolder.scoreValue.setText(String.format(Locale.getDefault(), "%d", score));
+        rowData.getWatcher().valueUpdated(rowData.getBonusType(), score);
+      }
+    });
+
+    viewHolder.plusButton.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        int score = Integer.parseInt(String.valueOf(viewHolder.scoreValue.getText()));
+        if (score < 10) {
+          score++;
+        }
+
+        viewHolder.scoreValue.setText(String.format(Locale.getDefault(), "%d", score));
+        rowData.getWatcher().valueUpdated(rowData.getBonusType(), score);
+      }
+    });
+
     return convertView;
   }
 
@@ -472,7 +537,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       @Override
       public boolean onLongClick(View v) {
         Intent intent = new Intent(getContext(), SkillActionEditorActivity.class);
-        intent.putExtra(SkillActionEditorActivity.SKILL_ACTION_TO_EDIT, skillAction.getName());
+        intent.putExtra(SKILL_ACTION_TO_EDIT, skillAction.getName());
         getContext().startActivity(intent);
 
         if (invalidator != null) {
@@ -744,6 +809,13 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     // Key Value Pair
     TextView key;
     TextView value;
+
+    // Score
+    TextView scoreName;
+    TextView minusButton;
+    TextView scoreValue;
+    TextView plusButton;
+    ImageView bonusIcon;
 
     // Section ID
     TextView sectionLabel;

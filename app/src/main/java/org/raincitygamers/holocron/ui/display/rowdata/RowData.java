@@ -16,6 +16,7 @@ public interface RowData {
     EDIT_CONDITION,
     INVENTORY,
     KEY_VALUE,
+    SCORE,
     SECTION_ID,
     SKILL_ACTION,
     SPINNER,

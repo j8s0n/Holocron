@@ -152,5 +152,9 @@ public class SkillAction {
       conditionals.clear();
       conditionals.putAll(skillAction.conditionalBonuses);
     }
+
+    public void removeConditional(String condition) {
+      conditionals.remove(condition);
+    }
   }
 }

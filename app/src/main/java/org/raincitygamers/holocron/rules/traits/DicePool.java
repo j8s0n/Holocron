@@ -178,7 +178,7 @@ public class DicePool {
     ABILITY_DIE("Ability Die", R.drawable.ic_ability_die),
     ADVANTAGE("Advantage", R.drawable.ic_advantage),
     BOOST_DIE("Boost Die", R.drawable.ic_boost_die),
-    CRITICAL("Critical", 0),
+    CRITICAL("Critical", R.drawable.ic_critical),
     DAMAGE("Damage", R.drawable.ic_damage),
     FAILURE("Failure", R.drawable.ic_failure),
     FORCE_DIE("Force Die", R.drawable.ic_force_die),

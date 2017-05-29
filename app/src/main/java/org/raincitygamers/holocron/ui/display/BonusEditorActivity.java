@@ -11,10 +11,12 @@ import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
+import org.raincitygamers.holocron.rules.traits.DicePool;
 import org.raincitygamers.holocron.ui.ActivityBase;
 import org.raincitygamers.holocron.ui.FragmentInvalidator;
 import org.raincitygamers.holocron.ui.display.rowdata.ButtonRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.RowData;
+import org.raincitygamers.holocron.ui.display.rowdata.ScoreRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.SpinnerRowData;
 
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ import java.util.Map;
 public class BonusEditorActivity extends ActivityBase implements FragmentInvalidator {
   private static final String LOG_TAG = BonusEditorActivity.class.getSimpleName();
   public static final String CONDITION_NAME = "CONDITION_NAME";
+  public static final String REMOVE_CONDITION = "REMOVE_CONDITION";
   public static final String BONUS_ARRAY = "BONUS_ARRAY";
 
   private DisplayArrayAdapter arrayAdapter;
@@ -39,16 +42,22 @@ public class BonusEditorActivity extends ActivityBase implements FragmentInvalid
   private int index;
   private Map<String, Integer> bonuses = new HashMap<>();
 
+  private final ScoreRowData.ScoreRowWatcher watcher = new ScoreRowData.ScoreRowWatcher() {
+    @Override
+    public void valueUpdated(@NotNull DicePool.BonusType bonusType, int value) {
+      bonuses.put(bonusType.toString(), value);
+    }
+  };
+
   // TODO:
   // Pass in an intent flag for skill v attack action. Populate based on that.
-  // Return a StringArrayListExtra of bonus names. Build a map on the other side.
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.edit_bonus);
+    // If either is blank, this is new.
     skillActionName = getIntent().getStringExtra(SkillActionEditorActivity.SKILL_ACTION_TO_EDIT);
     conditionName = getIntent().getStringExtra(CONDITION_NAME);
-    // If either is blank, this is new.
 
     // TODO: If the condition name is set, just show it as text. Maybe?
     conditions = pc.getAvailableConditions(skillActionName);
@@ -74,6 +83,10 @@ public class BonusEditorActivity extends ActivityBase implements FragmentInvalid
     }));
 
     // TODO: Put some rows here to enter the numbers.
+    // TODO: Put the incoming values in the bonuses map.
+    rowData.add(ScoreRowData.of(DicePool.BonusType.BOOST_DIE, 0, watcher));
+    rowData.add(ScoreRowData.of(DicePool.BonusType.ADVANTAGE, 1, watcher));
+    rowData.add(ScoreRowData.of(DicePool.BonusType.SUCCESS, 2, watcher));
 
     rowData.add(ButtonRowData.of("Done", new View.OnClickListener() {
       @Override
@@ -87,6 +100,7 @@ public class BonusEditorActivity extends ActivityBase implements FragmentInvalid
         resultIntent.putExtra(CONDITION_NAME, conditionName);
         resultIntent.putExtra(BONUS_ARRAY, results);
         setResult(Activity.RESULT_OK, resultIntent);
+
         finish();
       }
     }));
@@ -96,18 +110,12 @@ public class BonusEditorActivity extends ActivityBase implements FragmentInvalid
         @Override
         public void onClick(View v) {
           Intent resultIntent = new Intent();
-          pc.getSkillAction(skillActionName).removeCondition(conditionName);
+          resultIntent.putExtra(REMOVE_CONDITION, conditionName);
           setResult(Activity.RESULT_OK, resultIntent);
           finish();
         }
       }));
     }
-
-    // Add Remove button.
-
-    // How do I get the values back from the bonus activity????
-    // Add to the intent a StringArrayList. Position 0 is the condition name. 1+ are the bonus type names, possibly
-    // repeated.
   }
 
   @Override
