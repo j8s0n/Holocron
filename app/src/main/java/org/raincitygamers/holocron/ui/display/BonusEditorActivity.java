@@ -38,6 +38,7 @@ public class BonusEditorActivity extends ActivityBase implements FragmentInvalid
 
   private String skillActionName;
   private String conditionName;
+  private String originalConditionName;
   private List<String> conditions;
   private int index;
   private Map<String, Integer> bonuses = new HashMap<>();
@@ -58,6 +59,7 @@ public class BonusEditorActivity extends ActivityBase implements FragmentInvalid
     // If either is blank, this is new.
     skillActionName = getIntent().getStringExtra(SkillActionEditorActivity.SKILL_ACTION_TO_EDIT);
     conditionName = getIntent().getStringExtra(CONDITION_NAME);
+    originalConditionName = conditionName;
 
     // TODO: If the condition name is set, just show it as text. Maybe?
     conditions = pc.getAvailableConditions(skillActionName);
@@ -99,6 +101,10 @@ public class BonusEditorActivity extends ActivityBase implements FragmentInvalid
           if (count > 0) {
             results.add(String.format(Locale.getDefault(), "%s:%d", entry.getKey(), count));
           }
+        }
+
+        if (originalConditionName != null && !originalConditionName.equals(conditionName)) {
+          resultIntent.putExtra(REMOVE_CONDITION, originalConditionName);
         }
 
         resultIntent.putExtra(CONDITION_NAME, conditionName);

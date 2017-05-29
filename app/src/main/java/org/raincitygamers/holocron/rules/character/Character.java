@@ -420,6 +420,7 @@ public class Character {
   @NotNull
   public Set<String> getActiveConditions() {
     Set<String> activeConditions = new HashSet<>();
+    activeConditions.add("Always Active");
     for (Map.Entry<String, Boolean> condition : actionConditions.entrySet()) {
       if (condition.getValue()) {
         activeConditions.add(condition.getKey());
