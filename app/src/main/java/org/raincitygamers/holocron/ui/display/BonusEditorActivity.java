@@ -10,8 +10,9 @@ import android.widget.ListView;
 import org.jetbrains.annotations.NotNull;
 import org.raincitygamers.holocron.R;
 import org.raincitygamers.holocron.rules.character.Character;
+import org.raincitygamers.holocron.rules.character.SkillAction;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
-import org.raincitygamers.holocron.rules.traits.DicePool;
+import org.raincitygamers.holocron.rules.traits.DicePool.BonusType;
 import org.raincitygamers.holocron.ui.ActivityBase;
 import org.raincitygamers.holocron.ui.FragmentInvalidator;
 import org.raincitygamers.holocron.ui.display.rowdata.ButtonRowData;
@@ -45,7 +46,7 @@ public class BonusEditorActivity extends ActivityBase implements FragmentInvalid
 
   private final ScoreRowData.ScoreRowWatcher watcher = new ScoreRowData.ScoreRowWatcher() {
     @Override
-    public void valueUpdated(@NotNull DicePool.BonusType bonusType, int value) {
+    public void valueUpdated(@NotNull BonusType bonusType, int value) {
       bonuses.put(bonusType.toString(), value);
     }
   };
@@ -60,11 +61,24 @@ public class BonusEditorActivity extends ActivityBase implements FragmentInvalid
     skillActionName = getIntent().getStringExtra(SkillActionEditorActivity.SKILL_ACTION_TO_EDIT);
     conditionName = getIntent().getStringExtra(CONDITION_NAME);
     originalConditionName = conditionName;
+    if (skillActionName != null && conditionName != null) {
+      SkillAction skillAction = pc.getSkillAction(skillActionName);
+      bonuses.clear();
+      Map<String, Map<BonusType, Integer>> conditionalBonuses = skillAction.getConditionalBonuses();
+      if (conditionalBonuses != null) {
+        Map<BonusType, Integer> bonusMap = conditionalBonuses.get(conditionName);
+        if (bonusMap != null) {
+          for (Map.Entry<BonusType, Integer> entry : bonusMap.entrySet()) {
+            bonuses.put(entry.getKey().toString(), entry.getValue());
+          }
+        }
+      }
+    }
 
     // TODO: If the condition name is set, just show it as text. Maybe?
     conditions = pc.getAvailableConditions(skillActionName);
     index = 0;
-    conditions.add(0, "Always Active");
+    conditions.add(0, "Always Active"); // TODO: Not if it's the current name.
     if (conditionName != null) {
       conditions.add(1, conditionName);
       index = 1;
@@ -84,12 +98,15 @@ public class BonusEditorActivity extends ActivityBase implements FragmentInvalid
       }
     }));
 
-    // TODO: Put some rows here to enter the numbers.
-    // TODO: Put the incoming values in the bonuses map.
-    // TODO: Use the bonuses map to set default values.
-    rowData.add(ScoreRowData.of(DicePool.BonusType.BOOST_DIE, 0, watcher));
-    rowData.add(ScoreRowData.of(DicePool.BonusType.ADVANTAGE, 1, watcher));
-    rowData.add(ScoreRowData.of(DicePool.BonusType.SUCCESS, 2, watcher));
+    for (BonusType bonusType : BonusType.values()) {
+      if (bonusType.showInSkillAction()) {
+        int count = 0;
+        if (bonuses.containsKey(bonusType.toString())) {
+          count = bonuses.get(bonusType.toString());
+        }
+        rowData.add(ScoreRowData.of(bonusType, count, watcher));
+      }
+    }
 
     rowData.add(ButtonRowData.of("Done", new View.OnClickListener() {
       @Override

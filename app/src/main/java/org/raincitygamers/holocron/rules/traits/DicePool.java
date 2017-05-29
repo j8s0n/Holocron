@@ -39,7 +39,7 @@ public class DicePool {
     layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.ABILITY_DIE);
     layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.FORCE_DIE);
     layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.BOOST_DIE);
-    layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.SETBACK_DIE);
+    layoutWidth += placeSetbackDiceInLayout(layout, context, pool);
     layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.TRIUMPH);
     layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.SUCCESS);
     layoutWidth += placeBonusTypeInLayout(layout, context, pool, BonusType.FORCE_DIE);
@@ -73,16 +73,32 @@ public class DicePool {
     return placeBonusInLayout(layout, context, type, count);
   }
 
+  private static int placeSetbackDiceInLayout(@NotNull LinearLayout layout, @NotNull Context context,
+                                              @NotNull Map<BonusType, Integer> pool) {
+    int width = 0;
+    int setbackCount = 0;
+    if (pool.containsKey(BonusType.SETBACK_DIE)) {
+      setbackCount += pool.get(BonusType.SETBACK_DIE);
+    }
+    if (pool.containsKey(BonusType.NEGATIVE_SETBACK_DIE)) {
+      setbackCount -= pool.get(BonusType.NEGATIVE_SETBACK_DIE);
+    }
+
+    if (setbackCount > 0) {
+      width += placeBonusInLayout(layout, context, BonusType.SETBACK_DIE, setbackCount);
+    }
+    else if (setbackCount < 0) {
+      width += placeBonusInLayout(layout, context, BonusType.NEGATIVE_SETBACK_DIE, Math.abs(setbackCount));
+    }
+
+    return width;
+  }
+
   private static int placeBonusTypeInLayout(@NotNull LinearLayout layout, @NotNull Context context,
                                             @NotNull Map<BonusType, Integer> pool, @NotNull BonusType type) {
     int width = 0;
     if (pool.containsKey(type)) {
       int bonusCount = pool.get(type);
-      if (bonusCount < 0 && type.equals(BonusType.SETBACK_DIE)) {
-        bonusCount = Math.abs(bonusCount);
-        type = BonusType.NEGATIVE_SETBACK_DIE;
-      }
-
       width += placeBonusInLayout(layout, context, type, bonusCount);
     }
 
@@ -175,28 +191,33 @@ public class DicePool {
   }
 
   public enum BonusType {
-    ABILITY_DIE("Ability Die", R.drawable.ic_ability_die),
-    ADVANTAGE("Advantage", R.drawable.ic_advantage),
-    BOOST_DIE("Boost Die", R.drawable.ic_boost_die),
-    CRITICAL("Critical", R.drawable.ic_critical),
-    DAMAGE("Damage", R.drawable.ic_damage),
-    FAILURE("Failure", R.drawable.ic_failure),
-    FORCE_DIE("Force Die", R.drawable.ic_force_die),
-    FORCE_POINT("Force Point", R.drawable.ic_force_point),
-    NEGATIVE_SETBACK_DIE("Negative Setback Die", R.drawable.ic_negative_setback_die),
-    PROFICIENCY_DIE("Proficiency Die", R.drawable.ic_proficiency_die),
-    SETBACK_DIE("Setback Die", R.drawable.ic_setback_die),
-    SKILL_RANK("Skill Rank", R.drawable.ic_skill_rank),
-    SUCCESS("Success", R.drawable.ic_success),
-    THREAT("Threat", R.drawable.ic_threat),
-    TRIUMPH("Triumph", R.drawable.ic_triumph),
-    UPGRADE("Upgrade", R.drawable.ic_upgrade);
+    ABILITY_DIE("Ability Die", 3, R.drawable.ic_ability_die),
+    ADVANTAGE("Advantage", 3, R.drawable.ic_advantage),
+    BOOST_DIE("Boost Die", 3, R.drawable.ic_boost_die),
+    CRITICAL("Critical", 2, R.drawable.ic_critical),
+    DAMAGE("Damage", 2, R.drawable.ic_damage),
+    FAILURE("Failure", 3, R.drawable.ic_failure),
+    FORCE_DIE("Force Die", 3, R.drawable.ic_force_die),
+    FORCE_POINT("Force Point", 3, R.drawable.ic_force_point),
+    NEGATIVE_SETBACK_DIE("Negative Setback Die", 3, R.drawable.ic_negative_setback_die),
+    PROFICIENCY_DIE("Proficiency Die", 3, R.drawable.ic_proficiency_die),
+    SETBACK_DIE("Setback Die", 3, R.drawable.ic_setback_die),
+    SKILL_RANK("Skill Rank", 3, R.drawable.ic_skill_rank),
+    SUCCESS("Success", 3, R.drawable.ic_success),
+    THREAT("Threat", 3, R.drawable.ic_threat),
+    TRIUMPH("Triumph", 3, R.drawable.ic_triumph),
+    UPGRADE("Upgrade", 3, R.drawable.ic_upgrade);
 
     private String name;
+    private int showFields;
     private int resourceId;
 
-    BonusType(String name, int resourceId) {
+    private static final int SHOW_IN_SKILL_ACTION = 1;
+    private static final int SHOW_IN_ATTACK_ACTION = 2;
+
+    BonusType(String name, int showFields, int resourceId) {
       this.name = name;
+      this.showFields = showFields;
       this.resourceId = resourceId;
     }
 
@@ -207,6 +228,14 @@ public class DicePool {
 
     public int getResourceId() {
       return resourceId;
+    }
+
+    public boolean showInSkillAction() {
+      return (showFields & SHOW_IN_SKILL_ACTION) != 0;
+    }
+
+    public boolean showInAttackAction() {
+      return (showFields & SHOW_IN_ATTACK_ACTION) != 0;
     }
 
     @NotNull
