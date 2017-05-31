@@ -19,36 +19,45 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
-@Setter
 @RequiredArgsConstructor(suppressConstructorProperties = true, staticName = "of")
 public class SkillAction {
-  private static final String NAME_KEY = "name";
-  private static final String CHARACTERISTIC_KEY = "characteristic";
-  private static final String SKILL_KEY = "skill";
-  private static final String CONDITIONAL_BONUSES_KEY = "conditional_bonuses";
-  private static final String CONDITION_KEY = "condition";
-  private static final String BONUSES_KEY = "bonuses";
-  private static final String TYPE_KEY = "type";
-  private static final String COUNT_KEY = "count";
+  protected static final String NAME_KEY = "name";
+  protected static final String CHARACTERISTIC_KEY = "characteristic";
+  protected static final String SKILL_KEY = "skill";
+  protected static final String CONDITIONAL_BONUSES_KEY = "conditional_bonuses";
+  protected static final String CONDITION_KEY = "condition";
+  protected static final String BONUSES_KEY = "bonuses";
+  protected static final String TYPE_KEY = "type";
+  protected static final String COUNT_KEY = "count";
 
   private final String name;
   private final Characteristic characteristic;
   private final Skill skill;
-  @Getter private Map<String, Map<BonusType, Integer>> conditionalBonuses = new LinkedHashMap<>();
+  @Getter private final Map<String, Map<BonusType, Integer>> conditionalBonuses = new LinkedHashMap<>();
 
-  private SkillAction(@NotNull String name, @NotNull Characteristic characteristic, @NotNull Skill skill,
-                      @NotNull Map<String, Map<BonusType, Integer>> conditionalBonuses) {
+  SkillAction(@NotNull String name, @NotNull Characteristic characteristic, @NotNull Skill skill,
+              @NotNull Map<String, Map<BonusType, Integer>> conditionalBonuses) {
     this.name = name;
     this.characteristic = characteristic;
     this.skill = skill;
     this.conditionalBonuses.putAll(conditionalBonuses);
   }
 
+  SkillAction(@NotNull JSONObject jsonObject) throws JSONException {
+    this.name = jsonObject.getString(NAME_KEY);
+    this.characteristic = Characteristic.of(jsonObject.getString(CHARACTERISTIC_KEY));
+    this.skill = SkillManager.getSkill(jsonObject.getString(SKILL_KEY));
+    this.conditionalBonuses.putAll(parseJsonConditionalBonuses(jsonObject));
+  }
+
   @NotNull
   public static SkillAction of(@NotNull JSONObject jsonObject) throws JSONException {
-    SkillAction skillAction = new SkillAction(jsonObject.getString(NAME_KEY),
-                                              Characteristic.of(jsonObject.getString(CHARACTERISTIC_KEY)),
-                                              SkillManager.getSkill(jsonObject.getString(SKILL_KEY)));
+    return new SkillAction(jsonObject);
+  }
+
+  protected static Map<String, Map<BonusType, Integer>> parseJsonConditionalBonuses(@NotNull JSONObject jsonObject)
+  throws JSONException {
+    Map<String, Map<BonusType, Integer>> conditionals = new LinkedHashMap<>();
     JSONArray conditionalBonuses = jsonObject.getJSONArray(CONDITIONAL_BONUSES_KEY);
     for (int i = 0; i < conditionalBonuses.length(); i++) {
       JSONObject bonusesForCondition = conditionalBonuses.getJSONObject(i);
@@ -63,9 +72,10 @@ public class SkillAction {
         bonusesMap.put(BonusType.of(type), count);
       }
 
-      skillAction.conditionalBonuses.put(condition, bonusesMap);
+      conditionals.put(condition, bonusesMap);
     }
-    return skillAction;
+
+    return conditionals;
   }
 
   @NotNull
