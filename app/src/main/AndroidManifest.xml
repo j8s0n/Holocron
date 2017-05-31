@@ -41,7 +41,7 @@
       android:screenOrientation="portrait">
     </activity>
     <activity
-      android:name=".ui.display.CreditEditorActivity"
+      android:name=".ui.display.WealthTrackerActivity"
       android:label="@string/title_activity_credit_editor"
       android:screenOrientation="portrait">
     </activity>
@@ -61,6 +61,8 @@
     <activity
       android:name=".ui.display.BonusEditorActivity"
       android:screenOrientation="portrait">
+    </activity>
+    <activity android:name=".ui.display.WealthEditorActivity">
     </activity>
   </application>
 

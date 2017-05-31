@@ -44,7 +44,6 @@ import org.raincitygamers.holocron.ui.display.rowdata.ConditionalBonusRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.DicePoolRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.InventoryItemRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.KeyValueRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.KeyValueRowData.KvPair;
 import org.raincitygamers.holocron.ui.display.rowdata.RowData;
 import org.raincitygamers.holocron.ui.display.rowdata.ScoreRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.SectionRowData;
@@ -92,11 +91,11 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       case DICE_POOL:
         return displayDicePool(convertView, parent, ((DicePoolRowData) rowData).getDicePool());
       case EDIT_CONDITION:
-        return displayRemoveCondition(convertView, parent, (ConditionEditorRowData) rowData);
+        return displayEditCondition(convertView, parent, (ConditionEditorRowData) rowData);
       case INVENTORY:
         return displayInventory(convertView, parent, ((InventoryItemRowData) rowData).getItem());
       case KEY_VALUE:
-        return displayKeyValuePair(convertView, parent, ((KeyValueRowData) rowData).getPair());
+        return displayKeyValuePair(convertView, parent, (KeyValueRowData) rowData);
       case SCORE:
         return displayScore(convertView, parent, (ScoreRowData) rowData);
       case SECTION_ID:
@@ -122,7 +121,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   @NotNull
   private View displayAbility(View convertView, @NotNull ViewGroup parent, @NotNull Ability ability) {
     ViewHolder viewHolder;
-    if (convertView == null || !convertView.getTag().equals(RowData.Type.ABILITY)) {
+    if (convertView == null || !((ViewHolder) convertView.getTag()).type.equals(RowData.Type.ABILITY)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_ability, parent, false);
@@ -145,7 +144,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   @NotNull
   private View displayAdder(View convertView, @NotNull ViewGroup parent, @NotNull final AdderRowData adder) {
     final ViewHolder viewHolder;
-    if (convertView == null || !convertView.getTag().equals(RowData.Type.ADDER)) {
+    if (convertView == null || !((ViewHolder) convertView.getTag()).type.equals(RowData.Type.ADDER)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_adder, parent, false);
@@ -171,7 +170,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   @NotNull
   private View displayAttackAction(View convertView, @NotNull ViewGroup parent, @NotNull AttackActionRowData rowData) {
     ViewHolder viewHolder;
-    if (convertView == null || !convertView.getTag().equals(RowData.Type.ATTACK_ACTION)) {
+    if (convertView == null || !((ViewHolder) convertView.getTag()).type.equals(RowData.Type.ATTACK_ACTION)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_attack, parent, false);
@@ -216,7 +215,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   @NotNull
   private View displayButton(View convertView, @NotNull ViewGroup parent, @NotNull ButtonRowData button) {
     ViewHolder viewHolder;
-    if (convertView == null || !convertView.getTag().equals(RowData.Type.BUTTON)) {
+    if (convertView == null || !((ViewHolder) convertView.getTag()).type.equals(RowData.Type.BUTTON)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_button, parent, false);
@@ -237,7 +236,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   private View displayConditionalBonus(View convertView, @NonNull ViewGroup parent, @NotNull final
   ConditionalBonusRowData rowData) {
     final ViewHolder viewHolder;
-    if (convertView == null || !convertView.getTag().equals(RowData.Type.CONDITIONAL_BONUS)) {
+    if (convertView == null || !((ViewHolder) convertView.getTag()).type.equals(RowData.Type.CONDITIONAL_BONUS)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_skill, parent, false);
@@ -287,7 +286,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   @NotNull
   private View displayDicePool(View convertView, @NotNull ViewGroup parent, @NotNull DicePool dicePool) {
     ViewHolder viewHolder;
-    if (convertView == null || !convertView.getTag().equals(RowData.Type.DICE_POOL)) {
+    if (convertView == null || !((ViewHolder) convertView.getTag()).type.equals(RowData.Type.DICE_POOL)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_skill, parent, false);
@@ -316,7 +315,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   private View displayInventory(View convertView, @NotNull final ViewGroup parent, @NotNull final InventoryItem item) {
     final ViewHolder viewHolder;
 
-    if (convertView == null || !convertView.getTag().equals(RowData.Type.INVENTORY)) {
+    if (convertView == null || !((ViewHolder) convertView.getTag()).type.equals(RowData.Type.INVENTORY)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_inventory, parent, false);
@@ -364,14 +363,15 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   }
 
   @NotNull
-  private View displayKeyValuePair(View convertView, @NotNull ViewGroup parent, @NotNull KvPair pair) {
+  private View displayKeyValuePair(View convertView, @NotNull ViewGroup parent, @NotNull KeyValueRowData rowData) {
     ViewHolder viewHolder;
-    if (convertView == null || !convertView.getTag().equals(RowData.Type.KEY_VALUE)) {
+    if (convertView == null || !((ViewHolder) convertView.getTag()).type.equals(RowData.Type.KEY_VALUE)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_key_value, parent, false);
       viewHolder.key = (TextView) convertView.findViewById(R.id.key);
       viewHolder.value = (TextView) convertView.findViewById(R.id.value);
+      viewHolder.unitsIcon = (ImageView) convertView.findViewById(R.id.units_icon);
       convertView.setTag(viewHolder);
       viewHolder.type = RowData.Type.KEY_VALUE;
     }
@@ -379,20 +379,19 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       viewHolder = (ViewHolder) convertView.getTag();
     }
 
-    viewHolder.key.setText(pair.getKey());
-    viewHolder.value.setText(pair.getValue());
-
-    if (pair.getKey().equals("Credits")) {
-      convertView.setOnLongClickListener(new OnLongClickListener() {
-        @Override
-        public boolean onLongClick(View v) {
-          Intent intent = new Intent(getContext(), CreditEditorActivity.class);
-          getContext().startActivity(intent);
-          return true;
-        }
-      });
+    viewHolder.key.setText(rowData.getPair().getKey());
+    viewHolder.value.setText(rowData.getPair().getValue());
+    if (rowData.getImageId() != 0) {
+      viewHolder.unitsIcon.setImageResource(rowData.getImageId());
+      viewHolder.unitsIcon.setVisibility(View.VISIBLE);
     }
-    else if (pair.getKey().equals("Encumbrance")) {
+    else {
+      viewHolder.unitsIcon.setVisibility(View.GONE);
+    }
+
+    convertView.setOnLongClickListener(rowData.getLongClickListener());
+
+    if (rowData.getPair().getKey().equals("Encumbrance")) {
       encumbrance = viewHolder.value;
     }
 
@@ -400,10 +399,10 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   }
 
   @NotNull
-  private View displayRemoveCondition(View convertView, @NotNull ViewGroup parent,
-                                      @NotNull ConditionEditorRowData rowData) {
+  private View displayEditCondition(View convertView, @NotNull ViewGroup parent,
+                                    @NotNull ConditionEditorRowData rowData) {
     ViewHolder viewHolder;
-    if (convertView == null || !convertView.getTag().equals(RowData.Type.EDIT_CONDITION)) {
+    if (convertView == null || !((ViewHolder) convertView.getTag()).type.equals(RowData.Type.EDIT_CONDITION)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_remove_action, parent, false);
@@ -424,7 +423,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   @NotNull
   private View displayScore(View convertView, @NotNull ViewGroup parent, @NotNull final ScoreRowData rowData) {
     final ViewHolder viewHolder;
-    if (convertView == null || !convertView.getTag().equals(RowData.Type.SCORE)) {
+    if (convertView == null || !((ViewHolder) convertView.getTag()).type.equals(RowData.Type.SCORE)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_choose_score, parent, false);
@@ -477,7 +476,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     ViewHolder viewHolder;
     final String sectionLabel = sectionRowData.getSectionId();
     final String pageName = sectionRowData.getContainerPage();
-    if (convertView == null || !convertView.getTag().equals(RowData.Type.SECTION_ID)) {
+    if (convertView == null || !((ViewHolder) convertView.getTag()).type.equals(RowData.Type.SECTION_ID)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_section, parent, false);
@@ -508,7 +507,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   @NotNull
   private View displaySkillAction(View convertView, @NonNull ViewGroup parent, @NotNull SkillActionRowData rowData) {
     ViewHolder viewHolder;
-    if (convertView == null || !convertView.getTag().equals(RowData.Type.SKILL_ACTION)) {
+    if (convertView == null || !((ViewHolder) convertView.getTag()).type.equals(RowData.Type.SKILL_ACTION)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_skill, parent, false);
@@ -553,7 +552,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   @NotNull
   private View displaySpinner(View convertView, @NotNull ViewGroup parent, @NotNull final SpinnerRowData rowData) {
     final ViewHolder viewHolder;
-    if (convertView == null || !convertView.getTag().equals(RowData.Type.SPINNER)) {
+    if (convertView == null || !((ViewHolder) convertView.getTag()).type.equals(RowData.Type.SPINNER)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_spinner, parent, false);
@@ -587,7 +586,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   @NotNull
   private View displayTextEdit(View convertView, @NotNull ViewGroup parent, @NotNull final TextEditorRowData rowData) {
     final ViewHolder viewHolder;
-    if (convertView == null || !convertView.getTag().equals(RowData.Type.TEXT_EDITOR)) {
+    if (convertView == null || !((ViewHolder) convertView.getTag()).type.equals(RowData.Type.TEXT_EDITOR)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_text_editor, parent, false);
@@ -632,7 +631,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   @NotNull
   private View displayThreshold(View convertView, @NotNull ViewGroup parent, @NotNull final ThresholdRowData rowData) {
     ViewHolder viewHolder;
-    if (convertView == null || !convertView.getTag().equals(RowData.Type.KEY_VALUE)) {
+    if (convertView == null || !((ViewHolder) convertView.getTag()).type.equals(RowData.Type.KEY_VALUE)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_key_value, parent, false);
@@ -688,7 +687,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   @NotNull
   private View displayToggle(View convertView, @NotNull ViewGroup parent, @NotNull final ToggleRowData rowData) {
     final ViewHolder viewHolder;
-    if (convertView == null || !convertView.getTag().equals(RowData.Type.TOGGLE)) {
+    if (convertView == null || !((ViewHolder) convertView.getTag()).type.equals(RowData.Type.TOGGLE)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_toggle, parent, false);
@@ -809,6 +808,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     // Key Value Pair
     TextView key;
     TextView value;
+    ImageView unitsIcon;
 
     // Score
     TextView scoreName;

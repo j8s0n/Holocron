@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
@@ -14,8 +15,9 @@ import org.raincitygamers.holocron.rules.character.Character;
 import org.raincitygamers.holocron.rules.character.InventoryItem;
 import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.ui.ContentPage;
-import org.raincitygamers.holocron.ui.display.InventoryEditorActivity;
 import org.raincitygamers.holocron.ui.display.DisplayArrayAdapter;
+import org.raincitygamers.holocron.ui.display.InventoryEditorActivity;
+import org.raincitygamers.holocron.ui.display.WealthTrackerActivity;
 import org.raincitygamers.holocron.ui.display.rowdata.ButtonRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.InventoryItemRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.KeyValueRowData;
@@ -54,8 +56,17 @@ public class GearPage extends ContentPage {
     Character pc = CharacterManager.getActiveCharacter();
     List<RowData> rowData = new ArrayList<>();
     rowData.add(KeyValueRowData.of("Encumbrance", String.format(Locale.US, "%d / %d", pc.getEncumbrance(),
-                                                                pc.getEncumbranceThreshold())));
-    rowData.add(KeyValueRowData.of("Credits", String.format(Locale.US, "%d", pc.getCredits())));
+                                                                pc.getEncumbranceThreshold()), 0));
+    rowData.add(KeyValueRowData.of("Credits", String.format(Locale.US, "%d", pc.getTotalWealth()), R.drawable.ic_credit,
+                                   new OnLongClickListener() {
+                                     @Override
+                                     public boolean onLongClick(View v) {
+                                       Intent intent = new Intent(getActivity(), WealthTrackerActivity.class);
+                                       getActivity().startActivity(intent);
+                                       return true;
+                                     }
+                                   }));
+
     for (InventoryItem item : pc.getInventory()) {
       rowData.add(InventoryItemRowData.of(item));
     }

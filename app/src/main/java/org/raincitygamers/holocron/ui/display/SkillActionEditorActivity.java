@@ -169,7 +169,7 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
     switch (requestCode) {
-    case BONUS_EDITOR_ACTIVITY: {
+    case BONUS_EDITOR_ACTIVITY:
       if (resultCode == Activity.RESULT_OK) {
         if (data.hasExtra(CONDITION_NAME) && data.hasExtra(BONUS_ARRAY)) {
           // Added a condition.
@@ -193,7 +193,6 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
         invalidate();
       }
       break;
-    }
     }
   }
 

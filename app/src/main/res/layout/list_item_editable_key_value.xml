@@ -2,43 +2,43 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
                                              xmlns:tools="http://schemas.android.com/tools"
+                                             android:orientation="vertical"
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent">
 
-  <TextView
-    android:text="Key"
-    android:layout_width="wrap_content"
+  <EditText
+    android:id="@+id/label"
+    android:layout_width="100dp"
     android:layout_height="wrap_content"
-    android:id="@+id/key"
-    tools:layout_constraintTop_creator="1"
-    android:layout_marginStart="8dp"
+    android:layout_marginLeft="8dp"
     android:layout_marginTop="8dp"
-    android:textAppearance="?android:attr/textAppearanceMedium"
-    tools:layout_constraintLeft_creator="1"
+    android:ems="10"
+    android:inputType="textCapSentences|textPersonName"
+    android:text="Name"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintTop_toTopOf="parent"/>
 
-  <TextView
-    android:text="Value"
-    android:layout_width="wrap_content"
+  <EditText
+    android:id="@+id/amount"
+    android:layout_width="89dp"
     android:layout_height="wrap_content"
-    android:id="@+id/value"
-    android:textAppearance="?android:attr/textAppearanceLarge"
-    app:layout_constraintBottom_toBottomOf="@+id/key"
-    app:layout_constraintTop_toTopOf="@+id/key"
-    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="0dp"
+    android:layout_marginRight="8dp"
+    android:ems="10"
+    android:hint="0"
+    android:inputType="text"
+    android:textAlignment="textEnd"
+    app:layout_constraintBottom_toBottomOf="@+id/label"
     app:layout_constraintRight_toLeftOf="@+id/units_icon"
-    android:layout_marginRight="8dp"/>
+    tools:layout_editor_absoluteX="254dp"/>
 
   <ImageView
     android:id="@+id/units_icon"
     android:layout_width="25dp"
     android:layout_height="25dp"
-    android:layout_marginBottom="0dp"
+    android:layout_marginBottom="8dp"
     android:layout_marginRight="8dp"
-    android:layout_marginTop="0dp"
-    android:visibility="gone"
-    app:layout_constraintBottom_toBottomOf="@+id/value"
+    app:layout_constraintBottom_toBottomOf="@+id/amount"
     app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toTopOf="@+id/value"/>
+    />
 </android.support.constraint.ConstraintLayout>

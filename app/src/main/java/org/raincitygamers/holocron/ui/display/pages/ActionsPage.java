@@ -39,39 +39,25 @@ public class ActionsPage extends ContentPage implements FragmentInvalidator {
     displayActions();
   }
 
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    View result = inflater.inflate(R.layout.display_actions, container, false);
+
+    ListView actionsListView = (ListView) result.findViewById(R.id.actions_group_list);
+    arrayAdapter = new DisplayArrayAdapter(getActivity(), rowData, this);
+    actionsListView.setAdapter(arrayAdapter);
+
+    return result;
+  }
+
   private void displayActions() {
     rowData.clear();
     rowData.addAll(CharacterManager.getActiveCharacter().getActions());
     rowData.add(ButtonRowData.of("Add Skill", new OnClickListener() {
       @Override
       public void onClick(View v) {
-        // TODO: No intermediary.
-        // Have an add button at the bottom.
-        // Bring up the editor.
-        // Have a remove button on the editor.
-        // Long press a skill action to open it in the editor.
-        // In the editor, if there are no conditions on the PC, add a note to add conditions.
-
         Intent intent = new Intent(getActivity(), SkillActionEditorActivity.class);
         getActivity().startActivity(intent);
-        // BETTER IDEA!!!!!!!!!!!!!! ????
-
-        // FUCK NO!!!!
-        // FUCK NO!!!!
-        // FUCK NO!!!!
-        // FUCK NO!!!!
-        // Just use the drawer activity.
-
-        //  Create the list of current skill actions, with the edit, remove, and add buttons as above.
-        //  For the editor, use a static-ish activity. Show the name, skill spinner, char spinner,
-        //  and either:
-        //    a list of cells for conditions
-        //    - each cell is a condition spinner and grid of dice icons, counts, and +/- buttons.
-        //    same cells but programatically added to the activity
-        /*
-        Intent intent = new Intent(getActivity(), SkillActionEditorActivity.class);
-        getActivity().startActivity(intent);
-        */
       }
     }));
 
@@ -84,18 +70,6 @@ public class ActionsPage extends ContentPage implements FragmentInvalidator {
     }));
 
     arrayAdapter.notifyDataSetChanged();
-  }
-
-  @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    // Inflate the layout for this fragment
-    View result = inflater.inflate(R.layout.display_actions, container, false);
-
-    ListView actionsListView = (ListView) result.findViewById(R.id.actions_group_list);
-    arrayAdapter = new DisplayArrayAdapter(getActivity(), rowData, this);
-    actionsListView.setAdapter(arrayAdapter);
-
-    return result;
   }
 
   @Override

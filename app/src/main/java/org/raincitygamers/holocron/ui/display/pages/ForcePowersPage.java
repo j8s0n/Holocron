@@ -28,7 +28,7 @@ public class ForcePowersPage extends AbilityPage {
   protected List<RowData> getRowData() {
     Character pc = CharacterManager.getActiveCharacter();
     List<RowData> rowData = new ArrayList<>();
-    rowData.add(0, KeyValueRowData.of("Force Rating", String.format(Locale.US, "%d", pc.getForceRating())));
+    rowData.add(0, KeyValueRowData.of("Force Rating", String.format(Locale.US, "%d", pc.getForceRating()), 0));
 
     for (Map.Entry<String, List<Integer>> entry : pc.getForcePowers().entrySet()) {
       if (!entry.getValue().isEmpty()) {

@@ -51,8 +51,6 @@ public class BonusEditorActivity extends ActivityBase implements FragmentInvalid
     }
   };
 
-  // TODO:
-  // Pass in an intent flag for skill v attack action. Populate based on that.
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -75,23 +73,6 @@ public class BonusEditorActivity extends ActivityBase implements FragmentInvalid
       }
     }
 
-    // TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //  Bring up skill action editor.
-    //  Tap: "Add Bonus"
-    //  Increment a value.
-    //  Scroll off screen.
-    //    Value goes back to 0.
-    //  Tap Done.
-    //    Bonus is correct.
-    //  Long press the same bonus.
-    //    Values are correct.
-    //  Change one and scroll off screen.
-    //    Value goes back to previous one.
-    // TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-    // TODO: If the condition name is set, just show it as text. Maybe?
     conditions = pc.getAvailableConditions(skillActionName);
     index = 0;
     if (conditionName == null || !conditionName.equals("Always Active")) {

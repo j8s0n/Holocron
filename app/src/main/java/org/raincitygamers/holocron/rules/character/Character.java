@@ -69,7 +69,7 @@ public class Character {
   private static final String ID_KEY = "character_id";
   private static final String LAST_OPEN_PAGE_KEY = "last_open_page";
   private static final String XP_KEY = "xp";
-  private static final String CREDITS_KEY = "credits";
+  private static final String WEALTH_KEY = "wealth";
 
   private static final String WOUNDS_KEY = "wounds";
   private static final String WOUND_THRESHOLD_KEY = "wound_threshold";
@@ -92,6 +92,7 @@ public class Character {
   private static final String HIDDEN_SECTIONS_KEY = "hidden_sections";
   private static final String SECTION_KEY = "section";
   private static final String PAGE_KEY = "page";
+  private static final String VALUE_KEY = "value";
 
   @Getter private static final MostRecentAccessComparator mostRecentAccessComparator = new MostRecentAccessComparator();
   @Getter private final List<InventoryItem> inventory = new ArrayList<>();
@@ -109,6 +110,7 @@ public class Character {
   private Map<String, Boolean> actionConditions = new HashMap<>();
   private Map<String, SkillAction> skillActions = new LinkedHashMap<>();
   private List<AttackAction> attackActions = new ArrayList<>();
+  @Getter private Map<String, Integer> wealth = new LinkedHashMap<>();
 
   @Getter @Setter private int age;
   @Getter @Setter private String height;
@@ -130,7 +132,6 @@ public class Character {
 
   @Getter @Setter private int lastOpenPage = 0;
   @Getter @Setter private int xp;
-  @Getter @Setter private int credits;
   private long accessTime;
 
   private final Set<HiddenSection> hiddenSections = new HashSet<>();
@@ -187,7 +188,7 @@ public class Character {
     this.characterId = builder.characterId;
     this.lastOpenPage = builder.lastOpenPage;
     this.xp = builder.xp;
-    this.credits = builder.credits;
+    this.wealth = builder.wealth;
     this.talents.putAll(builder.talents);
     this.actionConditions.putAll(builder.actionConditions);
     this.skillActions.putAll(builder.skillActions);
@@ -299,20 +300,20 @@ public class Character {
     String sectionId = "Identity";
     rowData.add(SectionRowData.of(sectionId, page));
     if (!hiddenSections.contains(HiddenSection.of(page, sectionId))) {
-      rowData.add(KeyValueRowData.of("Name", name));
-      rowData.add(KeyValueRowData.of("Species", species));
-      rowData.add(KeyValueRowData.of("Career", career.getName()));
+      rowData.add(KeyValueRowData.of("Name", name, 0));
+      rowData.add(KeyValueRowData.of("Species", species, 0));
+      rowData.add(KeyValueRowData.of("Career", career.getName(), 0));
       String specializationLabel = "Specialization";
       if (secondarySpecializations.size() > 0) {
         specializationLabel = "Specializations";
       }
 
-      rowData.add(KeyValueRowData.of(specializationLabel, primarySpecialization.getPrettyName()));
+      rowData.add(KeyValueRowData.of(specializationLabel, primarySpecialization.getPrettyName(), 0));
       for (Specialization spec : secondarySpecializations) {
-        rowData.add(KeyValueRowData.of("", spec.getLongPrettyName()));
+        rowData.add(KeyValueRowData.of("", spec.getLongPrettyName(), 0));
       }
 
-      rowData.add(KeyValueRowData.of("XP", String.format(Locale.US, "%d", xp)));
+      rowData.add(KeyValueRowData.of("XP", String.format(Locale.US, "%d", xp), 0));
     }
 
     return rowData;
@@ -325,7 +326,7 @@ public class Character {
     rowData.add(SectionRowData.of(sectionId, page));
     if (!hiddenSections.contains(HiddenSection.of(page, sectionId))) {
       for (Characteristic ch : Characteristic.values()) {
-        rowData.add(KeyValueRowData.of(ch.toString(), String.format(Locale.US, "%d", getCharacteristicScore(ch))));
+        rowData.add(KeyValueRowData.of(ch.toString(), String.format(Locale.US, "%d", getCharacteristicScore(ch)), 0));
       }
     }
 
@@ -339,12 +340,12 @@ public class Character {
     rowData.add(SectionRowData.of(sectionId, page));
     if (!hiddenSections.contains(HiddenSection.of(page, sectionId))) {
       rowData.add(ThresholdRowData.of("Wounds", String.format(Locale.US, " %d / %d", wounds, woundThreshold),
-                                      ThresholdRowData.WOUNDS));
+                                      ThresholdRowData.WOUNDS, 0));
       rowData.add(ThresholdRowData.of("Strain", String.format(Locale.US, " %d / %d", strain, strainThreshold),
-                                      ThresholdRowData.STRAIN));
-      rowData.add(KeyValueRowData.of("Soak", String.format(Locale.US, "%d", soak)));
+                                      ThresholdRowData.STRAIN, 0));
+      rowData.add(KeyValueRowData.of("Soak", String.format(Locale.US, "%d", soak), 0));
       rowData.add(KeyValueRowData.of("Defense (M/R)",
-                                     String.format(Locale.US, "%d / %d", meleeDefense, rangedDefense)));
+                                     String.format(Locale.US, "%d / %d", meleeDefense, rangedDefense), 0));
     }
 
     return rowData;
@@ -464,6 +465,15 @@ public class Character {
     return conditions;
   }
 
+  public int getTotalWealth() {
+    int totalWealth = 0;
+    for (Integer amount : wealth.values()) {
+      totalWealth += amount;
+    }
+
+    return totalWealth;
+  }
+
   public void updateTimestamp() {
     accessTime = System.currentTimeMillis();
   }
@@ -504,9 +514,21 @@ public class Character {
     o.put(ID_KEY, characterId);
     o.put(LAST_OPEN_PAGE_KEY, lastOpenPage);
     o.put(XP_KEY, xp);
-    o.put(CREDITS_KEY, credits);
+    o.put(WEALTH_KEY, wealthAsJsonArray());
     o.put(TIMESTAMP_KEY, accessTime);
     return o;
+  }
+
+  private JSONArray wealthAsJsonArray() throws JSONException {
+    JSONArray a = new JSONArray();
+    for (Map.Entry<String, Integer> entry : wealth.entrySet()) {
+      JSONObject o = new JSONObject();
+      o.put(NAME_KEY, entry.getKey());
+      o.put(VALUE_KEY, entry.getValue());
+      a.put(o);
+    }
+
+    return a;
   }
 
   @NotNull
@@ -655,7 +677,7 @@ public class Character {
                               .accessTime(getJsonLong(jsonObject, TIMESTAMP_KEY))
                               .lastOpenPage(getJsonInt(jsonObject, LAST_OPEN_PAGE_KEY))
                               .xp(getJsonInt(jsonObject, XP_KEY))
-                              .credits(getJsonInt(jsonObject, CREDITS_KEY))
+                              .wealth(parseWealth(getJsonArray(jsonObject, WEALTH_KEY)))
                               .actionConditions(parseActionConditions(getJsonArray(jsonObject, ACTION_CONDITIONS_KEY)))
                               .skillActions(parseSkillActions(getJsonArray(jsonObject, SKILL_ACTIONS_KEY)))
                               .attackActions(parseAttackActions(getJsonArray(jsonObject, ATTACK_ACTIONS_KEY)))
@@ -780,6 +802,22 @@ public class Character {
     }
 
     return specializations;
+  }
+
+  @NotNull
+  private static Map<String, Integer> parseWealth(@NotNull JSONArray jsonArray) {
+    Map<String, Integer> wealth = new LinkedHashMap<>();
+    for (int i = 0; i < jsonArray.length(); i++) {
+      try {
+        JSONObject o = jsonArray.getJSONObject(i);
+        wealth.put(o.getString(NAME_KEY), o.getInt(VALUE_KEY));
+      }
+      catch (JSONException e) {
+        Log.e(LOG_TAG, String.format(Locale.US, "Error reading wealth entry at index %d.", i), e);
+      }
+    }
+
+    return wealth;
   }
 
   @NotNull
@@ -952,13 +990,13 @@ public class Character {
 
     private long accessTime;
     private int xp = 0;
-    private int credits = 0;
     private int lastOpenPage = 0;
     private List<InventoryItem> inventory = new ArrayList<>();
     private Map<String, Boolean> actionConditions = new HashMap<>();
     private Map<String, SkillAction> skillActions = new LinkedHashMap<>();
     private List<AttackAction> attackActions = new ArrayList<>();
     private List<HiddenSection> hiddenSections = new ArrayList<>();
+    private Map<String, Integer> wealth = new LinkedHashMap<>();
 
     private final Career career;
     private final Specialization primarySpecialization;
@@ -1082,8 +1120,8 @@ public class Character {
     }
 
     @NotNull
-    Builder credits(int credits) {
-      this.credits = credits;
+    Builder wealth(@NotNull Map<String, Integer> wealth) {
+      this.wealth.putAll(wealth);
       return this;
     }
 

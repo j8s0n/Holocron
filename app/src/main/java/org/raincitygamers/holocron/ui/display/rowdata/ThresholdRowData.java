@@ -10,13 +10,13 @@ public class ThresholdRowData extends KeyValueRowData {
 
   @Getter private final String threshold;
 
-  private ThresholdRowData(@NotNull String key, @NotNull String value, @NotNull String threshold) {
-    super(key, value);
+  private ThresholdRowData(@NotNull String key, @NotNull String value, @NotNull String threshold, int imageId) {
+    super(key, value, imageId);
     this.threshold = threshold;
   }
 
-  public static ThresholdRowData of(@NotNull String key, @NotNull String value, @NotNull String threshold) {
-    return new ThresholdRowData(key, value, threshold);
+  public static ThresholdRowData of(@NotNull String key, @NotNull String value, @NotNull String threshold, int imageId) {
+    return new ThresholdRowData(key, value, threshold, imageId);
   }
 
   @NotNull
