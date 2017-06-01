@@ -56,7 +56,7 @@ public class BonusEditorActivity extends ActivityBase implements FragmentInvalid
     super.onCreate(savedInstanceState);
     setContentView(R.layout.edit_bonus);
     // If either is blank, this is new.
-    skillActionName = getIntent().getStringExtra(SkillActionEditorActivity.SKILL_ACTION_TO_EDIT);
+    skillActionName = getIntent().getStringExtra(SkillActionEditorActivity.ACTION_TO_EDIT);
     conditionName = getIntent().getStringExtra(CONDITION_NAME);
     originalConditionName = conditionName;
     if (skillActionName != null && conditionName != null) {

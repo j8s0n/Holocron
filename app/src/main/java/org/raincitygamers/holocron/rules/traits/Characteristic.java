@@ -29,7 +29,7 @@ public enum Characteristic {
       }
     }
 
-    throw new IllegalArgumentException("Invalid characteristic string.");
+    throw new IllegalArgumentException("Invalid characteristic string: " + name);
   }
 
   @Override

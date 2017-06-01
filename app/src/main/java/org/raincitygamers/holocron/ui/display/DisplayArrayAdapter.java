@@ -59,7 +59,9 @@ import java.util.Locale;
 import java.util.Set;
 
 import static org.raincitygamers.holocron.rules.managers.CharacterManager.getActiveCharacter;
-import static org.raincitygamers.holocron.ui.display.SkillActionEditorActivity.SKILL_ACTION_TO_EDIT;
+import static org.raincitygamers.holocron.ui.display.SkillActionEditorActivity.ACTION_TO_EDIT;
+import static org.raincitygamers.holocron.ui.display.SkillActionEditorActivity.ACTION_TYPE;
+import static org.raincitygamers.holocron.ui.display.rowdata.RowData.Type.SKILL_ACTION;
 
 public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
 
@@ -188,7 +190,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     }
 
     Set<String> activeConditions = getActiveCharacter().getActiveConditions();
-    AttackAction attackAction = rowData.getAttackAction();
+    final AttackAction attackAction = rowData.getAttackAction();
     DicePool dicePool = DicePool.of(attackAction);
     dicePool.increasePool(attackAction.getPoolBonus(activeConditions));
     viewHolder.entryName.setText(attackAction.getName());
@@ -209,6 +211,22 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     viewHolder.criticalValue.setText(criticalString);
     viewHolder.rangeValue.setText(attackAction.getRange().getName());
     viewHolder.attackText.setText(attackAction.getText());
+    convertView.setOnLongClickListener(new OnLongClickListener() {
+      @Override
+      public boolean onLongClick(View v) {
+        Intent intent = new Intent(getContext(), SkillActionEditorActivity.class);
+        intent.putExtra(ACTION_TYPE, SkillActionEditorActivity.ActionType.ATTACK);
+        intent.putExtra(ACTION_TO_EDIT, attackAction.getName());
+        getContext().startActivity(intent);
+
+        if (invalidator != null) {
+          invalidator.invalidate();
+        }
+
+        return true;
+      }
+    });
+
     return convertView;
   }
 
@@ -265,7 +283,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       @Override
       public boolean onLongClick(View v) {
         Intent intent = new Intent(getContext(), BonusEditorActivity.class);
-        intent.putExtra(SKILL_ACTION_TO_EDIT, rowData.getSkillActionName());
+        intent.putExtra(ACTION_TO_EDIT, rowData.getSkillActionName());
         intent.putExtra(BonusEditorActivity.CONDITION_NAME, rowData.getCondition());
         Context context = getContext();
         if (context instanceof SkillActionEditorActivity) {
@@ -507,7 +525,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   @NotNull
   private View displaySkillAction(View convertView, @NonNull ViewGroup parent, @NotNull SkillActionRowData rowData) {
     ViewHolder viewHolder;
-    if (convertView == null || !((ViewHolder) convertView.getTag()).type.equals(RowData.Type.SKILL_ACTION)) {
+    if (convertView == null || !((ViewHolder) convertView.getTag()).type.equals(SKILL_ACTION)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_skill, parent, false);
@@ -517,7 +535,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       viewHolder.skillRating = (TextView) convertView.findViewById(R.id.skill_rating);
       viewHolder.isCareerSkill = (TextView) convertView.findViewById(R.id.career_skill);
       convertView.setTag(viewHolder);
-      viewHolder.type = RowData.Type.SKILL_ACTION;
+      viewHolder.type = SKILL_ACTION;
     }
     else {
       viewHolder = (ViewHolder) convertView.getTag();
@@ -536,7 +554,8 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       @Override
       public boolean onLongClick(View v) {
         Intent intent = new Intent(getContext(), SkillActionEditorActivity.class);
-        intent.putExtra(SKILL_ACTION_TO_EDIT, skillAction.getName());
+        intent.putExtra(ACTION_TO_EDIT, skillAction.getName());
+        intent.putExtra(ACTION_TYPE, SkillActionEditorActivity.ActionType.SKILL);
         getContext().startActivity(intent);
 
         if (invalidator != null) {
@@ -546,6 +565,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
         return true;
       }
     });
+
     return convertView;
   }
 
@@ -627,6 +647,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
 
     return convertView;
   }
+
 
   @NotNull
   private View displayThreshold(View convertView, @NotNull ViewGroup parent, @NotNull final ThresholdRowData rowData) {

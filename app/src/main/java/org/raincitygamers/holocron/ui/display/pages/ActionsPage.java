@@ -21,6 +21,8 @@ import org.raincitygamers.holocron.ui.display.rowdata.RowData;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.raincitygamers.holocron.ui.display.SkillActionEditorActivity.ACTION_TYPE;
+
 public class ActionsPage extends ContentPage implements FragmentInvalidator {
   private List<RowData> rowData = new ArrayList<>();
   private DisplayArrayAdapter arrayAdapter;
@@ -53,10 +55,20 @@ public class ActionsPage extends ContentPage implements FragmentInvalidator {
   private void displayActions() {
     rowData.clear();
     rowData.addAll(CharacterManager.getActiveCharacter().getActions());
+    rowData.add(ButtonRowData.of("Add Attack", new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(getActivity(), SkillActionEditorActivity.class);
+        intent.putExtra(ACTION_TYPE, SkillActionEditorActivity.ActionType.ATTACK);
+        getActivity().startActivity(intent);
+      }
+    }));
+
     rowData.add(ButtonRowData.of("Add Skill", new OnClickListener() {
       @Override
       public void onClick(View v) {
         Intent intent = new Intent(getActivity(), SkillActionEditorActivity.class);
+        intent.putExtra(ACTION_TYPE, SkillActionEditorActivity.ActionType.SKILL);
         getActivity().startActivity(intent);
       }
     }));

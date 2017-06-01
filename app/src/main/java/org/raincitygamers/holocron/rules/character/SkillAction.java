@@ -138,10 +138,10 @@ public class SkillAction {
   }
 
   public static class Builder {
-    @Getter @Setter private String name;
-    @Getter @Setter private Characteristic characteristic;
-    @Getter @Setter private Skill skill;
-    @Getter private Map<String, Map<BonusType, Integer>> conditionals = new LinkedHashMap<>();
+    @Getter @Setter protected String name;
+    @Getter @Setter protected Characteristic characteristic;
+    @Getter @Setter protected Skill skill;
+    @Getter protected Map<String, Map<BonusType, Integer>> conditionals = new LinkedHashMap<>();
 
     public void addConditional(@NotNull String conditionalName, @NotNull BonusType bonusType, int count) {
       if (!conditionals.containsKey(conditionalName)) {

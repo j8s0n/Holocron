@@ -109,7 +109,7 @@ public class Character {
   @Getter private List<Obligation> obligations = new ArrayList<>();
   private Map<String, Boolean> actionConditions = new HashMap<>();
   private Map<String, SkillAction> skillActions = new LinkedHashMap<>();
-  private List<AttackAction> attackActions = new ArrayList<>();
+  private Map<String, AttackAction> attackActions = new LinkedHashMap<>();
   @Getter private Map<String, Integer> wealth = new LinkedHashMap<>();
 
   @Getter @Setter private int age;
@@ -192,7 +192,7 @@ public class Character {
     this.talents.putAll(builder.talents);
     this.actionConditions.putAll(builder.actionConditions);
     this.skillActions.putAll(builder.skillActions);
-    this.attackActions.addAll(builder.attackActions);
+    this.attackActions.putAll(builder.attackActions);
     this.hiddenSections.addAll(builder.hiddenSections);
   }
 
@@ -367,8 +367,8 @@ public class Character {
     String sectionId = "Attacks";
     rowData.add(SectionRowData.of(sectionId, page));
     if (!hiddenSections.contains(HiddenSection.of(page, sectionId))) {
-      for (AttackAction attackAction : attackActions) {
-        rowData.add(AttackActionRowData.of(attackAction));
+      for (Map.Entry<String, AttackAction> entry : attackActions.entrySet()) {
+        rowData.add(AttackActionRowData.of(entry.getValue()));
       }
     }
 
@@ -414,8 +414,17 @@ public class Character {
   public void addSkillAction(@NotNull SkillAction skillAction) {
     skillActions.put(skillAction.getName(), skillAction);
   }
+
+  public void addAttackAction(@NotNull AttackAction attackAction) {
+    attackActions.put(attackAction.getName(), attackAction);
+  }
+
   public boolean removeSkillAction(@NotNull String skillActionName) {
     return (skillActions.remove(skillActionName) != null);
+  }
+
+  public boolean removeAttackAction(@NotNull String attackActionName) {
+    return (attackActions.remove(attackActionName) != null);
   }
 
   @NotNull
@@ -454,7 +463,18 @@ public class Character {
       return skillActions.get(skillActionName);
     }
     else {
-      return SkillAction.of("", Characteristic.BRAWN, SkillManager.getGeneralSkills().iterator().next());
+      return SkillAction.of("", Characteristic.BRAWN, SkillManager.getGeneralSkills().get(0));
+    }
+  }
+
+  @NotNull
+  public AttackAction getAttackAction(@NotNull String attackActionName) {
+    if (attackActions.containsKey(attackActionName)) {
+      return attackActions.get(attackActionName);
+    }
+    else {
+      return AttackAction.of("", Characteristic.BRAWN, SkillManager.getCombatSkills().get(0), Collections.EMPTY_MAP, 0,
+                             0, AttackAction.Range.ENGAGED, "");
     }
   }
 
@@ -557,7 +577,7 @@ public class Character {
   @NotNull
   private JSONArray attackActionsAsJsonArray() throws JSONException {
     JSONArray a = new JSONArray();
-    for (AttackAction attackAction : attackActions) {
+    for (AttackAction attackAction : attackActions.values()) {
       a.put(attackAction.toJsonObject());
     }
 
@@ -994,7 +1014,7 @@ public class Character {
     private List<InventoryItem> inventory = new ArrayList<>();
     private Map<String, Boolean> actionConditions = new HashMap<>();
     private Map<String, SkillAction> skillActions = new LinkedHashMap<>();
-    private List<AttackAction> attackActions = new ArrayList<>();
+    private Map<String, AttackAction> attackActions = new LinkedHashMap<>();
     private List<HiddenSection> hiddenSections = new ArrayList<>();
     private Map<String, Integer> wealth = new LinkedHashMap<>();
 
@@ -1142,7 +1162,10 @@ public class Character {
 
     @NotNull
     Builder attackActions(@NotNull List<AttackAction> attackActions) {
-      this.attackActions.addAll(attackActions);
+      for (AttackAction attackAction : attackActions) {
+        this.attackActions.put(attackAction.getName(), attackAction);
+      }
+
       return this;
     }
 
