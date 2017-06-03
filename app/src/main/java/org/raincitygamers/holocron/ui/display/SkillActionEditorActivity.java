@@ -30,6 +30,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static android.text.InputType.TYPE_CLASS_NUMBER;
+import static android.text.InputType.TYPE_CLASS_TEXT;
+import static android.text.InputType.TYPE_NUMBER_FLAG_SIGNED;
+import static android.text.InputType.TYPE_TEXT_FLAG_CAP_SENTENCES;
 import static org.raincitygamers.holocron.ui.display.BonusEditorActivity.BONUS_ARRAY;
 import static org.raincitygamers.holocron.ui.display.BonusEditorActivity.CONDITION_NAME;
 import static org.raincitygamers.holocron.ui.display.BonusEditorActivity.REMOVE_CONDITION;
@@ -46,7 +50,7 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
   private SkillAction actionToEdit;
   private ActionType actionType;
   private SkillAction.Builder actionBuilder;
-  private boolean readFromBuilder = false;
+  private boolean readFromActionToEdit = true;
 
   private final Character pc = CharacterManager.getActiveCharacter();
 
@@ -114,16 +118,17 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
     String characteristic;
     String skill;
 
-    if (readFromBuilder) {
-      name = actionBuilder.getName();
-      characteristic = actionBuilder.getCharacteristic().toString();
-      skill = actionBuilder.getSkill().getName();
-    }
-    else if (actionToEdit != null) {
+    if (readFromActionToEdit && actionToEdit != null) {
+      if (!(actionToEdit instanceof AttackAction)) {
+        readFromActionToEdit = false;
+      }
+
       name = actionToEdit.getName();
       actionBuilder.setName(name);
       characteristic = actionToEdit.getCharacteristic().toString();
+      actionBuilder.setCharacteristic(actionToEdit.getCharacteristic());
       skill = actionToEdit.getSkill().getName();
+      actionBuilder.setSkill(actionToEdit.getSkill());
       Map<String, Map<BonusType, Integer>> bonusesMap = actionToEdit.getConditionalBonuses();
       for (Map.Entry<String, Map<BonusType, Integer>> entry : bonusesMap.entrySet()) {
         String condition = entry.getKey();
@@ -133,26 +138,18 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
       }
     }
     else {
-      name = "";
-      characteristic = Characteristic.BRAWN.toString();
-      skill = SkillManager.getAllSkillNames().get(0);
+      name = actionBuilder.getName();
+      characteristic = actionBuilder.getCharacteristic().toString();
+      skill = actionBuilder.getSkill().getName();
     }
 
-    // TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // If it's an attack action need to populate the builder like I do for the skill action stuff.
-
-    // Replace EditTextWatcher with android.text.TextWatcher anonymous class.
-    // Pass that through to EditText#addTextChangedListener() in the display adapter.
-    // Remove the other callbacks in display adapter.
-
-    rowData.add(TextEditorRowData.of(name, "Name", new TextEditorRowData.EditTextWatcher() {
-      @Override
-      public void valueUpdated(@NotNull String value) {
-        actionBuilder.setName(value);
-      }
-    }));
+    rowData.add(TextEditorRowData.of(name, "Name", TYPE_TEXT_FLAG_CAP_SENTENCES | TYPE_CLASS_TEXT,
+                                     new TextEditorRowData.EditTextWatcher() {
+                                       @Override
+                                       public void valueUpdated(@NotNull String value) {
+                                         actionBuilder.setName(value);
+                                       }
+                                     }));
 
     List<String> characteristics = Characteristic.getNames();
     int characteristicIndex = characteristics.indexOf(characteristic);
@@ -187,27 +184,25 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
     AttackAction attackToEdit = (AttackAction) actionToEdit;
     final AttackAction.Builder attackBuilder = (AttackAction.Builder) actionBuilder;
 
-    if (readFromBuilder) {
+    if (readFromActionToEdit && actionToEdit != null) {
+      readFromActionToEdit = false;
+      damage = String.valueOf(attackToEdit.getDamage());
+      attackBuilder.setDamage(attackToEdit.getDamage());
+      critical = String.valueOf(attackToEdit.getCritical());
+      attackBuilder.setCritical(attackToEdit.getCritical());
+      range = attackToEdit.getRange();
+      attackBuilder.setRange(attackToEdit.getRange());
+      text = attackToEdit.getText();
+      attackBuilder.setText(attackToEdit.getText());
+    }
+    else {
       damage = String.valueOf(attackBuilder.getDamage());
       critical = String.valueOf(attackBuilder.getCritical());
       range = attackBuilder.getRange();
       text = attackBuilder.getText();
     }
-    else if (attackToEdit != null) {
-      damage = String.valueOf(attackToEdit.getDamage());
-      critical = String.valueOf(attackToEdit.getCritical());
-      range = attackToEdit.getRange();
-      text = attackToEdit.getText();
-    }
-    else {
-      damage = "";
-      critical = "";
-      range = AttackAction.Range.ENGAGED;
-      text = "";
-    }
 
-    // TODO: Make the edit box a positive int only.
-    rowData.add(TextEditorRowData.of(damage, "Damage", new TextEditorRowData.EditTextWatcher() {
+    rowData.add(TextEditorRowData.of(damage, "Damage", TYPE_CLASS_NUMBER, new TextEditorRowData.EditTextWatcher() {
       @Override
       public void valueUpdated(@NotNull String value) {
         try {
@@ -219,20 +214,20 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
       }
     }));
 
-    // TODO: Make the edit box a signed int.
     // TODO: Eventuallly make it a spinner with N/A, 1, 2, ..., max crit.
 
-    rowData.add(TextEditorRowData.of(critical, "Critical", new TextEditorRowData.EditTextWatcher() {
-      @Override
-      public void valueUpdated(@NotNull String value) {
-        try {
-          attackBuilder.setCritical(Integer.parseInt(value));
-        }
-        catch (NumberFormatException e) {
-          attackBuilder.setCritical(-1);
-        }
-      }
-    }));
+    rowData.add(TextEditorRowData.of(critical, "Critical", TYPE_CLASS_NUMBER | TYPE_NUMBER_FLAG_SIGNED,
+                                     new TextEditorRowData.EditTextWatcher() {
+                                       @Override
+                                       public void valueUpdated(@NotNull String value) {
+                                         try {
+                                           attackBuilder.setCritical(Integer.parseInt(value));
+                                         }
+                                         catch (NumberFormatException e) {
+                                           attackBuilder.setCritical(-1);
+                                         }
+                                       }
+                                     }));
 
     int selectedRange = ranges.indexOf(range.getName());
     rowData.add(SpinnerRowData.of(ranges, selectedRange, new SpinnerRowData.SpinnerWatcher() {
@@ -242,19 +237,19 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
       }
     }));
 
-    rowData.add(TextEditorRowData.of(text, "Notes", new TextEditorRowData.EditTextWatcher() {
-      @Override
-      public void valueUpdated(@NotNull String value) {
-        attackBuilder.setText(value);
-      }
-    }));
+    rowData.add(TextEditorRowData.of(text, "Notes", TYPE_TEXT_FLAG_CAP_SENTENCES | TYPE_CLASS_TEXT,
+                                     new TextEditorRowData.EditTextWatcher() {
+                                       @Override
+                                       public void valueUpdated(@NotNull String value) {
+                                         attackBuilder.setText(value);
+                                       }
+                                     }));
   }
 
   private void addButtons() {
     rowData.add(ButtonRowData.of("Add Bonus", new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        readFromBuilder = true;
         Intent intent = new Intent(SkillActionEditorActivity.this, BonusEditorActivity.class);
         intent.putExtra(ACTION_TO_EDIT, actionBuilder.getName());
         intent.putExtra(ACTION_TYPE, actionType);
@@ -272,10 +267,10 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
 
         switch (actionType) {
         case SKILL:
-        SkillAction skillAction = actionBuilder.build();
-        pc.addSkillAction(skillAction);
-        if (actionToEdit != null && !actionToEdit.getName().equals(skillAction.getName())) {
-          pc.removeSkillAction(actionToEdit.getName());
+          SkillAction skillAction = actionBuilder.build();
+          pc.addSkillAction(skillAction);
+          if (actionToEdit != null && !actionToEdit.getName().equals(skillAction.getName())) {
+            pc.removeSkillAction(actionToEdit.getName());
           }
           break;
 
@@ -299,7 +294,7 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
         public void onClick(View v) {
           switch (actionType) {
           case SKILL:
-          pc.removeSkillAction(actionToEdit.getName());
+            pc.removeSkillAction(actionToEdit.getName());
             break;
 
           case ATTACK:
@@ -337,7 +332,6 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
           actionBuilder.removeConditional(condition);
         }
 
-        readFromBuilder = true;
         invalidate();
       }
       break;

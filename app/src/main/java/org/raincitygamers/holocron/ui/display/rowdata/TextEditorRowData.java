@@ -10,8 +10,9 @@ import lombok.Setter;
 @AllArgsConstructor(suppressConstructorProperties = true, staticName = "of")
 public class TextEditorRowData implements RowData {
   @Getter @Setter @NonNull private String textValue;
-  @Getter @NonNull private final String hint;
-  @Getter @NonNull private final EditTextWatcher watcher;
+  @Getter private final String hint;
+  @Getter private final int inputType;
+  @Getter private final EditTextWatcher watcher;
 
   @NotNull
   @Override

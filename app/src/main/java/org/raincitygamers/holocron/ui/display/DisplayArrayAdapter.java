@@ -4,7 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.view.KeyEvent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,7 +13,6 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -593,6 +593,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       @Override
       public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
         rowData.getSpinnerWatcher().itemSelected(rowData.getContent().get(position));
+        rowData.setSelectedItem(position);
       }
 
       @Override
@@ -620,28 +621,22 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
 
     viewHolder.textEditor.setText(rowData.getTextValue());
     viewHolder.textEditor.setHint(rowData.getHint());
-    viewHolder.textEditor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+    viewHolder.textEditor.setInputType(rowData.getInputType());
+    viewHolder.textEditor.addTextChangedListener(new TextWatcher() {
       @Override
-      public void onFocusChange(View v, boolean hasFocus) {
-        if (!hasFocus) {
-          String name = viewHolder.textEditor.getText().toString();
-          rowData.getWatcher().valueUpdated(name);
-          rowData.setTextValue(name);
-        }
+      public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
       }
-    });
 
-    viewHolder.textEditor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
       @Override
-      public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        if (actionId == EditorInfo.IME_ACTION_DONE) {
-          String name = v.getText().toString();
-          rowData.getWatcher().valueUpdated(name);
-          rowData.setTextValue(name);
-          return true;
-        }
+      public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-        return false;
+      }
+
+      @Override
+      public void afterTextChanged(Editable s) {
+        rowData.setTextValue(s.toString());
+        rowData.getWatcher().valueUpdated(rowData.getTextValue());
       }
     });
 

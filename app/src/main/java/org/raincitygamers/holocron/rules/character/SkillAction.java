@@ -138,9 +138,9 @@ public class SkillAction {
   }
 
   public static class Builder {
-    @Getter @Setter protected String name;
-    @Getter @Setter protected Characteristic characteristic;
-    @Getter @Setter protected Skill skill;
+    @Getter @Setter protected String name = "";
+    @Getter @Setter protected Characteristic characteristic = Characteristic.BRAWN;
+    @Getter @Setter protected Skill skill = SkillManager.getGeneralSkills().get(0);
     @Getter protected Map<String, Map<BonusType, Integer>> conditionals = new LinkedHashMap<>();
 
     public void addConditional(@NotNull String conditionalName, @NotNull BonusType bonusType, int count) {
