@@ -470,6 +470,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
 
         viewHolder.scoreValue.setText(String.format(Locale.getDefault(), "%d", score));
         rowData.getWatcher().valueUpdated(rowData.getBonusType(), score);
+        rowData.setCount(score);
       }
     });
 
@@ -483,6 +484,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
 
         viewHolder.scoreValue.setText(String.format(Locale.getDefault(), "%d", score));
         rowData.getWatcher().valueUpdated(rowData.getBonusType(), score);
+        rowData.setCount(score);
       }
     });
 

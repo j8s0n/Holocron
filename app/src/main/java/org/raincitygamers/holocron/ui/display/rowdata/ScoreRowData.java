@@ -6,11 +6,12 @@ import org.raincitygamers.holocron.rules.traits.DicePool.BonusType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
 
 @AllArgsConstructor(suppressConstructorProperties = true, staticName = "of")
 public class ScoreRowData implements RowData {
   @Getter @NonNull private final BonusType bonusType;
-  @Getter @NonNull private final int count;
+  @Getter @Setter private int count;
   @Getter @NonNull private final ScoreRowWatcher watcher;
 
   @NotNull
