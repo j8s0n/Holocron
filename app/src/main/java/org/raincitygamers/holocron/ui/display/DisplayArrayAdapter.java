@@ -649,14 +649,14 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   @NotNull
   private View displayThreshold(View convertView, @NotNull ViewGroup parent, @NotNull final ThresholdRowData rowData) {
     ViewHolder viewHolder;
-    if (convertView == null || !((ViewHolder) convertView.getTag()).type.equals(RowData.Type.KEY_VALUE)) {
+    if (convertView == null || !((ViewHolder) convertView.getTag()).type.equals(RowData.Type.THRESHOLD)) {
       viewHolder = new ViewHolder();
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_key_value, parent, false);
       viewHolder.key = (TextView) convertView.findViewById(R.id.key);
       viewHolder.value = (TextView) convertView.findViewById(R.id.value);
       convertView.setTag(viewHolder);
-      viewHolder.type = RowData.Type.KEY_VALUE;
+      viewHolder.type = RowData.Type.THRESHOLD;
     }
     else {
       viewHolder = (ViewHolder) convertView.getTag();
