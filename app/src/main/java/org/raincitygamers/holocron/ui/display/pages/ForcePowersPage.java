@@ -34,14 +34,17 @@ public class ForcePowersPage extends AbilityPage {
       if (!entry.getValue().isEmpty()) {
         String powerName = entry.getKey();
         String pageName = "Force Powers";
-        rowData.add(SectionRowData.of(powerName, pageName));
         if (!pc.isSectionHidden(pageName, powerName)) {
+          rowData.add(SectionRowData.of(powerName, pageName, false));
           List<ForcePowerUpgrade> powerUpgradeList = ForcePowerManager.getList(powerName);
           List<Integer> chosenPowerUpgrades = entry.getValue();
           Collections.sort(chosenPowerUpgrades);
           for (Integer i : chosenPowerUpgrades) {
             rowData.add(AbilityRowData.of(powerUpgradeList.get(i)));
           }
+        }
+        else {
+          rowData.add(SectionRowData.of(powerName, pageName, true));
         }
       }
     }

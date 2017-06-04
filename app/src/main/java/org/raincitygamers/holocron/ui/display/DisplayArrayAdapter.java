@@ -492,7 +492,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   }
 
   @NotNull
-  private View displaySection(View convertView, @NotNull ViewGroup parent, @NotNull SectionRowData sectionRowData) {
+  private View displaySection(View convertView, @NotNull ViewGroup parent, @NotNull final SectionRowData sectionRowData) {
     ViewHolder viewHolder;
     final String sectionLabel = sectionRowData.getSectionId();
     final String pageName = sectionRowData.getContainerPage();
@@ -501,6 +501,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
       LayoutInflater inflater = LayoutInflater.from(getContext());
       convertView = inflater.inflate(R.layout.list_item_section, parent, false);
       viewHolder.sectionLabel = (TextView) convertView.findViewById(R.id.section_label);
+      viewHolder.expandArrow = (ImageView) convertView.findViewById(R.id.expand_arrow);
       convertView.setTag(viewHolder);
       viewHolder.type = RowData.Type.SECTION_ID;
     }
@@ -509,9 +510,13 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     }
 
     viewHolder.sectionLabel.setText(sectionLabel);
+    viewHolder.expandArrow.setImageResource(sectionRowData.isCollapsed() ? R.drawable.ic_expand_arrow
+                                                                         : R.drawable.ic_collapse_arrow);
+
     convertView.setOnLongClickListener(new OnLongClickListener() {
       @Override
       public boolean onLongClick(View v) {
+        sectionRowData.setCollapsed(!sectionRowData.isCollapsed());
         getActiveCharacter().toggleSection(pageName, sectionLabel);
         if (invalidator != null) {
           invalidator.invalidate();
@@ -837,6 +842,7 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
 
     // Section ID
     TextView sectionLabel;
+    ImageView expandArrow;
 
     // Skill Action
     TextView entryName;

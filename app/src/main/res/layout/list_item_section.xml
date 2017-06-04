@@ -21,4 +21,16 @@
     app:layout_constraintTop_toTopOf="parent"
     android:textAppearance="?android:attr/textAppearanceMedium"
     />
+
+  <ImageView
+    android:id="@+id/expand_arrow"
+    android:layout_width="15dp"
+    android:layout_height="15dp"
+    android:layout_marginBottom="0dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="0dp"
+    app:layout_constraintBottom_toBottomOf="@+id/section_label"
+    app:layout_constraintLeft_toRightOf="@+id/section_label"
+    app:layout_constraintTop_toTopOf="@+id/section_label"
+    />
 </android.support.constraint.ConstraintLayout>

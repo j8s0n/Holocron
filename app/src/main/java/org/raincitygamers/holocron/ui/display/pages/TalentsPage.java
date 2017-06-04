@@ -1,10 +1,10 @@
 package org.raincitygamers.holocron.ui.display.pages;
 
-import org.raincitygamers.holocron.rules.traits.Talent;
 import org.raincitygamers.holocron.rules.character.Character;
-import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.rules.character.Specialization;
+import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.rules.managers.TalentManager;
+import org.raincitygamers.holocron.rules.traits.Talent;
 import org.raincitygamers.holocron.ui.display.rowdata.AbilityRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.RowData;
 import org.raincitygamers.holocron.ui.display.rowdata.SectionRowData;
@@ -26,14 +26,17 @@ public class TalentsPage extends AbilityPage {
     for (Map.Entry<Specialization, List<Integer>> entry : pc.getTalents().entrySet()) {
       Specialization specialization = entry.getKey();
       String pageName = "Talents";
-      rowData.add(SectionRowData.of(specialization.getLongPrettyName(), pageName));
       if (!pc.isSectionHidden(pageName, specialization.getLongPrettyName())) {
+        rowData.add(SectionRowData.of(specialization.getLongPrettyName(), pageName, false));
         List<Talent> talentTree = TalentManager.getList(specialization);
         List<Integer> chosenTalents = entry.getValue();
         Collections.sort(chosenTalents);
         for (Integer i : chosenTalents) {
           rowData.add(AbilityRowData.of(talentTree.get(i)));
         }
+      }
+      else {
+        rowData.add(SectionRowData.of(specialization.getLongPrettyName(), pageName, true));
       }
     }
 
