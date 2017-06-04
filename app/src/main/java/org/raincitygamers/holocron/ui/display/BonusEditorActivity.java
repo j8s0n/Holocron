@@ -15,6 +15,7 @@ import org.raincitygamers.holocron.rules.managers.CharacterManager;
 import org.raincitygamers.holocron.rules.traits.DicePool.BonusType;
 import org.raincitygamers.holocron.ui.ActivityBase;
 import org.raincitygamers.holocron.ui.FragmentInvalidator;
+import org.raincitygamers.holocron.ui.display.SkillActionEditorActivity.ActionType;
 import org.raincitygamers.holocron.ui.display.rowdata.ButtonRowData;
 import org.raincitygamers.holocron.ui.display.rowdata.RowData;
 import org.raincitygamers.holocron.ui.display.rowdata.ScoreRowData;
@@ -43,6 +44,7 @@ public class BonusEditorActivity extends ActivityBase implements FragmentInvalid
   private List<String> conditions;
   private int index;
   private Map<String, Integer> bonuses = new HashMap<>();
+  private ActionType actionType;
 
   private final ScoreRowData.ScoreRowWatcher watcher = new ScoreRowData.ScoreRowWatcher() {
     @Override
@@ -58,6 +60,7 @@ public class BonusEditorActivity extends ActivityBase implements FragmentInvalid
     // If either is blank, this is new.
     skillActionName = getIntent().getStringExtra(SkillActionEditorActivity.ACTION_TO_EDIT);
     conditionName = getIntent().getStringExtra(CONDITION_NAME);
+    actionType = (ActionType) getIntent().getSerializableExtra(SkillActionEditorActivity.ACTION_TYPE);
     originalConditionName = conditionName;
     if (skillActionName != null && conditionName != null) {
       SkillAction skillAction = pc.getSkillAction(skillActionName);
@@ -99,12 +102,26 @@ public class BonusEditorActivity extends ActivityBase implements FragmentInvalid
     }));
 
     for (BonusType bonusType : BonusType.values()) {
-      if (bonusType.showInSkillAction()) {
+      if (bonusType.isSkillOnly()) {
         int count = 0;
         if (bonuses.containsKey(bonusType.toString())) {
           count = bonuses.get(bonusType.toString());
         }
+
         rowData.add(ScoreRowData.of(bonusType, count, watcher));
+      }
+    }
+
+    if (actionType.equals(ActionType.ATTACK)) {
+      for (BonusType bonusType : BonusType.values()) {
+        if (!bonusType.isSkillOnly()) {
+          int count = 0;
+          if (bonuses.containsKey(bonusType.toString())) {
+            count = bonuses.get(bonusType.toString());
+          }
+
+          rowData.add(ScoreRowData.of(bonusType, count, watcher));
+        }
       }
     }
 
@@ -151,6 +168,6 @@ public class BonusEditorActivity extends ActivityBase implements FragmentInvalid
 
   @Override
   protected String getTitleString() {
-    return pc.getName() + " - Skill Action Editor";
+    return pc.getName() + " - Bonus Editor";
   }
 }

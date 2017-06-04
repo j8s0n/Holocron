@@ -191,33 +191,33 @@ public class DicePool {
   }
 
   public enum BonusType {
-    ABILITY_DIE("Ability Die", 3, R.drawable.ic_ability_die),
-    ADVANTAGE("Advantage", 3, R.drawable.ic_advantage),
-    BOOST_DIE("Boost Die", 3, R.drawable.ic_boost_die),
-    CRITICAL("Critical", 2, R.drawable.ic_critical),
-    DAMAGE("Damage", 2, R.drawable.ic_damage),
-    FAILURE("Failure", 3, R.drawable.ic_failure),
-    FORCE_DIE("Force Die", 3, R.drawable.ic_force_die),
-    FORCE_POINT("Force Point", 3, R.drawable.ic_force_point),
-    NEGATIVE_SETBACK_DIE("Negative Setback Die", 3, R.drawable.ic_negative_setback_die),
-    PROFICIENCY_DIE("Proficiency Die", 3, R.drawable.ic_proficiency_die),
-    SETBACK_DIE("Setback Die", 3, R.drawable.ic_setback_die),
-    SKILL_RANK("Skill Rank", 3, R.drawable.ic_skill_rank),
-    SUCCESS("Success", 3, R.drawable.ic_success),
-    THREAT("Threat", 3, R.drawable.ic_threat),
-    TRIUMPH("Triumph", 3, R.drawable.ic_triumph),
-    UPGRADE("Upgrade", 3, R.drawable.ic_upgrade);
+    ABILITY_DIE("Ability Die", true, R.drawable.ic_ability_die),
+    ADVANTAGE("Advantage", true, R.drawable.ic_advantage),
+    BOOST_DIE("Boost Die", true, R.drawable.ic_boost_die),
+    CRITICAL("Critical", false, R.drawable.ic_critical),
+    DAMAGE("Damage", false, R.drawable.ic_damage),
+    FAILURE("Failure", true, R.drawable.ic_failure),
+    FORCE_DIE("Force Die", true, R.drawable.ic_force_die),
+    FORCE_POINT("Force Point", true, R.drawable.ic_force_point),
+    NEGATIVE_SETBACK_DIE("Negative Setback Die", true, R.drawable.ic_negative_setback_die),
+    PROFICIENCY_DIE("Proficiency Die", true, R.drawable.ic_proficiency_die),
+    SETBACK_DIE("Setback Die", true, R.drawable.ic_setback_die),
+    SKILL_RANK("Skill Rank", true, R.drawable.ic_skill_rank),
+    SUCCESS("Success", true, R.drawable.ic_success),
+    THREAT("Threat", true, R.drawable.ic_threat),
+    TRIUMPH("Triumph", true, R.drawable.ic_triumph),
+    UPGRADE("Upgrade", true, R.drawable.ic_upgrade);
 
     private String name;
-    private int showFields;
+    private boolean skillOnly;
     private int resourceId;
 
     private static final int SHOW_IN_SKILL_ACTION = 1;
     private static final int SHOW_IN_ATTACK_ACTION = 2;
 
-    BonusType(String name, int showFields, int resourceId) {
+    BonusType(String name, boolean skillOnly, int resourceId) {
       this.name = name;
-      this.showFields = showFields;
+      this.skillOnly = skillOnly;
       this.resourceId = resourceId;
     }
 
@@ -230,12 +230,8 @@ public class DicePool {
       return resourceId;
     }
 
-    public boolean showInSkillAction() {
-      return (showFields & SHOW_IN_SKILL_ACTION) != 0;
-    }
-
-    public boolean showInAttackAction() {
-      return (showFields & SHOW_IN_ATTACK_ACTION) != 0;
+    public boolean isSkillOnly() {
+      return skillOnly;
     }
 
     @NotNull
