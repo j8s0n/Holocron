@@ -274,6 +274,8 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
     Set<BonusType> extras = new HashSet<>();
     extras.add(BonusType.SKILL_RANK);
     extras.add(BonusType.UPGRADE);
+    extras.add(BonusType.CRITICAL);
+    extras.add(BonusType.DAMAGE);
     DicePool.populateLayout(viewHolder.diceLayout, getContext(), rowData.getBonuses(), extras);
 
     viewHolder.skillChar.setText("");
