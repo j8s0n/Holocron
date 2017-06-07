@@ -251,8 +251,8 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
   }
 
   @NotNull
-  private View displayConditionalBonus(View convertView, @NonNull ViewGroup parent, @NotNull final
-  ConditionalBonusRowData rowData) {
+  private View displayConditionalBonus(View convertView, @NonNull ViewGroup parent,
+                                       @NotNull final ConditionalBonusRowData rowData) {
     final ViewHolder viewHolder;
     if (convertView == null || !((ViewHolder) convertView.getTag()).type.equals(RowData.Type.CONDITIONAL_BONUS)) {
       viewHolder = new ViewHolder();
@@ -287,6 +287,8 @@ public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
         Intent intent = new Intent(getContext(), BonusEditorActivity.class);
         intent.putExtra(ACTION_TO_EDIT, rowData.getSkillActionName());
         intent.putExtra(BonusEditorActivity.CONDITION_NAME, rowData.getCondition());
+        intent.putExtra(ACTION_TYPE, rowData.getActionType());
+
         Context context = getContext();
         if (context instanceof SkillActionEditorActivity) {
           SkillActionEditorActivity activity = (SkillActionEditorActivity) context;

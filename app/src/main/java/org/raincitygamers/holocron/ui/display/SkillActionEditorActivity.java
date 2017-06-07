@@ -106,7 +106,7 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
     }
 
     for (Map.Entry<String, Map<BonusType, Integer>> entry : actionBuilder.getConditionals().entrySet()) {
-      rowData.add(ConditionalBonusRowData.of(entry.getKey(), actionBuilder.getName(), entry.getValue()));
+      rowData.add(ConditionalBonusRowData.of(entry.getKey(), actionBuilder.getName(), entry.getValue(), actionType));
     }
 
     addButtons();
