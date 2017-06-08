@@ -132,9 +132,7 @@ public class BonusEditorActivity extends ActivityBase implements FragmentInvalid
         ArrayList<String> results = new ArrayList<>();
         for (Map.Entry<String, Integer> entry : bonuses.entrySet()) {
           int count = entry.getValue();
-          if (count > 0) {
-            results.add(String.format(Locale.getDefault(), "%s:%d", entry.getKey(), count));
-          }
+          results.add(String.format(Locale.getDefault(), "%s:%d", entry.getKey(), count));
         }
 
         if (originalConditionName != null && !originalConditionName.equals(conditionName)) {
