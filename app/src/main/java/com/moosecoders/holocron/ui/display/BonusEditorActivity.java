@@ -33,6 +33,7 @@ public class BonusEditorActivity extends ActivityBase implements FragmentInvalid
   public static final String CONDITION_NAME = "CONDITION_NAME";
   public static final String REMOVE_CONDITION = "REMOVE_CONDITION";
   public static final String BONUS_ARRAY = "BONUS_ARRAY";
+  public static final String ALWAYS_ACTIVE = "Always Active";
 
   private DisplayArrayAdapter arrayAdapter;
   private List<RowData> rowData = new ArrayList<>();
@@ -79,11 +80,9 @@ public class BonusEditorActivity extends ActivityBase implements FragmentInvalid
 
     conditions = pc.getAvailableConditions(skillActionName);
     index = 0;
-    if (conditionName == null || !conditionName.equals("Always Active")) {
-      conditions.add(0, "Always Active");
-    }
+    conditions.add(0, ALWAYS_ACTIVE);
 
-    if (conditionName != null) {
+    if (conditionName != null && !conditionName.equals(ALWAYS_ACTIVE)) {
       conditions.add(1, conditionName);
       index = 1;
     }
