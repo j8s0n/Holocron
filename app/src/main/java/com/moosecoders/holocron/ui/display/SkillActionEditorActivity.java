@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import org.jetbrains.annotations.NotNull;
 import com.moosecoders.holocron.R;
 import com.moosecoders.holocron.rules.character.AttackAction;
 import com.moosecoders.holocron.rules.character.Character;
@@ -25,6 +24,8 @@ import com.moosecoders.holocron.ui.display.rowdata.ConditionalBonusRowData;
 import com.moosecoders.holocron.ui.display.rowdata.RowData;
 import com.moosecoders.holocron.ui.display.rowdata.SpinnerRowData;
 import com.moosecoders.holocron.ui.display.rowdata.TextEditorRowData;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -260,31 +261,7 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
     rowData.add(ButtonRowData.of("Done", new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        if (actionBuilder.getName() == null || actionBuilder.getName().isEmpty()) {
-          Toast.makeText(SkillActionEditorActivity.this, "Please enter a name.", Toast.LENGTH_LONG).show();
-          return;
-        }
-
-        switch (actionType) {
-        case SKILL:
-          SkillAction skillAction = actionBuilder.build();
-          pc.addSkillAction(skillAction);
-          if (actionToEdit != null && !actionToEdit.getName().equals(skillAction.getName())) {
-            pc.removeSkillAction(actionToEdit.getName());
-          }
-          break;
-
-        case ATTACK:
-          AttackAction.Builder attackBuilder = (AttackAction.Builder) actionBuilder;
-          AttackAction attackAction = (AttackAction) actionBuilder.build();
-          pc.addAttackAction(attackAction);
-          if (actionToEdit != null && !actionToEdit.getName().equals(attackAction.getName())) {
-            pc.removeAttackAction(actionToEdit.getName());
-          }
-          break;
-        }
-
-        finish();
+        runDone();
       }
     }));
 
@@ -332,7 +309,7 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
           actionBuilder.removeConditional(condition);
         }
 
-        invalidate();
+        runDone();
       }
       break;
     }
@@ -346,5 +323,33 @@ public class SkillActionEditorActivity extends ActivityBase implements FragmentI
   @Override
   public void invalidate() {
     addListItems();
+  }
+
+  private void runDone() {
+    if (actionBuilder.getName() == null || actionBuilder.getName().isEmpty()) {
+      Toast.makeText(SkillActionEditorActivity.this, "Please enter a name.", Toast.LENGTH_LONG).show();
+      return;
+    }
+
+    switch (actionType) {
+    case SKILL:
+      SkillAction skillAction = actionBuilder.build();
+      pc.addSkillAction(skillAction);
+      if (actionToEdit != null && !actionToEdit.getName().equals(skillAction.getName())) {
+        pc.removeSkillAction(actionToEdit.getName());
+      }
+      break;
+
+    case ATTACK:
+      AttackAction.Builder attackBuilder = (AttackAction.Builder) actionBuilder;
+      AttackAction attackAction = (AttackAction) actionBuilder.build();
+      pc.addAttackAction(attackAction);
+      if (actionToEdit != null && !actionToEdit.getName().equals(attackAction.getName())) {
+        pc.removeAttackAction(actionToEdit.getName());
+      }
+      break;
+    }
+
+    finish();
   }
 }
