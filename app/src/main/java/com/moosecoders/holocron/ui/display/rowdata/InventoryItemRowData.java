@@ -1,7 +1,7 @@
-package org.raincitygamers.holocron.ui.display.rowdata;
+package com.moosecoders.holocron.ui.display.rowdata;
 
 import org.jetbrains.annotations.NotNull;
-import org.raincitygamers.holocron.rules.character.InventoryItem;
+import com.moosecoders.holocron.rules.character.InventoryItem;
 
 import lombok.Getter;
 import lombok.NonNull;

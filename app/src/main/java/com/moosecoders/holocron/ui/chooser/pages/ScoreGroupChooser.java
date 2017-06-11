@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.chooser.pages;
+package com.moosecoders.holocron.ui.chooser.pages;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import org.raincitygamers.holocron.R;
-import org.raincitygamers.holocron.ui.chooser.ChooserBase;
+import com.moosecoders.holocron.R;
+import com.moosecoders.holocron.ui.chooser.ChooserBase;
 
 import java.util.ArrayList;
 import java.util.Collection;

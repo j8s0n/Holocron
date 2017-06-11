@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.display;
+package com.moosecoders.holocron.ui.display;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -7,11 +7,11 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import org.jetbrains.annotations.NotNull;
-import org.raincitygamers.holocron.R;
-import org.raincitygamers.holocron.rules.character.Character;
-import org.raincitygamers.holocron.rules.character.InventoryItem;
-import org.raincitygamers.holocron.rules.managers.CharacterManager;
-import org.raincitygamers.holocron.ui.ActivityBase;
+import com.moosecoders.holocron.R;
+import com.moosecoders.holocron.rules.character.Character;
+import com.moosecoders.holocron.rules.character.InventoryItem;
+import com.moosecoders.holocron.rules.managers.CharacterManager;
+import com.moosecoders.holocron.ui.ActivityBase;
 
 import java.util.Locale;
 

@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui;
+package com.moosecoders.holocron.ui;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -17,7 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import org.jetbrains.annotations.NotNull;
-import org.raincitygamers.holocron.R;
+import com.moosecoders.holocron.R;
 
 import java.util.ArrayList;
 import java.util.List;

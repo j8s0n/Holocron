@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.display;
+package com.moosecoders.holocron.ui.display;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -8,19 +8,19 @@ import android.util.Log;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
-import org.raincitygamers.holocron.rules.character.Character;
-import org.raincitygamers.holocron.rules.managers.CharacterManager;
-import org.raincitygamers.holocron.ui.DrawerActivityBase;
-import org.raincitygamers.holocron.ui.chooser.ChooserActivity;
-import org.raincitygamers.holocron.ui.display.pages.ActionsPage;
-import org.raincitygamers.holocron.ui.display.pages.BasicsPage;
-import org.raincitygamers.holocron.ui.display.pages.CombatSkillsPage;
-import org.raincitygamers.holocron.ui.display.pages.DescriptionPage;
-import org.raincitygamers.holocron.ui.display.pages.ForcePowersPage;
-import org.raincitygamers.holocron.ui.display.pages.GearPage;
-import org.raincitygamers.holocron.ui.display.pages.GeneralSkillsPage;
-import org.raincitygamers.holocron.ui.display.pages.KnowledgeSkillsPage;
-import org.raincitygamers.holocron.ui.display.pages.TalentsPage;
+import com.moosecoders.holocron.rules.character.Character;
+import com.moosecoders.holocron.rules.managers.CharacterManager;
+import com.moosecoders.holocron.ui.DrawerActivityBase;
+import com.moosecoders.holocron.ui.chooser.ChooserActivity;
+import com.moosecoders.holocron.ui.display.pages.ActionsPage;
+import com.moosecoders.holocron.ui.display.pages.BasicsPage;
+import com.moosecoders.holocron.ui.display.pages.CombatSkillsPage;
+import com.moosecoders.holocron.ui.display.pages.DescriptionPage;
+import com.moosecoders.holocron.ui.display.pages.ForcePowersPage;
+import com.moosecoders.holocron.ui.display.pages.GearPage;
+import com.moosecoders.holocron.ui.display.pages.GeneralSkillsPage;
+import com.moosecoders.holocron.ui.display.pages.KnowledgeSkillsPage;
+import com.moosecoders.holocron.ui.display.pages.TalentsPage;
 
 import java.io.File;
 import java.io.FileOutputStream;

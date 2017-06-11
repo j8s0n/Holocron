@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.selection;
+package com.moosecoders.holocron.ui.selection;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import org.raincitygamers.holocron.R;
-import org.raincitygamers.holocron.rules.character.Character.Summary;
+import com.moosecoders.holocron.R;
+import com.moosecoders.holocron.rules.character.Character.Summary;
 
 import java.util.List;
 

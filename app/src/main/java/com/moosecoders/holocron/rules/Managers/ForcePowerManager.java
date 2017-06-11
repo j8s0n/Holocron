@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.rules.managers;
+package com.moosecoders.holocron.rules.managers;
 
 import android.content.Context;
 import android.util.Log;
@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.raincitygamers.holocron.rules.traits.ForcePowerUpgrade;
+import com.moosecoders.holocron.rules.traits.ForcePowerUpgrade;
 
 import java.util.ArrayList;
 import java.util.Collection;

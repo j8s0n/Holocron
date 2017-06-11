@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.display;
+package com.moosecoders.holocron.ui.display;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,21 +10,21 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
-import org.raincitygamers.holocron.R;
-import org.raincitygamers.holocron.rules.character.AttackAction;
-import org.raincitygamers.holocron.rules.character.Character;
-import org.raincitygamers.holocron.rules.character.SkillAction;
-import org.raincitygamers.holocron.rules.managers.CharacterManager;
-import org.raincitygamers.holocron.rules.managers.SkillManager;
-import org.raincitygamers.holocron.rules.traits.Characteristic;
-import org.raincitygamers.holocron.rules.traits.DicePool.BonusType;
-import org.raincitygamers.holocron.ui.ActivityBase;
-import org.raincitygamers.holocron.ui.FragmentInvalidator;
-import org.raincitygamers.holocron.ui.display.rowdata.ButtonRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.ConditionalBonusRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.RowData;
-import org.raincitygamers.holocron.ui.display.rowdata.SpinnerRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.TextEditorRowData;
+import com.moosecoders.holocron.R;
+import com.moosecoders.holocron.rules.character.AttackAction;
+import com.moosecoders.holocron.rules.character.Character;
+import com.moosecoders.holocron.rules.character.SkillAction;
+import com.moosecoders.holocron.rules.managers.CharacterManager;
+import com.moosecoders.holocron.rules.managers.SkillManager;
+import com.moosecoders.holocron.rules.traits.Characteristic;
+import com.moosecoders.holocron.rules.traits.DicePool.BonusType;
+import com.moosecoders.holocron.ui.ActivityBase;
+import com.moosecoders.holocron.ui.FragmentInvalidator;
+import com.moosecoders.holocron.ui.display.rowdata.ButtonRowData;
+import com.moosecoders.holocron.ui.display.rowdata.ConditionalBonusRowData;
+import com.moosecoders.holocron.ui.display.rowdata.RowData;
+import com.moosecoders.holocron.ui.display.rowdata.SpinnerRowData;
+import com.moosecoders.holocron.ui.display.rowdata.TextEditorRowData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,11 +34,11 @@ import static android.text.InputType.TYPE_CLASS_NUMBER;
 import static android.text.InputType.TYPE_CLASS_TEXT;
 import static android.text.InputType.TYPE_NUMBER_FLAG_SIGNED;
 import static android.text.InputType.TYPE_TEXT_FLAG_CAP_SENTENCES;
-import static org.raincitygamers.holocron.ui.display.BonusEditorActivity.BONUS_ARRAY;
-import static org.raincitygamers.holocron.ui.display.BonusEditorActivity.CONDITION_NAME;
-import static org.raincitygamers.holocron.ui.display.BonusEditorActivity.REMOVE_CONDITION;
-import static org.raincitygamers.holocron.ui.display.SkillActionEditorActivity.ActionType.ATTACK;
-import static org.raincitygamers.holocron.ui.display.SkillActionEditorActivity.ActionType.SKILL;
+import static com.moosecoders.holocron.ui.display.BonusEditorActivity.BONUS_ARRAY;
+import static com.moosecoders.holocron.ui.display.BonusEditorActivity.CONDITION_NAME;
+import static com.moosecoders.holocron.ui.display.BonusEditorActivity.REMOVE_CONDITION;
+import static com.moosecoders.holocron.ui.display.SkillActionEditorActivity.ActionType.ATTACK;
+import static com.moosecoders.holocron.ui.display.SkillActionEditorActivity.ActionType.SKILL;
 
 public class SkillActionEditorActivity extends ActivityBase implements FragmentInvalidator {
   private static final String LOG_TAG = SkillActionEditorActivity.class.getSimpleName();

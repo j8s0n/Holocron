@@ -1,28 +1,28 @@
-package org.raincitygamers.holocron.rules.character;
+package com.moosecoders.holocron.rules.character;
 
 import android.util.Log;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
+import com.moosecoders.holocron.rules.managers.CareerManager;
+import com.moosecoders.holocron.rules.managers.SkillManager;
+import com.moosecoders.holocron.rules.traits.Characteristic;
+import com.moosecoders.holocron.rules.traits.ForcePowerUpgrade;
+import com.moosecoders.holocron.rules.traits.Obligation;
+import com.moosecoders.holocron.rules.traits.Skill;
+import com.moosecoders.holocron.rules.traits.Talent;
+import com.moosecoders.holocron.ui.display.rowdata.AttackActionRowData;
+import com.moosecoders.holocron.ui.display.rowdata.KeyValueRowData;
+import com.moosecoders.holocron.ui.display.rowdata.RowData;
+import com.moosecoders.holocron.ui.display.rowdata.SectionRowData;
+import com.moosecoders.holocron.ui.display.rowdata.SkillActionRowData;
+import com.moosecoders.holocron.ui.display.rowdata.ThresholdRowData;
+import com.moosecoders.holocron.ui.display.rowdata.ToggleRowData;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.raincitygamers.holocron.rules.managers.CareerManager;
-import org.raincitygamers.holocron.rules.managers.SkillManager;
-import org.raincitygamers.holocron.rules.traits.Characteristic;
-import org.raincitygamers.holocron.rules.traits.ForcePowerUpgrade;
-import org.raincitygamers.holocron.rules.traits.Obligation;
-import org.raincitygamers.holocron.rules.traits.Skill;
-import org.raincitygamers.holocron.rules.traits.Talent;
-import org.raincitygamers.holocron.ui.display.rowdata.AttackActionRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.KeyValueRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.RowData;
-import org.raincitygamers.holocron.ui.display.rowdata.SectionRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.SkillActionRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.ThresholdRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.ToggleRowData;
 
 import java.util.ArrayList;
 import java.util.Collection;

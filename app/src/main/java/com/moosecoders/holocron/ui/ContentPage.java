@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui;
+package com.moosecoders.holocron.ui;
 
 import android.app.Fragment;
 

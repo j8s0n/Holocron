@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.display.pages;
+package com.moosecoders.holocron.ui.display.pages;
 
 
 import android.os.Bundle;
@@ -7,13 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import org.raincitygamers.holocron.R;
-import org.raincitygamers.holocron.rules.traits.DicePool;
-import org.raincitygamers.holocron.rules.traits.Skill;
-import org.raincitygamers.holocron.ui.ContentPage;
-import org.raincitygamers.holocron.ui.display.DisplayArrayAdapter;
-import org.raincitygamers.holocron.ui.display.rowdata.DicePoolRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.RowData;
+import com.moosecoders.holocron.R;
+import com.moosecoders.holocron.rules.traits.DicePool;
+import com.moosecoders.holocron.rules.traits.Skill;
+import com.moosecoders.holocron.ui.ContentPage;
+import com.moosecoders.holocron.ui.display.DisplayArrayAdapter;
+import com.moosecoders.holocron.ui.display.rowdata.DicePoolRowData;
+import com.moosecoders.holocron.ui.display.rowdata.RowData;
 
 import java.util.ArrayList;
 import java.util.Collection;

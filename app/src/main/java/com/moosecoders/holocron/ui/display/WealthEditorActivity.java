@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.display;
+package com.moosecoders.holocron.ui.display;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-import org.raincitygamers.holocron.R;
-import org.raincitygamers.holocron.rules.managers.CharacterManager;
-import org.raincitygamers.holocron.ui.ActivityBase;
+import com.moosecoders.holocron.R;
+import com.moosecoders.holocron.rules.managers.CharacterManager;
+import com.moosecoders.holocron.ui.ActivityBase;
 
 public class WealthEditorActivity extends ActivityBase {
   public static final int EDIT_WEALTH_ENTRY = 0;

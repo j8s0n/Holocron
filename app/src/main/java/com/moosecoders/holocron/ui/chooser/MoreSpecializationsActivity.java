@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.chooser;
+package com.moosecoders.holocron.ui.chooser;
 
 import android.os.Bundle;
 import android.widget.ListView;
@@ -6,13 +6,13 @@ import android.widget.ListView;
 import com.google.common.collect.Lists;
 
 import org.jetbrains.annotations.NotNull;
-import org.raincitygamers.holocron.R;
-import org.raincitygamers.holocron.rules.character.Character;
-import org.raincitygamers.holocron.rules.character.Specialization;
-import org.raincitygamers.holocron.rules.managers.CareerManager;
-import org.raincitygamers.holocron.rules.managers.CharacterManager;
-import org.raincitygamers.holocron.ui.ActivityBase;
-import org.raincitygamers.holocron.ui.chooser.SpecializationsArrayAdapter.SpecializationRowData;
+import com.moosecoders.holocron.R;
+import com.moosecoders.holocron.rules.character.Character;
+import com.moosecoders.holocron.rules.character.Specialization;
+import com.moosecoders.holocron.rules.managers.CareerManager;
+import com.moosecoders.holocron.rules.managers.CharacterManager;
+import com.moosecoders.holocron.ui.ActivityBase;
+import com.moosecoders.holocron.ui.chooser.SpecializationsArrayAdapter.SpecializationRowData;
 
 import java.util.ArrayList;
 import java.util.Collections;

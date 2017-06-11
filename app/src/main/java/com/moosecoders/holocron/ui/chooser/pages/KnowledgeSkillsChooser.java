@@ -1,8 +1,8 @@
-package org.raincitygamers.holocron.ui.chooser.pages;
+package com.moosecoders.holocron.ui.chooser.pages;
 
-import org.raincitygamers.holocron.rules.character.Character;
-import org.raincitygamers.holocron.rules.managers.SkillManager;
-import org.raincitygamers.holocron.rules.traits.Skill;
+import com.moosecoders.holocron.rules.character.Character;
+import com.moosecoders.holocron.rules.managers.SkillManager;
+import com.moosecoders.holocron.rules.traits.Skill;
 
 import java.util.ArrayList;
 import java.util.Collection;

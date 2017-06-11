@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.display;
+package com.moosecoders.holocron.ui.display;
 
 import android.content.Context;
 import android.content.Intent;
@@ -26,42 +26,42 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import org.jetbrains.annotations.NotNull;
-import org.raincitygamers.holocron.R;
-import org.raincitygamers.holocron.rules.character.AttackAction;
-import org.raincitygamers.holocron.rules.character.Character;
-import org.raincitygamers.holocron.rules.character.InventoryItem;
-import org.raincitygamers.holocron.rules.character.SkillAction;
-import org.raincitygamers.holocron.rules.traits.Ability;
-import org.raincitygamers.holocron.rules.traits.DicePool;
-import org.raincitygamers.holocron.rules.traits.DicePool.BonusType;
-import org.raincitygamers.holocron.ui.FragmentInvalidator;
-import org.raincitygamers.holocron.ui.display.rowdata.AbilityRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.AdderRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.AttackActionRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.ButtonRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.ConditionEditorRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.ConditionalBonusRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.DicePoolRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.InventoryItemRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.KeyValueRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.RowData;
-import org.raincitygamers.holocron.ui.display.rowdata.ScoreRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.SectionRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.SkillActionRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.SpinnerRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.TextEditorRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.ThresholdRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.ToggleRowData;
+import com.moosecoders.holocron.R;
+import com.moosecoders.holocron.rules.character.AttackAction;
+import com.moosecoders.holocron.rules.character.Character;
+import com.moosecoders.holocron.rules.character.InventoryItem;
+import com.moosecoders.holocron.rules.character.SkillAction;
+import com.moosecoders.holocron.rules.traits.Ability;
+import com.moosecoders.holocron.rules.traits.DicePool;
+import com.moosecoders.holocron.rules.traits.DicePool.BonusType;
+import com.moosecoders.holocron.ui.FragmentInvalidator;
+import com.moosecoders.holocron.ui.display.rowdata.AbilityRowData;
+import com.moosecoders.holocron.ui.display.rowdata.AdderRowData;
+import com.moosecoders.holocron.ui.display.rowdata.AttackActionRowData;
+import com.moosecoders.holocron.ui.display.rowdata.ButtonRowData;
+import com.moosecoders.holocron.ui.display.rowdata.ConditionEditorRowData;
+import com.moosecoders.holocron.ui.display.rowdata.ConditionalBonusRowData;
+import com.moosecoders.holocron.ui.display.rowdata.DicePoolRowData;
+import com.moosecoders.holocron.ui.display.rowdata.InventoryItemRowData;
+import com.moosecoders.holocron.ui.display.rowdata.KeyValueRowData;
+import com.moosecoders.holocron.ui.display.rowdata.RowData;
+import com.moosecoders.holocron.ui.display.rowdata.ScoreRowData;
+import com.moosecoders.holocron.ui.display.rowdata.SectionRowData;
+import com.moosecoders.holocron.ui.display.rowdata.SkillActionRowData;
+import com.moosecoders.holocron.ui.display.rowdata.SpinnerRowData;
+import com.moosecoders.holocron.ui.display.rowdata.TextEditorRowData;
+import com.moosecoders.holocron.ui.display.rowdata.ThresholdRowData;
+import com.moosecoders.holocron.ui.display.rowdata.ToggleRowData;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-import static org.raincitygamers.holocron.rules.managers.CharacterManager.getActiveCharacter;
-import static org.raincitygamers.holocron.ui.display.SkillActionEditorActivity.ACTION_TO_EDIT;
-import static org.raincitygamers.holocron.ui.display.SkillActionEditorActivity.ACTION_TYPE;
-import static org.raincitygamers.holocron.ui.display.rowdata.RowData.Type.SKILL_ACTION;
+import static com.moosecoders.holocron.rules.managers.CharacterManager.getActiveCharacter;
+import static com.moosecoders.holocron.ui.display.SkillActionEditorActivity.ACTION_TO_EDIT;
+import static com.moosecoders.holocron.ui.display.SkillActionEditorActivity.ACTION_TYPE;
+import static com.moosecoders.holocron.ui.display.rowdata.RowData.Type.SKILL_ACTION;
 
 public class DisplayArrayAdapter extends ArrayAdapter<RowData> {
 

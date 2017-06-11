@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.rules.managers;
+package com.moosecoders.holocron.rules.managers;
 
 import android.content.Context;
 import android.net.Uri;
@@ -11,8 +11,8 @@ import org.jetbrains.annotations.Nullable;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.raincitygamers.holocron.rules.character.Character;
-import org.raincitygamers.holocron.rules.character.Character.Summary;
+import com.moosecoders.holocron.rules.character.Character;
+import com.moosecoders.holocron.rules.character.Character.Summary;
 
 import java.io.IOException;
 import java.io.InputStream;

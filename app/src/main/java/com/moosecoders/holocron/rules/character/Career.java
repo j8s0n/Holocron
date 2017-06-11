@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.rules.character;
+package com.moosecoders.holocron.rules.character;
 
 import com.google.common.collect.ImmutableList;
 

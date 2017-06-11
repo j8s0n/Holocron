@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.chooser.pages;
+package com.moosecoders.holocron.ui.chooser.pages;
 
 import org.jetbrains.annotations.NotNull;
 

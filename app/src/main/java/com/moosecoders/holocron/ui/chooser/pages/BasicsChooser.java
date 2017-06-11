@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.chooser.pages;
+package com.moosecoders.holocron.ui.chooser.pages;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,15 +14,15 @@ import android.widget.Spinner;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.raincitygamers.holocron.R;
-import org.raincitygamers.holocron.rules.character.Career;
-import org.raincitygamers.holocron.rules.character.Character;
-import org.raincitygamers.holocron.rules.character.Specialization;
-import org.raincitygamers.holocron.rules.managers.CareerManager;
-import org.raincitygamers.holocron.rules.managers.CharacterManager;
-import org.raincitygamers.holocron.ui.chooser.ChooserActivity;
-import org.raincitygamers.holocron.ui.chooser.ChooserBase;
-import org.raincitygamers.holocron.ui.chooser.MoreSpecializationsActivity;
+import com.moosecoders.holocron.R;
+import com.moosecoders.holocron.rules.character.Career;
+import com.moosecoders.holocron.rules.character.Character;
+import com.moosecoders.holocron.rules.character.Specialization;
+import com.moosecoders.holocron.rules.managers.CareerManager;
+import com.moosecoders.holocron.rules.managers.CharacterManager;
+import com.moosecoders.holocron.ui.chooser.ChooserActivity;
+import com.moosecoders.holocron.ui.chooser.ChooserBase;
+import com.moosecoders.holocron.ui.chooser.MoreSpecializationsActivity;
 
 import java.util.ArrayList;
 import java.util.List;

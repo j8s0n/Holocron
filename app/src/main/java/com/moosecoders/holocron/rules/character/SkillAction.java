@@ -1,13 +1,13 @@
-package org.raincitygamers.holocron.rules.character;
+package com.moosecoders.holocron.rules.character;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.raincitygamers.holocron.rules.managers.SkillManager;
-import org.raincitygamers.holocron.rules.traits.Characteristic;
-import org.raincitygamers.holocron.rules.traits.DicePool.BonusType;
-import org.raincitygamers.holocron.rules.traits.Skill;
+import com.moosecoders.holocron.rules.managers.SkillManager;
+import com.moosecoders.holocron.rules.traits.Characteristic;
+import com.moosecoders.holocron.rules.traits.DicePool.BonusType;
+import com.moosecoders.holocron.rules.traits.Skill;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;

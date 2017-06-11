@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.chooser.pages;
+package com.moosecoders.holocron.ui.chooser.pages;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,13 +12,13 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import org.jetbrains.annotations.NotNull;
-import org.raincitygamers.holocron.R;
-import org.raincitygamers.holocron.rules.character.Character;
-import org.raincitygamers.holocron.rules.character.Specialization;
-import org.raincitygamers.holocron.rules.managers.TalentManager;
-import org.raincitygamers.holocron.rules.traits.Ability;
-import org.raincitygamers.holocron.rules.traits.Talent;
-import org.raincitygamers.holocron.ui.chooser.ChooserBase;
+import com.moosecoders.holocron.R;
+import com.moosecoders.holocron.rules.character.Character;
+import com.moosecoders.holocron.rules.character.Specialization;
+import com.moosecoders.holocron.rules.managers.TalentManager;
+import com.moosecoders.holocron.rules.traits.Ability;
+import com.moosecoders.holocron.rules.traits.Talent;
+import com.moosecoders.holocron.ui.chooser.ChooserBase;
 
 import java.util.ArrayList;
 import java.util.List;

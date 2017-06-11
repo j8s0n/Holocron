@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron;
+package com.moosecoders.holocron;
 
 import org.junit.Test;
 

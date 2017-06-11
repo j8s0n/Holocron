@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.chooser;
+package com.moosecoders.holocron.ui.chooser;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -6,18 +6,18 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 
-import org.raincitygamers.holocron.rules.character.Character;
-import org.raincitygamers.holocron.rules.managers.CharacterManager;
-import org.raincitygamers.holocron.ui.DrawerActivityBase;
-import org.raincitygamers.holocron.ui.chooser.pages.BasicsChooser;
-import org.raincitygamers.holocron.ui.chooser.pages.CharacteristicsChooser;
-import org.raincitygamers.holocron.ui.chooser.pages.CombatSkillsChooser;
-import org.raincitygamers.holocron.ui.chooser.pages.DescriptionChooser;
-import org.raincitygamers.holocron.ui.chooser.pages.ForceChooser;
-import org.raincitygamers.holocron.ui.chooser.pages.GeneralSkillsChooser;
-import org.raincitygamers.holocron.ui.chooser.pages.KnowledgeSkillsChooser;
-import org.raincitygamers.holocron.ui.chooser.pages.TalentsChooser;
-import org.raincitygamers.holocron.ui.display.DisplayActivity;
+import com.moosecoders.holocron.rules.character.Character;
+import com.moosecoders.holocron.rules.managers.CharacterManager;
+import com.moosecoders.holocron.ui.DrawerActivityBase;
+import com.moosecoders.holocron.ui.chooser.pages.BasicsChooser;
+import com.moosecoders.holocron.ui.chooser.pages.CharacteristicsChooser;
+import com.moosecoders.holocron.ui.chooser.pages.CombatSkillsChooser;
+import com.moosecoders.holocron.ui.chooser.pages.DescriptionChooser;
+import com.moosecoders.holocron.ui.chooser.pages.ForceChooser;
+import com.moosecoders.holocron.ui.chooser.pages.GeneralSkillsChooser;
+import com.moosecoders.holocron.ui.chooser.pages.KnowledgeSkillsChooser;
+import com.moosecoders.holocron.ui.chooser.pages.TalentsChooser;
+import com.moosecoders.holocron.ui.display.DisplayActivity;
 
 import lombok.Getter;
 import lombok.Setter;

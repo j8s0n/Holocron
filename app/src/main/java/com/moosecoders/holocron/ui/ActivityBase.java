@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui;
+package com.moosecoders.holocron.ui;
 
 import android.content.DialogInterface;
 import android.content.Intent;

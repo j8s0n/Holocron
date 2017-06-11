@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.rules.traits;
+package com.moosecoders.holocron.rules.traits;
 
 import android.util.Log;
 

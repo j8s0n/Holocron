@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.display.rowdata;
+package com.moosecoders.holocron.ui.display.rowdata;
 
 import org.jetbrains.annotations.NotNull;
 

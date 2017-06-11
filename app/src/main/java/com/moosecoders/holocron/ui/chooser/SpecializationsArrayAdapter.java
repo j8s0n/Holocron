@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.chooser;
+package com.moosecoders.holocron.ui.chooser;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,10 +9,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import org.raincitygamers.holocron.R;
-import org.raincitygamers.holocron.rules.character.Character;
-import org.raincitygamers.holocron.rules.character.Specialization;
-import org.raincitygamers.holocron.rules.managers.CharacterManager;
+import com.moosecoders.holocron.R;
+import com.moosecoders.holocron.rules.character.Character;
+import com.moosecoders.holocron.rules.character.Specialization;
+import com.moosecoders.holocron.rules.managers.CharacterManager;
 
 import java.util.List;
 

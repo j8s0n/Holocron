@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.chooser.pages;
+package com.moosecoders.holocron.ui.chooser.pages;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,8 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import org.raincitygamers.holocron.R;
-import org.raincitygamers.holocron.ui.chooser.ChooserBase;
+import com.moosecoders.holocron.R;
+import com.moosecoders.holocron.ui.chooser.ChooserBase;
 
 public class DescriptionChooser extends ChooserBase {
   private static final String LOG_TAG = DescriptionChooser.class.getSimpleName();

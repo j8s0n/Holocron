@@ -1985,14 +1985,14 @@
   </component>
   <component name="RecentsManager">
     <key name="android.template.packageName">
-      <recent name="org.raincitygamers.holocron.ui.display" />
-      <recent name="org.raincitygamers.holocron.ui.creation" />
+      <recent name="com.moosecoders.holocron.ui.display" />
+      <recent name="com.moosecoders.holocron.ui.creation" />
     </key>
     <key name="android.template.parentActivityClass">
       <recent name="" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="org.raincitygamers.holocron.ui" />
+      <recent name="com.moosecoders.holocron.ui" />
     </key>
   </component>
   <component name="RunManager" selected="Android Application.app">

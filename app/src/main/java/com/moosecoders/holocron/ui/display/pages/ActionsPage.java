@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.display.pages;
+package com.moosecoders.holocron.ui.display.pages;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,20 +8,20 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import org.raincitygamers.holocron.R;
-import org.raincitygamers.holocron.rules.managers.CharacterManager;
-import org.raincitygamers.holocron.ui.ContentPage;
-import org.raincitygamers.holocron.ui.FragmentInvalidator;
-import org.raincitygamers.holocron.ui.display.ConditionEditorActivity;
-import org.raincitygamers.holocron.ui.display.DisplayArrayAdapter;
-import org.raincitygamers.holocron.ui.display.SkillActionEditorActivity;
-import org.raincitygamers.holocron.ui.display.rowdata.ButtonRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.RowData;
+import com.moosecoders.holocron.R;
+import com.moosecoders.holocron.rules.managers.CharacterManager;
+import com.moosecoders.holocron.ui.ContentPage;
+import com.moosecoders.holocron.ui.FragmentInvalidator;
+import com.moosecoders.holocron.ui.display.ConditionEditorActivity;
+import com.moosecoders.holocron.ui.display.DisplayArrayAdapter;
+import com.moosecoders.holocron.ui.display.SkillActionEditorActivity;
+import com.moosecoders.holocron.ui.display.rowdata.ButtonRowData;
+import com.moosecoders.holocron.ui.display.rowdata.RowData;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.raincitygamers.holocron.ui.display.SkillActionEditorActivity.ACTION_TYPE;
+import static com.moosecoders.holocron.ui.display.SkillActionEditorActivity.ACTION_TYPE;
 
 public class ActionsPage extends ContentPage implements FragmentInvalidator {
   private List<RowData> rowData = new ArrayList<>();

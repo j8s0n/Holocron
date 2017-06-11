@@ -1,13 +1,13 @@
-package org.raincitygamers.holocron.ui.display.pages;
+package com.moosecoders.holocron.ui.display.pages;
 
-import org.raincitygamers.holocron.rules.character.Character;
-import org.raincitygamers.holocron.rules.character.Specialization;
-import org.raincitygamers.holocron.rules.managers.CharacterManager;
-import org.raincitygamers.holocron.rules.managers.TalentManager;
-import org.raincitygamers.holocron.rules.traits.Talent;
-import org.raincitygamers.holocron.ui.display.rowdata.AbilityRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.RowData;
-import org.raincitygamers.holocron.ui.display.rowdata.SectionRowData;
+import com.moosecoders.holocron.rules.character.Character;
+import com.moosecoders.holocron.rules.character.Specialization;
+import com.moosecoders.holocron.rules.managers.CharacterManager;
+import com.moosecoders.holocron.rules.managers.TalentManager;
+import com.moosecoders.holocron.rules.traits.Talent;
+import com.moosecoders.holocron.ui.display.rowdata.AbilityRowData;
+import com.moosecoders.holocron.ui.display.rowdata.RowData;
+import com.moosecoders.holocron.ui.display.rowdata.SectionRowData;
 
 import java.util.ArrayList;
 import java.util.Collections;

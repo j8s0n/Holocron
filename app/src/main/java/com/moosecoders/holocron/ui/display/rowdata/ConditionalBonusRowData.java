@@ -1,8 +1,8 @@
-package org.raincitygamers.holocron.ui.display.rowdata;
+package com.moosecoders.holocron.ui.display.rowdata;
 
 import org.jetbrains.annotations.NotNull;
-import org.raincitygamers.holocron.rules.traits.DicePool.BonusType;
-import org.raincitygamers.holocron.ui.display.SkillActionEditorActivity.ActionType;
+import com.moosecoders.holocron.rules.traits.DicePool.BonusType;
+import com.moosecoders.holocron.ui.display.SkillActionEditorActivity.ActionType;
 
 import java.util.Map;
 

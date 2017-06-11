@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.display.pages;
+package com.moosecoders.holocron.ui.display.pages;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,9 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.raincitygamers.holocron.R;
-import org.raincitygamers.holocron.rules.managers.CharacterManager;
-import org.raincitygamers.holocron.ui.ContentPage;
+import com.moosecoders.holocron.R;
+import com.moosecoders.holocron.rules.managers.CharacterManager;
+import com.moosecoders.holocron.ui.ContentPage;
 
 public class DescriptionPage extends ContentPage {
   public DescriptionPage() {

@@ -1,12 +1,12 @@
-package org.raincitygamers.holocron.ui.chooser;
+package com.moosecoders.holocron.ui.chooser;
 
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
 import org.jetbrains.annotations.NotNull;
-import org.raincitygamers.holocron.rules.character.Character;
-import org.raincitygamers.holocron.ui.ContentPage;
+import com.moosecoders.holocron.rules.character.Character;
+import com.moosecoders.holocron.ui.ContentPage;
 
 public abstract class ChooserBase extends ContentPage {
   @NotNull

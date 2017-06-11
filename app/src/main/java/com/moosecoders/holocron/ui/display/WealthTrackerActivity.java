@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.ui.display;
+package com.moosecoders.holocron.ui.display;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,14 +9,14 @@ import android.view.View.OnLongClickListener;
 import android.widget.ListView;
 
 import org.jetbrains.annotations.NotNull;
-import org.raincitygamers.holocron.R;
-import org.raincitygamers.holocron.rules.character.Character;
-import org.raincitygamers.holocron.rules.managers.CharacterManager;
-import org.raincitygamers.holocron.ui.ActivityBase;
-import org.raincitygamers.holocron.ui.FragmentInvalidator;
-import org.raincitygamers.holocron.ui.display.rowdata.ButtonRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.KeyValueRowData;
-import org.raincitygamers.holocron.ui.display.rowdata.RowData;
+import com.moosecoders.holocron.R;
+import com.moosecoders.holocron.rules.character.Character;
+import com.moosecoders.holocron.rules.managers.CharacterManager;
+import com.moosecoders.holocron.ui.ActivityBase;
+import com.moosecoders.holocron.ui.FragmentInvalidator;
+import com.moosecoders.holocron.ui.display.rowdata.ButtonRowData;
+import com.moosecoders.holocron.ui.display.rowdata.KeyValueRowData;
+import com.moosecoders.holocron.ui.display.rowdata.RowData;
 
 import java.util.ArrayList;
 import java.util.List;

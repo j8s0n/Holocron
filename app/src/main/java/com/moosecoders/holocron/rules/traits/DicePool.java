@@ -1,4 +1,4 @@
-package org.raincitygamers.holocron.rules.traits;
+package com.moosecoders.holocron.rules.traits;
 
 import android.content.Context;
 import android.view.ViewGroup;
@@ -6,11 +6,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import org.jetbrains.annotations.NotNull;
-import org.raincitygamers.holocron.R;
-import org.raincitygamers.holocron.rules.character.AttackAction;
-import org.raincitygamers.holocron.rules.character.Character;
-import org.raincitygamers.holocron.rules.character.SkillAction;
-import org.raincitygamers.holocron.rules.managers.CharacterManager;
+import com.moosecoders.holocron.R;
+import com.moosecoders.holocron.rules.character.AttackAction;
+import com.moosecoders.holocron.rules.character.Character;
+import com.moosecoders.holocron.rules.character.SkillAction;
+import com.moosecoders.holocron.rules.managers.CharacterManager;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
