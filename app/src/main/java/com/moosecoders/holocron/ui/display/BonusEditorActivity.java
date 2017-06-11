@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ListView;
 
-import org.jetbrains.annotations.NotNull;
 import com.moosecoders.holocron.R;
 import com.moosecoders.holocron.rules.character.Character;
 import com.moosecoders.holocron.rules.character.SkillAction;
@@ -20,6 +19,8 @@ import com.moosecoders.holocron.ui.display.rowdata.ButtonRowData;
 import com.moosecoders.holocron.ui.display.rowdata.RowData;
 import com.moosecoders.holocron.ui.display.rowdata.ScoreRowData;
 import com.moosecoders.holocron.ui.display.rowdata.SpinnerRowData;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;

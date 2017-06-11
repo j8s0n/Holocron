@@ -1,5 +1,6 @@
 package com.moosecoders.holocron.ui.chooser;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -24,6 +25,7 @@ import lombok.Setter;
 
 public class ChooserActivity extends DrawerActivityBase {
   public static final String ACTION_FINISH = ChooserActivity.class.getCanonicalName();
+  public static final int CHOOSER_ACTIVITY = 0;
   private FinishReceiver finishReceiver;
   @Getter @Setter private boolean chooserDone = false;
 
@@ -46,6 +48,7 @@ public class ChooserActivity extends DrawerActivityBase {
         CharacterManager.setActiveCharacter(activeCharacter);
         CharacterManager.saveCharacter(ChooserActivity.this, activeCharacter);
         if (editActiveCharacter) {
+          setResult(Activity.RESULT_OK);
           finish();
         }
         else {

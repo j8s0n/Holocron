@@ -1,15 +1,15 @@
 package com.moosecoders.holocron.ui.display;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
-import org.jetbrains.annotations.NotNull;
-import org.json.JSONException;
 import com.moosecoders.holocron.rules.character.Character;
 import com.moosecoders.holocron.rules.managers.CharacterManager;
+import com.moosecoders.holocron.ui.ContentPage;
 import com.moosecoders.holocron.ui.DrawerActivityBase;
 import com.moosecoders.holocron.ui.chooser.ChooserActivity;
 import com.moosecoders.holocron.ui.display.pages.ActionsPage;
@@ -21,6 +21,9 @@ import com.moosecoders.holocron.ui.display.pages.GearPage;
 import com.moosecoders.holocron.ui.display.pages.GeneralSkillsPage;
 import com.moosecoders.holocron.ui.display.pages.KnowledgeSkillsPage;
 import com.moosecoders.holocron.ui.display.pages.TalentsPage;
+
+import org.jetbrains.annotations.NotNull;
+import org.json.JSONException;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -61,8 +64,7 @@ public class DisplayActivity extends DrawerActivityBase {
         Intent intent = new Intent(DisplayActivity.this, ChooserActivity.class);
         intent.putExtra(EDIT_ACTIVE_CHARACTER, true);
         intent.putExtra(CURRENT_OPEN_PAGE, contentPages.get(currentPage).getTitle());
-        // TODO: Mark a field here to repopulate the drawer.
-        startActivity(intent);
+        startActivityForResult(intent, ChooserActivity.CHOOSER_ACTIVITY);
       }
     }));
     otherDrawerCommands.add(new DrawerCommand("Share", new CommandAction() {
@@ -72,6 +74,17 @@ public class DisplayActivity extends DrawerActivityBase {
         sendCharacter();
       }
     }));
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    if (requestCode == ChooserActivity.CHOOSER_ACTIVITY && resultCode == Activity.RESULT_OK) {
+      boolean forceSensitive = activeCharacter.getForceRating() > 0;
+      boolean isShowingForcePowersPage = showingForcePowersPage();
+      if (forceSensitive && !isShowingForcePowersPage || !forceSensitive && isShowingForcePowersPage) {
+        recreate();
+      }
+    }
   }
 
   @Override
@@ -85,7 +98,6 @@ public class DisplayActivity extends DrawerActivityBase {
   @Override
   protected void onResume() {
     super.onResume();
-    // TODO: If the repopulate field is true, clean out the drawer and repopulate it.
     autoSaveCharacter();
   }
 
@@ -177,5 +189,15 @@ public class DisplayActivity extends DrawerActivityBase {
     catch (IOException | JSONException e) {
       Log.e(LOG_TAG, "Error sending character as attachment.", e);
     }
+  }
+
+  private boolean showingForcePowersPage() {
+    for (ContentPage contentPage : contentPages) {
+      if (contentPage instanceof ForcePowersPage) {
+        return true;
+      }
+    }
+
+    return false;
   }
 }
