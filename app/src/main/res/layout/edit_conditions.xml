@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.moosecoders.holocron.ui.display.ConditionEditorActivity">
+    tools:context="org.raincitygamers.holocron.ui.display.ConditionEditorActivity">
 
   <ListView
     android:id="@+id/conditions_list"
