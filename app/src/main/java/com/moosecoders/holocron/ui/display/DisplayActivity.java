@@ -33,6 +33,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class DisplayActivity extends DrawerActivityBase {
+  public static final String CHARACTER_CONTENT = "CHARACTER_CONTENT";
   private Character activeCharacter;
 
   private static final String LOG_TAG = DisplayActivity.class.getSimpleName();
@@ -107,6 +108,14 @@ public class DisplayActivity extends DrawerActivityBase {
     Intent intent = getIntent();
     if (intent.getData() != null) {
       CharacterManager.loadCharacterFromContent(intent.getData(), this, new Runnable() {
+        @Override
+        public void run() {
+          finishingTouches();
+        }
+      });
+    }
+    else if (intent.hasExtra(CHARACTER_CONTENT)) {
+      CharacterManager.loadCharacterFromText(intent.getStringExtra(CHARACTER_CONTENT), this, new Runnable() {
         @Override
         public void run() {
           finishingTouches();

@@ -6,13 +6,14 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.moosecoders.holocron.rules.character.Character;
+import com.moosecoders.holocron.rules.character.Character.Summary;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import com.moosecoders.holocron.rules.character.Character;
-import com.moosecoders.holocron.rules.character.Character.Summary;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -88,13 +89,28 @@ public final class CharacterManager extends ManagerBase {
           InputStream is = activity.getContentResolver().openInputStream(uri);
           if (is != null) {
             String content = readInputStream(is);
-            setActiveCharacter(Character.valueOf(new JSONObject(content)));
-            saveActiveCharacter(activity);
-            activity.runOnUiThread(finisher);
+            loadCharacterFromText(content, activity, finisher);
           }
         }
-        catch (IOException | JSONException e) {
+        catch (IOException e) {
           Log.e(LOG_TAG, "Error reading character from content URI.", e);
+        }
+      }
+    });
+  }
+
+  public static void loadCharacterFromText(@NotNull final String content, @NotNull final AppCompatActivity activity,
+                                           @NotNull final Runnable finisher) {
+    AsyncTask.execute(new Runnable() {
+      @Override
+      public void run() {
+        try {
+          setActiveCharacter(Character.valueOf(new JSONObject(content)));
+          saveActiveCharacter(activity);
+          activity.runOnUiThread(finisher);
+        }
+        catch (JSONException e) {
+          Log.e(LOG_TAG, "Error reading character from content string.", e);
         }
       }
     });

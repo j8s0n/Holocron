@@ -3,16 +3,27 @@ package com.moosecoders.holocron.ui.selection;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
-import com.wdullaer.swipeactionadapter.SwipeActionAdapter;
-import com.wdullaer.swipeactionadapter.SwipeDirection;
-
-import org.jetbrains.annotations.NotNull;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.drive.Drive;
+import com.google.android.gms.drive.DriveId;
+import com.google.android.gms.drive.OpenFileActivityBuilder;
 import com.moosecoders.holocron.R;
 import com.moosecoders.holocron.rules.character.Character;
 import com.moosecoders.holocron.rules.character.Character.Summary;
@@ -25,15 +36,24 @@ import com.moosecoders.holocron.rules.managers.TalentManager;
 import com.moosecoders.holocron.ui.ActivityBase;
 import com.moosecoders.holocron.ui.chooser.ChooserActivity;
 import com.moosecoders.holocron.ui.display.DisplayActivity;
+import com.wdullaer.swipeactionadapter.SwipeActionAdapter;
+import com.wdullaer.swipeactionadapter.SwipeDirection;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-public class SelectorActivity extends ActivityBase {
+public class SelectorActivity extends ActivityBase implements ConnectionCallbacks, OnConnectionFailedListener {
+  private static final int REQ_OPEN = 0;
+  private static final int RESOLVE_CONNECTION_REQUEST_CODE = 1;
+  private static final String LOG_TAG = SelectorActivity.class.getSimpleName();
+
   private List<Summary> characters = new ArrayList<>();
   private CharacterArrayAdapter characterArrayAdapter;
+  private GoogleApiClient googleApiClient;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +68,9 @@ public class SelectorActivity extends ActivityBase {
     ForcePowerManager.loadForcePowers(this);
     CharacterManager.loadCharacters(this);
 
-    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-    assert fab != null;
-    fab.setOnClickListener(new View.OnClickListener() {
+    FloatingActionButton newCharacterButton = (FloatingActionButton) findViewById(R.id.new_character_button);
+    assert newCharacterButton != null;
+    newCharacterButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
         Intent intent = new Intent(SelectorActivity.this, ChooserActivity.class);
@@ -58,6 +78,16 @@ public class SelectorActivity extends ActivityBase {
       }
     });
 
+    FloatingActionButton openDriveButton = (FloatingActionButton) findViewById(R.id.open_drive_button);
+    assert openDriveButton != null;
+    openDriveButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        getContentsOfDriveFile();
+      }
+    });
+
+    showConnectToDriveButton(usingGoogleDrive());
 
     ListView characterListView = (ListView) findViewById(R.id.character_selection_list);
     characterArrayAdapter = new CharacterArrayAdapter(this, characters);
@@ -74,12 +104,11 @@ public class SelectorActivity extends ActivityBase {
     swipeActionAdapter.setFadeOut(false);
     swipeActionAdapter.setFarSwipeFraction(0.7f);
 
-    characterListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+    characterListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
       @Override
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(SelectorActivity.this, DisplayActivity.class);
         Summary summary = characters.get(position);
-
         CharacterManager.loadCharacterToActiveState(SelectorActivity.this, summary.getCharacterId());
         startActivity(intent);
       }
@@ -102,8 +131,125 @@ public class SelectorActivity extends ActivityBase {
   protected void onResume() {
     super.onResume();
     displayCharacters();
-    // TODO????
-    // Create an async and wait for the files to all load, before displaying characters.
+    if (getPreferences(Context.MODE_PRIVATE).getBoolean(getString(R.string.use_google_drive_label), false)) {
+      connectToDrive();
+    }
+  }
+
+  @Override
+  protected void onPause() {
+    if (googleApiClient != null) {
+      googleApiClient.disconnect();
+    }
+
+    super.onPause();
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    switch (requestCode) {
+    case REQ_OPEN:
+      if (resultCode == RESULT_OK) {
+        googleApiClient.connect();
+        DriveId driveId = (DriveId) data.getParcelableExtra(OpenFileActivityBuilder.EXTRA_RESPONSE_DRIVE_ID);
+        // TODO: Parse the drive ID into a file and read it.
+        String characterText = "";
+        Intent intent = new Intent(this, DisplayActivity.class);
+        intent.putExtra(DisplayActivity.CHARACTER_CONTENT, characterText);
+        startActivity(intent);
+      }
+      else if (resultCode == RESULT_CANCELED) {
+        return;
+      }
+      else {
+        Toast.makeText(this, "Unable to connect to Google Drive. Cannot open characters.", Toast.LENGTH_LONG).show();
+      }
+    case RESOLVE_CONNECTION_REQUEST_CODE:
+      if (resultCode == RESULT_OK) {
+        googleApiClient.connect();
+      }
+    }
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+    case R.id.use_google_drive_switch:
+      boolean useDrive = !item.isChecked();
+      item.setChecked(useDrive);
+      if (useDrive) {
+        connectToDrive();
+      }
+
+      SharedPreferences.Editor editor = getPreferences(Context.MODE_PRIVATE).edit();
+      editor.putBoolean(getString(R.string.use_google_drive_label), useDrive);
+      editor.commit();
+
+      showConnectToDriveButton(useDrive);
+      return true;
+
+    default:
+      return super.onOptionsItemSelected(item);
+    }
+  }
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.menu_main, menu);
+    MenuItem useGoogleDriveSwitch = menu.findItem(R.id.use_google_drive_switch);
+    useGoogleDriveSwitch.setChecked(usingGoogleDrive());
+    return true;
+  }
+
+  @Override
+  public void onConnected(@Nullable Bundle bundle) {
+  }
+
+  @Override
+  public void onConnectionSuspended(int i) {
+  }
+
+  @Override
+  public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+    if (connectionResult.hasResolution()) {
+      try {
+        connectionResult.startResolutionForResult(this, RESOLVE_CONNECTION_REQUEST_CODE);
+      }
+      catch (IntentSender.SendIntentException e) {
+        Toast.makeText(this, "Unable to connect to Google Drive.", Toast.LENGTH_LONG).show();
+      }
+    }
+    else {
+      GooglePlayServicesUtil.getErrorDialog(connectionResult.getErrorCode(), this, 0).show();
+    }
+  }
+
+  private boolean usingGoogleDrive() {
+    return getPreferences(Context.MODE_PRIVATE).getBoolean(getString(R.string.use_google_drive_label), false);
+  }
+
+  private void showConnectToDriveButton(boolean show) {
+    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.open_drive_button);
+    if (show) {
+      fab.setVisibility(View.VISIBLE);
+    }
+    else {
+      fab.setVisibility(View.INVISIBLE);
+    }
+  }
+
+  private void connectToDrive() {
+    if (googleApiClient == null) {
+      googleApiClient = new GoogleApiClient.Builder(this)
+                            .addApi(Drive.API)
+                            .addScope(Drive.SCOPE_FILE)
+                            .addConnectionCallbacks(this)
+                            .addOnConnectionFailedListener(this)
+                            .build();
+    }
+    if (!googleApiClient.isConnected()) {
+      googleApiClient.connect();
+    }
   }
 
   private void displayCharacters() {
@@ -114,6 +260,17 @@ public class SelectorActivity extends ActivityBase {
 
     Collections.sort(characters, Character.getMostRecentAccessComparator());
     characterArrayAdapter.notifyDataSetChanged();
+  }
+
+  private void getContentsOfDriveFile() {
+    IntentSender i = Drive.DriveApi.newOpenFileActivityBuilder().build(googleApiClient);
+    try {
+      startIntentSenderForResult(i, REQ_OPEN, null, 0, 0, 0);
+    }
+    catch (IntentSender.SendIntentException e) {
+      e.printStackTrace();
+      Toast.makeText(this, "Unable to connect to Google Drive.", Toast.LENGTH_LONG).show();
+    }
   }
 
   private static class SwipeActionHandler implements SwipeActionAdapter.SwipeActionListener {

@@ -13,7 +13,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -28,6 +28,8 @@ dependencies {
     compile 'com.wdullaer:swipeactionadapter:2.0.0'
     compile 'com.android.support:support-v4:25.2.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0'
+    compile 'com.google.android.gms:play-services-drive:11.0.2'
+    compile 'com.google.android.gms:play-services-auth:11.0.2'
     testCompile 'junit:junit:4.12'
     provided 'org.projectlombok:lombok:1.12.6'
 }

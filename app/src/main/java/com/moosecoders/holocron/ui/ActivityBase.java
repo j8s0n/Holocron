@@ -33,7 +33,7 @@ public abstract class ActivityBase extends AppCompatActivity {
                           new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                              displayAppSettings();
+                              displayAppPermissions();
                             }
                           });
 
@@ -48,7 +48,7 @@ public abstract class ActivityBase extends AppCompatActivity {
     alertDialog.show();
   }
 
-  private void displayAppSettings() {
+  private void displayAppPermissions() {
     Intent i = new Intent();
     i.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
     i.addCategory(Intent.CATEGORY_DEFAULT);

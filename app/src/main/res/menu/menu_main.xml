@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:myapp="http://schemas.android.com/apk/res-auto">
+  <item
+    android:id="@+id/use_google_drive_switch"
+    android:checkable="true"
+    android:icon="@drawable/ic_google_drive"
+    android:title="Use Google Drive"
+    myapp:actionLayout="@layout/switch_item"/>
+</menu>
