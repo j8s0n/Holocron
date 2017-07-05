@@ -5,10 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +24,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 import com.google.android.gms.drive.Drive;
+import com.google.android.gms.drive.DriveContents;
+import com.google.android.gms.drive.DriveFile;
 import com.google.android.gms.drive.DriveId;
 import com.google.android.gms.drive.OpenFileActivityBuilder;
 import com.moosecoders.holocron.R;
@@ -41,6 +45,8 @@ import com.wdullaer.swipeactionadapter.SwipeDirection;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -83,7 +89,7 @@ public class SelectorActivity extends ActivityBase implements ConnectionCallback
     openDriveButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        getContentsOfDriveFile();
+        selectFileOnDrive();
       }
     });
 
@@ -151,12 +157,20 @@ public class SelectorActivity extends ActivityBase implements ConnectionCallback
     case REQ_OPEN:
       if (resultCode == RESULT_OK) {
         googleApiClient.connect();
-        DriveId driveId = (DriveId) data.getParcelableExtra(OpenFileActivityBuilder.EXTRA_RESPONSE_DRIVE_ID);
-        // TODO: Parse the drive ID into a file and read it.
-        String characterText = "";
-        Intent intent = new Intent(this, DisplayActivity.class);
-        intent.putExtra(DisplayActivity.CHARACTER_CONTENT, characterText);
-        startActivity(intent);
+        final DriveId driveId = (DriveId) data.getParcelableExtra(OpenFileActivityBuilder.EXTRA_RESPONSE_DRIVE_ID);
+        if (driveId.getResourceType() != DriveId.RESOURCE_TYPE_FILE) {
+          Toast.makeText(this, "Invalid file.", Toast.LENGTH_LONG).show();
+          return;
+        }
+
+        AsyncTask.execute(new Runnable() {
+          @Override
+          public void run() {
+            Intent intent = new Intent(SelectorActivity.this, DisplayActivity.class);
+            intent.putExtra(DisplayActivity.CHARACTER_CONTENT, getContentsOfDriveFile(driveId));
+            startActivity(intent);
+          }
+        });
       }
       else if (resultCode == RESULT_CANCELED) {
         return;
@@ -262,7 +276,7 @@ public class SelectorActivity extends ActivityBase implements ConnectionCallback
     characterArrayAdapter.notifyDataSetChanged();
   }
 
-  private void getContentsOfDriveFile() {
+  private void selectFileOnDrive() {
     IntentSender i = Drive.DriveApi.newOpenFileActivityBuilder().build(googleApiClient);
     try {
       startIntentSenderForResult(i, REQ_OPEN, null, 0, 0, 0);
@@ -271,6 +285,32 @@ public class SelectorActivity extends ActivityBase implements ConnectionCallback
       e.printStackTrace();
       Toast.makeText(this, "Unable to connect to Google Drive.", Toast.LENGTH_LONG).show();
     }
+  }
+
+  @NotNull
+  private String getContentsOfDriveFile(@NotNull DriveId driveId) {
+    DriveFile driveFile = driveId.asDriveFile();
+    DriveContents contents = driveFile.open(googleApiClient, DriveFile.MODE_READ_ONLY, null).await().getDriveContents();
+    try {
+      return readInputStream(contents.getInputStream());
+    }
+    catch (IOException e) {
+      Log.e(LOG_TAG, "Error reading from drive file.", e);
+      return "";
+    }
+  }
+
+  @NotNull
+  static String readInputStream(@NotNull InputStream is) throws IOException {
+    byte[] buffer = new byte[65536];
+    StringBuilder sb = new StringBuilder();
+    int count;
+    while ((count = is.read(buffer)) >= 0) {
+      sb.append(new String(buffer, 0, count));
+    }
+
+    is.close();
+    return sb.toString();
   }
 
   private static class SwipeActionHandler implements SwipeActionAdapter.SwipeActionListener {
