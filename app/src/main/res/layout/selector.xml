@@ -51,20 +51,19 @@
     android:id="@+id/new_character_button"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="bottom|end"
-    app:useCompatPadding="true"
+    android:layout_gravity="bottom|right"
+    android:layout_margin="@dimen/fab_margin"
     android:src="@drawable/ic_plus"
-    />
+    app:useCompatPadding="true"/>
 
   <android.support.design.widget.FloatingActionButton
     android:id="@+id/open_drive_button"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="bottom|end"
+    android:layout_gravity="top"
     android:layout_margin="@dimen/fab_margin"
     app:layout_anchor="@id/new_character_button"
-    app:layout_anchorGravity="bottom|end"
-    app:srcCompat="@drawable/ic_google_drive"
-    />
+    app:layout_anchorGravity="end"
+    app:srcCompat="@drawable/ic_google_drive"/>
 
 </android.support.design.widget.CoordinatorLayout>
