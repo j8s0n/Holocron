@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor(suppressConstructorProperties = true, staticName = "of")
 public class ToggleRowData implements RowData {
   @NonNull private final String name;
-  @Setter @NonNull private boolean active;
+  @Setter private boolean active;
 
   @NotNull
   @Override
