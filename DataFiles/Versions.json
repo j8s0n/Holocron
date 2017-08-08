@@ -14,5 +14,9 @@
   {
     "name": "Talents.json",
     "version": 5
+  },
+  {
+    "name": "TalentDescriptions.json",
+    "version": 1
   }
 ]

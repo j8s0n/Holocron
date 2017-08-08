@@ -12,6 +12,7 @@ import org.raincitygamers.holocron.rules.traits.Talent;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -20,10 +21,13 @@ import java.util.Map;
 public final class TalentManager extends ManagerBase{
   private static final String LOG_TAG = TalentManager.class.getSimpleName();
   static final String TALENTS_FILE = "Talents.json";
+  private static final String TALENT_DESCRIPTIONS_FILE = "TalentDescriptions.json";
   private static final String NAME_KEY = "name";
+  private static final String DESCRIPTION_KEY = "description";
   private static final String GRAPH_KEY = "graph";
 
   private static final Map<Specialization, List<Talent>> talentLists = new LinkedHashMap<>();
+  private static final Map<String, String> talentDescriptions = new HashMap<>();
 
   private TalentManager() {
   }
@@ -39,15 +43,36 @@ public final class TalentManager extends ManagerBase{
     }
   }
 
+  @NotNull
+  public static String getDescription(@NotNull String talentName) {
+    if (talentDescriptions.containsKey(talentName)) {
+      return talentDescriptions.get(talentName);
+    }
+
+    return "Talent description not available.";
+  }
+
   public static void loadTalents(@NotNull Context context) {
     getFileContent(context, TALENTS_FILE, FileSource.LOCAL_FIRST, new ContentParser() {
       @Override
       public void parse(@NotNull String content) {
         try {
-          TalentManager.parseTalents(new JSONArray(content));
+          parseTalents(new JSONArray(content));
         }
         catch (JSONException e) {
           Log.e(LOG_TAG, "Unable to parse Talents.json.", e);
+        }
+      }
+    });
+
+    getFileContent(context, TALENT_DESCRIPTIONS_FILE, FileSource.LOCAL_FIRST, new ContentParser() {
+      @Override
+      public void parse(@NotNull String content) {
+        try {
+          parseTalentDescriptions(new JSONArray(content));
+        }
+        catch (JSONException e) {
+          Log.e(LOG_TAG, "Unable to parse TalentDescriptions.json.", e);
         }
       }
     });
@@ -63,6 +88,19 @@ public final class TalentManager extends ManagerBase{
       }
       catch (JSONException e) {
         Log.e(LOG_TAG, String.format(Locale.US, "Unable to parse Specialization Talents object at index: %d", i), e);
+      }
+    }
+  }
+
+  private static void parseTalentDescriptions(@NotNull JSONArray descriptions) {
+    for (int i = 0; i < descriptions.length(); i++) {
+      try {
+        JSONObject talentDescription = descriptions.getJSONObject(i);
+        talentDescriptions.put(talentDescription.getString(NAME_KEY), talentDescription.getString(DESCRIPTION_KEY));
+
+      }
+      catch (JSONException e) {
+        Log.e(LOG_TAG, String.format(Locale.US, "Unable to parse Talent description object at index: %d", i), e);
       }
     }
   }

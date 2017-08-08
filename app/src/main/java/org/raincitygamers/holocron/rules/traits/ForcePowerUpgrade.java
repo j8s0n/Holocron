@@ -13,11 +13,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lombok.Getter;
+
 public class ForcePowerUpgrade extends Ability {
   private static final String LOG_TAG = ForcePowerUpgrade.class.getSimpleName();
+  private static final String DESCRIPTION_KEY = "description";
+
+  @Getter private final String description;
 
   private ForcePowerUpgrade(@NotNull String name, int tier, int row, int column, @NotNull String description) {
-    super(name, tier, row, column, description);
+    super(name, tier, row, column);
+    this.description = description;
   }
 
   public static ForcePowerUpgrade of(@NotNull String name, int tier, int row, int column, @NotNull String description) {
