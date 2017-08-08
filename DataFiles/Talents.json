@@ -4,14 +4,14 @@
       {
         "tier": 25,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per encounter, make opposed Piloting check with one opponent, to stop oppenent from attacking character for rounds equal to Agility",
         "name": "Brilliant Evasion",
         "row": 5
       },
       {
         "tier": 10,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "1 DP to add damage equal to half Agility (round up) to hit with vehicle weapon",
         "name": "Dead to Rights",
         "row": 2
       },
@@ -32,7 +32,7 @@
       {
         "tier": 5,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Hard Piloting check to increase vehicle's top speed by 1 for rounds equal to Cunning",
         "name": "Full Throttle",
         "row": 1
       },
@@ -67,14 +67,14 @@
       {
         "tier": 15,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When performing Dead to Rights, add damage equal to Agility",
         "name": "Improved Dead to Rights",
         "row": 3
       },
       {
         "tier": 15,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Suffer 1 strain to attempt Full Throttle as a maneuver and decrease to Average",
         "name": "Improved Full Throttle",
         "row": 3
       },
@@ -88,14 +88,14 @@
       {
         "tier": 25,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round when piloting, may suffer 2 strain to perform any action as a maneuver",
         "name": "Master Pilot",
         "row": 5
       },
       {
         "tier": 15,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per session, may reroll 1 Piloting (Space) or Gunnery check",
         "name": "Natural Pilot",
         "row": 3
       },
@@ -123,7 +123,7 @@
       {
         "tier": 20,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When performing Full Throttle, maximum speed increases by 2",
         "name": "Supreme Full Throttle",
         "row": 4
       },
@@ -137,7 +137,7 @@
       {
         "tier": 20,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Count vehicle silhouette as one smaller when being attacked",
         "name": "Tricky Target",
         "row": 4
       }
@@ -406,14 +406,14 @@
       {
         "tier": 5,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per encounter, as incidental gain strain equal to ranks",
         "name": "Second Wind",
         "row": 1
       },
       {
         "tier": 10,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per encounter, as incidental gain strain equal to ranks",
         "name": "Second Wind",
         "row": 2
       },
@@ -481,7 +481,7 @@
       {
         "tier": 15,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "On successful Knowledge check, character and allies gain Advantage per rank of Researcher checks to act on facts until end of next turn",
         "name": "Improved Researcher",
         "row": 3
       },
@@ -565,7 +565,7 @@
       {
         "tier": 25,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per session, Hard Knowledge check to gain Boost dice equal to successes to distribute during encounter",
         "name": "Thorough Assessment",
         "row": 5
       },
@@ -710,7 +710,7 @@
       {
         "tier": 20,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When targeted by Deception check, add Failures equal to ranks in Vigilance",
         "name": "Unrelenting Skeptic",
         "row": 4
       },
@@ -729,21 +729,21 @@
       {
         "tier": 25,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per encounter, make opposed Piloting check with one opponent, to stop oppenent from attacking character for rounds equal to Agility",
         "name": "Brilliant Evasion",
         "row": 5
       },
       {
         "tier": 15,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Add Boost per rank on Leadership, targets add Boost to Discipline for 24 hours",
         "name": "Command",
         "row": 3
       },
       {
         "tier": 20,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Add Boost per rank on Leadership, targets add Boost to Discipline for 24 hours",
         "name": "Command",
         "row": 4
       },
@@ -785,21 +785,21 @@
       {
         "tier": 10,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Average Leadership check to allow allies equal to Presence to suffer 1 Strain to perform free Maneuver",
         "name": "Field Commander",
         "row": 2
       },
       {
         "tier": 20,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Allies equal to Leadership in Short range gain benefits of Gain the Advantage Action",
         "name": "Form on Me",
         "row": 4
       },
       {
         "tier": 15,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Take maneuver to reduce vehicle speed to 0, suffering system strain equal to speed reduced",
         "name": "Full Stop",
         "row": 3
       },
@@ -820,7 +820,7 @@
       {
         "tier": 20,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Field Commander action affects allies equal to twice Presence, and may spend Triumph to allow one ally to suffer 1 strain for free Action",
         "name": "Improved Field Commander",
         "row": 4
       },
@@ -834,7 +834,7 @@
       {
         "tier": 25,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round, suffer 2 strain to decrease difficulty of Leadership by 1, to Easy",
         "name": "Master Leader",
         "row": 5
       },
@@ -855,14 +855,14 @@
       {
         "tier": 10,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Allies within Short range of vehicle add 1 Boost to Perception and Vigilance, or 2 Boost in Close range",
         "name": "Situational Awareness",
         "row": 2
       },
       {
         "tier": 20,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Count vehicle silhouette as one smaller when being attacked",
         "name": "Tricky Target",
         "row": 4
       }
@@ -1019,30 +1019,37 @@
       {
         "tier": 10,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "May use Cool instead of Leadership to upgrade Mass Combat checks",
         "name": "Calm Commander",
         "row": 2
       },
       {
         "tier": 5,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Add Boost per rank on Leadership, targets add Boost to Discipline for 24 hours",
         "name": "Command",
         "row": 1
       },
       {
         "tier": 10,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Add Boost per rank on Leadership, targets add Boost to Discipline for 24 hours",
         "name": "Command",
         "row": 2
       },
       {
         "tier": 15,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Remove Setback per rank from Leadership and Cool",
         "name": "Commanding Presence",
         "row": 3
+      },
+      {
+        "tier": 20,
+        "column": 4,
+        "description": "Remove Setback per rank from Leadership and Cool",
+        "name": "Commanding Presence",
+        "row": 4
       },
       {
         "tier": 5,
@@ -1089,14 +1096,14 @@
       {
         "tier": 25,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per session roll Cool v. Discipline to force target to leave encounter",
         "name": "Improved Commanding Presence",
         "row": 5
       },
       {
         "tier": 20,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "May spend Triumph on Fear checks to to give allies in short range 1 Success on same check",
         "name": "Improved Confidence",
         "row": 4
       },
@@ -1106,13 +1113,6 @@
         "description": "Each ally affected by Inspiring Rhetoric gains boost on all checks for rounds equal to Leadership",
         "name": "Improved Inspiring Rhetoric",
         "row": 3
-      },
-      {
-        "tier": 20,
-        "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Inspiring Presence",
-        "row": 4
       },
       {
         "tier": 10,
@@ -1131,14 +1131,14 @@
       {
         "tier": 25,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per session, may reroll 1 Cool or Leadership check",
         "name": "Natural Leader",
         "row": 5
       },
       {
         "tier": 15,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Whenever Duty would increase, increase by 1 more per rank",
         "name": "Positive Spin",
         "row": 3
       },
@@ -1164,7 +1164,7 @@
       {
         "tier": 10,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "May use agility for lightsaber",
         "name": "Ataru Technique",
         "row": 2
       },
@@ -1309,7 +1309,7 @@
       {
         "tier": 10,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Develop long term bond with with animal with silhouette equal to half FR or lower",
         "name": "Animal Bond",
         "row": 2
       },
@@ -1435,7 +1435,7 @@
       {
         "tier": 5,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Average Knowledge (Xenology) check to help animal recover strain per success",
         "name": "Soothing Tone",
         "row": 1
       },
@@ -1597,18 +1597,25 @@
   {
     "graph": [
       {
-        "tier": 5,
+        "tier": 25,
         "column": 1,
         "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Basic Combat Training",
+        "name": "Blackmail",
+        "row": 5
+      },
+      {
+        "tier": 5,
+        "column": 4,
+        "description": "Reduce fear check difficulty by one",
+        "name": "Confidence",
         "row": 1
       },
       {
-        "tier": 20,
+        "tier": 25,
         "column": 4,
         "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Creative Killer",
-        "row": 4
+        "name": "Contingency Plan",
+        "row": 5
       },
       {
         "tier": 25,
@@ -1618,271 +1625,264 @@
         "row": 5
       },
       {
-        "tier": 25,
+        "tier": 10,
         "column": 1,
         "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Dynamic Fire",
+        "name": "Discredit",
+        "row": 2
+      },
+      {
+        "tier": 15,
+        "column": 4,
+        "description": "After engaged ally fails check, may suffer one strain to assist ally's next check",
+        "name": "Encouraging Words",
+        "row": 3
+      },
+      {
+        "tier": 5,
+        "column": 3,
+        "description": "Strain +1",
+        "name": "Grit",
+        "row": 1
+      },
+      {
+        "tier": 15,
+        "column": 3,
+        "description": "Strain +1",
+        "name": "Grit",
+        "row": 3
+      },
+      {
+        "tier": 20,
+        "column": 2,
+        "description": "Strain +1",
+        "name": "Grit",
+        "row": 4
+      },
+      {
+        "tier": 20,
+        "column": 4,
+        "description": "Strain +1",
+        "name": "Grit",
+        "row": 4
+      },
+      {
+        "tier": 15,
+        "column": 2,
+        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "name": "Improved Plausible Deniability",
+        "row": 3
+      },
+      {
+        "tier": 25,
+        "column": 3,
+        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "name": "Interjection",
         "row": 5
+      },
+      {
+        "tier": 5,
+        "column": 2,
+        "description": "Upgrading incoming coercion, deception, charm checks by one per rank",
+        "name": "Nobody's Fool",
+        "row": 1
+      },
+      {
+        "tier": 10,
+        "column": 4,
+        "description": "Upgrading incoming coercion, deception, charm checks by one per rank",
+        "name": "Nobody's Fool",
+        "row": 2
+      },
+      {
+        "tier": 5,
+        "column": 1,
+        "description": "Remove Setback per rank from coercsion and deception",
+        "name": "Plausible Deniability",
+        "row": 1
+      },
+      {
+        "tier": 10,
+        "column": 2,
+        "description": "Remove Setback per rank from coercsion and deception",
+        "name": "Plausible Deniability",
+        "row": 2
+      },
+      {
+        "tier": 20,
+        "column": 1,
+        "description": "Remove Setback per rank from coercsion and deception",
+        "name": "Plausible Deniability",
+        "row": 4
+      },
+      {
+        "tier": 10,
+        "column": 3,
+        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "name": "Supporting Evidence",
+        "row": 2
+      },
+      {
+        "tier": 20,
+        "column": 3,
+        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "name": "Supporting Evidence",
+        "row": 4
+      },
+      {
+        "tier": 15,
+        "column": 1,
+        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "name": "Twisted Words",
+        "row": 3
+      }
+    ],
+    "name": "Diplomat--Advocate"
+  },
+  {
+    "graph": [
+      {
+        "tier": 15,
+        "column": 2,
+        "description": "Develop long term bond with with animal with silhouette equal to half FR or lower",
+        "name": "Animal Bond",
+        "row": 3
+      },
+      {
+        "tier": 15,
+        "column": 1,
+        "description": "When making animal checks, add FD equal to FR, and spend FP to add successes or advantage",
+        "name": "Animal Empathy",
+        "row": 3
       },
       {
         "tier": 25,
         "column": 4,
+        "description": "+1 to a characteristic",
+        "name": "Dedication",
+        "row": 5
+      },
+      {
+        "tier": 25,
+        "column": 2,
         "description": "Soak +1",
         "name": "Enduring",
         "row": 5
       },
       {
-        "tier": 15,
-        "column": 2,
-        "description": "Strain +1",
-        "name": "Grit",
-        "row": 3
-      },
-      {
-        "tier": 20,
-        "column": 3,
-        "description": "Strain +1",
-        "name": "Grit",
-        "row": 4
-      },
-      {
-        "tier": 20,
-        "column": 2,
-        "description": "Once per round stand up as an incidental",
-        "name": "Jump Up",
-        "row": 4
-      },
-      {
         "tier": 5,
         "column": 3,
-        "description": "Remove setback per rank from checks to move through terrain or manage environmental effects. Decrease overland travel time by half.",
-        "name": "Outdoorsman",
-        "row": 1
-      },
-      {
-        "tier": 15,
-        "column": 1,
-        "description": "Draw one weapon as an incidental",
-        "name": "Quick Draw",
-        "row": 3
-      },
-      {
-        "tier": 5,
-        "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Second Wind",
-        "row": 1
-      },
-      {
-        "tier": 10,
-        "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Second Wind",
-        "row": 2
-      },
-      {
-        "tier": 20,
-        "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Second Wind",
-        "row": 4
-      },
-      {
-        "tier": 15,
-        "column": 4,
-        "description": "Cannot run out of ammo due to despair",
-        "name": "Spare Clip",
-        "row": 3
-      },
-      {
-        "tier": 5,
-        "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Tactical Combat Training",
-        "row": 1
-      },
-      {
-        "tier": 10,
-        "column": 4,
-        "description": "Wounds +2",
-        "name": "Toughened",
-        "row": 2
-      },
-      {
-        "tier": 15,
-        "column": 3,
-        "description": "Wounds +2",
-        "name": "Toughened",
-        "row": 3
-      },
-      {
-        "tier": 25,
-        "column": 3,
-        "description": "Wounds +2",
-        "name": "Toughened",
-        "row": 5
-      },
-      {
-        "tier": 10,
-        "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Vehicle Combat Training",
-        "row": 2
-      },
-      {
-        "tier": 10,
-        "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Well-Traveled",
-        "row": 2
-      }
-    ],
-    "name": "Recruit"
-  },
-  {
-    "graph": [
-      {
-        "tier": 25,
-        "column": 2,
-        "description": "+1 to a characteristic",
-        "name": "Dedication",
-        "row": 5
-      },
-      {
-        "tier": 10,
-        "column": 4,
-        "description": "After hit, spend 2 Advantage to disorient target for one round per rank",
-        "name": "Disorient",
-        "row": 2
-      },
-      {
-        "tier": 25,
-        "column": 4,
-        "description": "After hit, spend 2 Advantage to disorient target for one round per rank",
-        "name": "Disorient",
-        "row": 5
-      },
-      {
-        "tier": 15,
-        "column": 3,
-        "description": "Once per session, Hard Knowledge Outer Rim, or Knowledge Core to reveal current type of planetary environment or useful info",
-        "name": "Familiar Suns",
-        "row": 3
-      },
-      {
-        "tier": 10,
-        "column": 1,
         "description": "Remove up to two setback from skill checks to find food, water, or shelter. Survival checks take half the time.",
         "name": "Forager",
-        "row": 2
+        "row": 1
+      },
+      {
+        "tier": 20,
+        "column": 2,
+        "description": "Force rating +1",
+        "name": "Force Rating",
+        "row": 4
       },
       {
         "tier": 5,
-        "column": 3,
+        "column": 1,
         "description": "Strain +1",
         "name": "Grit",
         "row": 1
       },
       {
-        "tier": 20,
-        "column": 1,
+        "tier": 15,
+        "column": 3,
         "description": "Strain +1",
         "name": "Grit",
-        "row": 4
-      },
-      {
-        "tier": 20,
-        "column": 2,
-        "description": "Allies in close add Boost to Perception and Vigilance. Engaged allies add two Boost.",
-        "name": "Heightened Awareness",
-        "row": 4
-      },
-      {
-        "tier": 10,
-        "column": 3,
-        "description": "Once per round, mount, dismount, enter or exit a cockpit or weapon station as an incidental",
-        "name": "Let's Ride",
-        "row": 2
-      },
-      {
-        "tier": 15,
-        "column": 2,
-        "description": "Once per session, reroll Perception or Vigilance",
-        "name": "Natural Hunter",
         "row": 3
       },
       {
-        "tier": 10,
+        "tier": 5,
         "column": 2,
-        "description": "Add one boost per rank against targets that have not acted yet",
-        "name": "Quick Strike",
+        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "name": "Keen Eyed",
+        "row": 1
+      },
+      {
+        "tier": 10,
+        "column": 1,
+        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "name": "Keen Eyed",
         "row": 2
       },
       {
         "tier": 20,
-        "column": 4,
-        "description": "Add one boost per rank against targets that have not acted yet",
-        "name": "Quick Strike",
+        "column": 1,
+        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "name": "Mental Bond",
         "row": 4
-      },
-      {
-        "tier": 5,
-        "column": 1,
-        "description": "When recovering strain after an encounter, recover one more per rank",
-        "name": "Rapid Recovery",
-        "row": 1
-      },
-      {
-        "tier": 15,
-        "column": 1,
-        "description": "When recovering strain after an encounter, recover one more per rank",
-        "name": "Rapid Recovery",
-        "row": 3
-      },
-      {
-        "tier": 5,
-        "column": 4,
-        "description": "During a chase, add Boost per rank to checks to catch or escape opponent",
-        "name": "Shortcut",
-        "row": 1
-      },
-      {
-        "tier": 15,
-        "column": 4,
-        "description": "During a chase, add Boost per rank to checks to catch or escape opponent",
-        "name": "Shortcut",
-        "row": 3
-      },
-      {
-        "tier": 5,
-        "column": 2,
-        "description": "Add one boost per rank on stealth and coordination",
-        "name": "Stalker",
-        "row": 1
       },
       {
         "tier": 25,
         "column": 3,
-        "description": "Add one boost per rank on stealth and coordination",
-        "name": "Stalker",
+        "description": "Once per session, reroll resilience or survival",
+        "name": "Natural Outdoorsman",
         "row": 5
       },
       {
+        "tier": 10,
+        "column": 2,
+        "description": "Remove setback per rank from checks to move through terrain or manage environmental effects. Decrease overland travel time by half.",
+        "name": "Outdoorsman",
+        "row": 2
+      },
+      {
+        "tier": 10,
+        "column": 4,
+        "description": "Remove setback per rank from checks to move through terrain or manage environmental effects. Decrease overland travel time by half.",
+        "name": "Outdoorsman",
+        "row": 2
+      },
+      {
         "tier": 20,
+        "column": 3,
+        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "name": "Quick Movement",
+        "row": 4
+      },
+      {
+        "tier": 25,
+        "column": 1,
+        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "name": "Share Pain",
+        "row": 5
+      },
+      {
+        "tier": 15,
+        "column": 4,
+        "description": "Add Boost to Stealth",
+        "name": "Sleight of Mind",
+        "row": 3
+      },
+      {
+        "tier": 5,
+        "column": 4,
+        "description": "Do not suffer regular penalties for rough terrain",
+        "name": "Swift",
+        "row": 1
+      },
+      {
+        "tier": 10,
         "column": 3,
         "description": "Wounds +2",
         "name": "Toughened",
-        "row": 4
+        "row": 2
       },
       {
-        "tier": 25,
-        "column": 1,
-        "description": "Spend DP to perform incidental to produce useful item",
-        "name": "Utility Belt",
-        "row": 5
+        "tier": 20,
+        "column": 4,
+        "description": "Wounds +2",
+        "name": "Toughened",
+        "row": 4
       }
     ],
-    "name": "Spy--Scout"
+    "name": "Seeker--Pathfinder"
   },
   {
     "graph": [
@@ -1924,14 +1924,14 @@
       {
         "tier": 5,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When staggered or disoriented, make Daunting Discipline check to remove status. Reduce difficulty per rank.",
         "name": "Hard Headed",
         "row": 1
       },
       {
         "tier": 20,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When staggered or disoriented, make Daunting Discipline check to remove status. Reduce difficulty per rank.",
         "name": "Hard Headed",
         "row": 4
       },
@@ -2186,7 +2186,7 @@
       {
         "tier": 10,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per session may introduce \"\"Fact\"\" as if spending a DP",
         "name": "Careful Planning",
         "row": 2
       },
@@ -2200,7 +2200,7 @@
       {
         "tier": 20,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "As Maneuver, Engaged allies equal to Leadership add Advantage to combat checks for 1 turn. Range increases per rank.",
         "name": "Coordinated Assault",
         "row": 4
       },
@@ -2408,14 +2408,14 @@
       {
         "tier": 5,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Add Boost per rank to Athletics and Resilience",
         "name": "Physical Training",
         "row": 1
       },
       {
         "tier": 10,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Add Boost per rank to Athletics and Resilience",
         "name": "Physical Training",
         "row": 2
       },
@@ -2469,28 +2469,28 @@
       {
         "tier": 5,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Add Boost per rank on Leadership, targets add Boost to Discipline for 24 hours",
         "name": "Command",
         "row": 1
       },
       {
         "tier": 15,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Add Boost per rank on Leadership, targets add Boost to Discipline for 24 hours",
         "name": "Command",
         "row": 3
       },
       {
         "tier": 5,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Remove Setback per rank from Leadership and Cool",
         "name": "Commanding Presence",
         "row": 1
       },
       {
         "tier": 10,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Remove Setback per rank from Leadership and Cool",
         "name": "Commanding Presence",
         "row": 2
       },
@@ -2525,7 +2525,7 @@
       {
         "tier": 15,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Average Leadership check to allow allies equal to Presence to suffer 1 Strain to perform free Maneuver",
         "name": "Field Commander",
         "row": 3
       },
@@ -2539,35 +2539,35 @@
       {
         "tier": 20,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Field Commander action affects allies equal to twice Presence, and may spend Triumph to allow one ally to suffer 1 strain for free Action",
         "name": "Improved Field Commander",
         "row": 4
       },
       {
         "tier": 25,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per session, may reroll 1 Cool or Leadership check",
         "name": "Natural Leader",
         "row": 5
       },
       {
         "tier": 5,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per encounter, as incidental gain strain equal to ranks",
         "name": "Second Wind",
         "row": 1
       },
       {
         "tier": 10,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per encounter, as incidental gain strain equal to ranks",
         "name": "Second Wind",
         "row": 2
       },
       {
         "tier": 20,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per encounter, as incidental gain strain equal to ranks",
         "name": "Second Wind",
         "row": 4
       },
@@ -2759,14 +2759,14 @@
       {
         "tier": 5,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Add boost per rank to wrangle or tame animals",
         "name": "Beast Wrangler",
         "row": 1
       },
       {
         "tier": 15,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Add boost per rank to wrangle or tame animals",
         "name": "Beast Wrangler",
         "row": 3
       },
@@ -2780,14 +2780,14 @@
       {
         "tier": 10,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Remove setback per rank from survival rolls to ride beasts",
         "name": "Expert Handler",
         "row": 2
       },
       {
         "tier": 20,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Remove setback per rank from survival rolls to ride beasts",
         "name": "Expert Handler",
         "row": 4
       },
@@ -2829,7 +2829,7 @@
       {
         "tier": 20,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Suffer 1 strain to attempt Spur as a maneuver and decrease to Average",
         "name": "Improved Spur",
         "row": 4
       },
@@ -2864,21 +2864,21 @@
       {
         "tier": 25,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Average Knowledge (Xenology) check to help animal recover strain per success",
         "name": "Soothing Tone",
         "row": 5
       },
       {
         "tier": 20,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Hard Survival check to increase beast's speed by 1. Beast suffers 2 strain per round.",
         "name": "Spur",
         "row": 4
       },
       {
         "tier": 25,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "During Spur, beast only suffers one strain per round",
         "name": "Supreme Spur",
         "row": 5
       },
@@ -3049,28 +3049,28 @@
       {
         "tier": 15,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round, perform maneuver with engaged character, suffering strain up to ranks to upgrade combat checks by that number",
         "name": "Body Guard",
         "row": 3
       },
       {
         "tier": 15,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round, perform maneuver with engaged character, suffering strain up to ranks to upgrade combat checks by that number",
         "name": "Body Guard",
         "row": 3
       },
       {
         "tier": 5,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Remove Setback per rank from Leadership and Cool",
         "name": "Commanding Presence",
         "row": 1
       },
       {
         "tier": 20,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Remove Setback per rank from Leadership and Cool",
         "name": "Commanding Presence",
         "row": 4
       },
@@ -3091,7 +3091,7 @@
       {
         "tier": 25,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "As Maneuver, Engaged allies equal to Leadership add Advantage to combat checks for 1 turn. Range increases per rank.",
         "name": "Coordinated Assault",
         "row": 5
       },
@@ -3105,21 +3105,21 @@
       {
         "tier": 20,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Average Leadership check to allow allies equal to Presence to suffer 1 Strain to perform free Maneuver",
         "name": "Field Commander",
         "row": 4
       },
       {
         "tier": 25,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Field Commander action affects allies equal to twice Presence, and may spend Triumph to allow one ally to suffer 1 strain for free Action",
         "name": "Improved Field Commander",
         "row": 5
       },
       {
         "tier": 25,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per session, may reroll 1 Cool or Leadership check",
         "name": "Natural Leader",
         "row": 5
       },
@@ -3154,14 +3154,14 @@
       {
         "tier": 5,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round may suffer Strain up to ranks to upgrade incoming ranged attacks that many times for one turn",
         "name": "Side Step",
         "row": 1
       },
       {
         "tier": 20,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round may suffer Strain up to ranks to upgrade incoming ranged attacks that many times for one turn",
         "name": "Side Step",
         "row": 4
       },
@@ -3498,14 +3498,14 @@
       {
         "tier": 15,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Increase Armor value of Signature Vehicle by 1 per rank",
         "name": "Bolstered Armor",
         "row": 3
       },
       {
         "tier": 20,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Increase System Strain threshold of Signature Vehicle by 2 per rank",
         "name": "Customized Cooling Unit",
         "row": 4
       },
@@ -3519,28 +3519,28 @@
       {
         "tier": 10,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Upgrade Charm, Deception, and Negotiation checks made within sight of Signature Vehicle",
         "name": "Fancy Paint Job",
         "row": 2
       },
       {
         "tier": 20,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Increase Hull Trauma threshold of Signature Vehicle by 1 per rank",
         "name": "Fortified Vacuum Seal",
         "row": 4
       },
       {
         "tier": 5,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Remove setback per rank and halve the cost to mod attachments",
         "name": "Gearhead",
         "row": 1
       },
       {
         "tier": 20,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Remove setback per rank and halve the cost to mod attachments",
         "name": "Gearhead",
         "row": 4
       },
@@ -3554,42 +3554,42 @@
       {
         "tier": 5,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Signature Vehicle may have a silhouette 1 larger per rank",
         "name": "Larger Project",
         "row": 1
       },
       {
         "tier": 10,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Signature Vehicle may have a silhouette 1 larger per rank",
         "name": "Larger Project",
         "row": 2
       },
       {
         "tier": 25,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per Session, spend DP to prevent Signature Vehicle from being destroyed",
         "name": "Not Today",
         "row": 5
       },
       {
         "tier": 15,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Increase Limited Ammo value of weapons on Signature Vehicle by 1 per rank",
         "name": "Overstocked Ammo",
         "row": 3
       },
       {
         "tier": 25,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Signature Vehicle gains Massive 1",
         "name": "Reinforced Frame",
         "row": 5
       },
       {
         "tier": 10,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Choose a Signature Vehicle, upgrade all Mechanics checks once",
         "name": "Signature Vehicle",
         "row": 2
       },
@@ -3610,14 +3610,14 @@
       {
         "tier": 15,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Increase the Handling of Signature Vehicle by 1 per rank",
         "name": "Tuned Maneuvering Thrusters",
         "row": 3
       },
       {
         "tier": 25,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Increase the Handling of Signature Vehicle by 1 per rank",
         "name": "Tuned Maneuvering Thrusters",
         "row": 5
       }
@@ -3713,7 +3713,7 @@
       {
         "tier": 20,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per encounter, as incidental gain strain equal to ranks",
         "name": "Second Wind",
         "row": 4
       },
@@ -3788,21 +3788,21 @@
       {
         "tier": 10,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Upgrade Charm, Deception, and Negotiation checks made within sight of Signature Vehicle",
         "name": "Fancy Paint Job",
         "row": 2
       },
       {
         "tier": 10,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Remove setback per rank and halve the cost to mod attachments",
         "name": "Gearhead",
         "row": 2
       },
       {
         "tier": 20,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Remove setback per rank and halve the cost to mod attachments",
         "name": "Gearhead",
         "row": 4
       },
@@ -3837,14 +3837,14 @@
       {
         "tier": 10,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Signature Vehicle may have a silhouette 1 larger per rank",
         "name": "Larger Project",
         "row": 2
       },
       {
         "tier": 15,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Signature Vehicle may have a silhouette 1 larger per rank",
         "name": "Larger Project",
         "row": 3
       },
@@ -3879,7 +3879,7 @@
       {
         "tier": 5,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Choose a Signature Vehicle, upgrade all Mechanics checks once",
         "name": "Signature Vehicle",
         "row": 1
       },
@@ -3919,7 +3919,7 @@
       {
         "tier": 5,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Do not suffer terrain penalties for Piloting (Planetary)",
         "name": "All-Terrain Driver",
         "row": 1
       },
@@ -3940,42 +3940,42 @@
       {
         "tier": 5,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing strain on a vehicle, recover an extra point per rank",
         "name": "Fine Tuning",
         "row": 1
       },
       {
         "tier": 15,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing strain on a vehicle, recover an extra point per rank",
         "name": "Fine Tuning",
         "row": 3
       },
       {
         "tier": 25,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Take maneuver to reduce vehicle speed to 0, suffering system strain equal to speed reduced",
         "name": "Full Stop",
         "row": 5
       },
       {
         "tier": 5,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Hard Piloting check to increase vehicle's top speed by 1 for rounds equal to Cunning",
         "name": "Full Throttle",
         "row": 1
       },
       {
         "tier": 5,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Remove setback per rank and halve the cost to mod attachments",
         "name": "Gearhead",
         "row": 1
       },
       {
         "tier": 20,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Remove setback per rank and halve the cost to mod attachments",
         "name": "Gearhead",
         "row": 4
       },
@@ -3996,21 +3996,21 @@
       {
         "tier": 15,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Suffer 1 strain to attempt Full Throttle as a maneuver and decrease to Average",
         "name": "Improved Full Throttle",
         "row": 3
       },
       {
         "tier": 25,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round, when driving, may suffer 2 strain to perform an Action as a Maneuver",
         "name": "Master Driver",
         "row": 5
       },
       {
         "tier": 20,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per session, reroll one Piloting (Planetary) or Gunnery check",
         "name": "Natural Driver",
         "row": 4
       },
@@ -4038,7 +4038,7 @@
       {
         "tier": 25,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When performing Full Throttle, maximum speed increases by 2",
         "name": "Supreme Full Throttle",
         "row": 5
       },
@@ -4052,7 +4052,7 @@
       {
         "tier": 15,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Count vehicle silhouette as one smaller when being attacked",
         "name": "Tricky Target",
         "row": 3
       }
@@ -4932,147 +4932,147 @@
   {
     "graph": [
       {
-        "tier": 15,
-        "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Animal Bond",
-        "row": 3
-      },
-      {
-        "tier": 15,
-        "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Animal Empathy",
-        "row": 3
-      },
-      {
         "tier": 25,
-        "column": 4,
+        "column": 2,
         "description": "+1 to a characteristic",
         "name": "Dedication",
         "row": 5
       },
       {
+        "tier": 10,
+        "column": 4,
+        "description": "After hit, spend 2 Advantage to disorient target for one round per rank",
+        "name": "Disorient",
+        "row": 2
+      },
+      {
         "tier": 25,
-        "column": 2,
-        "description": "Soak +1",
-        "name": "Enduring",
+        "column": 4,
+        "description": "After hit, spend 2 Advantage to disorient target for one round per rank",
+        "name": "Disorient",
         "row": 5
       },
       {
-        "tier": 5,
+        "tier": 15,
         "column": 3,
+        "description": "Once per session, Hard Knowledge Outer Rim, or Knowledge Core to reveal current type of planetary environment or useful info",
+        "name": "Familiar Suns",
+        "row": 3
+      },
+      {
+        "tier": 10,
+        "column": 1,
         "description": "Remove up to two setback from skill checks to find food, water, or shelter. Survival checks take half the time.",
         "name": "Forager",
-        "row": 1
-      },
-      {
-        "tier": 20,
-        "column": 2,
-        "description": "Force rating +1",
-        "name": "Force Rating",
-        "row": 4
+        "row": 2
       },
       {
         "tier": 5,
-        "column": 1,
+        "column": 3,
         "description": "Strain +1",
         "name": "Grit",
         "row": 1
       },
       {
-        "tier": 15,
-        "column": 3,
+        "tier": 20,
+        "column": 1,
         "description": "Strain +1",
         "name": "Grit",
+        "row": 4
+      },
+      {
+        "tier": 20,
+        "column": 2,
+        "description": "Allies in close add Boost to Perception and Vigilance. Engaged allies add two Boost.",
+        "name": "Heightened Awareness",
+        "row": 4
+      },
+      {
+        "tier": 10,
+        "column": 3,
+        "description": "Once per round, mount, dismount, enter or exit a cockpit or weapon station as an incidental",
+        "name": "Let's Ride",
+        "row": 2
+      },
+      {
+        "tier": 15,
+        "column": 2,
+        "description": "Once per session, reroll Perception or Vigilance",
+        "name": "Natural Hunter",
+        "row": 3
+      },
+      {
+        "tier": 10,
+        "column": 2,
+        "description": "Add one boost per rank against targets that have not acted yet",
+        "name": "Quick Strike",
+        "row": 2
+      },
+      {
+        "tier": 20,
+        "column": 4,
+        "description": "Add one boost per rank against targets that have not acted yet",
+        "name": "Quick Strike",
+        "row": 4
+      },
+      {
+        "tier": 5,
+        "column": 1,
+        "description": "When recovering strain after an encounter, recover one more per rank",
+        "name": "Rapid Recovery",
+        "row": 1
+      },
+      {
+        "tier": 15,
+        "column": 1,
+        "description": "When recovering strain after an encounter, recover one more per rank",
+        "name": "Rapid Recovery",
         "row": 3
       },
       {
         "tier": 5,
-        "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Keen Eyed",
-        "row": 1
-      },
-      {
-        "tier": 10,
-        "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Keen Eyed",
-        "row": 2
-      },
-      {
-        "tier": 20,
-        "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Mental Bond",
-        "row": 4
-      },
-      {
-        "tier": 25,
-        "column": 3,
-        "description": "Once per session, reroll resilience or survival",
-        "name": "Natural Outdoorsman",
-        "row": 5
-      },
-      {
-        "tier": 10,
-        "column": 2,
-        "description": "Remove setback per rank from checks to move through terrain or manage environmental effects. Decrease overland travel time by half.",
-        "name": "Outdoorsman",
-        "row": 2
-      },
-      {
-        "tier": 10,
         "column": 4,
-        "description": "Remove setback per rank from checks to move through terrain or manage environmental effects. Decrease overland travel time by half.",
-        "name": "Outdoorsman",
-        "row": 2
-      },
-      {
-        "tier": 20,
-        "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Quick Movement",
-        "row": 4
-      },
-      {
-        "tier": 25,
-        "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Share Pain",
-        "row": 5
+        "description": "During a chase, add Boost per rank to checks to catch or escape opponent",
+        "name": "Shortcut",
+        "row": 1
       },
       {
         "tier": 15,
         "column": 4,
-        "description": "Add Boost to Stealth",
-        "name": "Sleight of Mind",
+        "description": "During a chase, add Boost per rank to checks to catch or escape opponent",
+        "name": "Shortcut",
         "row": 3
       },
       {
         "tier": 5,
-        "column": 4,
-        "description": "Do not suffer regular penalties for rough terrain",
-        "name": "Swift",
+        "column": 2,
+        "description": "Add one boost per rank on stealth and coordination",
+        "name": "Stalker",
         "row": 1
       },
       {
-        "tier": 10,
+        "tier": 25,
         "column": 3,
-        "description": "Wounds +2",
-        "name": "Toughened",
-        "row": 2
+        "description": "Add one boost per rank on stealth and coordination",
+        "name": "Stalker",
+        "row": 5
       },
       {
         "tier": 20,
-        "column": 4,
+        "column": 3,
         "description": "Wounds +2",
         "name": "Toughened",
         "row": 4
+      },
+      {
+        "tier": 25,
+        "column": 1,
+        "description": "Spend DP to perform incidental to produce useful item",
+        "name": "Utility Belt",
+        "row": 5
       }
     ],
-    "name": "Seeker--Pathfinder"
+    "name": "Spy--Scout"
   },
   {
     "graph": [
@@ -5224,14 +5224,14 @@
       {
         "tier": 25,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per encounter, make opposed Piloting check with one opponent, to stop oppenent from attacking character for rounds equal to Agility",
         "name": "Brilliant Evasion",
         "row": 5
       },
       {
         "tier": 10,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "1 DP to add damage equal to half Agility (round up) to hit with vehicle weapon",
         "name": "Dead to Rights",
         "row": 2
       },
@@ -5252,7 +5252,7 @@
       {
         "tier": 5,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Hard Piloting check to increase vehicle's top speed by 1 for rounds equal to Cunning",
         "name": "Full Throttle",
         "row": 1
       },
@@ -5287,14 +5287,14 @@
       {
         "tier": 15,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When performing Dead to Rights, add damage equal to Agility",
         "name": "Improved Dead to Rights",
         "row": 3
       },
       {
         "tier": 15,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Suffer 1 strain to attempt Full Throttle as a maneuver and decrease to Average",
         "name": "Improved Full Throttle",
         "row": 3
       },
@@ -5308,14 +5308,14 @@
       {
         "tier": 25,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round when piloting, may suffer 2 strain to perform any action as a maneuver",
         "name": "Master Pilot",
         "row": 5
       },
       {
         "tier": 15,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per session, may reroll 1 Piloting (Space) or Gunnery check",
         "name": "Natural Pilot",
         "row": 3
       },
@@ -5343,7 +5343,7 @@
       {
         "tier": 20,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When performing Full Throttle, maximum speed increases by 2",
         "name": "Supreme Full Throttle",
         "row": 4
       },
@@ -5357,7 +5357,7 @@
       {
         "tier": 20,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Count vehicle silhouette as one smaller when being attacked",
         "name": "Tricky Target",
         "row": 4
       }
@@ -5474,14 +5474,14 @@
       {
         "tier": 15,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round may suffer Strain up to ranks to upgrade incoming ranged attacks that many times for one turn",
         "name": "Side Step",
         "row": 3
       },
       {
         "tier": 20,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round may suffer Strain up to ranks to upgrade incoming ranged attacks that many times for one turn",
         "name": "Side Step",
         "row": 4
       },
@@ -5535,14 +5535,14 @@
       {
         "tier": 10,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round, perform maneuver with engaged character, suffering strain up to ranks to upgrade combat checks by that number",
         "name": "Body Guard",
         "row": 2
       },
       {
         "tier": 15,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round, perform maneuver with engaged character, suffering strain up to ranks to upgrade combat checks by that number",
         "name": "Body Guard",
         "row": 3
       },
@@ -5605,35 +5605,35 @@
       {
         "tier": 10,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When staggered or disoriented, make Daunting Discipline check to remove status. Reduce difficulty per rank.",
         "name": "Hard Headed",
         "row": 2
       },
       {
         "tier": 20,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When staggered or disoriented, make Daunting Discipline check to remove status. Reduce difficulty per rank.",
         "name": "Hard Headed",
         "row": 4
       },
       {
         "tier": 25,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When incapacitated due to strain, take Hard Headed action to reduce strain to 1 below threshold",
         "name": "Improved Hard Headed",
         "row": 5
       },
       {
         "tier": 15,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round may suffer Strain up to ranks to upgrade incoming ranged attacks that many times for one turn",
         "name": "Side Step",
         "row": 3
       },
       {
         "tier": 20,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round may suffer Strain up to ranks to upgrade incoming ranged attacks that many times for one turn",
         "name": "Side Step",
         "row": 4
       },
@@ -5680,14 +5680,14 @@
       {
         "tier": 15,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When staggered or disoriented, make Daunting Discipline check to remove status. Reduce difficulty per rank.",
         "name": "Hard Headed",
         "row": 3
       },
       {
         "tier": 25,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When incapacitated due to strain, take Hard Headed action to reduce strain to 1 below threshold",
         "name": "Improved Hard Headed",
         "row": 5
       },
@@ -5750,14 +5750,14 @@
       {
         "tier": 5,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per encounter, as incidental gain strain equal to ranks",
         "name": "Second Wind",
         "row": 1
       },
       {
         "tier": 10,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per encounter, as incidental gain strain equal to ranks",
         "name": "Second Wind",
         "row": 2
       },
@@ -5818,7 +5818,7 @@
       {
         "tier": 5,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Upon hit with vehicle weapon, spend 2 Advantage to target's maximum speed by 1 until the end of the next round",
         "name": "Debilitating Shot",
         "row": 1
       },
@@ -5860,7 +5860,7 @@
       {
         "tier": 20,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Spend DP to ignore the Massive rule for next attack",
         "name": "Exhaust Port",
         "row": 4
       },
@@ -5895,14 +5895,14 @@
       {
         "tier": 5,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Upon unsuccessful attack with vehicle weapon, spend 2 Advantage per rank to reduce the defense in targeted zone by one",
         "name": "Overwhelm Defenses",
         "row": 1
       },
       {
         "tier": 15,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Upon unsuccessful attack with vehicle weapon, spend 2 Advantage per rank to reduce the defense in targeted zone by one",
         "name": "Overwhelm Defenses",
         "row": 3
       },
@@ -5930,14 +5930,14 @@
       {
         "tier": 10,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round, perform maneuver to gain benefits of aiming and upgrade attack once per rank",
         "name": "True Aim",
         "row": 2
       },
       {
         "tier": 25,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round, perform maneuver to gain benefits of aiming and upgrade attack once per rank",
         "name": "True Aim",
         "row": 5
       }
@@ -6094,14 +6094,14 @@
       {
         "tier": 5,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Add Boost per rank on Leadership, targets add Boost to Discipline for 24 hours",
         "name": "Command",
         "row": 1
       },
       {
         "tier": 15,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Add Boost per rank on Leadership, targets add Boost to Discipline for 24 hours",
         "name": "Command",
         "row": 3
       },
@@ -6129,7 +6129,7 @@
       {
         "tier": 15,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Average Leadership check to allow allies equal to Presence to suffer 1 Strain to perform free Maneuver",
         "name": "Field Commander",
         "row": 3
       },
@@ -6143,7 +6143,7 @@
       {
         "tier": 20,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Field Commander action affects allies equal to twice Presence, and may spend Triumph to allow one ally to suffer 1 strain for free Action",
         "name": "Improved Field Commander",
         "row": 4
       },
@@ -6178,21 +6178,21 @@
       {
         "tier": 5,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per encounter, as incidental gain strain equal to ranks",
         "name": "Second Wind",
         "row": 1
       },
       {
         "tier": 10,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per encounter, as incidental gain strain equal to ranks",
         "name": "Second Wind",
         "row": 2
       },
       {
         "tier": 5,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round may suffer Strain up to ranks to upgrade incoming ranged attacks that many times for one turn",
         "name": "Side Step",
         "row": 1
       },
@@ -6220,14 +6220,14 @@
       {
         "tier": 25,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round, perform maneuver to gain benefits of aiming and upgrade attack once per rank",
         "name": "True Aim",
         "row": 5
       },
       {
         "tier": 25,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round, perform maneuver to gain benefits of aiming and upgrade attack once per rank",
         "name": "True Aim",
         "row": 5
       }
@@ -6384,14 +6384,14 @@
       {
         "tier": 5,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round, perform maneuver with engaged character, suffering strain up to ranks to upgrade combat checks by that number",
         "name": "Body Guard",
         "row": 1
       },
       {
         "tier": 15,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round, perform maneuver with engaged character, suffering strain up to ranks to upgrade combat checks by that number",
         "name": "Body Guard",
         "row": 3
       },
@@ -6419,14 +6419,14 @@
       {
         "tier": 10,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "After engaged ally fails check, may suffer one strain to assist ally's next check",
         "name": "Encouraging Words",
         "row": 2
       },
       {
         "tier": 20,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Average Leadership check to allow allies equal to Presence to suffer 1 Strain to perform free Maneuver",
         "name": "Field Commander",
         "row": 4
       },
@@ -6447,63 +6447,63 @@
       {
         "tier": 15,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per session, when ally protected by Body Guard suffers hit, suffer it instead",
         "name": "Improved Body Guard",
         "row": 3
       },
       {
         "tier": 25,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Field Commander action affects allies equal to twice Presence, and may spend Triumph to allow one ally to suffer 1 strain for free Action",
         "name": "Improved Field Commander",
         "row": 5
       },
       {
         "tier": 15,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round, may suffer 2 strain to allow ally to use Instructor's Discipline ranks",
         "name": "Master Instructor",
         "row": 3
       },
       {
         "tier": 25,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per session, may reroll Leadership or Discipline",
         "name": "Natural Instructor",
         "row": 5
       },
       {
         "tier": 5,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Add Boost per rank to Athletics and Resilience",
         "name": "Physical Training",
         "row": 1
       },
       {
         "tier": 15,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Add Boost per rank to Athletics and Resilience",
         "name": "Physical Training",
         "row": 3
       },
       {
         "tier": 10,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Stimpacks heal +1 wound per rank",
         "name": "Stimpack Specialization",
         "row": 2
       },
       {
         "tier": 20,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Stimpacks heal +1 wound per rank",
         "name": "Stimpack Specialization",
         "row": 4
       },
       {
         "tier": 25,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "May suffer 1 strain on successful skill check to add Advantage to same check by allies equal to Willpower",
         "name": "That's How It's Done",
         "row": 5
       },
@@ -6674,7 +6674,7 @@
       {
         "tier": 15,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Instead of Knowledge check, may spend 50 credits per difficulty to gain one success",
         "name": "Bought Info",
         "row": 3
       },
@@ -6688,7 +6688,7 @@
       {
         "tier": 10,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Before social check, may spend 50 credits per rank to upgrade check once per 50 credits",
         "name": "Greased Palms",
         "row": 2
       },
@@ -6765,14 +6765,14 @@
       {
         "tier": 20,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "At the start of each session, gain 100 credits per rank",
         "name": "Sound Investments",
         "row": 4
       },
       {
         "tier": 20,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "At the start of each session, gain 100 credits per rank",
         "name": "Sound Investments",
         "row": 4
       },
@@ -6819,14 +6819,14 @@
       {
         "tier": 20,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Target 2 vehicles at Close range, Hard Cool check to cause a minor collision",
         "name": "Corellian Sendoff",
         "row": 4
       },
       {
         "tier": 15,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "1 DP to add damage equal to half Agility (round up) to hit with vehicle weapon",
         "name": "Dead to Rights",
         "row": 3
       },
@@ -6868,35 +6868,35 @@
       {
         "tier": 5,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When vehicle piloted would suffer system strain, suffer strain up to ranks instead",
         "name": "High-G Training",
         "row": 1
       },
       {
         "tier": 10,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When vehicle piloted would suffer system strain, suffer strain up to ranks instead",
         "name": "High-G Training",
         "row": 2
       },
       {
         "tier": 15,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When vehicle piloted would suffer system strain, suffer strain up to ranks instead",
         "name": "High-G Training",
         "row": 3
       },
       {
         "tier": 25,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When performing Colellian Sendoff, targets suffer major collision instead",
         "name": "Improved Corellian Sendoff",
         "row": 5
       },
       {
         "tier": 25,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When performing Dead to Rights, add damage equal to Agility",
         "name": "Improved Dead to Rights",
         "row": 5
       },
@@ -6910,21 +6910,21 @@
       {
         "tier": 20,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When opposing pilot has gained advantage, perform maneuver to remove advantage",
         "name": "Koiogran Turn",
         "row": 4
       },
       {
         "tier": 10,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per encounter, choose positive dice equal to ranks and reroll them",
         "name": "Second Chances",
         "row": 2
       },
       {
         "tier": 20,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per encounter, choose positive dice equal to ranks and reroll them",
         "name": "Second Chances",
         "row": 4
       },
@@ -6945,7 +6945,7 @@
       {
         "tier": 25,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Before making check in vehicle, suffer 2 strain to gain Triumph on success or Despair on failure",
         "name": "Showboat",
         "row": 5
       },
@@ -6964,7 +6964,7 @@
       {
         "tier": 25,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When incapacitated, make Hard Resilience check with FD equal to FR, heal one wound per success or FP.",
         "name": "Against All Odds",
         "row": 5
       },
@@ -7193,14 +7193,14 @@
       {
         "tier": 15,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round may suffer Strain up to ranks to upgrade incoming ranged attacks that many times for one turn",
         "name": "Side Step",
         "row": 3
       },
       {
         "tier": 25,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round may suffer Strain up to ranks to upgrade incoming ranged attacks that many times for one turn",
         "name": "Side Step",
         "row": 5
       },
@@ -7252,11 +7252,25 @@
   {
     "graph": [
       {
+        "tier": 5,
+        "column": 4,
+        "description": "Perform Brace maneuver to reduce one Setback from environment per rank",
+        "name": "Brace",
+        "row": 1
+      },
+      {
         "tier": 15,
-        "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Bought Info",
+        "column": 1,
+        "description": "Remove one Setback per rank from rolls to break codes or decrypt communications. Reduce difficulty by one.",
+        "name": "Codebreaker",
         "row": 3
+      },
+      {
+        "tier": 20,
+        "column": 3,
+        "description": "Reduce fear check difficulty by one",
+        "name": "Confidence",
+        "row": 4
       },
       {
         "tier": 25,
@@ -7266,133 +7280,119 @@
         "row": 5
       },
       {
-        "tier": 15,
-        "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Greased Palms",
-        "row": 3
-      },
-      {
         "tier": 5,
-        "column": 4,
+        "column": 3,
         "description": "Strain +1",
         "name": "Grit",
         "row": 1
       },
       {
-        "tier": 25,
+        "tier": 20,
         "column": 2,
         "description": "Maneuver to suffer one strain to upgrade next skill check",
         "name": "Intense Focus",
-        "row": 5
-      },
-      {
-        "tier": 20,
-        "column": 4,
-        "description": "Once per session, when purchasing legal item, reduce rarity by ranks",
-        "name": "Know Somebody",
         "row": 4
-      },
-      {
-        "tier": 20,
-        "column": 3,
-        "description": "When buying or selling adjust price by 25%. When paying off or taking obligation, adjust amount by 1.",
-        "name": "Master Merchant",
-        "row": 4
-      },
-      {
-        "tier": 25,
-        "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Natural Merchant",
-        "row": 5
-      },
-      {
-        "tier": 5,
-        "column": 2,
-        "description": "Remove Setback per rank from coercsion and deception",
-        "name": "Plausible Deniability",
-        "row": 1
-      },
-      {
-        "tier": 5,
-        "column": 3,
-        "description": "When recovering strain after an encounter, recover one more per rank",
-        "name": "Rapid Recovery",
-        "row": 1
-      },
-      {
-        "tier": 10,
-        "column": 1,
-        "description": "When recovering strain after an encounter, recover one more per rank",
-        "name": "Rapid Recovery",
-        "row": 2
-      },
-      {
-        "tier": 5,
-        "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Sound Investments",
-        "row": 1
-      },
-      {
-        "tier": 10,
-        "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Sound Investments",
-        "row": 2
       },
       {
         "tier": 15,
-        "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Sound Investments",
+        "column": 2,
+        "description": "Choose one knowledge. When making check, spend Triumph to add successes equal to ranks.",
+        "name": "Knowledge Specialization",
         "row": 3
       },
       {
         "tier": 20,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Sound Investments",
+        "description": "Choose one knowledge. When making check, spend Triumph to add successes equal to ranks.",
+        "name": "Knowledge Specialization",
         "row": 4
       },
       {
         "tier": 25,
-        "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Sound Investments",
+        "column": 2,
+        "description": "Spend a DP to ignore effects of criticals on Intellect and Cunning checks until the end of the encounter",
+        "name": "Mental Fortress",
         "row": 5
       },
       {
         "tier": 15,
-        "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Throwing Credits",
+        "column": 3,
+        "description": "Once per session, reroll a knowledge skill",
+        "name": "Natural Scholar",
         "row": 3
       },
       {
+        "tier": 10,
+        "column": 1,
+        "description": "Remove setback per rank from knowledge. Research takes half time.",
+        "name": "Researcher",
+        "row": 2
+      },
+      {
+        "tier": 10,
+        "column": 4,
+        "description": "Remove setback per rank from knowledge. Research takes half time.",
+        "name": "Researcher",
+        "row": 2
+      },
+      {
+        "tier": 10,
+        "column": 3,
+        "description": "When voluntarily suffering strain, reduce by one to a minimum of one",
+        "name": "Resolve",
+        "row": 2
+      },
+      {
         "tier": 20,
+        "column": 4,
+        "description": "When voluntarily suffering strain, reduce by one to a minimum of one",
+        "name": "Resolve",
+        "row": 4
+      },
+      {
+        "tier": 5,
+        "column": 1,
+        "description": "Downgrade checks to interact with institutes of learning by one per rank",
+        "name": "Respected Scholar",
+        "row": 1
+      },
+      {
+        "tier": 10,
         "column": 2,
+        "description": "Downgrade checks to interact with institutes of learning by one per rank",
+        "name": "Respected Scholar",
+        "row": 2
+      },
+      {
+        "tier": 5,
+        "column": 2,
+        "description": "When directing NPC droids, give them one Boost Die per rank",
+        "name": "Speaks Binary",
+        "row": 1
+      },
+      {
+        "tier": 25,
+        "column": 1,
+        "description": "Once per session, make a check using Intellect instead of normal characteristic",
+        "name": "Stroke of Genius",
+        "row": 5
+      },
+      {
+        "tier": 25,
+        "column": 4,
         "description": "Wounds +2",
         "name": "Toughened",
-        "row": 4
+        "row": 5
       },
       {
-        "tier": 10,
-        "column": 2,
-        "description": "When selling goods legally, make 10% more per rank",
-        "name": "Wheel and Deal",
-        "row": 2
-      },
-      {
-        "tier": 10,
+        "tier": 15,
         "column": 4,
-        "description": "When selling goods legally, make 10% more per rank",
-        "name": "Wheel and Deal",
-        "row": 2
+        "description": "Choose two skills to become career skills",
+        "name": "Well Rounded",
+        "row": 3
       }
     ],
-    "name": "Colonist--Entrepreneuer"
+    "name": "Colonist--Scholar"
   },
   {
     "graph": [
@@ -7462,21 +7462,21 @@
       {
         "tier": 25,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per session, as maneuver, make Hard Knowledge (Education) check to gain familiarity with a building or vehicle's design",
         "name": "Known Schematic",
         "row": 5
       },
       {
         "tier": 15,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round may suffer Strain up to ranks to upgrade incoming ranged attacks that many times for one turn",
         "name": "Side Step",
         "row": 3
       },
       {
         "tier": 10,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing hull trauma, repair 1 extra point",
         "name": "Solid Repairs",
         "row": 2
       },
@@ -7626,18 +7626,18 @@
         "row": 1
       },
       {
-        "tier": 25,
-        "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Heavy Hitter",
-        "row": 5
-      },
-      {
         "tier": 15,
         "column": 3,
         "description": "Spend a DP to ignore effects of criticals on brawn and agility checks until the end of the encounter",
         "name": "Heroic Fortitude",
         "row": 3
+      },
+      {
+        "tier": 25,
+        "column": 4,
+        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "name": "Heavy Hitter",
+        "row": 5
       },
       {
         "tier": 20,
@@ -7656,7 +7656,7 @@
       {
         "tier": 15,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round may suffer Strain up to ranks to upgrade incoming ranged attacks that many times for one turn",
         "name": "Side Step",
         "row": 3
       },
@@ -7773,21 +7773,21 @@
       {
         "tier": 5,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Stimpacks heal +1 wound per rank",
         "name": "Stimpack Specialization",
         "row": 1
       },
       {
         "tier": 10,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Stimpacks heal +1 wound per rank",
         "name": "Stimpack Specialization",
         "row": 2
       },
       {
         "tier": 20,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Stimpacks heal +1 wound per rank",
         "name": "Stimpack Specialization",
         "row": 4
       },
@@ -7832,18 +7832,18 @@
   {
     "graph": [
       {
-        "tier": 20,
-        "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Deathblow",
-        "row": 4
-      },
-      {
         "tier": 25,
         "column": 4,
         "description": "+1 to a characteristic",
         "name": "Dedication",
         "row": 5
+      },
+      {
+        "tier": 20,
+        "column": 4,
+        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "name": "Deathblow",
+        "row": 4
       },
       {
         "tier": 25,
@@ -8201,14 +8201,14 @@
       {
         "tier": 10,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per encounter, choose positive dice equal to ranks and reroll them",
         "name": "Second Chances",
         "row": 2
       },
       {
         "tier": 15,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per encounter, choose positive dice equal to ranks and reroll them",
         "name": "Second Chances",
         "row": 3
       },
@@ -8283,7 +8283,7 @@
       {
         "tier": 15,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Spend DP to ignore the Massive rule for next attack",
         "name": "Exhaust Port",
         "row": 3
       },
@@ -8297,7 +8297,7 @@
       {
         "tier": 15,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Hard Piloting check to increase vehicle's top speed by 1 for rounds equal to Cunning",
         "name": "Full Throttle",
         "row": 3
       },
@@ -8381,14 +8381,14 @@
       {
         "tier": 5,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing hull trauma, repair 1 extra point",
         "name": "Solid Repairs",
         "row": 1
       },
       {
         "tier": 10,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing hull trauma, repair 1 extra point",
         "name": "Solid Repairs",
         "row": 2
       },
@@ -8402,7 +8402,7 @@
       {
         "tier": 25,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Count vehicle silhouette as one smaller when being attacked",
         "name": "Tricky Target",
         "row": 5
       }
@@ -8994,145 +8994,145 @@
       {
         "tier": 25,
         "column": 2,
+        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "name": "Clever Solution",
+        "row": 5
+      },
+      {
+        "tier": 25,
+        "column": 1,
         "description": "+1 to a characteristic",
         "name": "Dedication",
         "row": 5
       },
       {
-        "tier": 15,
-        "column": 1,
-        "description": "Soak +1",
-        "name": "Enduring",
-        "row": 3
+        "tier": 5,
+        "column": 4,
+        "description": "Maneuver, suffer strain up to ranks to upgrade incoming melee difficulty by that number",
+        "name": "Defensive Stance",
+        "row": 1
+      },
+      {
+        "tier": 20,
+        "column": 4,
+        "description": "Maneuver, suffer strain up to ranks to upgrade incoming melee difficulty by that number",
+        "name": "Defensive Stance",
+        "row": 4
       },
       {
         "tier": 5,
         "column": 2,
+        "description": "Dodge Incidental: suffer X strain up to ranks, upgrade attack by X",
+        "name": "Dodge",
+        "row": 1
+      },
+      {
+        "tier": 15,
+        "column": 4,
+        "description": "Dodge Incidental: suffer X strain up to ranks, upgrade attack by X",
+        "name": "Dodge",
+        "row": 3
+      },
+      {
+        "tier": 5,
+        "column": 3,
+        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "name": "Frenzied Attack",
+        "row": 1
+      },
+      {
+        "tier": 15,
+        "column": 2,
+        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "name": "Frenzied Attack",
+        "row": 3
+      },
+      {
+        "tier": 5,
+        "column": 1,
         "description": "Strain +1",
         "name": "Grit",
         "row": 1
       },
       {
         "tier": 10,
-        "column": 4,
+        "column": 2,
         "description": "Strain +1",
         "name": "Grit",
         "row": 2
       },
       {
-        "tier": 20,
+        "tier": 15,
         "column": 3,
         "description": "Strain +1",
         "name": "Grit",
-        "row": 4
-      },
-      {
-        "tier": 25,
-        "column": 1,
-        "description": "Reduce difficulty to average and add Mechanics to damage twice.",
-        "name": "Improved Improvised Detonation",
-        "row": 5
-      },
-      {
-        "tier": 15,
-        "column": 2,
-        "description": "Allow engaged ally to also move",
-        "name": "Improved Time to Go",
         "row": 3
       },
       {
         "tier": 20,
-        "column": 1,
-        "description": "Once per session, hard mechanics check to build explosive with damage equal to Int + Mechanics + successes.",
-        "name": "Improvised Detonation",
+        "column": 3,
+        "description": "When dealing strain damage in melee or brawl, spend triumph to stagger one round per triumph",
+        "name": "Improved Stunning Blow",
         "row": 4
       },
       {
-        "tier": 25,
-        "column": 3,
-        "description": "Decrease cost to activate blast by 1 to a minimum of 1",
-        "name": "Master Grenadier",
-        "row": 5
-      },
-      {
-        "tier": 5,
-        "column": 1,
-        "description": "Increase blast damage by ranks",
-        "name": "Powerful Blast",
-        "row": 1
-      },
-      {
         "tier": 10,
-        "column": 3,
-        "description": "Increase blast damage by ranks",
-        "name": "Powerful Blast",
+        "column": 4,
+        "description": "Once per round stand up as an incidental",
+        "name": "Jump Up",
         "row": 2
       },
       {
-        "tier": 20,
-        "column": 2,
-        "description": "Increase blast damage by ranks",
-        "name": "Powerful Blast",
-        "row": 4
-      },
-      {
         "tier": 15,
-        "column": 4,
-        "description": "Suffer up to one strain per rank to add that many successes to initiative",
-        "name": "Rapid Reaction",
+        "column": 1,
+        "description": "After a melee hit, spend Triumph to knock target prone",
+        "name": "Knockdown",
         "row": 3
       },
       {
-        "tier": 5,
+        "tier": 25,
         "column": 3,
-        "description": "Spend ADV to exclude one target per rank from blast damage",
-        "name": "Selective Detonation",
-        "row": 1
+        "description": "Suffer two strain to reduce stealth or skullduggery difficulty by one",
+        "name": "Master of Shadows",
+        "row": 5
       },
       {
         "tier": 20,
-        "column": 4,
-        "description": "Spend ADV to exclude one target per rank from blast damage",
-        "name": "Selective Detonation",
+        "column": 1,
+        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "name": "Natural Brawler",
         "row": 4
       },
       {
         "tier": 25,
         "column": 4,
-        "description": "Spend ADV to exclude one target per rank from blast damage",
-        "name": "Selective Detonation",
+        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "name": "Natural Rogue",
         "row": 5
       },
       {
-        "tier": 5,
-        "column": 4,
-        "description": "Remove setback per rank from Cool and Skullduggery",
-        "name": "Steady Nerves",
-        "row": 1
-      },
-      {
-        "tier": 15,
-        "column": 3,
-        "description": "Remove setback per rank from Cool and Skullduggery",
-        "name": "Steady Nerves",
-        "row": 3
-      },
-      {
         "tier": 10,
-        "column": 2,
-        "description": "Spend destiny to move into cover or out of blast as incidental",
-        "name": "Time to Go",
+        "column": 3,
+        "description": "After hit, spend Destiny Point to add damage equal to Cunning",
+        "name": "Soft Spot",
         "row": 2
       },
       {
         "tier": 10,
         "column": 1,
+        "description": "May make melee damage strain",
+        "name": "Stunning Blow",
+        "row": 2
+      },
+      {
+        "tier": 20,
+        "column": 2,
         "description": "Wounds +2",
         "name": "Toughened",
-        "row": 2
+        "row": 4
       }
     ],
-    "name": "Hired Gun--Demolitionist"
+    "name": "Spy--Infiltrator"
   },
   {
     "graph": [
@@ -9237,21 +9237,21 @@
       {
         "tier": 5,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Whenever Duty would increase, increase by 1 more per rank",
         "name": "Positive Spin",
         "row": 1
       },
       {
         "tier": 10,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Whenever Duty would increase, increase by 1 more per rank",
         "name": "Positive Spin",
         "row": 2
       },
       {
         "tier": 25,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Whenever Duty would increase, increase by 1 more per rank",
         "name": "Positive Spin",
         "row": 5
       },
@@ -9326,7 +9326,7 @@
       {
         "tier": 10,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Hard Piloting check to increase vehicle's top speed by 1 for rounds equal to Cunning",
         "name": "Full Throttle",
         "row": 2
       },
@@ -9346,16 +9346,16 @@
       },
       {
         "tier": 15,
-        "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Improved Freerunning",
+        "column": 2,
+        "description": "Suffer 1 strain to attempt Full Throttle as a maneuver and decrease to Average",
+        "name": "Improved Full Throttle",
         "row": 3
       },
       {
         "tier": 15,
-        "column": 2,
+        "column": 4,
         "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Improved Full Throttle",
+        "name": "Improved Freerunning",
         "row": 3
       },
       {
@@ -9417,7 +9417,7 @@
       {
         "tier": 20,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When performing Full Throttle, maximum speed increases by 2",
         "name": "Supreme Full Throttle",
         "row": 4
       }
@@ -9429,14 +9429,14 @@
       {
         "tier": 10,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Suffer strain up to ranks to downgrade outgoing or upgrade incoming difficulty of Charm or Negotiation",
         "name": "Congenial",
         "row": 2
       },
       {
         "tier": 20,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Suffer strain up to ranks to downgrade outgoing or upgrade incoming difficulty of Charm or Negotiation",
         "name": "Congenial",
         "row": 4
       },
@@ -9719,35 +9719,35 @@
       {
         "tier": 25,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per session may introduce \"\"Fact\"\" as if spending a DP",
         "name": "Careful Planning",
         "row": 5
       },
       {
         "tier": 10,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "May use Knowledge (Warfare) to upgrade Mass Combat checks instead of Leadership",
         "name": "Clever Commander",
         "row": 2
       },
       {
         "tier": 10,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Add Boost per rank on Leadership, targets add Boost to Discipline for 24 hours",
         "name": "Command",
         "row": 2
       },
       {
         "tier": 20,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Add Boost per rank on Leadership, targets add Boost to Discipline for 24 hours",
         "name": "Command",
         "row": 4
       },
       {
         "tier": 20,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "As Maneuver, Engaged allies equal to Leadership add Advantage to combat checks for 1 turn. Range increases per rank.",
         "name": "Coordinated Assault",
         "row": 4
       },
@@ -9782,14 +9782,14 @@
       {
         "tier": 25,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "In Initiative check may spend Triumph to add Successes equal to ranks",
         "name": "Improved Ready for Anything",
         "row": 5
       },
       {
         "tier": 20,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "On successful Knowledge check, character and allies gain Advantage per rank of Researcher checks to act on facts until end of next turn",
         "name": "Improved Researcher",
         "row": 4
       },
@@ -9810,21 +9810,21 @@
       {
         "tier": 15,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per Mass Combat Phase, may suffer 2 Strain to reduce difficulty of Mass Combat check once",
         "name": "Master Strategist",
         "row": 3
       },
       {
         "tier": 5,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Remove Setback per rank from Mass Combat checks and Initiative checks",
         "name": "Ready for Anything",
         "row": 1
       },
       {
         "tier": 15,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Remove Setback per rank from Mass Combat checks and Initiative checks",
         "name": "Ready for Anything",
         "row": 3
       },
@@ -9845,14 +9845,14 @@
       {
         "tier": 25,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per session, Hard Knowledge check to gain Boost dice equal to successes to distribute during encounter",
         "name": "Thorough Assessment",
         "row": 5
       },
       {
         "tier": 10,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Choose 3 Knowledge Skills to become Career Skills",
         "name": "Well Read",
         "row": 2
       }
@@ -10266,7 +10266,7 @@
       {
         "tier": 5,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round may suffer Strain up to ranks to upgrade incoming ranged attacks that many times for one turn",
         "name": "Side Step",
         "row": 1
       },
@@ -10472,28 +10472,28 @@
       {
         "tier": 5,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing strain on a vehicle, recover an extra point per rank",
         "name": "Fine Tuning",
         "row": 1
       },
       {
         "tier": 20,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing strain on a vehicle, recover an extra point per rank",
         "name": "Fine Tuning",
         "row": 4
       },
       {
         "tier": 5,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Remove setback per rank and halve the cost to mod attachments",
         "name": "Gearhead",
         "row": 1
       },
       {
         "tier": 10,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Remove setback per rank and halve the cost to mod attachments",
         "name": "Gearhead",
         "row": 2
       },
@@ -10507,21 +10507,21 @@
       {
         "tier": 20,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When staggered or disoriented, make Daunting Discipline check to remove status. Reduce difficulty per rank.",
         "name": "Hard Headed",
         "row": 4
       },
       {
         "tier": 25,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Spend 1 DP to perform incidental turning vehicle damage to system strain",
         "name": "Hold Together",
         "row": 5
       },
       {
         "tier": 25,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When incapacitated due to strain, take Hard Headed action to reduce strain to 1 below threshold",
         "name": "Improved Hard Headed",
         "row": 5
       },
@@ -10542,28 +10542,28 @@
       {
         "tier": 5,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing hull trauma, repair 1 extra point",
         "name": "Solid Repairs",
         "row": 1
       },
       {
         "tier": 10,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing hull trauma, repair 1 extra point",
         "name": "Solid Repairs",
         "row": 2
       },
       {
         "tier": 15,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing hull trauma, repair 1 extra point",
         "name": "Solid Repairs",
         "row": 3
       },
       {
         "tier": 20,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing hull trauma, repair 1 extra point",
         "name": "Solid Repairs",
         "row": 4
       },
@@ -10589,7 +10589,7 @@
       {
         "tier": 25,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per session may introduce \"\"Fact\"\" as if spending a DP",
         "name": "Careful Planning",
         "row": 5
       },
@@ -10734,14 +10734,14 @@
       {
         "tier": 5,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round, perform maneuver with engaged character, suffering strain up to ranks to upgrade combat checks by that number",
         "name": "Body Guard",
         "row": 1
       },
       {
         "tier": 20,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round, perform maneuver with engaged character, suffering strain up to ranks to upgrade combat checks by that number",
         "name": "Body Guard",
         "row": 4
       },
@@ -10781,18 +10781,18 @@
         "row": 2
       },
       {
-        "tier": 20,
-        "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Force Protection",
-        "row": 4
-      },
-      {
         "tier": 25,
         "column": 2,
         "description": "Force rating +1",
         "name": "Force Rating",
         "row": 5
+      },
+      {
+        "tier": 20,
+        "column": 2,
+        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "name": "Force Protection",
+        "row": 4
       },
       {
         "tier": 5,
@@ -10818,7 +10818,7 @@
       {
         "tier": 25,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per session, when ally protected by Body Guard suffers hit, suffer it instead",
         "name": "Improved Body Guard",
         "row": 5
       },
@@ -10846,14 +10846,14 @@
       {
         "tier": 10,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Stimpacks heal +1 wound per rank",
         "name": "Stimpack Specialization",
         "row": 2
       },
       {
         "tier": 15,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Stimpacks heal +1 wound per rank",
         "name": "Stimpack Specialization",
         "row": 3
       },
@@ -10879,159 +10879,159 @@
       {
         "tier": 25,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Clever Solution",
-        "row": 5
-      },
-      {
-        "tier": 25,
-        "column": 1,
         "description": "+1 to a characteristic",
         "name": "Dedication",
         "row": 5
       },
       {
-        "tier": 5,
-        "column": 4,
-        "description": "Maneuver, suffer strain up to ranks to upgrade incoming melee difficulty by that number",
-        "name": "Defensive Stance",
-        "row": 1
-      },
-      {
-        "tier": 20,
-        "column": 4,
-        "description": "Maneuver, suffer strain up to ranks to upgrade incoming melee difficulty by that number",
-        "name": "Defensive Stance",
-        "row": 4
-      },
-      {
-        "tier": 5,
-        "column": 2,
-        "description": "Dodge Incidental: suffer X strain up to ranks, upgrade attack by X",
-        "name": "Dodge",
-        "row": 1
-      },
-      {
         "tier": 15,
-        "column": 4,
-        "description": "Dodge Incidental: suffer X strain up to ranks, upgrade attack by X",
-        "name": "Dodge",
-        "row": 3
-      },
-      {
-        "tier": 5,
-        "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Frenzied Attack",
-        "row": 1
-      },
-      {
-        "tier": 15,
-        "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Frenzied Attack",
-        "row": 3
-      },
-      {
-        "tier": 5,
         "column": 1,
+        "description": "Soak +1",
+        "name": "Enduring",
+        "row": 3
+      },
+      {
+        "tier": 5,
+        "column": 2,
         "description": "Strain +1",
         "name": "Grit",
         "row": 1
       },
       {
         "tier": 10,
-        "column": 2,
-        "description": "Strain +1",
-        "name": "Grit",
-        "row": 2
-      },
-      {
-        "tier": 15,
-        "column": 3,
-        "description": "Strain +1",
-        "name": "Grit",
-        "row": 3
-      },
-      {
-        "tier": 20,
-        "column": 3,
-        "description": "When dealing strain damage in melee or brawl, spend triumph to stagger one round per triumph",
-        "name": "Improved Stunning Blow",
-        "row": 4
-      },
-      {
-        "tier": 10,
         "column": 4,
-        "description": "Once per round stand up as an incidental",
-        "name": "Jump Up",
+        "description": "Strain +1",
+        "name": "Grit",
         "row": 2
       },
       {
-        "tier": 15,
-        "column": 1,
-        "description": "After a melee hit, spend Triumph to knock target prone",
-        "name": "Knockdown",
-        "row": 3
-      },
-      {
-        "tier": 25,
-        "column": 3,
-        "description": "Suffer two strain to reduce stealth or skullduggery difficulty by one",
-        "name": "Master of Shadows",
-        "row": 5
-      },
-      {
         "tier": 20,
-        "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Natural Brawler",
+        "column": 3,
+        "description": "Strain +1",
+        "name": "Grit",
         "row": 4
       },
       {
         "tier": 25,
-        "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Natural Rogue",
+        "column": 1,
+        "description": "Reduce difficulty to average and add Mechanics to damage twice.",
+        "name": "Improved Improvised Detonation",
         "row": 5
+      },
+      {
+        "tier": 15,
+        "column": 2,
+        "description": "Allow engaged ally to also move",
+        "name": "Improved Time to Go",
+        "row": 3
+      },
+      {
+        "tier": 20,
+        "column": 1,
+        "description": "Once per session, hard mechanics check to build explosive with damage equal to Int + Mechanics + successes.",
+        "name": "Improvised Detonation",
+        "row": 4
+      },
+      {
+        "tier": 25,
+        "column": 3,
+        "description": "Decrease cost to activate blast by 1 to a minimum of 1",
+        "name": "Master Grenadier",
+        "row": 5
+      },
+      {
+        "tier": 5,
+        "column": 1,
+        "description": "Increase blast damage by ranks",
+        "name": "Powerful Blast",
+        "row": 1
       },
       {
         "tier": 10,
         "column": 3,
-        "description": "After hit, spend Destiny Point to add damage equal to Cunning",
-        "name": "Soft Spot",
-        "row": 2
-      },
-      {
-        "tier": 10,
-        "column": 1,
-        "description": "May make melee damage strain",
-        "name": "Stunning Blow",
+        "description": "Increase blast damage by ranks",
+        "name": "Powerful Blast",
         "row": 2
       },
       {
         "tier": 20,
         "column": 2,
+        "description": "Increase blast damage by ranks",
+        "name": "Powerful Blast",
+        "row": 4
+      },
+      {
+        "tier": 15,
+        "column": 4,
+        "description": "Suffer up to one strain per rank to add that many successes to initiative",
+        "name": "Rapid Reaction",
+        "row": 3
+      },
+      {
+        "tier": 5,
+        "column": 3,
+        "description": "Spend ADV to exclude one target per rank from blast damage",
+        "name": "Selective Detonation",
+        "row": 1
+      },
+      {
+        "tier": 20,
+        "column": 4,
+        "description": "Spend ADV to exclude one target per rank from blast damage",
+        "name": "Selective Detonation",
+        "row": 4
+      },
+      {
+        "tier": 25,
+        "column": 4,
+        "description": "Spend ADV to exclude one target per rank from blast damage",
+        "name": "Selective Detonation",
+        "row": 5
+      },
+      {
+        "tier": 5,
+        "column": 4,
+        "description": "Remove setback per rank from Cool and Skullduggery",
+        "name": "Steady Nerves",
+        "row": 1
+      },
+      {
+        "tier": 15,
+        "column": 3,
+        "description": "Remove setback per rank from Cool and Skullduggery",
+        "name": "Steady Nerves",
+        "row": 3
+      },
+      {
+        "tier": 10,
+        "column": 2,
+        "description": "Spend destiny to move into cover or out of blast as incidental",
+        "name": "Time to Go",
+        "row": 2
+      },
+      {
+        "tier": 10,
+        "column": 1,
         "description": "Wounds +2",
         "name": "Toughened",
-        "row": 4
+        "row": 2
       }
     ],
-    "name": "Spy--Infiltrator"
+    "name": "Hired Gun--Demolitionist"
   },
   {
     "graph": [
       {
         "tier": 10,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "May spend 2 Advantage from Deception or Coercion to to upgrade an ally's next social roll with target once per rank",
         "name": "Bad Cop",
         "row": 2
       },
       {
         "tier": 20,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "May spend 2 Advantage from Deception or Coercion to to upgrade an ally's next social roll with target once per rank",
         "name": "Bad Cop",
         "row": 4
       },
@@ -11059,14 +11059,14 @@
       {
         "tier": 10,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "May spend 2 Advantage from Charm or Negotiation to to upgrade an ally's next social roll with target once per rank",
         "name": "Good Cop",
         "row": 2
       },
       {
         "tier": 15,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "May spend 2 Advantage from Charm or Negotiation to to upgrade an ally's next social roll with target once per rank",
         "name": "Good Cop",
         "row": 3
       },
@@ -11087,28 +11087,28 @@
       {
         "tier": 5,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When staggered or disoriented, make Daunting Discipline check to remove status. Reduce difficulty per rank.",
         "name": "Hard Headed",
         "row": 1
       },
       {
         "tier": 15,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When staggered or disoriented, make Daunting Discipline check to remove status. Reduce difficulty per rank.",
         "name": "Hard Headed",
         "row": 3
       },
       {
         "tier": 25,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When incapacitated due to strain, take Hard Headed action to reduce strain to 1 below threshold",
         "name": "Improved Hard Headed",
         "row": 5
       },
       {
         "tier": 25,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When targeted by Deception check that fails, spend DP to add Despair",
         "name": "Improved Unrelenting Skeptic",
         "row": 5
       },
@@ -11157,7 +11157,7 @@
       {
         "tier": 20,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When targeted by Deception check, add Failures equal to ranks in Vigilance",
         "name": "Unrelenting Skeptic",
         "row": 4
       }
@@ -11777,14 +11777,14 @@
       {
         "tier": 5,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing strain on a vehicle, recover an extra point per rank",
         "name": "Fine Tuning",
         "row": 1
       },
       {
         "tier": 10,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing strain on a vehicle, recover an extra point per rank",
         "name": "Fine Tuning",
         "row": 2
       },
@@ -11861,21 +11861,21 @@
       {
         "tier": 5,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing hull trauma, repair 1 extra point",
         "name": "Solid Repairs",
         "row": 1
       },
       {
         "tier": 10,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing hull trauma, repair 1 extra point",
         "name": "Solid Repairs",
         "row": 2
       },
       {
         "tier": 20,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing hull trauma, repair 1 extra point",
         "name": "Solid Repairs",
         "row": 4
       },
@@ -12039,14 +12039,14 @@
       {
         "tier": 25,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per session, make Hard Charm check to turn NPC into \"\"biggest fan\"\"",
         "name": "Biggest Fan",
         "row": 5
       },
       {
         "tier": 10,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Suffer strain up to ranks to downgrade outgoing or upgrade incoming difficulty of Charm or Negotiation",
         "name": "Congenial",
         "row": 2
       },
@@ -12060,14 +12060,14 @@
       {
         "tier": 25,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When trageted with attack, spend DP to add Failures equal to Coordination",
         "name": "Coordination Dodge",
         "row": 5
       },
       {
         "tier": 25,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per session, make opposed Deception check to force target to attack you next turn",
         "name": "Deceptive Taunt",
         "row": 5
       },
@@ -12081,21 +12081,21 @@
       {
         "tier": 5,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "As maneuver, suffer strain up to Cunning to force equal number of NPCs to suffer a Threat until next turn",
         "name": "Distracting Behavior",
         "row": 1
       },
       {
         "tier": 10,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "As maneuver, suffer strain up to Cunning to force equal number of NPCs to suffer a Threat until next turn",
         "name": "Distracting Behavior",
         "row": 2
       },
       {
         "tier": 15,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "As maneuver, suffer strain up to Cunning to force equal number of NPCs to suffer a Threat until next turn",
         "name": "Distracting Behavior",
         "row": 3
       },
@@ -12116,7 +12116,7 @@
       {
         "tier": 20,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "The Distracting Behavior maneuver inflicts 2 strain to NPCs if they target PC's allies",
         "name": "Improved Distracting Behavior",
         "row": 4
       },
@@ -12144,14 +12144,14 @@
       {
         "tier": 15,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per session may reroll Coordination or Athletics",
         "name": "Natural Athlete",
         "row": 3
       },
       {
         "tier": 15,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per encounter, as incidental gain strain equal to ranks",
         "name": "Second Wind",
         "row": 3
       },
@@ -12182,25 +12182,18 @@
   {
     "graph": [
       {
-        "tier": 25,
+        "tier": 5,
         "column": 1,
         "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Blackmail",
-        "row": 5
-      },
-      {
-        "tier": 5,
-        "column": 4,
-        "description": "Reduce fear check difficulty by one",
-        "name": "Confidence",
+        "name": "Basic Combat Training",
         "row": 1
       },
       {
-        "tier": 25,
+        "tier": 20,
         "column": 4,
         "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Contingency Plan",
-        "row": 5
+        "name": "Creative Killer",
+        "row": 4
       },
       {
         "tier": 25,
@@ -12210,119 +12203,126 @@
         "row": 5
       },
       {
-        "tier": 10,
+        "tier": 25,
         "column": 1,
         "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Discredit",
-        "row": 2
+        "name": "Dynamic Fire",
+        "row": 5
+      },
+      {
+        "tier": 25,
+        "column": 4,
+        "description": "Soak +1",
+        "name": "Enduring",
+        "row": 5
       },
       {
         "tier": 15,
-        "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Encouraging Words",
+        "column": 2,
+        "description": "Strain +1",
+        "name": "Grit",
         "row": 3
+      },
+      {
+        "tier": 20,
+        "column": 3,
+        "description": "Strain +1",
+        "name": "Grit",
+        "row": 4
+      },
+      {
+        "tier": 20,
+        "column": 2,
+        "description": "Once per round stand up as an incidental",
+        "name": "Jump Up",
+        "row": 4
       },
       {
         "tier": 5,
         "column": 3,
-        "description": "Strain +1",
-        "name": "Grit",
+        "description": "Remove setback per rank from checks to move through terrain or manage environmental effects. Decrease overland travel time by half.",
+        "name": "Outdoorsman",
         "row": 1
       },
       {
         "tier": 15,
-        "column": 3,
-        "description": "Strain +1",
-        "name": "Grit",
+        "column": 1,
+        "description": "Draw one weapon as an incidental",
+        "name": "Quick Draw",
         "row": 3
       },
       {
-        "tier": 20,
+        "tier": 5,
         "column": 2,
-        "description": "Strain +1",
-        "name": "Grit",
-        "row": 4
+        "description": "Once per encounter, as incidental gain strain equal to ranks",
+        "name": "Second Wind",
+        "row": 1
+      },
+      {
+        "tier": 10,
+        "column": 1,
+        "description": "Once per encounter, as incidental gain strain equal to ranks",
+        "name": "Second Wind",
+        "row": 2
       },
       {
         "tier": 20,
-        "column": 4,
-        "description": "Strain +1",
-        "name": "Grit",
+        "column": 1,
+        "description": "Once per encounter, as incidental gain strain equal to ranks",
+        "name": "Second Wind",
         "row": 4
       },
       {
         "tier": 15,
-        "column": 2,
+        "column": 4,
+        "description": "Cannot run out of ammo due to despair",
+        "name": "Spare Clip",
+        "row": 3
+      },
+      {
+        "tier": 5,
+        "column": 4,
         "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Improved Plausible Deniability",
+        "name": "Tactical Combat Training",
+        "row": 1
+      },
+      {
+        "tier": 10,
+        "column": 4,
+        "description": "Wounds +2",
+        "name": "Toughened",
+        "row": 2
+      },
+      {
+        "tier": 15,
+        "column": 3,
+        "description": "Wounds +2",
+        "name": "Toughened",
         "row": 3
       },
       {
         "tier": 25,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Interjection",
+        "description": "Wounds +2",
+        "name": "Toughened",
         "row": 5
       },
       {
-        "tier": 5,
-        "column": 2,
-        "description": "Upgrading incoming coercion, deception, charm checks by one per rank",
-        "name": "Nobody's Fool",
-        "row": 1
-      },
-      {
-        "tier": 10,
-        "column": 4,
-        "description": "Upgrading incoming coercion, deception, charm checks by one per rank",
-        "name": "Nobody's Fool",
-        "row": 2
-      },
-      {
-        "tier": 5,
-        "column": 1,
-        "description": "Remove Setback per rank from coercsion and deception",
-        "name": "Plausible Deniability",
-        "row": 1
-      },
-      {
         "tier": 10,
         "column": 2,
-        "description": "Remove Setback per rank from coercsion and deception",
-        "name": "Plausible Deniability",
+        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "name": "Vehicle Combat Training",
         "row": 2
-      },
-      {
-        "tier": 20,
-        "column": 1,
-        "description": "Remove Setback per rank from coercsion and deception",
-        "name": "Plausible Deniability",
-        "row": 4
       },
       {
         "tier": 10,
         "column": 3,
         "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Supporting Evidence",
+        "name": "Well-Traveled",
         "row": 2
-      },
-      {
-        "tier": 20,
-        "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Supporting Evidence",
-        "row": 4
-      },
-      {
-        "tier": 15,
-        "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Twisted Words",
-        "row": 3
       }
     ],
-    "name": "Diplomat--Advocate"
+    "name": "Recruit"
   },
   {
     "graph": [
@@ -12472,25 +12472,11 @@
   {
     "graph": [
       {
-        "tier": 5,
-        "column": 4,
-        "description": "Perform Brace maneuver to reduce one Setback from environment per rank",
-        "name": "Brace",
-        "row": 1
-      },
-      {
         "tier": 15,
-        "column": 1,
-        "description": "Remove one Setback per rank from rolls to break codes or decrypt communications. Reduce difficulty by one.",
-        "name": "Codebreaker",
-        "row": 3
-      },
-      {
-        "tier": 20,
         "column": 3,
-        "description": "Reduce fear check difficulty by one",
-        "name": "Confidence",
-        "row": 4
+        "description": "Instead of Knowledge check, may spend 50 credits per difficulty to gain one success",
+        "name": "Bought Info",
+        "row": 3
       },
       {
         "tier": 25,
@@ -12500,133 +12486,147 @@
         "row": 5
       },
       {
+        "tier": 15,
+        "column": 1,
+        "description": "Before social check, may spend 50 credits per rank to upgrade check once per 50 credits",
+        "name": "Greased Palms",
+        "row": 3
+      },
+      {
         "tier": 5,
-        "column": 3,
+        "column": 4,
         "description": "Strain +1",
         "name": "Grit",
         "row": 1
       },
       {
-        "tier": 20,
+        "tier": 25,
         "column": 2,
         "description": "Maneuver to suffer one strain to upgrade next skill check",
         "name": "Intense Focus",
+        "row": 5
+      },
+      {
+        "tier": 20,
+        "column": 4,
+        "description": "Once per session, when purchasing legal item, reduce rarity by ranks",
+        "name": "Know Somebody",
         "row": 4
       },
       {
-        "tier": 15,
+        "tier": 20,
+        "column": 3,
+        "description": "When buying or selling adjust price by 25%. When paying off or taking obligation, adjust amount by 1.",
+        "name": "Master Merchant",
+        "row": 4
+      },
+      {
+        "tier": 25,
+        "column": 1,
+        "description": "Once per session, may reroll Streetwise or Negotiation",
+        "name": "Natural Merchant",
+        "row": 5
+      },
+      {
+        "tier": 5,
         "column": 2,
-        "description": "Choose one knowledge. When making check, spend Triumph to add successes equal to ranks.",
-        "name": "Knowledge Specialization",
+        "description": "Remove Setback per rank from coercsion and deception",
+        "name": "Plausible Deniability",
+        "row": 1
+      },
+      {
+        "tier": 5,
+        "column": 3,
+        "description": "When recovering strain after an encounter, recover one more per rank",
+        "name": "Rapid Recovery",
+        "row": 1
+      },
+      {
+        "tier": 10,
+        "column": 1,
+        "description": "When recovering strain after an encounter, recover one more per rank",
+        "name": "Rapid Recovery",
+        "row": 2
+      },
+      {
+        "tier": 5,
+        "column": 1,
+        "description": "At the start of each session, gain 100 credits per rank",
+        "name": "Sound Investments",
+        "row": 1
+      },
+      {
+        "tier": 10,
+        "column": 3,
+        "description": "At the start of each session, gain 100 credits per rank",
+        "name": "Sound Investments",
+        "row": 2
+      },
+      {
+        "tier": 15,
+        "column": 4,
+        "description": "At the start of each session, gain 100 credits per rank",
+        "name": "Sound Investments",
         "row": 3
       },
       {
         "tier": 20,
         "column": 1,
-        "description": "Choose one knowledge. When making check, spend Triumph to add successes equal to ranks.",
-        "name": "Knowledge Specialization",
+        "description": "At the start of each session, gain 100 credits per rank",
+        "name": "Sound Investments",
         "row": 4
       },
       {
         "tier": 25,
-        "column": 2,
-        "description": "Spend a DP to ignore effects of criticals on Intellect and Cunning checks until the end of the encounter",
-        "name": "Mental Fortress",
+        "column": 4,
+        "description": "At the start of each session, gain 100 credits per rank",
+        "name": "Sound Investments",
         "row": 5
       },
       {
         "tier": 15,
-        "column": 3,
-        "description": "Once per session, reroll a knowledge skill",
-        "name": "Natural Scholar",
+        "column": 2,
+        "description": "At the beginning of session, spend 100 credits to ignore Obligation penalties",
+        "name": "Throwing Credits",
         "row": 3
       },
       {
-        "tier": 10,
-        "column": 1,
-        "description": "Remove setback per rank from knowledge. Research takes half time.",
-        "name": "Researcher",
-        "row": 2
-      },
-      {
-        "tier": 10,
-        "column": 4,
-        "description": "Remove setback per rank from knowledge. Research takes half time.",
-        "name": "Researcher",
-        "row": 2
-      },
-      {
-        "tier": 10,
-        "column": 3,
-        "description": "When voluntarily suffering strain, reduce by one to a minimum of one",
-        "name": "Resolve",
-        "row": 2
-      },
-      {
         "tier": 20,
-        "column": 4,
-        "description": "When voluntarily suffering strain, reduce by one to a minimum of one",
-        "name": "Resolve",
-        "row": 4
-      },
-      {
-        "tier": 5,
-        "column": 1,
-        "description": "Downgrade checks to interact with institutes of learning by one per rank",
-        "name": "Respected Scholar",
-        "row": 1
-      },
-      {
-        "tier": 10,
         "column": 2,
-        "description": "Downgrade checks to interact with institutes of learning by one per rank",
-        "name": "Respected Scholar",
-        "row": 2
-      },
-      {
-        "tier": 5,
-        "column": 2,
-        "description": "When directing NPC droids, give them one Boost Die per rank",
-        "name": "Speaks Binary",
-        "row": 1
-      },
-      {
-        "tier": 25,
-        "column": 1,
-        "description": "Once per session, make a check using Intellect instead of normal characteristic",
-        "name": "Stroke of Genius",
-        "row": 5
-      },
-      {
-        "tier": 25,
-        "column": 4,
         "description": "Wounds +2",
         "name": "Toughened",
-        "row": 5
+        "row": 4
       },
       {
-        "tier": 15,
+        "tier": 10,
+        "column": 2,
+        "description": "When selling goods legally, make 10% more per rank",
+        "name": "Wheel and Deal",
+        "row": 2
+      },
+      {
+        "tier": 10,
         "column": 4,
-        "description": "Choose two skills to become career skills",
-        "name": "Well Rounded",
-        "row": 3
+        "description": "When selling goods legally, make 10% more per rank",
+        "name": "Wheel and Deal",
+        "row": 2
       }
     ],
-    "name": "Colonist--Scholar"
+    "name": "Colonist--Entrepreneuer"
   },
   {
     "graph": [
       {
         "tier": 10,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "May spend 2 Advantage from Deception or Coercion to to upgrade an ally's next social roll with target once per rank",
         "name": "Bad Cop",
         "row": 2
       },
       {
         "tier": 20,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "May spend 2 Advantage from Deception or Coercion to to upgrade an ally's next social roll with target once per rank",
         "name": "Bad Cop",
         "row": 4
       },
@@ -12680,13 +12680,6 @@
         "row": 5
       },
       {
-        "tier": 25,
-        "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Grapple",
-        "row": 5
-      },
-      {
         "tier": 5,
         "column": 1,
         "description": "Strain +1",
@@ -12699,6 +12692,13 @@
         "description": "Strain +1",
         "name": "Grit",
         "row": 1
+      },
+      {
+        "tier": 25,
+        "column": 1,
+        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "name": "Grapple",
+        "row": 5
       },
       {
         "tier": 5,
@@ -12792,28 +12792,28 @@
       {
         "tier": 5,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing strain on a vehicle, recover an extra point per rank",
         "name": "Fine Tuning",
         "row": 1
       },
       {
         "tier": 20,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing strain on a vehicle, recover an extra point per rank",
         "name": "Fine Tuning",
         "row": 4
       },
       {
         "tier": 5,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Remove setback per rank and halve the cost to mod attachments",
         "name": "Gearhead",
         "row": 1
       },
       {
         "tier": 10,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Remove setback per rank and halve the cost to mod attachments",
         "name": "Gearhead",
         "row": 2
       },
@@ -12827,21 +12827,21 @@
       {
         "tier": 20,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When staggered or disoriented, make Daunting Discipline check to remove status. Reduce difficulty per rank.",
         "name": "Hard Headed",
         "row": 4
       },
       {
         "tier": 25,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Spend 1 DP to perform incidental turning vehicle damage to system strain",
         "name": "Hold Together",
         "row": 5
       },
       {
         "tier": 25,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When incapacitated due to strain, take Hard Headed action to reduce strain to 1 below threshold",
         "name": "Improved Hard Headed",
         "row": 5
       },
@@ -12862,28 +12862,28 @@
       {
         "tier": 5,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing hull trauma, repair 1 extra point",
         "name": "Solid Repairs",
         "row": 1
       },
       {
         "tier": 10,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing hull trauma, repair 1 extra point",
         "name": "Solid Repairs",
         "row": 2
       },
       {
         "tier": 15,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing hull trauma, repair 1 extra point",
         "name": "Solid Repairs",
         "row": 3
       },
       {
         "tier": 20,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing hull trauma, repair 1 extra point",
         "name": "Solid Repairs",
         "row": 4
       },
@@ -12921,6 +12921,13 @@
         "row": 5
       },
       {
+        "tier": 15,
+        "column": 3,
+        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "name": "Defensive Circle",
+        "row": 3
+      },
+      {
         "tier": 5,
         "column": 4,
         "description": "Maneuver, suffer strain up to ranks to upgrade incoming melee difficulty by that number",
@@ -12933,13 +12940,6 @@
         "description": "Maneuver, suffer strain up to ranks to upgrade incoming melee difficulty by that number",
         "name": "Defensive Stance",
         "row": 4
-      },
-      {
-        "tier": 15,
-        "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
-        "name": "Defensive Circle",
-        "row": 3
       },
       {
         "tier": 10,
@@ -13234,14 +13234,14 @@
       {
         "tier": 5,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Remove setback per rank and halve the cost to mod attachments",
         "name": "Gearhead",
         "row": 1
       },
       {
         "tier": 10,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Remove setback per rank and halve the cost to mod attachments",
         "name": "Gearhead",
         "row": 2
       },
@@ -13470,14 +13470,14 @@
       {
         "tier": 10,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round, perform maneuver to gain benefits of aiming and upgrade attack once per rank",
         "name": "True Aim",
         "row": 2
       },
       {
         "tier": 15,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round, perform maneuver to gain benefits of aiming and upgrade attack once per rank",
         "name": "True Aim",
         "row": 3
       }
@@ -13634,7 +13634,7 @@
       {
         "tier": 5,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Do not suffer terrain penalties for Piloting (Planetary)",
         "name": "All-Terrain Driver",
         "row": 1
       },
@@ -13655,42 +13655,42 @@
       {
         "tier": 5,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing strain on a vehicle, recover an extra point per rank",
         "name": "Fine Tuning",
         "row": 1
       },
       {
         "tier": 15,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing strain on a vehicle, recover an extra point per rank",
         "name": "Fine Tuning",
         "row": 3
       },
       {
         "tier": 25,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Take maneuver to reduce vehicle speed to 0, suffering system strain equal to speed reduced",
         "name": "Full Stop",
         "row": 5
       },
       {
         "tier": 5,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Hard Piloting check to increase vehicle's top speed by 1 for rounds equal to Cunning",
         "name": "Full Throttle",
         "row": 1
       },
       {
         "tier": 5,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Remove setback per rank and halve the cost to mod attachments",
         "name": "Gearhead",
         "row": 1
       },
       {
         "tier": 20,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Remove setback per rank and halve the cost to mod attachments",
         "name": "Gearhead",
         "row": 4
       },
@@ -13711,21 +13711,21 @@
       {
         "tier": 15,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Suffer 1 strain to attempt Full Throttle as a maneuver and decrease to Average",
         "name": "Improved Full Throttle",
         "row": 3
       },
       {
         "tier": 25,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round, when driving, may suffer 2 strain to perform an Action as a Maneuver",
         "name": "Master Driver",
         "row": 5
       },
       {
         "tier": 20,
         "column": 3,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per session, reroll one Piloting (Planetary) or Gunnery check",
         "name": "Natural Driver",
         "row": 4
       },
@@ -13753,7 +13753,7 @@
       {
         "tier": 25,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When performing Full Throttle, maximum speed increases by 2",
         "name": "Supreme Full Throttle",
         "row": 5
       },
@@ -13767,7 +13767,7 @@
       {
         "tier": 15,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Count vehicle silhouette as one smaller when being attacked",
         "name": "Tricky Target",
         "row": 3
       }
@@ -13779,28 +13779,28 @@
       {
         "tier": 5,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Add Boost per rank on Leadership, targets add Boost to Discipline for 24 hours",
         "name": "Command",
         "row": 1
       },
       {
         "tier": 15,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Add Boost per rank on Leadership, targets add Boost to Discipline for 24 hours",
         "name": "Command",
         "row": 3
       },
       {
         "tier": 10,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Remove Setback per rank from Leadership and Cool",
         "name": "Commanding Presence",
         "row": 2
       },
       {
         "tier": 20,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Remove Setback per rank from Leadership and Cool",
         "name": "Commanding Presence",
         "row": 4
       },
@@ -13821,7 +13821,7 @@
       {
         "tier": 25,
         "column": 2,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Take maneuver, until next turn attacks against chosen target treat silouette as 1 higher",
         "name": "Fire Control",
         "row": 5
       },
@@ -13863,21 +13863,21 @@
       {
         "tier": 20,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Spend 1 DP to perform incidental turning vehicle damage to system strain",
         "name": "Hold Together",
         "row": 4
       },
       {
         "tier": 10,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per session, as maneuver, make Hard Knowledge (Education) check to gain familiarity with a building or vehicle's design",
         "name": "Known Schematic",
         "row": 2
       },
       {
         "tier": 20,
         "column": 4,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "Once per round, may suffer 2 strain to decrease difficulty of next Astrogation check by 1, minimum Easy",
         "name": "Master Starhopper",
         "row": 4
       },
@@ -13898,21 +13898,21 @@
       {
         "tier": 5,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing hull trauma, repair 1 extra point",
         "name": "Solid Repairs",
         "row": 1
       },
       {
         "tier": 15,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing hull trauma, repair 1 extra point",
         "name": "Solid Repairs",
         "row": 3
       },
       {
         "tier": 25,
         "column": 1,
-        "description": "Placeholder. See https://goo.gl/wMmAUZ for details.",
+        "description": "When repairing hull trauma, repair 1 extra point",
         "name": "Solid Repairs",
         "row": 5
       }
