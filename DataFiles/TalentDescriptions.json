@@ -1,0 +1,1654 @@
+[
+  {
+    "name": "Soothing Tone",
+    "description": "Average Knowledge (Xenology) check to help animal recover strain per success"
+  },
+  {
+    "name": "One with Nature",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Master Strategist",
+    "description": "\"Once per Mass Combat Phase, may suffer 2 Strain to reduce difficulty of Mass Combat check once\""
+  },
+  {
+    "name": "Force Assault",
+    "description": "Spend triumph or three advantage on missed Niman attack to perform move force power as maneuver"
+  },
+  {
+    "name": "Double or Nothing",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "In the Know",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Dodge",
+    "description": "\"Dodge Incidental: suffer X strain up to ranks, upgrade attack by X\""
+  },
+  {
+    "name": "Call 'Em",
+    "description": "Do not add Setback when using aim"
+  },
+  {
+    "name": "Survival of the Fittest",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Improved Spur",
+    "description": "Suffer 1 strain to attempt Spur as a maneuver and decrease to Average"
+  },
+  {
+    "name": "Showboat",
+    "description": "\"Before making check in vehicle, suffer 2 strain to gain Triumph on success or Despair on failure\""
+  },
+  {
+    "name": "Museum Worthy",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Natural Marksman",
+    "description": "\"Once per session, reroll Ranged (Light) or Ranged (Heavy) attack\""
+  },
+  {
+    "name": "Hunter's Quarry",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Physician",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Duelist's Training",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Encoded Communique",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Makashi Finish",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Engineered Redundancies",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Sound Investments",
+    "description": "\"At the start of each session, gain 100 credits per rank\""
+  },
+  {
+    "name": "Improved Field Commander",
+    "description": "\"Field Commander action affects allies equal to twice Presence, and may spend Triumph to allow one ally to suffer 1 strain for free Action\""
+  },
+  {
+    "name": "Larger Project",
+    "description": "Signature Vehicle may have a silhouette 1 larger per rank"
+  },
+  {
+    "name": "Force Rating",
+    "description": "Force rating +1"
+  },
+  {
+    "name": "Indistinguishable",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Knowledge is Power",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Preemptive Avoidance",
+    "description": "Spend DP to disengage as out of turn incidental"
+  },
+  {
+    "name": "Brace",
+    "description": "Perform Brace maneuver to reduce one Setback from environment per rank"
+  },
+  {
+    "name": "Distracting Behavior",
+    "description": "\"As maneuver, suffer strain up to Cunning to force equal number of NPCs to suffer a Threat until next turn\""
+  },
+  {
+    "name": "Grit",
+    "description": "Strain +1"
+  },
+  {
+    "name": "Intuitive Navigation",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Physical Training",
+    "description": "Add Boost per rank to Athletics and Resilience"
+  },
+  {
+    "name": "Gearhead",
+    "description": "Remove setback per rank and halve the cost to mod attachments"
+  },
+  {
+    "name": "Barrage",
+    "description": "\"Add one damage per rank, to Ranged (Heavy) or Gunnery attack at long or extreme range\""
+  },
+  {
+    "name": "Natural Instructor",
+    "description": "\"Once per session, may reroll Leadership or Discipline\""
+  },
+  {
+    "name": "Spur",
+    "description": "Hard Survival check to increase beast's speed by 1. Beast suffers 2 strain per round."
+  },
+  {
+    "name": "Marked for Death",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Tuned Maneuvering Thrusters",
+    "description": "Increase the Handling of Signature Vehicle by 1 per rank"
+  },
+  {
+    "name": "Improved Corellian Sendoff",
+    "description": "\"When performing Colellian Sendoff, targets suffer major collision instead\""
+  },
+  {
+    "name": "Respected Scholar",
+    "description": "Downgrade checks to interact with institutes of learning by one per rank"
+  },
+  {
+    "name": "Soft Spot",
+    "description": "\"After hit, spend Destiny Point to add damage equal to Cunning\""
+  },
+  {
+    "name": "Master Pilot",
+    "description": "\"Once per round when piloting, may suffer 2 strain to perform any action as a maneuver\""
+  },
+  {
+    "name": "Enhanced Leader",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Galaxy Mapper",
+    "description": "Remove Setback per rank from Astrogation. Astrogation takes half the time."
+  },
+  {
+    "name": "Armor Master",
+    "description": "Increase soak of worn armor by one"
+  },
+  {
+    "name": "Intuitive Strike",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Master Instructor",
+    "description": "\"Once per round, may suffer 2 strain to allow ally to use Instructor's Discipline ranks\""
+  },
+  {
+    "name": "Hidden Storage",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Insight",
+    "description": "Perception and Discipline are career skills"
+  },
+  {
+    "name": "Talk the Talk",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Baleful Gaze",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Knowledgeable Healing",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Counterstrike",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Prey on the Weak",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Natural Rogue",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Intense Focus",
+    "description": "Maneuver to suffer one strain to upgrade next skill check"
+  },
+  {
+    "name": "Contingency Plan",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "True Aim",
+    "description": "\"Once per round, perform maneuver to gain benefits of aiming and upgrade attack once per rank\""
+  },
+  {
+    "name": "Improved Stunning Blow",
+    "description": "\"When dealing strain damage in melee or brawl, spend triumph to stagger one round per triumph\""
+  },
+  {
+    "name": "Defensive Circle",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Overstocked Ammo",
+    "description": "Increase Limited Ammo value of weapons on Signature Vehicle by 1 per rank"
+  },
+  {
+    "name": "Koiogran Turn",
+    "description": "\"When opposing pilot has gained advantage, perform maneuver to remove advantage\""
+  },
+  {
+    "name": "Improved Positive Spin",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Natural Merchant",
+    "description": "\"Once per session, may reroll Streetwise or Negotiation\""
+  },
+  {
+    "name": "No Escape",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Fear the Shadows",
+    "description": "Make hard Deception check to make minion group or rival flee encounter."
+  },
+  {
+    "name": "Well Rounded",
+    "description": "Choose two skills to become career skills"
+  },
+  {
+    "name": "Skilled Jockey",
+    "description": "Remove Setback per rank from Pilot checks"
+  },
+  {
+    "name": "Improved Freerunning",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Deadly Accuracy",
+    "description": "\"Pick a combat skill, add damage equal to ranks to one hit per round\""
+  },
+  {
+    "name": "Ready for Anything",
+    "description": "Remove Setback per rank from Mass Combat checks and Initiative checks"
+  },
+  {
+    "name": "Familiar Suns",
+    "description": "\"Once per session, Hard Knowledge Outer Rim, or Knowledge Core to reveal current type of planetary environment or useful info\""
+  },
+  {
+    "name": "Sarlac Sweep",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Improved Full Throttle",
+    "description": "Suffer 1 strain to attempt Full Throttle as a maneuver and decrease to Average"
+  },
+  {
+    "name": "Sorry About the Mess",
+    "description": "\"Decrease crit rating by one, against target that hasn't acted\""
+  },
+  {
+    "name": "Lethal Blows",
+    "description": "+10 per rank on critical rolls"
+  },
+  {
+    "name": "Bypass Security",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Prime Positions",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Improved Plausible Deniability",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Bacta Specialist",
+    "description": "Increase recovery from long term care or bacta tank by one per rank"
+  },
+  {
+    "name": "Rapid Recovery",
+    "description": "\"When recovering strain after an encounter, recover one more per rank\""
+  },
+  {
+    "name": "Congenial",
+    "description": "Suffer strain up to ranks to downgrade outgoing or upgrade incoming difficulty of Charm or Negotiation"
+  },
+  {
+    "name": "Heavy Hitter",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Rapid Reaction",
+    "description": "Suffer up to one strain per rank to add that many successes to initiative"
+  },
+  {
+    "name": "Overwhelm Defenses",
+    "description": "\"Upon unsuccessful attack with vehicle weapon, spend 2 Advantage per rank to reduce the defense in targeted zone by one\""
+  },
+  {
+    "name": "Bad Press",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Natural Negotiator",
+    "description": "\"Once per session, reroll a Negotiation or Cool check\""
+  },
+  {
+    "name": "Natural Tinkerer",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Blackmail",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Center of Being",
+    "description": "\"Take maneuver, until next turn incoming attacks have one higher crit rating\""
+  },
+  {
+    "name": "Brilliant Evasion",
+    "description": "\"Once per encounter, make opposed Piloting check with one opponent, to stop oppenent from attacking character for rounds equal to Agility\""
+  },
+  {
+    "name": "Greased Palms",
+    "description": "\"Before social check, may spend 50 credits per rank to upgrade check once per 50 credits\""
+  },
+  {
+    "name": "Defensive Stance",
+    "description": "\"Maneuver, suffer strain up to ranks to upgrade incoming melee difficulty by that number\""
+  },
+  {
+    "name": "Stalker",
+    "description": "Add one boost per rank on stealth and coordination"
+  },
+  {
+    "name": "Vehicle Combat Training",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Calming Aura",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Supreme Armor Master",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Know-It-All",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Spare Clip",
+    "description": "Cannot run out of ammo due to despair"
+  },
+  {
+    "name": "Suppressing Fire",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Intimidating",
+    "description": "\"Suffer strain up to ranks, reduce difficulty of coercion or upgrade incoming coercion difficulty by that number\""
+  },
+  {
+    "name": "Improved Commanding Presence",
+    "description": "Once per session roll Cool v. Discipline to force target to leave encounter"
+  },
+  {
+    "name": "Improved Dead to Rights",
+    "description": "\"When performing Dead to Rights, add damage equal to Agility\""
+  },
+  {
+    "name": "Bad Cop",
+    "description": "May spend 2 Advantage from Deception or Coercion to to upgrade an ally's next social roll with target once per rank"
+  },
+  {
+    "name": "Draw Closer",
+    "description": "\"Niman check against target in medium range with FD, spend FP to move target one range closer or gain success\""
+  },
+  {
+    "name": "Sleight of Mind",
+    "description": "Add Boost to Stealth"
+  },
+  {
+    "name": "Crippling Blow",
+    "description": "\"Increase difficulty of combat check by one. If attack deals damage, target suffers 1 strain when moving for rest of encounter.\""
+  },
+  {
+    "name": "Strategic Form",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Exhaust Port",
+    "description": "Spend DP to ignore the Massive rule for next attack"
+  },
+  {
+    "name": "Hold Together",
+    "description": "Spend 1 DP to perform incidental turning vehicle damage to system strain"
+  },
+  {
+    "name": "Fortune Favors the Bold",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Forewarning",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Toughened",
+    "description": "Wounds +2"
+  },
+  {
+    "name": "Commanding Presence",
+    "description": "Remove Setback per rank from Leadership and Cool"
+  },
+  {
+    "name": "Intuitive Shot",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Djem So Deflection",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Comprehend Technology",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Scathing Tirade",
+    "description": "\"Average Coercion check, each success causes an enemy in close to suffer a strain. Spend advantage to suffer more.\""
+  },
+  {
+    "name": "Natural Leader",
+    "description": "\"Once per session, may reroll 1 Cool or Leadership check\""
+  },
+  {
+    "name": "Second Chances",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Defensive Slicing",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Point Blank",
+    "description": "Add one damage per rank to one ranged hit at close or engaged range"
+  },
+  {
+    "name": "Sense the Scene",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Intense Presence",
+    "description": "Spend a DP to recover strain equal to Presence"
+  },
+  {
+    "name": "Enduring",
+    "description": "Soak +1"
+  },
+  {
+    "name": "Surgeon",
+    "description": "\"When making a Medicine check to heal wounds, heal one extra wound per rank\""
+  },
+  {
+    "name": "Utility Belt",
+    "description": "Spend DP to perform incidental to produce useful item"
+  },
+  {
+    "name": "Utinni!",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Resolve",
+    "description": "\"When voluntarily suffering strain, reduce by one to a minimum of one\""
+  },
+  {
+    "name": "Supreme Reflect",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Heroic Resilience",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Multiple Opponents",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Valuable Facts",
+    "description": "\"Once per encounter, perform average knowledge check to add triumph to one ally's roll\""
+  },
+  {
+    "name": "Force Connection",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Improved Quick Draw",
+    "description": "Quick draw twice per round"
+  },
+  {
+    "name": "Selective Detonation",
+    "description": "Spend ADV to exclude one target per rank from blast damage"
+  },
+  {
+    "name": "Unity Assault",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Improved Healing Trance",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Knowledge Specialization",
+    "description": "\"Choose one knowledge. When making check, spend Triumph to add successes equal to ranks.\""
+  },
+  {
+    "name": "All-Terrain Driver",
+    "description": "Do not suffer terrain penalties for Piloting (Planetary)"
+  },
+  {
+    "name": "Resist Disarm",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Grapple",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Signature Vehicle",
+    "description": "\"Choose a Signature Vehicle, upgrade all Mechanics checks once\""
+  },
+  {
+    "name": "Solid Repairs",
+    "description": "\"When repairing hull trauma, repair 1 extra point\""
+  },
+  {
+    "name": "Improved Body Guard",
+    "description": "\"Once per session, when ally protected by Body Guard suffers hit, suffer it instead\""
+  },
+  {
+    "name": "Contraption",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Improved Scathing Tirade",
+    "description": "Each target of Scathing Tirade suffers setback on all checks for rounds equal to Coercion"
+  },
+  {
+    "name": "Fortified Vacuum Seal",
+    "description": "Increase Hull Trauma threshold of Signature Vehicle by 1 per rank"
+  },
+  {
+    "name": "Touch of Fate",
+    "description": "\"Once per session, add 2 Boost to one check\""
+  },
+  {
+    "name": "Deathblow",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Let's Ride",
+    "description": "\"Once per round, mount, dismount, enter or exit a cockpit or weapon station as an incidental\""
+  },
+  {
+    "name": "Improved Speaks Binary",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Anatomy Lessons",
+    "description": "\"On a hit, spend a destiny point to increase damage by intellect rating\""
+  },
+  {
+    "name": "Quick Draw",
+    "description": "Draw one weapon as an incidental"
+  },
+  {
+    "name": "Planet Mapper",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Pressure Point",
+    "description": "\"When making Brawl check, instead of dealing damage, deal strain plus ranks in medicine, ignoring soak\""
+  },
+  {
+    "name": "Mental Bond",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Blind Spot",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Better Luck Next Time",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Freerunning",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Natural Scholar",
+    "description": "\"Once per session, reroll a knowledge skill\""
+  },
+  {
+    "name": "Supreme Overcharge",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Up the Ante",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Improved Distracting Behavior",
+    "description": "The Distracting Behavior maneuver inflicts 2 strain to NPCs if they target PC's allies"
+  },
+  {
+    "name": "Durable",
+    "description": "\"Reduce critical hit by 10 per rank, minimum 1\""
+  },
+  {
+    "name": "Sum Djem",
+    "description": "Spend triumph or two advantage with lightsaber to disarm enemy"
+  },
+  {
+    "name": "Improved Confidence",
+    "description": "May spend Triumph on Fear checks to to give allies in short range 1 Success on same check"
+  },
+  {
+    "name": "Natural Programmer",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Thorough Assessment",
+    "description": "\"Once per session, Hard Knowledge check to gain Boost dice equal to successes to distribute during encounter\""
+  },
+  {
+    "name": "Improved Unrelenting Skeptic",
+    "description": "\"When targeted by Deception check that fails, spend DP to add Despair\""
+  },
+  {
+    "name": "Prescient Shot",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Deft Maker",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Mind over Matter",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Impossible Fall",
+    "description": "\"Once per session, as incidental, make force check, spend FP to reduce range by 1 and land safe, spend FP to reduce range by 1.\""
+  },
+  {
+    "name": "Rain of Death",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Master Starhopper",
+    "description": "\"Once per round, may suffer 2 strain to decrease difficulty of next Astrogation check by 1, minimum Easy\""
+  },
+  {
+    "name": "Well-Traveled",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Guns Blazing",
+    "description": "Suffer two strain to not increase difficulty of Ranged (Light) attack with thwo weapons"
+  },
+  {
+    "name": "Calm Commander",
+    "description": "May use Cool instead of Leadership to upgrade Mass Combat checks"
+  },
+  {
+    "name": "Form on Me",
+    "description": "Allies equal to Leadership in Short range gain benefits of Gain the Advantage Action"
+  },
+  {
+    "name": "Shortcut",
+    "description": "\"During a chase, add Boost per rank to checks to catch or escape opponent\""
+  },
+  {
+    "name": "Skilled Slicer",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Bring It Down",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Improved Improvised Detonation",
+    "description": "Reduce difficulty to average and add Mechanics to damage twice."
+  },
+  {
+    "name": "Shien Technique",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Conditioned",
+    "description": "Remove setback per rank from Athletics and Coordination. Reduce damage and strain from falling by one per rank."
+  },
+  {
+    "name": "Deceptive Taunt",
+    "description": "\"Once per session, make opposed Deception check to force target to attack you next turn\""
+  },
+  {
+    "name": "Body Guard",
+    "description": "\"Once per round, perform maneuver with engaged character, suffering strain up to ranks to upgrade combat checks by that number\""
+  },
+  {
+    "name": "Informant",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Uncanny Senses",
+    "description": "Add Boost per rank to Perception"
+  },
+  {
+    "name": "Holistic Navigation",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Codebreaker",
+    "description": "Remove one Setback per rank from rolls to break codes or decrypt communications. Reduce difficulty by one."
+  },
+  {
+    "name": "Overbalance",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Discredit",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Kill with Kindness",
+    "description": "Remove setback per rank from charm and leadership"
+  },
+  {
+    "name": "Corellian Sendoff",
+    "description": "\"Target 2 vehicles at Close range, Hard Cool check to cause a minor collision\""
+  },
+  {
+    "name": "One with the Universe",
+    "description": "\"Once per session, average astrogation check to add FP to all force rolls in next encounter\""
+  },
+  {
+    "name": "Improved Street Smarts",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Throwing Credits",
+    "description": "\"At the beginning of session, spend 100 credits to ignore Obligation penalties\""
+  },
+  {
+    "name": "Redundant Systems",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Energy Transfer",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Cyberneticist",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Shroud",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Cutting Question",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Improved Ready for Anything",
+    "description": "In Initiative check may spend Triumph to add Successes equal to ranks"
+  },
+  {
+    "name": "Invigorate",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Tinkerer",
+    "description": "Add a hardpoint to one item"
+  },
+  {
+    "name": "Master Merchant",
+    "description": "\"When buying or selling adjust price by 25%. When paying off or taking obligation, adjust amount by 1.\""
+  },
+  {
+    "name": "Plausible Deniability",
+    "description": "Remove Setback per rank from coercsion and deception"
+  },
+  {
+    "name": "Force Protection",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Sniper Shot",
+    "description": "\"Sniper Shot Maneuver: Increase weapon range by X bands up to ranks, increase difficulty by X\""
+  },
+  {
+    "name": "Sense Advantage",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Sense Emotions",
+    "description": "\"Add boost die to charm, coercion, and deception checks\""
+  },
+  {
+    "name": "Not Today",
+    "description": "\"Once per Session, spend DP to prevent Signature Vehicle from being destroyed\""
+  },
+  {
+    "name": "Supreme Double or Nothing",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Fearsome",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Supreme Spur",
+    "description": "\"During Spur, beast only suffers one strain per round\""
+  },
+  {
+    "name": "Natural Charmer",
+    "description": "\"Once per session, reroll a Charm or Deception check\""
+  },
+  {
+    "name": "Master Grenadier",
+    "description": "Decrease cost to activate blast by 1 to a minimum of 1"
+  },
+  {
+    "name": "Fine Tuning",
+    "description": "\"When repairing strain on a vehicle, recover an extra point per rank\""
+  },
+  {
+    "name": "Mental Fortress",
+    "description": "Spend a DP to ignore effects of criticals on Intellect and Cunning checks until the end of the encounter"
+  },
+  {
+    "name": "Interjection",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Parry",
+    "description": "3 strain to reduce melee damage by 2 plus ranks"
+  },
+  {
+    "name": "Hard Headed",
+    "description": "\"When staggered or disoriented, make Daunting Discipline check to remove status. Reduce difficulty per rank.\""
+  },
+  {
+    "name": "Unrelenting Skeptic",
+    "description": "\"When targeted by Deception check, add Failures equal to ranks in Vigilance\""
+  },
+  {
+    "name": "Powerful Blast",
+    "description": "Increase blast damage by ranks"
+  },
+  {
+    "name": "Improved Inspiring Rhetoric",
+    "description": "Each ally affected by Inspiring Rhetoric gains boost on all checks for rounds equal to Leadership"
+  },
+  {
+    "name": "Tricky Target",
+    "description": "Count vehicle silhouette as one smaller when being attacked"
+  },
+  {
+    "name": "Jump Up",
+    "description": "Once per round stand up as an incidental"
+  },
+  {
+    "name": "Natural Blademaster",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Mental Tools",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Wheel and Deal",
+    "description": "\"When selling goods legally, make 10% more per rank\""
+  },
+  {
+    "name": "Swift",
+    "description": "Do not suffer regular penalties for rough terrain"
+  },
+  {
+    "name": "Imbue Item",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Expert Tracker",
+    "description": "Remove setback per rank from tracking checks. Tracking checks take half the time."
+  },
+  {
+    "name": "Tactical Combat Training",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Intuitive Evasion",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Force of Will",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Share Pain",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Technical Aptitude",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Bolstered Armor",
+    "description": "Increase Armor value of Signature Vehicle by 1 per rank"
+  },
+  {
+    "name": "Convincing Demeanor",
+    "description": "Remove Setback per rank from Deception or Skullduggery"
+  },
+  {
+    "name": "Strong Arm",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Customized Cooling Unit",
+    "description": "Increase System Strain threshold of Signature Vehicle by 2 per rank"
+  },
+  {
+    "name": "Feral Strength",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Well Read",
+    "description": "Choose 3 Knowledge Skills to become Career Skills"
+  },
+  {
+    "name": "Essential Kill",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Improved Hard Headed",
+    "description": "\"When incapacitated due to strain, take Hard Headed action to reduce strain to 1 below threshold\""
+  },
+  {
+    "name": "Supreme Full Throttle",
+    "description": "\"When performing Full Throttle, maximum speed increases by 2\""
+  },
+  {
+    "name": "Targeted Blow",
+    "description": "\"On a hit, spend a destiny point to increase damage by agility rating\""
+  },
+  {
+    "name": "Improved Center of Being",
+    "description": "Suffer strain to perform Center of Being as incidental"
+  },
+  {
+    "name": "Custom Loadout",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Natural Doctor",
+    "description": "\"Once per session, reroll a medicine check\""
+  },
+  {
+    "name": "Natural Enforcer",
+    "description": "\"Once per session, reroll coercion or streetwise\""
+  },
+  {
+    "name": "Reinforce Item",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Defensive Driving",
+    "description": "Increase Defense of vehicle by one per rank"
+  },
+  {
+    "name": "Speaks Binary",
+    "description": "\"When directing NPC droids, give them one Boost Die per rank\""
+  },
+  {
+    "name": "Heightened Awareness",
+    "description": "Allies in close add Boost to Perception and Vigilance. Engaged allies add two Boost."
+  },
+  {
+    "name": "Natural Brawler",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Situational Awareness",
+    "description": "\"Allies within Short range of vehicle add 1 Boost to Perception and Vigilance, or 2 Boost in Close range\""
+  },
+  {
+    "name": "Hawk Bat Swoop",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Ataru Technique",
+    "description": "May use agility for lightsaber"
+  },
+  {
+    "name": "Overwhelm Emotions",
+    "description": "\"Add Force Dice to Charm, Coercion, and Deception.\""
+  },
+  {
+    "name": "Bad Motivator",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Animal Bond",
+    "description": "Develop long term bond with with animal with silhouette equal to half FR or lower"
+  },
+  {
+    "name": "Field Commander",
+    "description": "Average Leadership check to allow allies equal to Presence to suffer 1 Strain to perform free Maneuver"
+  },
+  {
+    "name": "Knockdown",
+    "description": "\"After a melee hit, spend Triumph to knock target prone\""
+  },
+  {
+    "name": "Saber Throw",
+    "description": "\"Make lightsaber attack at up to medium range adding FR. Spend FP to activate, and FP to have lightsaber return.\""
+  },
+  {
+    "name": "Dedication",
+    "description": "+1 to a characteristic"
+  },
+  {
+    "name": "Machine Mender",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Fancy Paint Job",
+    "description": "\"Upgrade Charm, Deception, and Negotiation checks made within sight of Signature Vehicle\""
+  },
+  {
+    "name": "Harass",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Natural Driver",
+    "description": "\"Once per session, reroll one Piloting (Planetary) or Gunnery check\""
+  },
+  {
+    "name": "Second Wind",
+    "description": "\"Once per encounter, as incidental gain strain equal to ranks\""
+  },
+  {
+    "name": "Improved Armor Master",
+    "description": "\"When wearing armor with soak of 2 or higher, gain +1 defense\""
+  },
+  {
+    "name": "Black Market Contacts",
+    "description": "\"When purchasing illegal goods, reduce rarity by one per rank. Increase price by 50% per reduction.\""
+  },
+  {
+    "name": "Master of Shadows",
+    "description": "Suffer two strain to reduce stealth or skullduggery difficulty by one"
+  },
+  {
+    "name": "Confidence",
+    "description": "Reduce fear check difficulty by one"
+  },
+  {
+    "name": "Improved Defensive Slicing",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Clever Solution",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Dead to Rights",
+    "description": "1 DP to add damage equal to half Agility (round up) to hit with vehicle weapon"
+  },
+  {
+    "name": "Debilitating Shot",
+    "description": "\"Upon hit with vehicle weapon, spend 2 Advantage to target's maximum speed by 1 until the end of the next round\""
+  },
+  {
+    "name": "Quick Strike",
+    "description": "Add one boost per rank against targets that have not acted yet"
+  },
+  {
+    "name": "Hunter",
+    "description": "Add Boost per rank when interacting with animals. Add +10 per rank on criticals against beasts or animals."
+  },
+  {
+    "name": "Burly",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Works Like a Charm",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Inventor",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Dynamic Fire",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Careful Planning",
+    "description": "\"Once per session may introduce \"\"Fact\"\" as if spending a DP\""
+  },
+  {
+    "name": "Disarming Smile",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Eye for Detail",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "That's How It's Done",
+    "description": "May suffer 1 strain on successful skill check to add Advantage to same check by allies equal to Willpower"
+  },
+  {
+    "name": "Encouraging Words",
+    "description": "\"After engaged ally fails check, may suffer one strain to assist ally's next check\""
+  },
+  {
+    "name": "Known Schematic",
+    "description": "\"Once per session, as maneuver, make Hard Knowledge (Education) check to gain familiarity with a building or vehicle's design\""
+  },
+  {
+    "name": "Improved Overcharge",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Falling Avalanche",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Incite Rebellion",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "It's Not That Bad",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Time to Go",
+    "description": "Spend destiny to move into cover or out of blast as incidental"
+  },
+  {
+    "name": "Quick Fix",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Coordination Dodge",
+    "description": "\"When trageted with attack, spend DP to add Failures equal to Coordination\""
+  },
+  {
+    "name": "Heroic Fortitude",
+    "description": "Spend a DP to ignore effects of criticals on brawn and agility checks until the end of the encounter"
+  },
+  {
+    "name": "Supporting Evidence",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Positive Spin",
+    "description": "\"Whenever Duty would increase, increase by 1 more per rank\""
+  },
+  {
+    "name": "Reinforced Frame",
+    "description": "Signature Vehicle gains Massive 1"
+  },
+  {
+    "name": "Makashi Technique",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Uncanny Reactions",
+    "description": "Add Boost per rank to Vigilance"
+  },
+  {
+    "name": "Natural Outdoorsman",
+    "description": "\"Once per session, reroll resilience or survival\""
+  },
+  {
+    "name": "Keen Eyed",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Intuitive Improvements",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Supreme Parry",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Jury Rigged",
+    "description": "\"Choose one weapon, armor, or gear and give it a permanent improvement\""
+  },
+  {
+    "name": "Precise Aim",
+    "description": "\"Precise Aim Maneuver: Suffer X strain up to ranks, reduce target's defense by X\""
+  },
+  {
+    "name": "Unstoppable",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Improved Animal Bond",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Niman Technique",
+    "description": "Use willpower for lightsaber"
+  },
+  {
+    "name": "Improved Researcher",
+    "description": "\"On successful Knowledge check, character and allies gain Advantage per rank of Researcher checks to act on facts until end of next turn\""
+  },
+  {
+    "name": "Soresu Technique",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Full Throttle",
+    "description": "Hard Piloting check to increase vehicle's top speed by 1 for rounds equal to Cunning"
+  },
+  {
+    "name": "Beast Wrangler",
+    "description": "Add boost per rank to wrangle or tame animals"
+  },
+  {
+    "name": "Overcharge",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Spitfire",
+    "description": "Ranged (Light) two weapon attacks can target separate opponents"
+  },
+  {
+    "name": "Superior Reflexes",
+    "description": "Melee defense +1"
+  },
+  {
+    "name": "Saber Swarm",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Clever Commander",
+    "description": "May use Knowledge (Warfare) to upgrade Mass Combat checks instead of Leadership"
+  },
+  {
+    "name": "Twisted Words",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Inspiring Rhetoric",
+    "description": "\"Average Leadership check, each success causes an ally in close to recover a strain. Spend advantage to recover extra.\""
+  },
+  {
+    "name": "Quick Movement",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Master Doctor",
+    "description": "\"Once per round, suffer 2 strain to decrease Medicine difficulty by 1\""
+  },
+  {
+    "name": "Menace",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Improved In the Know",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Improved Time to Go",
+    "description": "Allow engaged ally to also move"
+  },
+  {
+    "name": "Circle of Shelter",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Pin",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Bought Info",
+    "description": "\"Instead of Knowledge check, may spend 50 credits per difficulty to gain one success\""
+  },
+  {
+    "name": "Biggest Fan",
+    "description": "\"Once per session, make Hard Charm check to turn NPC into \"\"biggest fan\"\"\""
+  },
+  {
+    "name": "Terrify",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Nobody's Fool",
+    "description": "\"Upgrading incoming coercion, deception, charm checks by one per rank\""
+  },
+  {
+    "name": "Terrifying Kill",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Steely Nerves",
+    "description": "Spend a DP to ignore effects of criticals on Willpower and Presence checks until the end of the encounter"
+  },
+  {
+    "name": "Improved Calming Aura",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Disorient",
+    "description": "\"After hit, spend 2 Advantage to disorient target for one round per rank\""
+  },
+  {
+    "name": "Improved Hunter's Quarry",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Improved Terrify",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Natural Athlete",
+    "description": "Once per session may reroll Coordination or Athletics"
+  },
+  {
+    "name": "Creative Killer",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "More Machine Than Man",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Basic Combat Training",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Constant Vigilance",
+    "description": "May always use Vigilance for initiative"
+  },
+  {
+    "name": "Master Slicer",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "The Force is My Ally",
+    "description": "\"Once per session, spent two strain to perform force power action as maneuver\""
+  },
+  {
+    "name": "Improved Shortcut",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Resourceful Refit",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Loom",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Fire Control",
+    "description": "\"Take maneuver, until next turn attacks against chosen target treat silouette as 1 higher\""
+  },
+  {
+    "name": "High-G Training",
+    "description": "\"When vehicle piloted would suffer system strain, suffer strain up to ranks instead\""
+  },
+  {
+    "name": "Natural Hunter",
+    "description": "\"Once per session, reroll Perception or Vigilance\""
+  },
+  {
+    "name": "Studious Plotting",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Forager",
+    "description": "\"Remove up to two setback from skill checks to find food, water, or shelter. Survival checks take half the time.\""
+  },
+  {
+    "name": "Command",
+    "description": "\"Add Boost per rank on Leadership, targets add Boost to Discipline for 24 hours\""
+  },
+  {
+    "name": "Now You See Me",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Reconstruct the Scene",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Natural Mystic",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Healing Trance",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Walk the Walk",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Expert Handler",
+    "description": "Remove setback per rank from survival rolls to ride beasts"
+  },
+  {
+    "name": "Master Artisan",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Precision Strike",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Improvised Detonation",
+    "description": "\"Once per session, hard mechanics check to build explosive with damage equal to Int + Mechanics + successes.\""
+  },
+  {
+    "name": "Improved Double or Nothing",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Master Leader",
+    "description": "\"Once per round, suffer 2 strain to decrease difficulty of Leadership by 1, to Easy\""
+  },
+  {
+    "name": "Improved Stim Application",
+    "description": "Make Stim Application check Hard to only suffer one strain"
+  },
+  {
+    "name": "Stroke of Genius",
+    "description": "\"Once per session, make a check using Intellect instead of normal characteristic\""
+  },
+  {
+    "name": "Improved Reflect",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Improved Saber Throw",
+    "description": "Perform Saber Throw at long range. Spend 2FP to have saber return."
+  },
+  {
+    "name": "Street Smarts",
+    "description": "Remove Setback per rank from Streetwise and Knowledge Underworld"
+  },
+  {
+    "name": "Feint",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Superhuman Reflexes",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Reroute Processors",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Defensive Training",
+    "description": "Melee/brawl weapon gains defense equal to ranks"
+  },
+  {
+    "name": "Supreme Inspiring Rhetoric",
+    "description": "Suffer 1 strain to perform Inspiring Rhetoric as maneuver"
+  },
+  {
+    "name": "Prophetic Aim",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Master Driver",
+    "description": "\"Once per round, when driving, may suffer 2 strain to perform an Action as a Maneuver\""
+  },
+  {
+    "name": "Balance",
+    "description": "\"When recovering strain after an encounter, roll FD and recover 1 strain per FP\""
+  },
+  {
+    "name": "Smooth Talker",
+    "description": "\"Choose Charm, Coercion, Deception, or Negotiation. When making checks, spend Triumph to add success equal to ranks.\""
+  },
+  {
+    "name": "Frenzied Attack",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Stunning Blow",
+    "description": "May make melee damage strain"
+  },
+  {
+    "name": "Just Kidding!",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Researcher",
+    "description": "Remove setback per rank from knowledge. Research takes half time."
+  },
+  {
+    "name": "Outdoorsman",
+    "description": "Remove setback per rank from checks to move through terrain or manage environmental effects. Decrease overland travel time by half."
+  },
+  {
+    "name": "Sense Danger",
+    "description": "\"Once per session, remove 2 Setback from any check\""
+  },
+  {
+    "name": "Natural Pilot",
+    "description": "\"Once per session, may reroll 1 Piloting (Space) or Gunnery check\""
+  },
+  {
+    "name": "Know Somebody",
+    "description": "\"Once per session, when purchasing legal item, reduce rarity by ranks\""
+  },
+  {
+    "name": "Full Stop",
+    "description": "\"Take maneuver to reduce vehicle speed to 0, suffering system strain equal to speed reduced\""
+  },
+  {
+    "name": "Side Step",
+    "description": "Once per round may suffer Strain up to ranks to upgrade incoming ranged attacks that many times for one turn"
+  },
+  {
+    "name": "Supreme Scathing Tirade",
+    "description": "Suffer 1 strain to perform Scathing Tirade as maneuver"
+  },
+  {
+    "name": "Against All Odds",
+    "description": "\"When incapacitated, make Hard Resilience check with FD equal to FR, heal one wound per success or FP.\""
+  },
+  {
+    "name": "Animal Empathy",
+    "description": "\"When making animal checks, add FD equal to FR, and spend FP to add successes or advantage\""
+  },
+  {
+    "name": "Improved Parry",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Good Cop",
+    "description": "May spend 2 Advantage from Charm or Negotiation to to upgrade an ally's next social roll with target once per rank"
+  },
+  {
+    "name": "Stimpack Specialization",
+    "description": "Stimpacks heal +1 wound per rank"
+  },
+  {
+    "name": "Sixth Sense",
+    "description": "Ranged defense +1"
+  },
+  {
+    "name": "Reflect",
+    "description": "Three strain to reduce ranged damage by two plus ranks"
+  },
+  {
+    "name": "Placeholder",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Stim Application",
+    "description": "\"Make average medicine check, target increases one characteristic by one until the end of the encounter and suffers 4 strain\""
+  },
+  {
+    "name": "Slippery Minded",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Supreme Stim Application",
+    "description": "\"When performing Stim Application, spend Triumph to increase another characteristic\""
+  },
+  {
+    "name": "Pre-Emptive Avoidance",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Coordinated Assault",
+    "description": "\"As Maneuver, Engaged allies equal to Leadership add Advantage to combat checks for 1 turn. Range increases per rank.\""
+  },
+  {
+    "name": "Makashi Flourish",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Supreme Speaks Binary",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Don't Shoot!",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Disruptive Strike",
+    "description": "Placeholder. See https://goo.gl/wMmAUZ for details."
+  },
+  {
+    "name": "Blooded",
+    "description": "Add boost per rank to resist/recover from poisons/toxins. Reduce poison duration by one round per rank."
+  }
+]
