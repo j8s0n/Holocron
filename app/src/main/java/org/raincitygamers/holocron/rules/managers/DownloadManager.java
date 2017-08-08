@@ -68,6 +68,10 @@ public class DownloadManager extends ManagerBase {
               writeStringToFile(context, TalentManager.TALENTS_FILE, content);
               TalentManager.loadTalents(context);
               break;
+            case TalentManager.TALENT_DESCRIPTIONS_FILE:
+              writeStringToFile(context, TalentManager.TALENT_DESCRIPTIONS_FILE, content);
+              TalentManager.loadTalentDescriptions(context);
+              break;
             case CareerManager.CAREERS_FILE:
               writeStringToFile(context, CareerManager.CAREERS_FILE, content);
               CareerManager.loadCareers(context);

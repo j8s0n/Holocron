@@ -76,6 +76,7 @@ public class SelectorActivity extends ActivityBase implements ConnectionCallback
     CareerManager.loadCareers(this);
     SkillManager.loadSkills(this);
     TalentManager.loadTalents(this);
+    TalentManager.loadTalentDescriptions(this);
     ForcePowerManager.loadForcePowers(this);
     CharacterManager.loadCharacters(this);
 

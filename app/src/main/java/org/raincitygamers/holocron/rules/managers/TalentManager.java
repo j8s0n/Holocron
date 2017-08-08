@@ -21,7 +21,7 @@ import java.util.Map;
 public final class TalentManager extends ManagerBase{
   private static final String LOG_TAG = TalentManager.class.getSimpleName();
   static final String TALENTS_FILE = "Talents.json";
-  private static final String TALENT_DESCRIPTIONS_FILE = "TalentDescriptions.json";
+  static final String TALENT_DESCRIPTIONS_FILE = "TalentDescriptions.json";
   private static final String NAME_KEY = "name";
   private static final String DESCRIPTION_KEY = "description";
   private static final String GRAPH_KEY = "graph";
@@ -64,7 +64,9 @@ public final class TalentManager extends ManagerBase{
         }
       }
     });
+  }
 
+  public static void loadTalentDescriptions(@NotNull Context context) {
     getFileContent(context, TALENT_DESCRIPTIONS_FILE, FileSource.LOCAL_FIRST, new ContentParser() {
       @Override
       public void parse(@NotNull String content) {
